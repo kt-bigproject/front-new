@@ -1,0 +1,148 @@
+.box {
+  display: flex;
+  flex-direction: row;
+  width: 100vw;
+  min-height: 100vh;
+}
+
+.boxL {
+  display: flex;
+  flex-direction: column ; 
+  padding-left: 0;
+  width: 385px;
+  height: auto;
+  /* background-color: yellowgreen; */
+}
+
+.boxLwrap {
+  display: block;
+  margin: 50px 42px 50px 42px;
+  flex: 1 0 auto;
+  display: block;
+  /* background-color: gray; */
+}
+
+.headerLogo {
+  display: flex;
+  flex-wrap: wrap;
+  width: 300px;
+  justify-content: flex-start;
+  /* background-color: #eee; */
+}
+
+.headerText {
+  display: block;
+  margin-top: 32px;
+  margin-bottom: 16px;
+  margin: unset;
+  margin-block-start: 0.83em;
+  margin-block-end: 0.83em;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+
+  font-size: 32px;
+  line-height: 40px;
+  font-weight: 400;
+}
+
+.accountQuery {
+  margin-bottom: 32px;
+  color: rgb(28, 45, 56);
+  font-size: 18px;
+  font-weight: bold;
+  display: block;
+  text-align: start;
+  font-family: D2coding;
+}
+
+.signLink {
+  text-decoration: none;
+  color: rgb(1, 107, 248);
+  cursor: pointer;
+  font-size: 18px;
+  font-weight: bold;
+  text-align: start;
+}
+
+.authButton {
+  width: 295;  
+  background-color: white;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  margin-top: 16px;
+  border-radius: 6px;
+  height: 52px;
+  box-shadow: lightgrey 0px 1px;
+}
+
+.hr_sect {
+	display: flex;
+	flex-basis: 100%;
+	align-items: center;
+	color: rgb(92, 108, 117);
+	font-size: 13px;
+	margin: 8px 0px;
+}
+.hr_sect::before,
+.hr_sect::after {
+	content: "";
+	flex-grow: 1;
+	background: rgb(92, 108, 117);
+	height: 1px;
+	font-size: 0px;
+	line-height: 0px;
+	margin: 0px 16px;
+}
+
+
+.label {
+  font-size: 13px;
+  color: rgb(61, 79, 88);
+  position: relative;
+  font-weight: bold;
+  line-height: 16px;
+  letter-spacing: 0.02em;
+}
+
+.LoginButton {
+  width: 350px;
+  height: 65px;
+  color: rgb(1, 107, 248);
+}
+
+.forgot {
+  width: 300px;
+  display: inline-block;
+  text-align: right;
+  margin-top: 20px;
+}
+
+/* .fieldsetPW {
+  border: none;
+  display: block;
+  margin: 0px 0px 20px;
+  padding: 0px;
+
+  margin-inline-end: 2px;
+  margin-inline-start: 2px;
+  padding-block-start: 0.35em;
+  padding-inline-start: 0.75em;
+  padding-inline-end: 0.75em;
+  padding-block-end: 0.625em;
+  min-inline-size: min-content;
+} */
+
+
+/* @media only screen and (min-width: 1025px) */
+
+.boxR {
+  /* background-image: url(/static/images/auth/login_promo_desktop.svg); */
+  display: block;
+  width: calc(100vw - 385px);
+  height: 100%;
+  position: absolute;
+  left: 385px;
+  height: 100%;
+  background-color: #ffe4e4;
+}
