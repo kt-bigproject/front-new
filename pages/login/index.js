@@ -12,19 +12,20 @@ import TextInput from '@leafygreen-ui/text-input';
 import { palette } from '@leafygreen-ui/palette';
 import { SideNav, SideNavGroup, SideNavItem } from '@leafygreen-ui/side-nav';
 import Icon from '@leafygreen-ui/icon';
+import styles from './LoginPage.module.css';
 
 const CustomButton = styled(Button)`
-  width: 250px; 
+  width: 300px; 
   height: 50px;
   color: #5C6C75;
 `
 const CustomTextInput = styled(TextInput)`
-  width: 250px;
-  /* height: 40px; */
+  width: 300px;
+  margin-bottom: 10px;
 `
 
 const CustomPasswordInput = styled(PasswordInput)`
-  width: 196.4px; 
+  width: 246px; 
   .leafygreen-ui-fr3m1 {
     right: -45px;
   }
@@ -38,6 +39,11 @@ const CustomModal = styled(Modal)`
 }
 `
 
+const LoginButton = styled(Button)`
+  width: 300px; 
+  /* float: right; */
+`
+
 export default function LoginPage() {
   const { loginUser } = useContext(AuthContext);
   const handleSubmit = e => {
@@ -49,50 +55,74 @@ export default function LoginPage() {
 
   console.log(loginUser)
   return (
-    <section >
-      <form onSubmit={handleSubmit}>
-        <h1>Login </h1>
-        <hr />
-        <CustomButton 
-            style={{ marginBottom: 12 }}
-            href={"/"}
-            variant={"default"}
-            baseFontSize={16}
-            size={"large"}
-            leftGlyph={<Image src="/GoogleLogomark.svg" width={40} height={40}/>}>
-            Google
-          </CustomButton>
-          <CustomButton                  
-            href={"/"}
-            variant={"default"}
-            baseFontSize={16}
-            size={"large"}
-            leftGlyph={<Image src="/GitHubLogomark.svg" width={40} height={40}/>}>          
-            GitHup
-          </CustomButton>   
-        <CustomTextInput 
-          label="아이디"
-          id={"username"}
-          placeholder="아이디를 입력하세요."
-        />
-        {/* <label htmlFor="username">아이디</label> */}
-        {/* <input type="text" id="username" placeholder="아이디를 입력해주세요" /><br /> */}
-        {/* <label htmlFor="password">비밀번호</label> */}
-        {/* <input type="password" id="password" placeholder="비밀번호를 입력해주세요" /><br /> */}
-        <CustomPasswordInput 
-            placeholder={'비밀번호를 입력하세요.'}
-            label="비밀번호"
-            id={"password"}
-            />
-        {/* <button type="submit">Login</button> */}
-        <Button 
-          type={'submit'}
-          variant={"default"}
-          baseFontSize={16}>
-          Login
-        </Button>     
-      </form>
-    </section>
+    <div className={styles.box} >
+    <div className={styles.boxL}>
+      <div className={styles.boxLwrap}>
+
+        <div className={styles.headerLogo}>
+          <Image src='/Logo.svg' width={150} height={40}/>
+        </div>
+        <h2 className={styles.headerText}>로그인</h2>
+        <span className={styles.accountQuery}>"계정이 없으신가요?"
+          <a className={styles.signLink} href='/'>&nbsp;가입하기</a>
+        </span>
+          <section>
+            <form onSubmit={handleSubmit}>
+              {/* <h1>로그인</h1> */}
+              {/* <hr /> */}
+              <CustomButton 
+                  style={{ marginBottom: 12 }}
+                  href={"/"}
+                  variant={"default"}
+                  baseFontSize={16}
+                  size={"large"}
+                  leftGlyph={<Image src="/GoogleLogomark.svg" width={40} height={40}/>}>
+                  Google
+                </CustomButton>
+                <CustomButton                  
+                  href={"/"}
+                  variant={"default"}
+                  baseFontSize={16}
+                  size={"large"}
+                  leftGlyph={<Image src="/GitHubLogomark.svg" width={40} height={40}/>}>          
+                  GitHup
+                </CustomButton>   
+
+              <div className={styles.hr_sect}>또는</div>
+
+              <CustomTextInput 
+                label="아이디"
+                id={"username"}
+                placeholder="아이디를 입력하세요."
+              />
+              {/* <label htmlFor="username">아이디</label> */}
+              {/* <input type="text" id="username" placeholder="아이디를 입력해주세요" /><br /> */}
+              {/* <label htmlFor="password">비밀번호</label> */}
+              {/* <input type="password" id="password" placeholder="비밀번호를 입력해주세요" /><br /> */}
+              
+              <CustomPasswordInput 
+                  placeholder={'비밀번호를 입력하세요.'}
+                  label="비밀번호"
+                  id={"password"}
+                  />
+              {/* <button type="submit">Login</button> */}
+              <br/>
+              
+              <LoginButton 
+                type={'submit'}
+                variant={"default"}
+                baseFontSize={16}>
+                로그인
+              </LoginButton>     
+             
+            </form>
+          </section>
+          </div>
+          </div>
+          <div className={styles.boxR}>
+            box1
+          </div>
+      </div>
   );
 
 };
