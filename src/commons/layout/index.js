@@ -1,7 +1,7 @@
 import { useRouter } from "next/router";
 import LayoutHeader from "./header/header";
 import LayoutFooter from "./footer/footer";
-import Sidebar from "./sidebar";
+import Sidebar from "./sidebar2";
 import styled from "@emotion/styled";
 
 // 변하지 않는 값은 밖에다가 써줌
