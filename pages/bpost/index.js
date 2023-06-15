@@ -8,7 +8,7 @@ const BoardList = () => {
   const Router = useRouter()
 
   const getBoardList = async() => {
-    const resp = (await axios.get('http://127.0.0.1:8000/blog/blog/?format=json')).data;
+    const resp = (await axios.get('http://127.0.0.1:8000/blog/blog/')).data;
     setBoardList(resp.data);
     
     const pngn = resp.pagination;
