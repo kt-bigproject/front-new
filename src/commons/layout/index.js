@@ -12,7 +12,7 @@ const Main = [
 ]
 
 const layoutFunction = [
-    "/login",
+    // "/login",
 ]
 
 
