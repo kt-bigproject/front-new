@@ -223,17 +223,17 @@ export default function PraticePage() {
     .3
     }
 
-    useEffect(() => {
-      const Fetchsentence = async () => {
-        const result = await axios.get('http://127.0.0.1:8000/practice/sentence/')
-        const random = Math.floor(Math.random() * result.data['length'])
-        // console.log(result.data[1])
-        console.log(random)
-        console.log("a")
-        setSent(result.data[random].sentence)
-      }
-      Fetchsentence()
-    }, [])
+    // useEffect(() => {
+    //   const Fetchsentence = async () => {
+    //     const result = await axios.get('http://127.0.0.1:8000/practice/sentence/')
+    //     const random = Math.floor(Math.random() * result.data['length'])
+    //     // console.log(result.data[1])
+    //     console.log(random)
+    //     console.log("a")
+    //     setSent(result.data[random].sentence)
+    //   }
+    //   Fetchsentence()
+    // }, [])
 
     
 
@@ -247,7 +247,7 @@ export default function PraticePage() {
   return(
     <>
       <Global styles={globalStyles} />
-      <div style={MyDivStyle}>{sent}</div>
+      <div style={MyDivStyle}>안녕하세요</div>
       <div style={{}}></div>
       <Dropdown menu={{ items,}}>
         <a onClick={(e) => e.preventDefault()}>
