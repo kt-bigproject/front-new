@@ -5,18 +5,24 @@ import styled from '@emotion/styled';
 import { css, Global } from '@emotion/react';
 import { PlusOutlined } from '@ant-design/icons';
 import { Modal, Upload } from 'antd';
+import styles from '../../../styles/post/post.module.css'
+
 
 const ImgUploadContainer = styled.div`
   margin-top:50px;
   display: flex;
-  flex-direction: column;
+  /* flex-direction: column; */
   justify-content: space-between;
   align-items:center;
-  text-align: center;
+  text-align: left;
+  /* width:100px; */
+  /* height: calc(100%/2 - 200px); */
+  margin-bottom: 30px;
+  margin-left: 10px;
 `
 const MainFontStyles = css`
 
-  h2 {
+  /* h2 {
     font-size: 32px;
     font-family: 'SUITE-Regular';
     margin-bottom: 10px;;
@@ -26,12 +32,16 @@ const MainFontStyles = css`
     font-size: 20px;
     font-family: 'SUITE-Regular';
     margin-bottom: 20px;
-  }
+  } */
 
   .img-container{
     width:100%;
     height: calc(100%/2 - 200px);
     margin-bottom: 30px;
+  }
+
+  savebtn {
+    background-color: "white";
   }
 
 
@@ -100,6 +110,16 @@ const BoardWrite = () => {
       [name]: value,
     });
   };
+
+  const [board, setBoard] = useState({
+        id: "",
+        title: "",
+        created_at: "",
+        user: "",
+        body: "",
+        image: "",
+  });
+
 //  try {
   const saveBoard = async () => {
     await axios.post(`http://127.0.0.1:8000/blog/blog/`, board).then((res) => {
@@ -155,62 +175,93 @@ const BoardWrite = () => {
     };
   return (
     <div>
+      <div>게시물 작성</div>
+      <hr className={styles.line}></hr>
       <div>
-      <label htmlFor="title">제목</label>
-          <input
-            type="text"
-            id="title"
-            onChange={e => setTitle(e.target.value)}
-            placeholder="제목을 입력해주세요."
-            required
-          />
+        <label htmlFor="title">
+            <input
+              type="text"
+              id="title"
+              onChange={e => setTitle(e.target.value)}
+              placeholder="제목을 입력해주세요."
+              className={styles.title}
+              required
+            />
+            <hr className={styles.line}></hr>
+        </label>
       </div>
-      <br />
       <div>
-      <label htmlFor="Content">내용</label>
-          <input
-            type="text"
+        <label htmlFor="Content">
+          <div>
+            <textarea 
+              placeholder='내용을 입력해주세요.' 
+              id="Content" 
+              rows="10"
+              cols="40" 
+              className={styles.textbox} 
+              onChange={e => setBody(e.target.value)}>
+            </textarea>
+          </div>
+          <hr className={styles.line}></hr>
+        </label>
+      
+      
+          {/* <input
+            type="textbox"
             id="Content"
-            cols="100"
-            rows="300"
+            cols="50"
+            rows="50"
             onChange={e => setBody(e.target.value)}
             placeholder="내용을 입력해주세요"
             required
-          />
+          /> */}
+          
       </div>
       <br />
+      
+      <div style={{flexDirection : "row", flex:1, display:"flex"}}>
+        <div >
+          <div className={styles.h2}>-사진 업로드-</div>
+          <div className={styles.h4}>사진을 업로드 해주세요 -→</div>
+        </div>
+        <div className={styles.upload_box}>
+          <ImgUploadContainer className={styles.upload_box2}>
+                  <Global styles={MainFontStyles} ></Global>
+                  <Upload
+                      
+                      action="http://localhost:3000/"
+                      listType="picture-card"
+                      fileList={fileList}
+                      onPreview={handlePreview}
+                      onChange={handleChange}
+                  >
+                      {fileList.length >= 1 ? null : uploadButton}
+                  </Upload>
+
+                  <Modal open={previewOpen} title={previewTitle} footer={null} onCancel={handleCancel} >
+                      <img
+                          style={{
+                              width: '100%',
+                          }}
+                          src={previewImage}
+                      />
+                  </Modal>
+
+                  
+
+          </ImgUploadContainer >
+          
+        </div>
+        
+      </div>
+      {/*서버 제출 버튼*/}
+      <button variant="outline-primary" id='submit-btn' type='submit' onClick={handleApi} className={styles.submit_btn}>Submit</button>
       <div>
-      <ImgUploadContainer>
-                <Global styles={MainFontStyles} ></Global>
-                <h2>사진 업로드</h2>
-                <h4>사진을 업로드 하세요.</h4>
-                <Upload
-                    action="http://localhost:3000/"
-                    listType="picture-card"
-                    fileList={fileList}
-                    onPreview={handlePreview}
-                    onChange={handleChange}
-                >
-                    {fileList.length >= 1 ? null : uploadButton}
-                </Upload>
-
-                <Modal open={previewOpen} title={previewTitle} footer={null} onCancel={handleCancel}>
-                    <img
-                        style={{
-                            width: '100%',
-                        }}
-                        src={previewImage}
-                    />
-                </Modal>
-
-                {/*서버 제출 버튼*/}
-                <button variant="outline-primary" id='submit-btn' type='submit' onClick={handleApi}>Submit</button>
-
-            </ImgUploadContainer >
+        <button onClick={saveBoard} className={styles.save_btn}>저장</button>
+        <span>    </span>
+        <button onClick={backToList} className={styles.cancel_btn}>취소</button>
       </div>
       <div>
-        <button onClick={saveBoard}>저장</button>
-        <button onClick={backToList}>취소</button>
       </div>
     </div>
   );

@@ -1,4 +1,4 @@
-import globalStyles from "../src/commons/styles/globalStyle"
+import { globalStyles } from "../src/commons/styles/globalStyle"
 import { Global } from '@emotion/react'
 import LayoutPage from "../src/commons/layout"
 import { AuthProvider } from "../src/components/AuthContext/AuthContext"
