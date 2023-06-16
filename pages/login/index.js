@@ -18,14 +18,28 @@ const CustomButton = styled(Button)`
   width: 300px; 
   height: 50px;
   color: #5C6C75;
+
 `
 const CustomTextInput = styled(TextInput)`
   width: 300px;
   margin-bottom: 10px;
+
+  [class^="leafygreen-ui"] * {
+    font-family: inherit;
+  } 
 `
 
 const CustomPasswordInput = styled(PasswordInput)`
   width: 246px; 
+
+  .leafygreen-ui-1gffv4b {
+    font-family: inherit;
+  }
+
+  [class^="leafygreen-ui"] * {
+    font-family: inherit;
+  } 
+
   .leafygreen-ui-fr3m1 {
     right: -45px;
   }
@@ -53,7 +67,7 @@ export default function LoginPage() {
     username.length > 0 && loginUser(username, password);
   };
 
-  console.log(loginUser)
+  console.log(loginUser) 
   return (
     <div className={styles.box} >
     <div className={styles.boxL}>
@@ -64,7 +78,7 @@ export default function LoginPage() {
         </div>
         <h2 className={styles.headerText}>로그인</h2>
         <span className={styles.accountQuery}>"계정이 없으신가요?"
-          <a className={styles.signLink} href='/'>&nbsp;가입하기</a>
+          <a className={styles.signLink} href='/register'>&nbsp;가입하기</a>
         </span>
           <section>
             <form onSubmit={handleSubmit}>
@@ -93,7 +107,7 @@ export default function LoginPage() {
               <CustomTextInput 
                 label="아이디"
                 id={"username"}
-                placeholder="아이디를 입력하세요."
+                placeholder="아이디를 입력해주세요."
               />
               {/* <label htmlFor="username">아이디</label> */}
               {/* <input type="text" id="username" placeholder="아이디를 입력해주세요" /><br /> */}
@@ -101,9 +115,9 @@ export default function LoginPage() {
               {/* <input type="password" id="password" placeholder="비밀번호를 입력해주세요" /><br /> */}
               
               <CustomPasswordInput 
-                  placeholder={'비밀번호를 입력하세요.'}
                   label="비밀번호"
                   id={"password"}
+                  placeholder={'비밀번호를 입력해주세요.'}
                   />
               {/* <button type="submit">Login</button> */}
               <br/>
@@ -119,8 +133,7 @@ export default function LoginPage() {
           </section>
           </div>
           </div>
-          <div className={styles.boxR}>
-            box1
+          <div className={styles.boxR}>            
           </div>
       </div>
   );
