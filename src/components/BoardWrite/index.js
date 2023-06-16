@@ -7,6 +7,7 @@ import { PlusOutlined } from '@ant-design/icons';
 import { Modal, Upload } from 'antd';
 import styles from '../../../styles/post/post.module.css'
 
+
 const ImgUploadContainer = styled.div`
   margin-top:50px;
   display: flex;
@@ -109,6 +110,16 @@ const BoardWrite = () => {
       [name]: value,
     });
   };
+
+  const [board, setBoard] = useState({
+        id: "",
+        title: "",
+        created_at: "",
+        user: "",
+        body: "",
+        image: "",
+  });
+
 //  try {
   const saveBoard = async () => {
     await axios.post(`http://127.0.0.1:8000/blog/blog/`, board).then((res) => {
@@ -183,7 +194,7 @@ const BoardWrite = () => {
         <label htmlFor="Content">
           <div>
             <textarea 
-              placeholder='내용을 입력하세요.' 
+              placeholder='내용을 입력해주세요.' 
               id="Content" 
               rows="10"
               cols="40" 
@@ -208,15 +219,16 @@ const BoardWrite = () => {
       </div>
       <br />
       
-      <div >
+      <div style={{flexDirection : "row", flex:1, display:"flex"}}>
         <div >
           <div className={styles.h2}>-사진 업로드-</div>
-          <div className={styles.h4}>사진을 업로드 하세요.</div>
+          <div className={styles.h4}>사진을 업로드 해주세요 -→</div>
         </div>
-        <div >
-          <ImgUploadContainer>
+        <div className={styles.upload_box}>
+          <ImgUploadContainer className={styles.upload_box2}>
                   <Global styles={MainFontStyles} ></Global>
                   <Upload
+                      
                       action="http://localhost:3000/"
                       listType="picture-card"
                       fileList={fileList}
@@ -226,7 +238,7 @@ const BoardWrite = () => {
                       {fileList.length >= 1 ? null : uploadButton}
                   </Upload>
 
-                  <Modal open={previewOpen} title={previewTitle} footer={null} onCancel={handleCancel}>
+                  <Modal open={previewOpen} title={previewTitle} footer={null} onCancel={handleCancel} >
                       <img
                           style={{
                               width: '100%',
@@ -238,13 +250,15 @@ const BoardWrite = () => {
                   
 
           </ImgUploadContainer >
-          {/*서버 제출 버튼*/}
-          <button variant="outline-primary" id='submit-btn' type='submit' onClick={handleApi} className={styles.submit_btn}>Submit</button>
+          
         </div>
         
       </div>
+      {/*서버 제출 버튼*/}
+      <button variant="outline-primary" id='submit-btn' type='submit' onClick={handleApi} className={styles.submit_btn}>Submit</button>
       <div>
         <button onClick={saveBoard} className={styles.save_btn}>저장</button>
+        <span>    </span>
         <button onClick={backToList} className={styles.cancel_btn}>취소</button>
       </div>
       <div>
