@@ -1,0 +1,87 @@
+.save_btn {
+    background-color: beige;
+    border-color: grey;
+    border-radius: 10%;
+    
+}
+.cancel_btn {
+    background-color: beige;
+    border-color: grey;
+    border-radius: 10%;
+}
+
+.submit_btn {
+    background-color: beige;
+    border-color: grey;
+    border-radius: 10%;
+    padding: 5px;
+    margin: 10px;
+}
+
+.textbox {
+    width: 100%;
+    height: auto;
+    resize: none;
+    border: none;
+}
+
+.upload_box {
+    width: 80%;
+    height: auto;
+}
+
+.line {
+    border: inset .01px grey;
+}
+
+.title {
+    border: none;
+}
+
+.position_left {
+    position: absolute;
+    top: 50%;
+    left: 10%;
+}
+
+.position_right {
+    position: absolute;
+    top: 50%;
+    right: 10%;
+}
+
+.h2 {
+    font-size: 32px;
+    font-family: 'SUITE-Regular';
+    margin-bottom: 10px;;
+}
+
+.h4 {
+    font-size: 20px;
+    font-family: 'SUITE-Regular';
+    margin-bottom: 20px;
+}
+
+.img-container{
+    width:100%;
+    height: calc(100%/2 - 200px);
+    margin-bottom: 30px;
+}
+
+.savebtn {
+    background-color: "white";
+}
+
+@font-face {
+    font-family: 'SUITE-Regular';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2304-2@1.0/SUITE-Regular.woff2') format('woff2');
+    font-weight: 600;
+    font-style: normal;
+  }
+  
+@font-face {
+    font-family: 'establishRetrosansOTF';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2112@1.0/establishRetrosansOTF.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
