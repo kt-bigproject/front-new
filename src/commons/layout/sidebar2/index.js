@@ -4,7 +4,7 @@ import Icon from '@leafygreen-ui/icon';
 import styles from './styles.module.css';
 
 const CustomSideNav = styled(SideNav)`
-  height: 100vh;
+  /* height: 100vh; */
   font-size: 30px;
 `
 
@@ -12,7 +12,7 @@ export default function Sidebar() {
 
   return(
   <CustomSideNav
-    widthOverride={500}
+    // widthOverride={500}
   >
     <SideNavItem>Overview</SideNavItem>
     <SideNavItem>Introduction</SideNavItem>

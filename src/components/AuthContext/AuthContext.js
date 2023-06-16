@@ -31,7 +31,9 @@ export const AuthProvider = ({ children }) => {
       console.log(data['token'])
       console.log(jwt_decode(data['token'])) // 
       setUser(jwt_decode(data['token'])); // user정보는 여기 담김
-      localStorage.setItem("authTokens", JSON.stringify(data));
+      // localStorage.setItem("user", JSON.stringify(data));
+      // localStorage.setItem("user", jwt_decode(data['token'])); user정보는 굳이 여기서 담지말고 setUser에 담자
+      localStorage.setItem("tokens", data['token']);
       router.push("/");
     } else {
       alert("아이디 또는 비밀번호가 맞지 않습니다.");
