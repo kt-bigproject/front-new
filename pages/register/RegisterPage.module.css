@@ -1,17 +1,36 @@
-.box {
+.container {
   display: flex;
   flex-direction: row;
   width: 100vw;
   min-height: 100vh;
+  align-items: flex-start
 }
 
-.boxL {
+.col1 {
+    background-image: url('/login_main.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  filter: saturate(70%);
+  transform: scaleX(-1);
+
+  display: flex;
+  width: 385px;
+  height: 100vh;
+}
+
+.box{
+  display: inline-flex;
+  flex-direction: row;
+  min-height: 100vh;
+}
+
+.col2 {
   display: flex;
   flex-direction: column ; 
   padding-left: 0;
   width: 385px;
   height: auto;
-  /* background-color: yellowgreen; */
 }
 
 .boxLwrap {
@@ -19,7 +38,6 @@
   margin: 50px 42px 50px 42px;
   flex: 1 0 auto;
   display: block;
-  /* background-color: gray; */
 }
 
 .headerLogo {
@@ -135,20 +153,20 @@
 
 /* @media only screen and (min-width: 1025px) */
 
-.boxR {
-  background-image: url('/login_main.jpg');
+.col3 {
+  /* background-image: url('/login_main.jpg');
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
   filter: saturate(70%);
-  transform: scaleX(-1);
+  transform: scaleX(-1); */
 
-  display: block;
-  width: calc(100vw - 385px);
-  height: 100%;
-  position: absolute;
-  left: 385px;
-  height: 100%;
+  display: flex;
+  width: auto;
+  width: calc(100vw - 385px - 385px);
+  height: 100vh;
+  /* position: absolute; */
+  /* left: calc(385px + 385px); */
   /* background-color: #ffe4e4; */
 }
 
