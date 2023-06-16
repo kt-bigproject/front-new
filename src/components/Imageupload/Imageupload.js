@@ -5,6 +5,8 @@ import { Global } from "@emotion/react";
 import axios from "axios";
 import styled from "@emotion/styled";
 import { css } from "@emotion/react";
+import Button from "@leafygreen-ui/button"
+
 
 const ImgUploadContainer = styled.div`
   margin-top:50px;
@@ -17,7 +19,7 @@ const ImgUploadContainer = styled.div`
 const MainFontStyles = css`
 
   h2 {
-    font-size: 32px;
+    font-size: 30px;
     font-family: 'SUITE-Regular';
     margin-bottom: 10px;;
   }
@@ -47,6 +49,7 @@ const MainFontStyles = css`
       src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2112@1.0/establishRetrosansOTF.woff') format('woff');
       font-weight: normal;
       font-style: normal;
+
   }
 `
 
@@ -144,8 +147,8 @@ export default function ImageUpload(props) {
         <>
             <ImgUploadContainer>
                 <Global styles={MainFontStyles} ></Global>
-                <h2>사진 업로드</h2>
-                <h4>사진을 업로드 하세요.</h4>
+                <h2>사진을 업로드 하세요</h2>
+                <br />
                 <Upload
                     action="http://localhost:3000/"
                     listType="picture-card"
@@ -164,9 +167,9 @@ export default function ImageUpload(props) {
                         src={previewImage}
                     />
                 </Modal>
-
+                <br />
                 {/*서버 제출 버튼*/}
-                <button variant="outline-primary" id='submit-btn' type='submit' onClick={handleApi}>Submit</button>
+                <Button variant="primary" id='submit-btn' type='submit' onClick={handleApi}>Submit</Button>
 
             </ImgUploadContainer >
         </>
