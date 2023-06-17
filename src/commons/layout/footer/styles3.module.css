@@ -1,0 +1,17 @@
+@font-face {
+  font-family: '초보';
+  src: url('/fonts/초보.ttf');
+}
+
+.wrap {
+  background-color: #CCCCCC;
+  height: 90px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  font-family: 초보;
+  font-size: 16px;
+  position: fixed;
+  margin-top: 580px;
+}

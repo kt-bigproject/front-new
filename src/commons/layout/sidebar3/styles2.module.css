@@ -1,0 +1,91 @@
+@font-face {
+  font-family: '초보';
+  src: url('/fonts/초보.ttf');
+}
+
+.ti {
+  position: absolute;
+
+}
+.sidebarContainer {
+  z-index: 2;
+}
+.l1 {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  font-family: 초보;
+  font-size: 35px;
+  cursor: pointer;
+  margin-top: 170px;
+  gap: 25px;
+}
+.l2,
+.l3,
+.l4,
+.l5 {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  font-family: 초보;
+  font-size: 35px;
+  cursor: pointer;
+  margin-top: 20px;
+  gap: 25px;
+}
+
+.l6 {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  font-family: 초보;
+  font-size: 35px;
+  cursor: pointer;
+  margin-top: 50px;
+  gap: 25px;
+}
+.icon1,
+.icon2,
+.icon3,
+.icon4,
+.icon5,
+.icon6 {
+  margin-left: 20px;
+}
+
+.l1:hover,
+.l2:hover,
+.l3:hover,
+.l4:hover,
+.l5:hover,
+.l6:hover {
+  color: orange;
+}
+
+.hidden {
+  display: none;
+}
+
+
+.tooltip {
+  position: absolute;
+  top: 50%;
+  left: calc(100% + 5px);
+  transform: translate(0, -50%);
+  background-color: #f1f1f1;
+  padding: 5px;
+  border-radius: 5px;
+  white-space: nowrap;
+}
+
+
+
+
+
+
+
+
+
+
+
+
