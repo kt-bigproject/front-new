@@ -1,15 +1,7 @@
 import styles from './styles.module.css';
-<<<<<<< HEAD
-
-const CustomSideNav = styled(SideNav)`
-  /* height: 100vh; */
-  font-size: 30px;
-`
-=======
 import 'boxicons/css/boxicons.min.css';
 import { useRouter } from 'next/router';
 import React, { useState } from 'react';
->>>>>>> sidebar-0616
 
 export default function Sidebar() {
   const a1 = useRouter();
@@ -66,34 +58,6 @@ export default function Sidebar() {
 
   const [sidebarTransition, setSidebarTransition] = useState('width 0.3s ease-in-out');
 
-<<<<<<< HEAD
-  return(
-  <CustomSideNav
-    // widthOverride={500}
-  >
-    <SideNavItem>Overview</SideNavItem>
-    <SideNavItem>Introduction</SideNavItem>
-    <SideNavItem>
-      Android SDK
-      <SideNavItem><div className={styles.name}>Install MongoDB Community Edition</div></SideNavItem>
-      <SideNavGroup
-        header="Fundamentals"
-        collapsible
-        glyph={<Icon glyph="Building" />}
-      >
-        <SideNavItem active>
-          Upgrade MongoDB Community to MongoDB Enterprise
-        </SideNavItem>
-        <SideNavItem>Verify Integrity of MongoDB Packages</SideNavItem>
-        <SideNavGroup header="Preferences">
-          <SideNavItem>Privacy</SideNavItem>
-          <SideNavItem>Security</SideNavItem>
-        </SideNavGroup>
-      </SideNavGroup>
-    </SideNavItem>
-  </CustomSideNav>
-);
-=======
   return (
     <aside
       className={`${styles.Sidebar} ${sidebarExpanded ? styles.Expanded : styles.Collapsed}`}
@@ -177,5 +141,4 @@ export default function Sidebar() {
       </div>
     </aside>
   );
->>>>>>> sidebar-0616
 }
