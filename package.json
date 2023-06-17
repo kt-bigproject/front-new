@@ -21,6 +21,7 @@
     "@leafygreen-ui/text-input": "^12.1.13",
     "antd": "^5.5.2",
     "axios": "^1.4.0",
+    "boxicons": "^2.1.4",
     "dayjs": "^1.11.8",
     "http-proxy-middleware": "^2.0.6",
     "jwt-decode": "^3.1.2",
