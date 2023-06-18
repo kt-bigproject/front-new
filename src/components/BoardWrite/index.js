@@ -117,7 +117,7 @@ const BoardWrite = () => {
         created_at: "",
         user: "",
         body: "",
-        image: "",
+        image: null,
   });
 
 //  try {
@@ -140,7 +140,7 @@ const BoardWrite = () => {
         
     formData.append('title', title)  //서버전달용
     formData.append('body', body )
-    formData.append(`image`, fileList[0].originFileObj) 
+    formData.append(`image`, fileList[0]?.originFileObj); 
     // FormData의 key 확인
     for (let key of formData.keys()) {
         console.log("formData key");
@@ -167,9 +167,9 @@ const BoardWrite = () => {
             console.log('이미지 전송 실패');
             console.log(response.status);
         }
-    } catch (event) {
-        console.error('이미지 전송 실패', event)
-        console.log(formData)
+    } catch (error) {
+        console.error('이미지 전송 실패', error);
+        console.log(formData);
     };
 
     };
