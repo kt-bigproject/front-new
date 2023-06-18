@@ -1,0 +1,20 @@
+.wrap {
+  background-color: beige;
+  height: 60px;
+  width: 1000px;
+}
+
+.title {
+  position: fixed;
+  left: 45%;
+  z-index: 9999;
+  
+}
+
+.logout {
+  background: white;
+  border-radius: 30%;
+  color: orange;
+  cursor: pointer;
+  display: flex;
+}
