@@ -20,33 +20,65 @@ const BoardList = () => {
   });
 
 
-  const getBoardList = async() => {
-    if (search.page === curPage) return; //현재 페이지와 누른 페이지가 같으면 return
+  // const getBoardList = async() => {
+  //   if (search.page === curPage) return; //현재 페이지와 누른 페이지가 같으면 return
 
+  //   const queryString = Object.entries(search)
+  //     .map((e) => e.join('='))
+  //     .join('&');
+
+  //   const resp = await(
+  //     await axios.get('http://127.0.0.1:8000/blog/blog/' + queryString)).data;
+      
+  //   setBoardList(resp.data);
+  //   const pngn = resp.pagination;
+    
+  //   const { endPage, nextBlock, prevBlock, startPage, totalPageCnt } = pngn;
+
+  //   setCurPage(search.page);
+  //   setPrevBlock(prevBlock);
+  //   setNextBlock(nextBlock);
+  //   setLastPage(totalPageCnt);
+
+  //   const tmpPages = [];
+  //   for (let i = startPage; i <= endPage; i++) {
+  //     tmpPages.push(i);
+  //   }
+
+  //   setPageList(tmpPages);
+  // };
+
+  // 수정 테스트 =========================================================================================
+  const getBoardList = async () => {
     const queryString = Object.entries(search)
       .map((e) => e.join('='))
       .join('&');
-
-    const resp = await(
-      await axios.get('http://127.0.0.1:8000/blog/blog/' + queryString)).data;
-      
-    setBoardList(resp.data);
-    const pngn = resp.pagination;
-    
-    const { endPage, nextBlock, prevBlock, startPage, totalPageCnt } = pngn;
-
-    setCurPage(search.page);
-    setPrevBlock(prevBlock);
-    setNextBlock(nextBlock);
-    setLastPage(totalPageCnt);
-
-    const tmpPages = [];
-    for (let i = startPage; i <= endPage; i++) {
-      tmpPages.push(i);
+  
+    try {
+      const resp = await axios.get(
+        `http://127.0.0.1:8000/blog/blog/?${queryString}`
+      );
+  
+      const { data, pagination } = resp.data;
+      const { endPage, nextBlock, prevBlock, startPage, totalPageCnt } = pagination;
+  
+      setBoardList(data);
+      setCurPage(search.page);
+      setPrevBlock(prevBlock);
+      setNextBlock(nextBlock);
+      setLastPage(totalPageCnt);
+  
+      const tmpPages = [];
+      for (let i = startPage; i <= endPage; i++) {
+        tmpPages.push(i);
+      }
+  
+      setPageList(tmpPages);
+    } catch (error) {
+      console.error('Error while fetching board list:', error);
     }
-
-    setPageList(tmpPages);
   };
+  //====================================================================================================
 
   const moveToWrite = () => {
     Router.push('/BoardWrite');
