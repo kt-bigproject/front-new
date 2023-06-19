@@ -1,10 +1,7 @@
-<<<<<<< HEAD
-import styles from './styles2.module.css';
+// import styles from './styles2.module.css';
 // import 'boxicons/css/boxicons.min.css';
-=======
 import styles from './styles.module.css';
-import 'boxicons/css/boxicons.min.css';
->>>>>>> dev
+// import 'boxicons/css/boxicons.min.css';
 import { useRouter } from 'next/router';
 import React, { useState } from 'react';
 import Icon from '@leafygreen-ui/icon';

@@ -3,7 +3,7 @@ import Link from "next/link"
 import { UserOutlined } from "@ant-design/icons"
 import React from 'react';
 import styles from './styles.module.css'
-import 'boxicons/css/boxicons.min.css';
+// import 'boxicons/css/boxicons.min.css';
 import { useRouter } from 'next/router';
 import { useState } from 'react';
 
