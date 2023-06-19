@@ -41,7 +41,7 @@ export default function Layout(props) {
             <LayoutHeader/>
             {props.children}
             <LayoutFooter />
-            </div>
+            </div>  
         </LayoutDiv>
     }
         </>
