@@ -111,14 +111,14 @@ const BoardWrite = () => {
     });
   };
 
-  const [board, setBoard] = useState({
-        id: "",
-        title: "",
-        created_at: "",
-        user: "",
-        body: "",
-        image: null,
-  });
+  // const [board, setBoard] = useState({
+  //       id: "",
+  //       title: "",
+  //       created_at: "",
+  //       user: "",
+  //       body: "",
+  //       image: null,
+  // });
 
 //  try {
   const saveBoard = async () => {
@@ -139,8 +139,10 @@ const BoardWrite = () => {
 
         
     formData.append('title', title)  //서버전달용
+    formData.append('user', localStorage.user)
     formData.append('body', body )
     formData.append(`image`, fileList[0]?.originFileObj); 
+    // formData.append(`user`, )
     // FormData의 key 확인
     for (let key of formData.keys()) {
         console.log("formData key");
@@ -173,6 +175,7 @@ const BoardWrite = () => {
     };
 
     };
+    console.log(localStorage.user)
   return (
     <div>
       <div>게시물 작성</div>
@@ -255,11 +258,12 @@ const BoardWrite = () => {
         
       </div>
       {/*서버 제출 버튼*/}
-      <button variant="outline-primary" id='submit-btn' type='submit' onClick={handleApi} className={styles.submit_btn}>Submit</button>
+      
       <div>
-        <button onClick={saveBoard} className={styles.save_btn}>저장</button>
+      <button variant="outline-primary" id='submit-btn' type='submit' onClick={handleApi} className={styles.save_btn}>저장</button>
+        {/* <button onClick={saveBoard} className={styles.save_btn}>저장</button> */}
         <span>    </span>
-        <button onClick={backToList} className={styles.cancel_btn}>취소</button>
+        <button onClick={backToList} className={styles.cancel_btn}>뒤로</button>
       </div>
       <div>
       </div>

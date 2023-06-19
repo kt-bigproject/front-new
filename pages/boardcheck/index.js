@@ -1,47 +1,3 @@
-// import React, { useEffect, useState } from 'react';
-// import { useParams } from 'react-router-dom';
-// import axios from 'axios';
-// import WritePage from '../../../../pages/BoardWrite/index';
-
-// const BoardDetail = () => {
-//   // return (
-//   //   <div>
-//   //     test
-//   //   </div>
-//   // )
-//   const { id } = useParams(); 
-//   const [loading, setLoading] = useState(true);
-//   const [BoardWrite, setBoardWrite] = useState({});
-//   const getBoard2 = async () => {
-//     const resp = await (await axios.get(`http://127.0.0.1:8000/blog/blog/`)).data;
-//     setBoardWrite(resp.data);
-//     setLoading(false);
-//   };
-
-//   useEffect(() => {
-//     getBoard2();
-//   }, []);
-
-//   return (
-//     <div>
-//       {loading ? (
-//         <h2>loading...</h2>
-//       ) : (
-//         <WritePage
-//           // id={BoardWrite.id}
-//           title={WritePage.title}
-//           // created_at={BoardWrite.created_at}
-//           // user={BoardWrite.user}
-//           body={WritePage.body}
-//           image={WritePage.image}
-//         />
-//       )}
-//     </div>
-//   );
-// };
-
-// export default BoardDetail;
-
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
@@ -64,6 +20,7 @@ const Check = () => {
       }, [])
     
       const {id} = useParams();
+      console.log(useParams());
 
         return (
             <table>
