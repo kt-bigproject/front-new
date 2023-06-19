@@ -4,35 +4,44 @@
 }
 
 .wrap {
-  background-color: #f2f2f2;
-  height: 90px;
+  background-color: gray;
+  height: 140px;
   width: 100%;
   font-family: 초보;
   font-size: 16px;
-  position: fixed;
+  position: relative;
+  transform: translateY(-100%);
   margin-top: 595px;
+  align-items: center;
+  justify-content: center;
+  display: flex;
 }
 
 .kt {
-  position: fixed;
-  left: 680px;
-  bottom: 20px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  top: 50px;
 
 }
 .logo {
-  position: fixed;
-  left: 1193px;
-  
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+  position: relative;
+  left: 552px;
+  bottom: 10px;
 }
 .flex {
-  position: fixed;
+  position: relative;
   display: flex;
   gap: 18px;
   font-size: 25px;
   color: navy;
   alignItems: 'flex-end';
-  left: 1240px;
-  bottom: 4px;
   text-decoration-line: none;
+  left: 600px;
+  bottom: 10px;
   
 }
