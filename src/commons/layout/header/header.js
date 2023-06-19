@@ -19,11 +19,12 @@ export default function LayoutHeader() {
     return (
       <header className={styles.wrap}>
         <img src="/Logo.svg" className={styles.title} width={200} height={62} />
+       <div className={styles.container}>
         <i className='bx bx-user-circle' style={{ cursor: 'pointer', color: 'gray', fontSize: 44 }}></i>
-        <button className={styles.logout} onClick={onClickButton}>로그아웃
-        </button>
+        <button className={styles.logout} onClick={onClickButton}>LogOut</button>
+        </div> 
       </header>
-    );
+  );
   }
   
   

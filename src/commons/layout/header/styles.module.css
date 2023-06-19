@@ -1,20 +1,60 @@
 .wrap {
-  background-color: beige;
-  height: 60px;
-  width: 1000px;
+  background-color: white;
+  height: 63px;
+  border-bottom: 1px solid #ccc;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  width: 97vw;
+  display: flex;
+  align-items: center;
 }
 
 .title {
-  position: fixed;
-  left: 45%;
+  display: flex;
+  align-items: center;
   z-index: 9999;
+  position: relative;
+  left: 570px;
   
 }
 
 .logout {
   background: white;
-  border-radius: 30%;
+  border-radius: 100px / 90px;
   color: orange;
   cursor: pointer;
   display: flex;
+  width: 100px;
+  font-size: 27px;
+  border: 1px solid;
+  align-items: center;
+  position: relative;
+  perspective: 800px;
+  transform-style: preserve-3d;
+  transition: transform 0.3s ease-in-out;
+}
+
+.logout:hover {
+  transform: translateZ(20px) rotateX(-10deg) scale(1.1);
+}
+
+
+
+.container {
+  display: flex;
+  align-content: flex-end;
+  gap: 40px;
+  position: relative;
+  left: 900px;
+}
+
+.container::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 34%; 
+  width: 2px; 
+  background-color: black; 
+  transform: translateX(-50%); 
+
 }

@@ -1,7 +1,12 @@
+<<<<<<< HEAD
 // import styles from './styles2.module.css';
 // import 'boxicons/css/boxicons.min.css';
 import styles from './styles.module.css';
 // import 'boxicons/css/boxicons.min.css';
+=======
+import styles from './styles.module.css';
+import 'boxicons/css/boxicons.min.css';
+>>>>>>> dev
 import { useRouter } from 'next/router';
 import React, { useState } from 'react';
 import Icon from '@leafygreen-ui/icon';
@@ -12,35 +17,34 @@ const CustomSideNav = styled(SideNav)`
   height: 100vh;
 `
 
-
 export default function Sidebar() {
   const a1 = useRouter();
   const onClickbutton1 = () => {
-    a1.push('./practice');
+    a1.push('/practice');
   };
   const a2 = useRouter();
   const onClickbutton2 = () => {
-    a2.push('./game');
+    a2.push('/game');
   };
 
   const a3 = useRouter();
   const onClickbutton3 = () => {
-    a3.push('./bpost');
+    a3.push('/bpost');
   };
 
   const a4 = useRouter();
   const onClickbutton4 = () => {
-    a4.push('./qpost');
+    a4.push('/qpost');
   };
 
   const a5 = useRouter();
   const onClickbutton5 = () => {
-    a5.push('./rank');
+    a5.push('/rank');
   };
 
   const a6 = useRouter();
   const onClickbutton6 = () => {
-    a6.push('./login');
+    a6.push('/login');
   };
 
   const [expanded, setExpanded] = useState(true);
@@ -51,7 +55,8 @@ export default function Sidebar() {
 
   return (
     <div className={styles.sidebarContainer}>
-      <CustomSideNav widthOverride={expanded ? 300 : 60}>
+      <nav aria-label="Side Navigation">
+      <CustomSideNav widthOverride={expanded ? 300 : 60} aria-label="Side Navigation">
         <img src="/Logo.svg" className={styles.ti} width={300} height={66} />
 
         <div className={styles.sidebarItems}>
@@ -82,6 +87,7 @@ export default function Sidebar() {
           </span>
         </div>
       </CustomSideNav>
+      </nav>
     </div>
   );
 }
