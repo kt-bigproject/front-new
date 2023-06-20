@@ -8,7 +8,7 @@ export default AuthContext;
 
 export const AuthProvider = ({ children }) => {
   const [authTokens, setAuthTokens] = useState(null);
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useState("빵꾸똥꾸");
 
   const router = useRouter();
 
@@ -29,11 +29,13 @@ export const AuthProvider = ({ children }) => {
     if (response.status === 200) {
       // setAuthTokens(data);
       console.log(data['token'])
-      console.log(jwt_decode(data['token'])) // 
+      console.log(jwt_decode(data['token']).username) // 
       setUser(jwt_decode(data['token'])); // user정보는 여기 담김
+      console.log(user)
       // localStorage.setItem("user", JSON.stringify(data));
       // localStorage.setItem("user", jwt_decode(data['token'])); user정보는 굳이 여기서 담지말고 setUser에 담자
       localStorage.setItem("tokens", data['token']);
+      localStorage.setItem("user", jwt_decode(data['token']).username);
       router.push("/");
     } else {
       alert("아이디 또는 비밀번호가 맞지 않습니다.");

@@ -1,6 +1,6 @@
 import styles from './styles.module.css';
 import React from 'react';
-import 'boxicons/css/boxicons.min.css';
+// import 'boxicons/css/boxicons.min.css';
 
 
 export default function LayoutFooter() {

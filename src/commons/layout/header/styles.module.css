@@ -1,14 +1,13 @@
 .wrap {
   background-color: beige;
   height: 60px;
-  width: 1000px;
+  width: 97vw;
 }
 
 .title {
   position: fixed;
   left: 45%;
   z-index: 9999;
-  
 }
 
 .logout {

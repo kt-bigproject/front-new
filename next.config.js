@@ -1,12 +1,11 @@
 /** @type {import('next').NextConfig} */
-const { createProxyMiddleware } = require('http-proxy-middleware');
 
 const nextConfig = {
   reactStrictMode: true,
   async rewrites() {
     return [
       {
-        source: '/:path*',
+        source: '/api/:path*',
         destination: 'http://localhost:8000/:path*',
       },
     ];
