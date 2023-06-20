@@ -66,8 +66,6 @@ export default function LoginPage() {
     const password = e.target.password.value;
     username.length > 0 && loginUser(username, password);
   };
-
-  console.log(loginUser) 
   return (
     <div className={styles.box} >
     <div className={styles.boxL}>
