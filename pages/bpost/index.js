@@ -102,8 +102,8 @@ const BoardList = () => {
   const moveTofix = () => {
     Router.push('/Test');
   }
-  const moveToCheck = () => {
-    Router.push('/boardcheck')
+  const moveToCheck = (id) => {
+    Router.push(`/boardcheck/${id}`)
   }
 
   const onClick = (event) => {
@@ -142,15 +142,6 @@ const BoardList = () => {
   useEffect(() => {
     getBoard();
   }, [])
-
-  const deleteBoard = async () => {
-    if (window.confirm('게시글을 삭제하시겠습니까?')) {
-      await axios.delete(`http://127.0.0.1:8000/blog/blog/${id}`).then((res) => {
-        alert('삭제되었습니다.');
-        Router.push('/bpost');
-      });
-    }
-  }
   
 
 
@@ -165,12 +156,16 @@ const BoardList = () => {
           <tbody>
             {boardShow.map((board)=> (
               <tr key={board.id}>
+                <img src={board.image} width="200" height="200" />
+                <div>
                 <td>{board.user}</td>
-                <td>{board.title}</td>
+                {/* <td>{board.image}</td> */}
                 <td>{board.created_at}</td>
-                <button onClick={moveToCheck}>확인</button>
-                <button onClick={moveTofix}>수정</button>
-                <button onClick={deleteBoard}>삭제</button>
+                </div>
+                
+                <button onClick={() => moveToCheck(board.id)}>확인</button>
+                {/* <button onClick={moveTofix}>수정</button>
+                <button onClick={deleteBoard}>삭제</button> */}
               </tr>
           ))}
           </tbody>
