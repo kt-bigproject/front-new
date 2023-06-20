@@ -146,7 +146,6 @@ export default function ImageUpload(props) {
     return (
         <>
             <ImgUploadContainer>
-                <Global styles={MainFontStyles} ></Global>
                 <h2>사진을 업로드 하세요</h2>
                 <br />
                 <Upload

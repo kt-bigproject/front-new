@@ -1,9 +1,10 @@
 import styled from "@emotion/styled"
 import ImageUpload from "../../src/components/Imageupload/Imageupload";
 import axios from "axios";
-import { useRef, useState, useEffect } from "react"
+import { useRef, useState, useEffect, useContext } from "react"
 import { DeleteOutlined, DownOutlined, HighlightOutlined, ReadOutlined, UndoOutlined } from '@ant-design/icons';
 import { Dropdown, Space } from 'antd';
+import AuthContext from "../../src/components/AuthContext/AuthContext";
 
 import Modal from '@leafygreen-ui/modal';
 import Button from "@leafygreen-ui/button"
@@ -21,7 +22,7 @@ const Mydiv = styled.div`
   flex-direction: row;
 `
 
-export default function PraticePage() {
+export default function PraticePage(props) {
 
   const canvasRef = useRef(null)
   const contextRef = useRef(null)
@@ -110,8 +111,8 @@ export default function PraticePage() {
     context.strokeStyle = eraser
     context.lineCap = "round" // 선 끝모양지정 butt, round, square
 
-    context.font = "bold 100px serif" //폰트 넣을 수 있는 기능인데 보류
-    context.strokeText("Hello world", 50, 100); //글씨 써주는것
+    // context.font = "bold 100px serif" //폰트 넣을 수 있는 기능인데 보류
+    // context.strokeText("Hello world", 50, 100); //글씨 써주는것
     contextRef.current = context;
     setCtx(contextRef.current)
   }, []);
@@ -165,12 +166,9 @@ export default function PraticePage() {
     const response = await fetch(ImageURL);
     const blob = await response.blob();
     const file = new File([blob], "myImage.png", { type: "image/png" });
-    console.log(response)
     const formData = new FormData(); // 이미지는 formdata객체를 만들어서 보내줘야 함
     formData.append("font", font);
     formData.append("image", file);
-    console.log(blob)
-    console.log(file)
   
     console.log("******************************")
     // FormData의 key 확인
@@ -208,8 +206,6 @@ export default function PraticePage() {
         const result = await axios.get('http://127.0.0.1:8000/practice/sentence/')
         const random = Math.floor(Math.random() * result.data['length'])
         // console.log(result.data[1])
-        console.log(random)
-        console.log("a")
         setSent(result.data[random].sentence)
       }
       Fetchsentence()
