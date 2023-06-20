@@ -66,8 +66,6 @@ export default function LoginPage() {
     const password = e.target.password.value;
     username.length > 0 && loginUser(username, password);
   };
-
-  console.log(loginUser) 
   return (
     <div className={styles.box} >
     <div className={styles.boxL}>
@@ -99,7 +97,7 @@ export default function LoginPage() {
                   baseFontSize={16}
                   size={"large"}
                   leftGlyph={<Image src="/GitHubLogomark.svg" width={40} height={40}/>}>          
-                  GitHup
+                  GitHub
                 </CustomButton>   
 
               <div className={styles.hr_sect}>또는</div>
