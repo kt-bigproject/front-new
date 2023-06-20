@@ -1,25 +1,28 @@
 'use client'
 
-import { useEffect, useState } from "react"
+import { useEffect, useState } from "react";
+import CommentDelete from '/src/components/Qpost/CommentDelete';
+import { SpaceContext } from "antd/es/space";
 
 export default function Comment({blog}) {
 
   const [comment, setComment] = useState('')
   // let [commentList, setCommentList] = useState([])
   const [data, setData] = useState([])
+  const [del, setDel] = useState(false)
 
   useEffect(()=>{
 
     // const url = new URL('/api/post/comment', location.origin);
     // url.searchParams.append('parent', result._id);
 
-    fetch(`http://127.0.0.1:8000/blog/comment/?blog_id=${blog.id}`, { method : 'GET'})
+    fetch(`http://127.0.0.1:8000/blog/comment/?blog=${blog.id}`, { method : 'GET'})
       .then((r) => r.json())
       .then((blog)=>{
         setData(blog)
         console.log(blog)
       })
-  }, [setData] );
+  }, [setData, del] );
 
   const handleSubmit = async e => {
     e.preventDefault();
@@ -66,7 +69,9 @@ export default function Comment({blog}) {
         {
           data.length > 0 ?
           data.slice().reverse().map((a, i) => (
-              <p key={i}>{a.user} {a.comment} {a.created_at} </p>
+            <div>
+              <span key={i}>{a.user} {a.comment} {a.created_at}</span> <CommentDelete id={a.id} state={[del, setDel]}/>
+            </div>
           ))
           : '댓글없음 --> 로딩중 ui'
         }
