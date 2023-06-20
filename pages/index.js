@@ -7,8 +7,7 @@
 // export default function Page() {
 //   const aaa = useRouter()
 
-<<<<<<< HEAD
-//   const { user } = useContext(AuthContext)
+  // const { user } = useContext(AuthContext)
 //   // console.log(localStorage)
 //   // console.log(localStorage)
 //   const onclickbutton = () => {
@@ -35,27 +34,22 @@ import { useState, useEffect } from 'react';
 
 export default function Page () {
   if(typeof window === 'undefined'){
-    return null
-=======
-  const { user } = useContext(AuthContext)
-  console.log(user)
+    return null}
+  // const { user } = useContext(AuthContext)
+  // console.log(user)
   // console.log(localStorage)
   const onclickbutton = () => {
     aaa.push("/login")
->>>>>>> dev
   }
   return (
     <div>
     
       <Routing />
+      <div>
     
     </div>
-<<<<<<< HEAD
-=======
-    <div>
-    <button onClick={e => aaa.push("/rank")}>랭크 페이지로 이동하기</button>
     </div>
-    </>
->>>>>>> dev
+    
+    
   )
 }
