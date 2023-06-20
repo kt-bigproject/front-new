@@ -4,6 +4,7 @@ import DeleteBtn from "/src/components/Qpost/DeleteBtn"
 import Link from 'next/link';
 import Comment from '/src/components/Qpost/Comment'
 import { useRouter } from 'next/router'
+import Button from '@leafygreen-ui/button';
 
 export default function PostDetail() {
   
@@ -28,9 +29,9 @@ export default function PostDetail() {
 
   return (
     <div>
-
+      <Button style={{width: 100}} onClick={()=> router.push('/qpost')}>목록으로</Button>
       <Link href={'edit/' + blog.id}> 
-        <button className="EditBtn">수정</button> 
+        <Button className="EditBtn">수정</Button>
       </Link>
       <DeleteBtn id={blog.id} user={blog.user}/>
 

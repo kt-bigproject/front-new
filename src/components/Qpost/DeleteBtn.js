@@ -1,5 +1,6 @@
 // 'use client'
 import { useRouter } from 'next/router';
+import Button from '@leafygreen-ui/button';
 
 export default function DeleteBtn(props) {
   
@@ -22,6 +23,6 @@ export default function DeleteBtn(props) {
   };
 
   return (
-    <button className="DeleteBtn" onClick={handleDelete}>삭제</button>
+    <Button className="DeleteBtn" onClick={handleDelete}>삭제</Button>
   );
 }

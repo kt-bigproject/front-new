@@ -37,7 +37,7 @@ export default function Edit({blog}) {
       const data = await response.json();
       if (response.status === 201 || response.status === 200) {
         console.log(data)
-        router.push('/qpost')
+        router.push('/qpost/'+blog.id)
       } else {
         console.log(response.status)
       }
@@ -57,7 +57,7 @@ export default function Edit({blog}) {
         <QuillEditor onChange={setContent}  value={content}/>
 
         <input type="hidden" name="content" value={content}/>
-        <button type='submit'>수정</button>
+        <button type='submit'>수정완료</button>
       </form>
     </>
   )  
