@@ -55,7 +55,6 @@ export default function CreateTable({data}) {
     ]
   )
 
-  
   return (
     <>
     <Button style={{width: 100}} onClick={()=> router.push('/qpost/write')}>글쓰기</Button>
@@ -80,7 +79,7 @@ export default function CreateTable({data}) {
         muiTableBodyCellProps={({ cell }) => ({
           onClick: (event) => {
             // console.log(event, cell);
-            router.push('qpost/' + cell.row.id )
+            router.push('qpost/' + cell.row.original.id )
           },
           sx: {
             cursor: 'pointer',
