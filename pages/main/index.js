@@ -19,6 +19,7 @@ export default function Pages() {
     {/* <p>{localStorage.authTokens ? "김무연님 환영합니다" :""}</p> */}
     <div>
       <button onClick={onclickbutton}>로그인페이지로 이동하기</button>
+      <button onClick={e => aaa.push("/rank")}>랭크 페이지로 이동하기</button>
     </div>
     </>
   )
