@@ -1,10 +1,8 @@
 import { PlusOutlined } from '@ant-design/icons';
 import { Modal, Upload } from 'antd';
 import { useState } from 'react';
-import { Global } from "@emotion/react";
 import axios from "axios";
 import styled from "@emotion/styled";
-import { css } from "@emotion/react";
 import Button from "@leafygreen-ui/button"
 
 
@@ -15,42 +13,6 @@ const ImgUploadContainer = styled.div`
   justify-content: space-between;
   align-items:center;
   text-align: center;
-`
-const MainFontStyles = css`
-
-  h2 {
-    font-size: 30px;
-    font-family: 'SUITE-Regular';
-    margin-bottom: 10px;;
-  }
-
-  h4 {
-    font-size: 20px;
-    font-family: 'SUITE-Regular';
-    margin-bottom: 20px;
-  }
-
-  .img-container{
-    width:100%;
-    height: calc(100%/2 - 200px);
-    margin-bottom: 30px;
-  }
-
-
-  @font-face {
-    font-family: 'SUITE-Regular';
-    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2304-2@1.0/SUITE-Regular.woff2') format('woff2');
-    font-weight: 600;
-    font-style: normal;
-  }
-  
-  @font-face {
-      font-family: 'establishRetrosansOTF';
-      src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2112@1.0/establishRetrosansOTF.woff') format('woff');
-      font-weight: normal;
-      font-style: normal;
-
-  }
 `
 
 const getBase64 = (file) =>
@@ -84,13 +46,7 @@ export default function ImageUpload(props) {
     const uploadButton = (
         <div>
             <PlusOutlined />
-            <div
-                style={{
-                    marginTop: 8,
-                }}
-            >
-                Upload
-            </div>
+            <div style={{marginTop: 8}}>Upload</div>
         </div>
     );
 
@@ -101,27 +57,9 @@ export default function ImageUpload(props) {
         event.preventDefault();
         const formData = new FormData();
 
-        // 여러개 보낼때 
-        // if (fileList) {
-        //     for (const i = 0; i < fileList.length; i++) {
-            // formData.append(`image`, fileList[i].originFileObj) 
-            // formData.append(`image`, fileList[i].originFileObj)     
-        //     }
-            // };
-            
-            formData.append('font', props.font)  //서버전달용
-            formData.append(`image`, fileList[0].originFileObj) 
+        formData.append('font', props.font)  //서버전달용
+        formData.append(`image`, fileList[0].originFileObj) 
         // FormData의 key 확인
-        for (let key of formData.keys()) {
-            console.log("formDara key");
-            console.log(key);
-        }
-
-        // FormData의 value 확인
-        for (let value of formData.values()) {
-            console.log("formDara values");
-            console.log(value);
-        }
 
         data: formData
         try {
@@ -141,8 +79,6 @@ export default function ImageUpload(props) {
 
     };
 
-    //https://www.mocky.io/v2/5cc8019d300000980a055e76
-
     return (
         <>
             <ImgUploadContainer>
@@ -157,7 +93,6 @@ export default function ImageUpload(props) {
                 >
                     {fileList.length >= 1 ? null : uploadButton}
                 </Upload>
-
                 <Modal open={previewOpen} title={previewTitle} footer={null} onCancel={handleCancel}>
                     <img
                         style={{

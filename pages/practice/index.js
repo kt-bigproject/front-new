@@ -111,11 +111,12 @@ export default function PraticePage(props) {
     context.strokeStyle = eraser
     context.lineCap = "round" // 선 끝모양지정 butt, round, square
 
-    // context.font = "bold 100px serif" //폰트 넣을 수 있는 기능인데 보류
-    // context.strokeText("Hello world", 50, 100); //글씨 써주는것
+    context.font = "100pt bold gray" //폰트 넣을 수 있는 기능인데 보류
+    context.strokeText(sent, 50, 100); //글씨 그려달라라고 명령을주는것
+    context.fillText(sent, 50, 100)
     contextRef.current = context;
     setCtx(contextRef.current)
-  }, []);
+  }, [sent]);
 
   useEffect(() => { // 지우개 쓰기 위해서 렌더링
     if (ctx) {
