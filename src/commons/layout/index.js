@@ -1,9 +1,11 @@
 import { useRouter } from "next/router";
 import LayoutHeader from "./header/header";
 import LayoutFooter from "./footer/footer";
-import Sidebar from "./sidebar3";
+// import Sidebar from "./sidebar3";
 import styled from "@emotion/styled";
+import { useState } from 'react';
 
+// 변하지 않는 값은 밖에다가 써줌
 // 변하지 않는 값은 밖에다가 써줌
 const Main = [
     "/",
@@ -35,18 +37,18 @@ export default function Layout(props) {
         {props.children}
         </>
         : 
-        <LayoutDiv>
-            <Sidebar />
-            <div style={{display: "flex", flexDirection:"column"}}>
+        
+         
+            
+            <>
             <LayoutHeader/>
             {props.children}
             <LayoutFooter />
-            </div>  
-        </LayoutDiv>
+            </>  
+        
     }
         </>
         
     )
 }
-
 
