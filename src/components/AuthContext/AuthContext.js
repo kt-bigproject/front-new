@@ -9,6 +9,7 @@ export default AuthContext;
 export const AuthProvider = ({ children }) => {
   const [authTokens, setAuthTokens] = useState(null);
   const [user, setUser] = useState("빵꾸똥꾸");
+  const [count, setCount] = useState(1)
 
   const router = useRouter();
 
@@ -57,6 +58,8 @@ export const AuthProvider = ({ children }) => {
     setAuthTokens,
     loginUser,
     logoutUser,
+    count,
+    setCount,
   };
 
   return (
