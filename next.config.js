@@ -9,6 +9,9 @@ const nextConfig = {
         destination: 'http://localhost:8000/:path*',
       },
     ];
+  },
+  images: {
+    domains: ['127.0.0.1'],
   }
 }
 
