@@ -1811,6 +1811,18 @@
     "@leafygreen-ui/tokens" "^2.1.1"
     polished "^4.2.2"
 
+"@leafygreen-ui/callout@^9.0.10":
+  version "9.0.10"
+  resolved "https://registry.yarnpkg.com/@leafygreen-ui/callout/-/callout-9.0.10.tgz#0abc784952966c53985cebee598b14dc9716c979"
+  integrity sha512-ZVLYYsnw9KnyUskCCT8CPaCDmzg+VBK0lV7C2HAA7Vkpe6UvjOzXrALEo3FkgwVxlXNgD9WeCEnL1bkF9hQ1lQ==
+  dependencies:
+    "@leafygreen-ui/emotion" "^4.0.4"
+    "@leafygreen-ui/icon" "^11.17.0"
+    "@leafygreen-ui/lib" "^10.4.0"
+    "@leafygreen-ui/palette" "^4.0.4"
+    "@leafygreen-ui/tokens" "^2.1.1"
+    "@leafygreen-ui/typography" "^16.5.1"
+
 "@leafygreen-ui/checkbox@^12.0.12":
   version "12.0.12"
   resolved "https://registry.npmjs.org/@leafygreen-ui/checkbox/-/checkbox-12.0.12.tgz"
