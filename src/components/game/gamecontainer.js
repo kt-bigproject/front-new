@@ -10,6 +10,8 @@ import Button from "@leafygreen-ui/button"
 import AuthContext from "../AuthContext/AuthContext";
 import { Alldiv, Mydiv2, Mydiv3, Mydiv4, Mydiv5, MyButton1, MyButton2 } from "../../../styles/practice/pracitce"
 import { useRouter } from "next/router";
+import { useAxios } from "../Axios/axios";
+
 const Mycanvas = styled.canvas`
 border: 1px solid;
 background-image: url("/grid.png");
@@ -38,7 +40,7 @@ new Promise((resolve, reject) => {
 
 export default function Gamepage(props) {
   let { count, setCount } = useContext(AuthContext)
-
+  const api = useAxios()
   const router = useRouter()
   const canvasRef = useRef(null)
   const contextRef = useRef(null)
@@ -94,7 +96,7 @@ export default function Gamepage(props) {
     setgameOpen(curr => !curr)
     data: formData
     try {
-        const response = await axios.post('http://127.0.0.1:8000/game/upload/', formData, {
+        const response = await api.post('/game/upload/', formData, {
             headers: { "Content-Type": "multipart/form-data", }, // 헤더 추가
         });
         if (response.status === 201) {
@@ -196,7 +198,7 @@ export default function Gamepage(props) {
     setIsLoading(true)
     setgameOpen(curr => !curr)
     try {
-      const response = await axios.post('http://127.0.0.1:8000/game/upload/', formData, {
+      const response = await api.post('/game/upload/', formData, {
           headers: { "Content-Type": "multipart/form-data", }, // 헤더 추가
       });
       if (response.status === 201) {
@@ -216,12 +218,12 @@ export default function Gamepage(props) {
 
     // 점수 표출 함수
     const Fetchsentence = async (id) => {
-      const result = await axios.get('http://127.0.0.1:8000/game/predict/');
+      const result = await api.get('/game/predict/');
       const fetchedScore = result.data.data.find(item => item.id === id)?.score;
       console.log(result);
       console.log("id", id);
       console.log("score", fetchedScore);
-      setScore(0.2);
+      setScore(fetchedScore);
       setIsLoading(false);
     };
     

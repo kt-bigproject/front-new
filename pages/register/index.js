@@ -15,7 +15,6 @@ import { Modal, Box } from "@mui/material";
 import ModalContent from "./ModalContent.js";
 import Callout from '@leafygreen-ui/callout';
 import { useRouter } from "next/router";
-
 const pstyle = {
   fontSize: 10,
   color : 'red',
@@ -71,6 +70,7 @@ const boxStyle = {
 
 
 export default function Register() {
+  const router = useRouter()
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [password2, setPassword2] = useState("");
@@ -85,7 +85,6 @@ export default function Register() {
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
-  const router = useRouter()
 
   const handleSubmit = async e => {
     e.preventDefault();

@@ -5,6 +5,7 @@ import { useRef, useState, useEffect, useContext } from "react"
 import { DeleteOutlined, DownOutlined, HighlightOutlined, ReadOutlined, UndoOutlined } from '@ant-design/icons';
 import { Dropdown, Space } from 'antd';
 import AuthContext from "../../src/components/AuthContext/AuthContext";
+import { useAxios } from "../../src/components/Axios/axios";
 
 import Modal from '@leafygreen-ui/modal';
 import Button from "@leafygreen-ui/button"
@@ -26,7 +27,7 @@ export default function PraticePage(props) {
 
   const canvasRef = useRef(null)
   const contextRef = useRef(null)
-  
+  const api = useAxios() //axios호출
   const [ctx, setCtx] = useState() // 그림지정 state
   const [isDrawing, setIsDrawing] = useState(false) 
   const [eraser, setEraser] = useState("black")
@@ -188,8 +189,8 @@ export default function PraticePage(props) {
     }
 
     try {
-      const response = await axios.post('http://127.0.0.1:8000/practice/upload/', formData, {
-          headers: { "Content-Type": "multipart/form-data", }, // 헤더 추가
+      const response = await api.post('/practice/upload/', formData, {
+          headers: { "Content-Type": "multipart/form-data", },
       });
       if (response.status === 201) {
           console.log('이미지 전송 성공', response.data);
@@ -207,7 +208,7 @@ export default function PraticePage(props) {
 
     useEffect(() => {
       const Fetchsentence = async () => {
-        const result = await axios.get('http://127.0.0.1:8000/practice/sentence/')
+        const result = await api.get('/practice/sentence/')
         const random = Math.floor(Math.random() * result.data['length'])
         // console.log(result.data[1])
         setSent(result.data[random].sentence)
