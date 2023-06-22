@@ -36,4 +36,9 @@ export const globalStyles = css`
     font-family: "five";
     src: url("/fonts/예술.ttf");
   }
+
+  @font-face {
+    font-family: 'SUITE-Regular';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2304-2@1.0/SUITE-Regular.woff2') format('woff2');
+  }
 `;
