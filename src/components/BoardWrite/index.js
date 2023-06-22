@@ -173,9 +173,11 @@ const BoardWrite = () => {
         console.error('이미지 전송 실패', error);
         console.log(formData);
     };
+    alert('등록되었습니다.');
+    Router.push('/bpost');
 
     };
-    console.log(localStorage.user)
+    // console.log(localStorage.user)
   return (
     <div>
       <div>게시물 작성</div>

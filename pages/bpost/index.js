@@ -22,35 +22,6 @@ const BoardList = () => {
   });
 
 
-  // const getBoardList = async() => {
-  //   if (search.page === curPage) return; //현재 페이지와 누른 페이지가 같으면 return
-
-  //   const queryString = Object.entries(search)
-  //     .map((e) => e.join('='))
-  //     .join('&');
-
-  //   const resp = await(
-  //     await axios.get('http://127.0.0.1:8000/blog/blog/' + queryString)).data;
-      
-  //   setBoardList(resp.data);
-  //   const pngn = resp.pagination;
-    
-  //   const { endPage, nextBlock, prevBlock, startPage, totalPageCnt } = pngn;
-
-  //   setCurPage(search.page);
-  //   setPrevBlock(prevBlock);
-  //   setNextBlock(nextBlock);
-  //   setLastPage(totalPageCnt);
-
-  //   const tmpPages = [];
-  //   for (let i = startPage; i <= endPage; i++) {
-  //     tmpPages.push(i);
-  //   }
-
-  //   setPageList(tmpPages);
-  // };
-
-  // 수정 테스트 =========================================================================================
   const getBoardList = async () => {
     const queryString = Object.entries(search)
       .map((e) => e.join('='))
@@ -80,15 +51,18 @@ const BoardList = () => {
       console.error('Error while fetching board list:', error);
     }
   }; 
-  //====================================================================================================
-
+  
 
   const getBoard = async () => {
-    
-      const abc = await (await axios.get('http://127.0.0.1:8000/blog/blog/')).data; // 2) 게시글 목록 데이터에 할당  
+    try{
+      const response = await (await axios.get('http://127.0.0.1:8000/blog/blog/')).data; // 2) 게시글 목록 데이터에 할당  
       
-      setBoardshow(abc);
-      console.log(abc);
+      const boardData = response.data;
+      setBoardshow(boardData);
+      console.log(boardData);
+    } catch (error) {
+      console.error('Error while fetching board data:', error);
+    }
     };
     
     
@@ -141,7 +115,7 @@ const BoardList = () => {
 
   useEffect(() => {
     getBoard();
-  }, [])
+  }, []);
   
 
 
@@ -151,7 +125,7 @@ const BoardList = () => {
   return (
     <div>
       <div>
-        게시판 목록 출력
+        게시판 목록
         <table>
           <tbody>
             {boardShow.map((board)=> (
