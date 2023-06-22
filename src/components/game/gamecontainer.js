@@ -221,7 +221,7 @@ export default function Gamepage(props) {
       console.log(result);
       console.log("id", id);
       console.log("score", fetchedScore);
-      setScore(fetchedScore);
+      setScore(0.2);
       setIsLoading(false);
     };
     
@@ -238,7 +238,7 @@ export default function Gamepage(props) {
 
     const GoHome2 = () => {
       setCount(1)
-      router.push("/game")
+      router.push("/")
     }
 
 
@@ -332,14 +332,14 @@ export default function Gamepage(props) {
           <MyButton1 onClick={props.NextLevel}>다음 단계</MyButton1>
           </div>
               ) : (
-                <div style={{border:"1px solid" ,height: "250px", display: "flex", flexDirection:"column", justifyContent:"space-between", alignItems:"center"}}>
+                <div style={{height: "250px", display: "flex", flexDirection:"column", justifyContent:"space-between", alignItems:"center"}}>
                 <h3>축하합니다</h3>{score*100}점입니다!!<br/><h6>게임이 종료되었습니다</h6>
                 <MyButton1 onClick={GoHome2}>게임 종료</MyButton1>
                 </div>
               )
           ) : (
-            <div style={{border:"1px solid" ,height: "250px", display: "flex", flexDirection:"column", justifyContent:"space-between", alignItems:"center"}}>
-            <h3>점수가 기준에 도달하지 못하였습니다</h3>겨우 {score*100}점입니다..분발하세요;;<br/><h6>게임이 종료되었습니다</h6>
+            <div style={{height: "250px", display: "flex", flexDirection:"column", justifyContent:"space-between", alignItems:"center"}}>
+            <h3>점수가 기준에 도달하지 못하였습니다</h3>{score*100}점입니다..<br/><h6>게임이 종료되었습니다</h6>
             <MyButton1 onClick={GoHome2}>게임 종료</MyButton1>
             </div>
         )}

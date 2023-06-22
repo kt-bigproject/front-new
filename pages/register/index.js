@@ -14,6 +14,7 @@ import Checkbox from "@leafygreen-ui/checkbox";
 import { Modal, Box } from "@mui/material";
 import ModalContent from "./ModalContent.js";
 import Callout from '@leafygreen-ui/callout';
+import { useRouter } from "next/router";
 
 const pstyle = {
   fontSize: 10,
@@ -71,7 +72,7 @@ const boxStyle = {
 
 export default function Register() {
   const [username, setUsername] = useState("");
-  const [password1, setPassword] = useState("");
+  const [password, setPassword] = useState("");
   const [password2, setPassword2] = useState("");
   const [email, setEmail] = useState("");
 
@@ -84,10 +85,11 @@ export default function Register() {
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
+  const router = useRouter()
 
   const handleSubmit = async e => {
     e.preventDefault();
-    const response = await fetch("http://localhost:8000/token/register/", {
+    const response = await fetch("http://localhost:8000/api/register/", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -95,16 +97,16 @@ export default function Register() {
       body: JSON.stringify({
         username,
         email,
-        password1,
+        password,
         password2,
       }),
       });
     if (response.status === 201) {
-      router.push("/");
+      router.push("/login");
     } else {
       const data = await response.json();
       setError(data)
-      setConfirm((password1 !== password2)?"error":"none")
+      setConfirm((password !== password2)?"error":"none")
       console.log(error.email)
     }
     };
@@ -168,8 +170,8 @@ export default function Register() {
                   placeholder={'비밀번호를 입력해주세요.'}
                   onChange={e => setPassword(e.target.value)}
                   stateNotifications={
-                    error.password1
-                    ? error.password1.map((a)=>{
+                    error.password
+                    ? error.password.map((a)=>{
                       return {
                       notification: a,
                       state: 'error'

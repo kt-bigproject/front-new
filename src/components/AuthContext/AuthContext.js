@@ -43,7 +43,7 @@ export const AuthProvider = ({ children }) => {
       localStorage.setItem("authTokens", JSON.stringify(data));
       console.log(jwt_decode(data.access))
       console.log(data)
-      // router.push("/");
+      router.push("/");
     } else {
       alert("아이디 또는 비밀번호가 맞지 않습니다.");
       console.log(data)

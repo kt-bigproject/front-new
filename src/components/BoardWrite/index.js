@@ -156,15 +156,15 @@ const BoardWrite = () => {
         console.log("formData values");
         console.log(value);
     }
-
+    // 권한 필요한 곳에는 밑의 authorization에 bearer 뒤에 토큰 넣어주기
     data: formData
     try {
         const config = {
           headers: { 
-              Authorization : 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjg3MzY2NTQ4LCJpYXQiOjE2ODczNjYyNDgsImp0aSI6IjMzYzIxNzNjOTIwODRlYTRhMzkyZGIxZjUzNmNhN2U4IiwidXNlcl9pZCI6MSwidXNlcm5hbWUiOiJybGFhbmR1czIiLCJlbWFpbCI6InJsYWFuZHVzMkBnbWFpbC5jb20ifQ.qAVaiJoNa49R_eafBqsU-hoL0PTEEDSqxLHr-vVSwxc',
+              // Authorization : "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjg3NDAyNzk5LCJpYXQiOjE2ODc0MDI0OTksImp0aSI6ImRmMzI3N2MyMGJkMTQ0ODJiNTFkOTNiNGU0NzE5MDkzIiwidXNlcl9pZCI6MSwidXNlcm5hbWUiOiJybGFhbmR1czIiLCJlbWFpbCI6InJsYWFuZHVzMkBnbWFpbC5jb20ifQ.5rv_Cb2UxzpSLbbkqE5lAaiOX6evqqDV70I6NUY1rL0",
           }
         }
-        const response = await axios.post('http://127.0.0.1:8000/temp/temp/', formData, config);
+        const response = await axios.post('http://127.0.0.1:8000/blog/blog/', formData, config);
         ;
         if (response.status === 201) {
             console.log('이미지 전송 성공', response.data);
@@ -181,10 +181,6 @@ const BoardWrite = () => {
     Router.push('/bpost');
 
     };
-<<<<<<< HEAD
-    // console.log(localStorage.user)
-=======
->>>>>>> dev
   return (
     <div>
       <div>게시물 작성</div>
