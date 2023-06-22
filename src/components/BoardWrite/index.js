@@ -99,6 +99,7 @@ const BoardWrite = () => {
           <div
               style={{
                   marginTop: 8,
+                  
               }}
           >
               Upload

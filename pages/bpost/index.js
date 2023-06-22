@@ -39,7 +39,7 @@ const BoardList = () => {
   //     .join('&');
 
     const resp = await(
-      await axios.get('http://127.0.0.1:8000/blog/blog/')).data;
+      await axios.get('http://127.0.0.1:8000/api/blog/blog/')).data;
       // await axios.get('http://127.0.0.1:8000/blog/blog/' + queryString)).data;
       // console.log(resp)
       const pageSize = 8;
@@ -110,7 +110,7 @@ const BoardList = () => {
   // };
   
   const getBoard = async () => {    
-      const abc = await (await axios.get('http://127.0.0.1:8000/blog/blog/?page=' + curPage)).data; // 2) 게시글 목록 데이터에 할당  
+      const abc = await (await axios.get('http://127.0.0.1:8000/api/blog/blog/?page=' + curPage)).data; // 2) 게시글 목록 데이터에 할당  
       
       // console.log(abc.results)
       setBoardshow(abc.results);    
