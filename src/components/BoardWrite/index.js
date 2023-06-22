@@ -6,7 +6,8 @@ import { css, Global } from '@emotion/react';
 import { PlusOutlined } from '@ant-design/icons';
 import { Modal, Upload } from 'antd';
 import styles from '../../../styles/post/post.module.css'
-import AuthContext from "../AuthContext/AuthContext";
+import AuthContext from "../AuthContext/AuthContext"; // *
+import { useAxios } from '../Axios/axios'; //** 
 
 const ImgUploadContainer = styled.div`
   margin-top:50px;
@@ -77,7 +78,6 @@ const BoardWrite = () => {
   const [fileList, setFileList] = useState([]);
   const [title, setTitle] = useState("")
   const [ body, setBody] = useState("")
-  let { authTokens } = useContext(AuthContext);
  
 
 
@@ -90,6 +90,7 @@ const BoardWrite = () => {
       setPreviewOpen(true);
       setPreviewTitle(file.name || file.url.substring(file.url.lastIndexOf('/') + 1));
   };
+  let { authTokens } = useContext(AuthContext);
 
   const handleChange = ({ fileList: newFileList }) => setFileList(newFileList);
   const uploadButton = (
@@ -123,23 +124,17 @@ const BoardWrite = () => {
   // });
 
 //  try {
-  const saveBoard = async () => {
-    await axios.post(`http://127.0.0.1:8000/blog/blog/`, board).then((res) => {
-      alert('등록되었습니다.');
-      Router.push('/bpost');
-    });
-  };
-
+  
   const backToList = () => {
     Router.push('/bpost');
   };
-
+  const api = useAxios(); //**
     const handleApi = async (event) => {
     event.preventDefault();
     const formData = new FormData();
 
 
-        
+
     formData.append('title', title)  //서버전달용
     // formData.append('user', localStorage.user)
     formData.append('body', body )
@@ -159,12 +154,8 @@ const BoardWrite = () => {
     // 권한 필요한 곳에는 밑의 authorization에 bearer 뒤에 토큰 넣어주기
     data: formData
     try {
-        const config = {
-          headers: { 
-              // Authorization : "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjg3NDAyNzk5LCJpYXQiOjE2ODc0MDI0OTksImp0aSI6ImRmMzI3N2MyMGJkMTQ0ODJiNTFkOTNiNGU0NzE5MDkzIiwidXNlcl9pZCI6MSwidXNlcm5hbWUiOiJybGFhbmR1czIiLCJlbWFpbCI6InJsYWFuZHVzMkBnbWFpbC5jb20ifQ.5rv_Cb2UxzpSLbbkqE5lAaiOX6evqqDV70I6NUY1rL0",
-          }
-        }
-        const response = await axios.post('http://127.0.0.1:8000/blog/blog/', formData, config);
+      
+        const response = await api.post('/blog/blog/', formData);
         ;
         if (response.status === 201) {
             console.log('이미지 전송 성공', response.data);
@@ -178,7 +169,7 @@ const BoardWrite = () => {
         console.log(formData);
     };
     alert('등록되었습니다.');
-    Router.push('/bpost');
+    // Router.push('/bpost');
 
     };
   return (
