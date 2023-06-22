@@ -31,6 +31,47 @@ const BoardList = () => {
   // });
 
 
+  const getBoardList = async () => {
+    const queryString = Object.entries(search)
+      .map((e) => e.join('='))
+      .join('&');
+  
+    try {
+      const resp = await axios.get(
+        `http://127.0.0.1:8000/blog/blog/?${queryString}`
+      );
+  
+      const { data, pagination } = resp.data;
+      const { endPage, nextBlock, prevBlock, startPage, totalPageCnt } = pagination;
+  
+      setBoardList(data);
+      setCurPage(search.page);
+      setPrevBlock(prevBlock);
+      setNextBlock(nextBlock);
+      setLastPage(totalPageCnt);
+  
+      const tmpPages = [];
+      for (let i = startPage; i <= endPage; i++) {
+        tmpPages.push(i);
+      }
+  
+      setPageList(tmpPages);
+    } catch (error) {
+      console.error('Error while fetching board list:', error);
+    }
+  }; 
+  
+
+  const getBoard = async () => {
+    try{
+      const response = await (await axios.get('http://127.0.0.1:8000/blog/blog/')).data; // 2) 게시글 목록 데이터에 할당  
+      
+      const boardData = response.data;
+      setBoardshow(boardData);
+      console.log(boardData);
+    } catch (error) {
+      console.error('Error while fetching board data:', error);
+    }
   const getBoardList = async() => {
   //   if (search.page === curPage) return; //현재 페이지와 누른 페이지가 같으면 return
 
@@ -170,6 +211,7 @@ const BoardList = () => {
 
   useEffect(() => {
     getBoard();
+  }, []);
     // console.log(boardShow)
   }, [curPage])
   
@@ -205,6 +247,36 @@ const BoardList = () => {
 
   return (
     <div>
+      <div>
+        게시판 목록
+        <table>
+          <tbody>
+            {boardShow.map((board)=> (
+              <tr key={board.id}>
+                <img src={board.image} width="200" height="200" />
+                <div>
+                <td>{board.user}</td>
+                {/* <td>{board.image}</td> */}
+                <td>{board.created_at}</td>
+                </div>
+                
+                <button onClick={() => moveToCheck(board.id)}>확인</button>
+                {/* <button onClick={moveTofix}>수정</button>
+                <button onClick={deleteBoard}>삭제</button> */}
+              </tr>
+          ))}
+          </tbody>
+          
+        </table>
+        {/* <ul>
+          {boardList?.map((blog) => (
+          // 4) map 함수로 데이터 출력
+            <li key={blog.id}>
+              <Link href={`/contents/${blog.id}`}>{blog.title}</Link>
+            </li>
+          ))}
+        </ul> */}
+      </div>
         <div className={styles.content_wrapper}>
           content_wrapper
           <div className={styles.content_title}>
