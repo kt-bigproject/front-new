@@ -30,6 +30,7 @@ export default function PraticePage(props) {
   const [ctx, setCtx] = useState() // 그림지정 state
   const [isDrawing, setIsDrawing] = useState(false) 
   const [eraser, setEraser] = useState("black")
+  const [clear, setClear] = useState("")
 
   const [font, setFont] = useState("one") // font지정 state
 
@@ -112,11 +113,11 @@ export default function PraticePage(props) {
     context.lineCap = "round" // 선 끝모양지정 butt, round, square
 
     context.font = "100pt bold gray" //폰트 넣을 수 있는 기능인데 보류
-    context.strokeText(sent, 50, 100); //글씨 그려달라라고 명령을주는것
-    context.fillText(sent, 50, 100)
+    context.fillStyle = "lightgray";
+    context.fillText(sent, 50, 150)
     contextRef.current = context;
     setCtx(contextRef.current)
-  }, [sent]);
+  }, [sent, clear]);
 
   useEffect(() => { // 지우개 쓰기 위해서 렌더링
     if (ctx) {
@@ -150,6 +151,7 @@ export default function PraticePage(props) {
 
   const onClickClear = () => {
       ctx.clearRect(0,0, 1000, 1000)
+      setClear(clear+1)
     }
 
   const onClickEraser = () => {
@@ -159,8 +161,9 @@ export default function PraticePage(props) {
   const onClickPencil = () => {
     setEraser("black")
   }
-  const onClickSubmit = async () => {
+  const onClickSubmit = async (event) => {
     event.preventDefault();
+    canvasRef.current.getContext('2d').fillText("",0,0)
     const canvas = canvasRef.current;
     const ImageURL = canvas.toDataURL(); // base64 타입 데이터로 변환
   
