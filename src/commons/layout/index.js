@@ -42,7 +42,7 @@ export default function Layout(props) {
             
             <>
             <LayoutHeader/>
-            {props.children}
+            <div>{props.children}</div>
             <LayoutFooter />
             </>  
         
