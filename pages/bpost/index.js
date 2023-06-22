@@ -31,7 +31,6 @@ const BoardList = () => {
   // });
 
 
-<<<<<<< HEAD
   const getBoardList = async () => {
     const queryString = Object.entries(search)
       .map((e) => e.join('='))
@@ -73,7 +72,6 @@ const BoardList = () => {
     } catch (error) {
       console.error('Error while fetching board data:', error);
     }
-=======
   const getBoardList = async() => {
   //   if (search.page === curPage) return; //현재 페이지와 누른 페이지가 같으면 return
 
@@ -161,7 +159,6 @@ const BoardList = () => {
       // setNextBlock(getParameter(abc.next));
       // console.log(abc);
       // console.log(nextBlock);
->>>>>>> dev
     };
   
 
@@ -214,12 +211,9 @@ const BoardList = () => {
 
   useEffect(() => {
     getBoard();
-<<<<<<< HEAD
   }, []);
-=======
     // console.log(boardShow)
   }, [curPage])
->>>>>>> dev
   
 
 
@@ -253,7 +247,6 @@ const BoardList = () => {
 
   return (
     <div>
-<<<<<<< HEAD
       <div>
         게시판 목록
         <table>
@@ -284,7 +277,6 @@ const BoardList = () => {
           ))}
         </ul> */}
       </div>
-=======
         <div className={styles.content_wrapper}>
           content_wrapper
           <div className={styles.content_title}>
@@ -303,7 +295,6 @@ const BoardList = () => {
                         onClick={() => handleOpen(figureInfo)}
                         alt={figureInfo.id}
                       />    
->>>>>>> dev
       
                       <IconButton
                         className={styles.IconButton_post}
