@@ -42,7 +42,7 @@ export default function Layout(props) {
             
             <>
             <LayoutHeader/>
-            {props.children}
+            <div style={{ paddingTop: '10px', paddingBottom: '30px'}}>{props.children}</div>
             <LayoutFooter />
             </>  
         

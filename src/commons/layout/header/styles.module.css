@@ -1,66 +1,89 @@
-.headerwrap {
-  background-color: #F7E6D9;
-  height: 75px;
+.header {
+  height: 100px;
   width: 100%;
-  margin: 0;
-  display: block;
-  position: fixed; 
-  z-index: 2; 
+  display: flex;
+  flex-direction: column;
+  /* position: fixed; */
+  z-index: 2;
 }
 
-.headcontainer {
+/* .hideHeader {
+  display: none;
+}
+.showHeader {
+  height: 100px;
+} */
+
+
+
+.upperSection {
+  height: 60px;
+  width: 100%;
+  background-color: white;
   display: flex;
-  gap: 35px;
-  position: relative;
-  left: 420px;
-  font-size: 25px;
-  bottom: 40px;
-  cursor: pointer;
   align-items: center;
-  
+  justify-content: center;
 }
 
-.scrolled {
-  background-color: white; 
-  border-bottom: 1px solid #000000; 
-}
-
-
-
-.n1:hover,
-.n2:hover,
-.n3:hover,
-.n4:hover,
-.n5:hover {
-  color: orange;
-}
-
-.title1 {
+.lowerSection {
+  height: 40px;
+  width: 100%;
+  background-color: #F7E6D9;
   display: flex;
-  position: relative;
-  left: 200px;
-  top: 5px;
+  justify-content: center;
+  align-items: center;
 }
 
-.headcontainer2 { 
+.lowerSection.scrolled {
+  box-shadow: 0 3px 5px rgba(0, 0, 0, 0.2);
+}
+
+.logoContainer {
   display: flex;
+  align-items: center;
 }
 
-.b1 {
-  background-color: orange;
-  border: white;
-  border-radius: 100px / 80px;
-  cursor: pointer;
-  transition: transform 0.3s;
-  width: 90px;
-  height: 45px;
-  color: white;
+.menuContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 40px;
+}
+
+.logoutContainer {
+  /* margin-right: 20px; */
+}
+
+.menuItem {
+  margin: 0 10px;
   font-size: 24px;
-  position: relative;
-  left: 1200px;
-  bottom: 79px;
-
+  cursor: pointer;
 }
-.b1:hover {
+
+.menuItem:hover {
+  color: orange;
+  font-weight: bolder;
+}
+
+.logoutItem {
+  font-size: 20px;
+  cursor: pointer;
+  background-color: orange;
+  color: white;
+  border: white;
+  width: 80px;
+  height: 30px;
+  border-radius: 100px / 80px;
+  transition: transform 0.3s;
+  position: relative;
+  left: 240px;
+}
+
+.logoutItem:hover {
   transform: scale(1.1);
 }
+.alignRight {
+  margin-left: auto;
+}
+
+
