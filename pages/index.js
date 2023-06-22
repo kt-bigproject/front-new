@@ -1,5 +1,9 @@
+import {Main} from '../styles/main/index'
+
 export default function MainPage() {
   return (
-    <div>메인이비다</div>
+    <>
+    <Main>메인이비다</Main>
+    </>
   );
 }
