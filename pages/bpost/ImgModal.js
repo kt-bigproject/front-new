@@ -5,6 +5,8 @@ import SendIcon from '@mui/icons-material/Send';
 import Image from 'next/image';
 import styles from './page.module.css';
 import { useState } from 'react';
+import { Router } from 'react-router-dom';
+import { useRouter } from 'next/router';
 
 export default function ImgModal({open, onClose, figureInfo}) {
 
@@ -32,6 +34,11 @@ export default function ImgModal({open, onClose, figureInfo}) {
     display: 'flex',
     paddingBottom: '10px',
     marginLeft: '20px',
+  }
+
+  const Router = useRouter();
+  const onClick = () => {
+    Router.push('/BoardUpdate/' + id)
   }
 
   return (
@@ -73,10 +80,16 @@ export default function ImgModal({open, onClose, figureInfo}) {
               }
             </IconButton>             
           </div>
+          
           <div className={styles.commentBody}>
             title: {figureInfo.title}<br/>
-            <span style={{fontWeight: 'bold'}}>{figureInfo.user}</span>{' '}
-            <span>{figureInfo.body}</span>
+            <span style={{fontWeight: 'bold'}}>user : {figureInfo.user}</span>{' '}
+            <div>
+              <span>text : {figureInfo.body}</span>
+            </div>
+            <div>
+              <button onClick={onClick}>수정</button>
+            </div>
 
 
             {/* 댓글여기에 쓰기 */}

@@ -8,7 +8,7 @@ export default function Home() {
   const [blog, setBlog] = useState(null);
 
   useEffect(() => {
-    axios.get('http://127.0.0.1:8000/blog/blog/?')
+    axios.get('http://127.0.0.1:8000/api/blog/blog/?')
       .then(response => {
         setBlog(response.data);
       })
