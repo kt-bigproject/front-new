@@ -1,16 +1,19 @@
 import { useState } from "react";
 
 // UI import
-import Modal from '@leafygreen-ui/modal';
+// import Modal from '@leafygreen-ui/modal';
 import styled from '@emotion/styled';
 import Button from '@leafygreen-ui/button';
 import Image from 'next/image';
 import { PasswordInput } from '@leafygreen-ui/password-input';
 import TextInput from '@leafygreen-ui/text-input';
-import { palette } from '@leafygreen-ui/palette';
-import { SideNav, SideNavGroup, SideNavItem } from '@leafygreen-ui/side-nav';
-import Icon from '@leafygreen-ui/icon';
+// import { palette } from '@leafygreen-ui/palette';
+// import Icon from '@leafygreen-ui/icon';
 import styles from './RegisterPage.module.css';
+import Checkbox from "@leafygreen-ui/checkbox";
+import { Modal, Box } from "@mui/material";
+import ModalContent from "./ModalContent.js";
+import Callout from '@leafygreen-ui/callout';
 
 const pstyle = {
   fontSize: 10,
@@ -52,6 +55,19 @@ const SignupButton = styled(Button)`
   width: 300px; 
   /* float: right; */
 `
+const boxStyle = {
+  position: 'absolute',
+  top: '50%',
+  left: '50%',
+  transform: 'translate(-50%, -50%)',
+  height: 300,
+  width: 600,
+  bgcolor: 'background.paper',
+  border: '2px solid #000',
+  boxShadow: 24,
+  p: 4,
+};
+
 
 export default function Register() {
   const [username, setUsername] = useState("");
@@ -63,9 +79,15 @@ export default function Register() {
 
   const [confirm, setConfirm] = useState("none")
 
+  const [check, setCheck] = useState(false);
+
+  const [open, setOpen] = useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
+
   const handleSubmit = async e => {
     e.preventDefault();
-    const response = await fetch("http://localhost:8000/rest-auth/registration/", {
+    const response = await fetch("http://localhost:8000/token/register/", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -168,10 +190,37 @@ export default function Register() {
                   :[]
                 }
                 />            
+
+              <div style={{display: 'flex', flexDirection: 'row', justifyContent: 'space-between'}}>
+                <Checkbox 
+                  style={{marginBottom: 10}} 
+                  label={<><span style={{color: "#016bf8"}}>[필수]</span>{" "}<span>개인정보 수집 및 이용 동의</span></>}
+                  onChange={()=>{setCheck(!check)}} 
+                  bold={true}
+                />
+                <div style={{display: 'flex', fontSize: 14, fontWeight: 'bold', color: '#5c6c75', cursor: 'pointer'}}
+                  onClick={()=>{handleOpen()}}>[내용보기]</div>
+              </div>
+
+              <Modal
+                open={open}
+                onClose={handleClose}
+              >                
+                <Box sx={boxStyle}>
+                  <ModalContent/>
+                </Box>
+              </Modal>
+
+
               <SignupButton 
                 type={'submit'}
                 variant={"default"}
-                baseFontSize={16}>
+                baseFontSize={16}
+                onClick={()=> {
+                  if (!check) {
+                    alert('개인정보 수집 및 이용에 동의해주세요.');
+                  }
+                }}>                
                 회원가입
               </SignupButton>    
             </form>
@@ -181,6 +230,7 @@ export default function Register() {
           <div className={styles.col3}>          
         </div>
       </div>
+
     </div>
   );
 }

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState, useContext } from 'react';
 import axios from 'axios';
 import { useRouter } from 'next/router';
 import styled from '@emotion/styled';
@@ -6,7 +6,7 @@ import { css, Global } from '@emotion/react';
 import { PlusOutlined } from '@ant-design/icons';
 import { Modal, Upload } from 'antd';
 import styles from '../../../styles/post/post.module.css'
-
+import AuthContext from "../AuthContext/AuthContext";
 
 const ImgUploadContainer = styled.div`
   margin-top:50px;
@@ -77,6 +77,8 @@ const BoardWrite = () => {
   const [fileList, setFileList] = useState([]);
   const [title, setTitle] = useState("")
   const [ body, setBody] = useState("")
+  let { authTokens } = useContext(AuthContext);
+ 
 
 
   const handleCancel = () => setPreviewOpen(false);
@@ -139,7 +141,7 @@ const BoardWrite = () => {
 
         
     formData.append('title', title)  //서버전달용
-    formData.append('user', localStorage.user)
+    // formData.append('user', localStorage.user)
     formData.append('body', body )
     formData.append(`image`, fileList[0]?.originFileObj); 
     // formData.append(`user`, )
@@ -157,17 +159,19 @@ const BoardWrite = () => {
 
     data: formData
     try {
-        const response = await axios.post('http://127.0.0.1:8000/blog/blog/', formData, {
-            headers: { "Content-Type": "multipart/form-data",
-                    // "authorization" : 
-        
-        }, // 헤더 추가
-        });
+        const config = {
+          headers: { 
+              Authorization : 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNjg3MzY2NTQ4LCJpYXQiOjE2ODczNjYyNDgsImp0aSI6IjMzYzIxNzNjOTIwODRlYTRhMzkyZGIxZjUzNmNhN2U4IiwidXNlcl9pZCI6MSwidXNlcm5hbWUiOiJybGFhbmR1czIiLCJlbWFpbCI6InJsYWFuZHVzMkBnbWFpbC5jb20ifQ.qAVaiJoNa49R_eafBqsU-hoL0PTEEDSqxLHr-vVSwxc',
+          }
+        }
+        const response = await axios.post('http://127.0.0.1:8000/temp/temp/', formData, config);
+        ;
         if (response.status === 201) {
             console.log('이미지 전송 성공', response.data);
         } else {
             console.log('이미지 전송 실패');
             console.log(response.status);
+            console.log("뚱뚱이");
         }
     } catch (error) {
         console.error('이미지 전송 실패', error);
@@ -177,7 +181,10 @@ const BoardWrite = () => {
     Router.push('/bpost');
 
     };
+<<<<<<< HEAD
     // console.log(localStorage.user)
+=======
+>>>>>>> dev
   return (
     <div>
       <div>게시물 작성</div>

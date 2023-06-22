@@ -3,45 +3,84 @@
   src: url('/fonts/초보.ttf');
 }
 
-.wrap {
-  background-color: gray;
-  height: 140px;
+.footerwrap {
+  background-color: #F7E6D9;
+  height: 160px;
   width: 100%;
   font-family: 초보;
-  font-size: 16px;
-  position: relative;
-  transform: translateY(-100%);
-  margin-top: 595px;
-  align-items: center;
-  justify-content: center;
-  display: flex;
-}
-
-.kt {
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  top: 50px;
-
-}
-.logo {
-  display: flex;
-  align-items: flex-end;
-  justify-content: flex-end;
-  position: relative;
-  left: 552px;
-  bottom: 10px;
-}
-.flex {
-  position: relative;
-  display: flex;
-  gap: 18px;
-  font-size: 25px;
-  color: navy;
-  alignItems: 'flex-end';
-  text-decoration-line: none;
-  left: 600px;
-  bottom: 10px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  margin-top: 523px;
   
 }
+
+.footercontainer {
+  display: flex;
+  align-items:flex-start;
+  box-sizing: border-box;
+  flex-direction: column;
+  gap: 20px;
+  position: relative;
+  left: 210px;
+  bottom: 40px;
+  flex: none;
+
+}
+.divider {
+  border: 1px solid black;
+}
+.dividerContainer {
+  margin-top: 14px;
+}
+
+.imageContainer {
+  display: flex;
+}
+
+.logo {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+  left: 1100px;
+  top: 10px;
+}
+.iconcontainer {
+  display: flex;
+  align-items: flex-end;
+  position: relative;
+  gap: 35px;
+  font-size: 32px;
+  color: navy;
+  cursor: pointer;
+  left: 915px;
+  top: 105px;
+
+}
+
+.iconcontainer a {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+}
+
+.iconcontainer a:hover {
+  animation: shake 0.3s ease-in-out;
+  animation-iteration-count: infinite;
+  transform-origin: center;
+}
+
+@keyframes shake {
+  0% { transform: translateX(0); }
+  20% { transform: translateX(-2px); }
+  40% { transform: translateX(2px); }
+  60% { transform: translateX(-2px); }
+  80% { transform: translateX(2px); }
+  100% { transform: translateX(0); }
+}
+

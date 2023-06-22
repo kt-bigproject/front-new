@@ -8,12 +8,23 @@ export default AuthContext;
 
 export const AuthProvider = ({ children }) => {
   const [authTokens, setAuthTokens] = useState(null);
-  const [user, setUser] = useState("빵꾸똥꾸");
+  const [user, setUser] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [count, setCount] = useState(1)
 
   const router = useRouter();
 
+  useEffect(() => {
+    const getToken = localStorage.getItem("authTokens");
+    if (getToken) {
+      setAuthTokens(JSON.parse(getToken));
+      setUser(jwt_decode(JSON.parse(getToken).access));
+    }
+    setLoading(false);
+  }, []);
+
   const loginUser = async (username, password) => {
-    const response = await fetch("http://localhost:8000/rest-auth/login/", {
+    const response = await fetch("http://localhost:8000/api/token/", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -27,16 +38,12 @@ export const AuthProvider = ({ children }) => {
 
     // 로그인에 성공했을 경우 홈으로 이동
     if (response.status === 200) {
-      // setAuthTokens(data);
-      console.log(data['token'])
-      console.log(jwt_decode(data['token']).username) // 
-      setUser(jwt_decode(data['token'])); // user정보는 여기 담김
-      console.log(user)
-      // localStorage.setItem("user", JSON.stringify(data));
-      // localStorage.setItem("user", jwt_decode(data['token'])); user정보는 굳이 여기서 담지말고 setUser에 담자
-      localStorage.setItem("tokens", data['token']);
-      localStorage.setItem("user", jwt_decode(data['token']).username);
-      router.push("/");
+      setAuthTokens(data);
+      setUser(jwt_decode(data.access));
+      localStorage.setItem("authTokens", JSON.stringify(data));
+      console.log(jwt_decode(data.access))
+      console.log(data)
+      // router.push("/");
     } else {
       alert("아이디 또는 비밀번호가 맞지 않습니다.");
       console.log(data)
@@ -57,6 +64,8 @@ export const AuthProvider = ({ children }) => {
     setAuthTokens,
     loginUser,
     logoutUser,
+    count,
+    setCount,
   };
 
   return (

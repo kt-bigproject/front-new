@@ -42,7 +42,7 @@ export const MyButton1 = styled.button`
   color: #fff;
   cursor: pointer;
   display: inline-flex;
-  font-family: system-ui,-apple-system,system-ui,"Helvetica Neue",Helvetica,Arial,sans-serif;
+  font-family: "one";
   font-size: 16px;
   font-weight: 600;
   justify-content: center;
@@ -57,7 +57,8 @@ export const MyButton1 = styled.button`
   -webkit-user-select: none;
   touch-action: manipulation;
   vertical-align: baseline;
-  width: auto;
+  width: 133.08px;
+  height: 48.67px;
   &:hover,
   &:focus {
     background-color: #fb8332;
