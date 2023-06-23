@@ -281,12 +281,7 @@ export default function PraticePage(props) {
       </div>
       <Mydiv2 style= {{marginTop:50}}>
           <img style = {{width: 170, height: 170}} src="/left.png" />
-<<<<<<< HEAD
-          {/* <div style={MyDivStyle}>{sent}</div> */}
-          <input type="text" style={MyDivStyle} value={inputValue} onChange={handleInputChange} />
-=======
-          <div style={MyDivStyle}>test</div>
->>>>>>> header
+          <div style={MyDivStyle}>{sent}</div>
           <img style = {{width: 170, height: 170}} src="/right.png" />
       </Mydiv2>
       <Mydiv3>
