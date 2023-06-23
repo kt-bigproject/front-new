@@ -9,7 +9,6 @@ import { useAxios } from "../../src/components/Axios/axios";
 
 import Modal from '@leafygreen-ui/modal';
 import Button from "@leafygreen-ui/button"
-
 import { Alldiv, Mydiv2, Mydiv3, Mydiv4, Mydiv5, MyButton1, MyButton2 } from "../../styles/practice/pracitce"
 
 
@@ -265,69 +264,85 @@ export default function PraticePage(props) {
 
   return(
     <>
-    <Alldiv>
-      <div style= {{textAlign:"center", marginTop:50}}>
-        {/* <img style = {{width: 250, height: 140}} src="/LOGO.png" /> */}
-        <ReadOutlined style={{fontSize:100, color:"#fa6400"}}/>
-      </div>
-      <div style= {{marginTop:20}}>
-        <h2>글씨 낙서장</h2>
-      </div>
-      <div style= {{marginTop:20}}>
-        <h3>다양한 서체를 적용하여 글씨체를 연습해보세요 블라블라 글씨체 다르게</h3>
-      </div>
-      <div>
-        <h4>여기에는 더더욱 부차적인 내용이 들어갈거에요 글씨체 다르게</h4>
-      </div>
-      <Mydiv2 style= {{marginTop:50}}>
-          <img style = {{width: 170, height: 170}} src="/left.png" />
-<<<<<<< HEAD
-          {/* <div style={MyDivStyle}>{sent}</div> */}
-          <input type="text" style={MyDivStyle} value={inputValue} onChange={handleInputChange} />
-=======
-          <div style={MyDivStyle}>test</div>
->>>>>>> header
-          <img style = {{width: 170, height: 170}} src="/right.png" />
-      </Mydiv2>
-      <Mydiv3>
-      <Dropdown menu={{ items,}}>
-        <a onClick={(e) => e.preventDefault()}>
-          <Space style={{fontFamily:"one", fontSize:30, marginTop:30}}>
-            폰트를 선택하세요
-          <DownOutlined />
-          </Space>
-        </a>
-      </Dropdown>
-      </Mydiv3>
-      <br />
-      <Mydiv>
-      <canvas ref={hiddenRef} 
-                onMouseDown={startDrawing} // 마우스 버튼을 눌렀을때
-                onMouseUp={EndDrawing} // 마우스마우스 버튼을 땠을 때
-                onMouseMove={drawing} // 마우스가 움직일 때
-                onMouseLeave={EndDrawing} // 마우스가 캔버스를 벗어낫을 때
-                style={{ display: 'none' }} />
-      <Mycanvas ref={canvasRef}
-                onMouseDown={startDrawing} // 마우스 버튼을 눌렀을때
-                onMouseUp={EndDrawing} // 마우스마우스 버튼을 땠을 때
-                onMouseMove={drawing} // 마우스가 움직일 때
-                onMouseLeave={EndDrawing} // 마우스가 캔버스를 벗어낫을 때
-      ></Mycanvas>
-      <Mydiv4>
-        <Button type="text" onClick={onClickClear}><DeleteOutlined /></Button>
-        <Button type="text" onClick={onClickEraser}><UndoOutlined /></Button>
-        <Button type="text" onClick={onClickPencil}><HighlightOutlined /></Button>
-      </Mydiv4>
-    </Mydiv>
-      <Mydiv5>
-      <MyButton1 size="default" onClick={onClickSubmit}><h4>손글씨 등록하기</h4></MyButton1>
-      <MyButton2 onClick={() => setOpen(curr => !curr)}><h4>사진 등록하기</h4></MyButton2>
-      <Modal open={open} setOpen={setOpen}>
-        <h1 style={{textAlign:"center"}}>서체를 사진으로 찍어 등록 해주세요!</h1>
-        <ImageUpload font={font}/>
-      </Modal>
-      </Mydiv5>
-    </Alldiv>
+    <Alldiv style={{ backgroundColor: "#FFF0E5"}}>
+      {/* <wrap1div style={{ backgroundImage: "url('/pback5.jpg')", width: "100%", padding: 20,
+                        backgroundSize: "100% 100%", height: 600}}> */}
+        <div style= {{textAlign:"center"}}>
+          {/* <img style = {{width: 250, height: 140}} src="/LOGO.png" /> */}
+            
+          </div>
+            <contdiv style={{ display: "flex", flexDirection: "column", 
+                              alignItems: "center", justifyContent: "center", 
+                              backgroundColor: "skyblue", marginTop: 0}}>
+              <div style= {{ display: "flex", flexDirection: "column", justifyContent: "center", 
+                            alignItems: "center", gap: 50, marginTop: 60}}>
+                {/* <ReadOutlined style={{fontSize:100, color:"#fa6400"}}/>              */}
+                <h2 style={{ fontSize:80, color: "Orange" }}>글씨 낙서장</h2>
+                <div style={{ display: "flex", flexDirection: "column", justifyContent: "center"}}>
+                  <h3 style={{ fontSize:30 }}>다양한 서체를 적용하여 글씨체를 연습해보세요</h3>
+                  <h4 style={{ fontSize:25 }}>손글씨를 연습하고 싶은 분들을 위한 특별한 공간입니다.</h4>
+                </div>
+              </div>
+          {/* </wrap1div> */}
+          {/* <wrap2div style={{ backgroundImage: "url('/pback6.jpg')", display: "flex", flexDirection: "column", 
+                            alignItems: "center", justifyContent: "center", width: "100%", backgroundSize: "100% 100%"}}> */}
+              <Mydiv2 style= {{marginTop:50, backgroundColor: "white"}}>
+                  <img style = {{width: 130, height: 130}} src="/left.png" />
+                  {/* <div style={MyDivStyle}>{sent}</div> */}
+                  <input type="text" style={MyDivStyle} value={inputValue} onChange={handleInputChange} 
+                              style={{ borderRadius: "10px", width: 800, height: 50, 
+                                        textAlign: "center", fontSize: 28, border: "2px solid gray"}}/>
+                  <img style = {{width: 130, height: 130}} src="/right.png" />
+              </Mydiv2>
+              <Mydiv3>
+              <Dropdown menu={{ items,}}>
+                <a onClick={(e) => e.preventDefault()}>
+                  <Space style={{fontFamily:"one", fontSize:30, marginTop:30}}>
+                    폰트를 선택하세요
+                  <DownOutlined />
+                  </Space>
+                </a>
+              </Dropdown>
+              </Mydiv3>
+              <br />
+              <Mydiv>
+              <canvas ref={hiddenRef} 
+                        onMouseDown={startDrawing} // 마우스 버튼을 눌렀을때
+                        onMouseUp={EndDrawing} // 마우스마우스 버튼을 땠을 때
+                        onMouseMove={drawing} // 마우스가 움직일 때
+                        onMouseLeave={EndDrawing} // 마우스가 캔버스를 벗어낫을 때
+                        style={{ display: 'none' }} />
+              <Mycanvas ref={canvasRef}
+                        onMouseDown={startDrawing} // 마우스 버튼을 눌렀을때
+                        onMouseUp={EndDrawing} // 마우스마우스 버튼을 땠을 때
+                        onMouseMove={drawing} // 마우스가 움직일 때
+                        onMouseLeave={EndDrawing} // 마우스가 캔버스를 벗어낫을 때
+              ></Mycanvas>
+              <Mydiv4>
+                <Button type="text" onClick={onClickClear}><DeleteOutlined /></Button>
+                <Button type="text" onClick={onClickEraser}><UndoOutlined /></Button>
+                <Button type="text" onClick={onClickPencil}><HighlightOutlined /></Button>
+              </Mydiv4>
+            </Mydiv>
+              <Mydiv5>
+               <buttondiv style={{ display: "flex", flexDirection: "row", 
+                                alignItems: "center", justifyContent: "center", 
+                                gap: 60}}>
+                <MyButton1 size="default" onClick={onClickSubmit} style={{ backgroundColor: "#fa6400", 
+                                                                          width: 140, height: 40, fontSize: 17, marginBottom: 20}}>
+                    <h4>손글씨 등록하기</h4></MyButton1>
+                <MyButton2 onClick={() => setOpen(curr => !curr)} style={{ width: 140, height: 40, fontSize: 17, marginBottom: 20}}>
+                  <h4>사진 등록하기</h4></MyButton2>
+              </buttondiv>  
+              <Modal open={open} setOpen={setOpen}>
+                 
+            <h1 style={{textAlign:"center"}}>서체를 사진으로 찍어 등록 해주세요!</h1>
+            <ImageUpload font={font}/>
+          </Modal>
+          </Mydiv5>
+          </contdiv> 
+        {/* </wrap2div> */}
+        </Alldiv>
     </>
   )
 }
