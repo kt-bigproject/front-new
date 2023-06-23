@@ -42,9 +42,13 @@ export default function Layout(props) {
             
             <>
             <LayoutHeader/>
+<<<<<<< HEAD
             <div style={{display:"flex", justifyContent:"center", alignItems:"center"}}>
             <div style={{ width: "1200px", paddingTop: '10px', paddingBottom: '30px', height: "auto"}}>{props.children}</div>
             </div>
+=======
+            {props.children}
+>>>>>>> final-h-f
             <LayoutFooter />
             </>  
         
