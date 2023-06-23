@@ -42,11 +42,7 @@ export default function Layout(props) {
             
             <>
             <LayoutHeader/>
-<<<<<<< HEAD
-            <div>{props.children}</div>
-=======
             <div style={{ paddingTop: '10px', paddingBottom: '30px'}}>{props.children}</div>
->>>>>>> header
             <LayoutFooter />
             </>  
         
