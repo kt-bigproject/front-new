@@ -14,14 +14,14 @@ export const AuthProvider = ({ children }) => {
 
   const router = useRouter();
 
-  // useEffect(() => {
-  //   const getToken = localStorage.getItem("authTokens");
-  //   if (getToken) {
-  //     setAuthTokens(JSON.parse(getToken));
-  //     setUser(jwt_decode(JSON.parse(getToken).access));
-  //   }
-  //   setLoading(false);
-  // }, []);
+  useEffect(() => {
+    const getToken = localStorage.getItem("authTokens");
+    if (getToken) {
+      setAuthTokens(JSON.parse(getToken));
+      setUser(jwt_decode(JSON.parse(getToken).access));
+    }
+    setLoading(false);
+  }, []);
 
   const loginUser = async (username, password) => {
     const response = await fetch("http://localhost:8000/api/token/", {

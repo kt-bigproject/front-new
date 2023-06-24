@@ -91,6 +91,8 @@ const BoardWrite = () => {
       setPreviewTitle(file.name || file.url.substring(file.url.lastIndexOf('/') + 1));
   };
   let { authTokens } = useContext(AuthContext);
+  console.log(authTokens)
+  console.log("authTokens")
 
   const handleChange = ({ fileList: newFileList }) => setFileList(newFileList);
   const uploadButton = (
@@ -170,12 +172,13 @@ const BoardWrite = () => {
         console.log(formData);
     };
     alert('등록되었습니다.');
-    // Router.push('/bpost');
+    Router.push('/bpost');
 
     };
   return (
     <div>
-      <div>게시물 작성</div>
+      <div>
+      <div>게시판 글쓰기</div>
       <hr className={styles.line}></hr>
       <div>
         <label htmlFor="title">
@@ -263,6 +266,7 @@ const BoardWrite = () => {
         <button onClick={backToList} className={styles.cancel_btn}>뒤로</button>
       </div>
       <div>
+      </div>
       </div>
     </div>
   );

@@ -4,9 +4,11 @@ import FavoriteIcon from '@mui/icons-material/Favorite';
 import SendIcon from '@mui/icons-material/Send';
 import Image from 'next/image';
 import styles from './page.module.css';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Router } from 'react-router-dom';
 import { useRouter } from 'next/router';
+import Board from '../update/[number]/index';
+
 
 export default function ImgModal({open, onClose, figureInfo}) {
 
@@ -36,9 +38,11 @@ export default function ImgModal({open, onClose, figureInfo}) {
     marginLeft: '20px',
   }
 
+//   const listBoard = { title, user, body, image, id };
+ 
   const Router = useRouter();
-  const onClick = () => {
-    Router.push('/BoardUpdate/' + id)
+  const onClick = () => { 
+    Router.push(`/update/` + figureInfo.id )
   }
 
   return (
@@ -88,7 +92,9 @@ export default function ImgModal({open, onClose, figureInfo}) {
               <span>text : {figureInfo.body}</span>
             </div>
             <div>
-              <button onClick={onClick}>수정</button>
+              <button onClick={onClick} className={styles.button_position}>
+                <img src='fix_icon.png' width='40'></img>
+                </button>
             </div>
 
 
