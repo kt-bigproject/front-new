@@ -46,6 +46,26 @@ export const ImageSpan = styled.div`
 	width: calc(100%);
 `
 
+export const ImageDiv = styled.div`
+  border: 1px solid;
+  height: 600px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+`
+
+export const ImageTitle = styled.div`
+
+`
+
+export const ImageContext = styled.div`
+  width: 75%;
+  border-top: 1px solid;
+
+`
+
 export const MainP = styled.p`
   border-top: solid 2px #e5e5e5;
   position: relative;
@@ -115,9 +135,53 @@ export const EndBanner2 = styled.div`
   background-size: 100% 100%;
   height: 100px;
 `
+export const Profile = styled.div`
+  border: 1px solid;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`
+
+export const Profile1 = styled.div`
+ border: 1px solid;
+ display: flex;
+ justify-content: space-between;
+ width: 40%;
+`
+export const ProfileCircle = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  /* background-color: #f5f5f5; */
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  border: 1px solid;
+`;
+
+export const ProfileIcon = styled.div`
+  width: 80px;
+  height: 80px;
+  /* object-fit: cover; */
+  /* border-radius: 50%; */
+  margin-bottom: 10px;
+`;
+
+export const Name = styled.div`
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 5px;
+`;
+
+export const Position = styled.div`
+  font-size: 14px;
+  color: #777;
+`;
 
 export const Footer = styled.footer`
-		background: #f0f0f0;
+		background: #f0f0
+    f0;
 		padding: 4em 0 6em 0;
 		text-align: center;
 ` 
