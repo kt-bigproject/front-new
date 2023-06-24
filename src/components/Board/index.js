@@ -14,7 +14,7 @@ const Board = ({ title, user, body, image, id }) => {
         }
 
       const moveToUpdate = () => {      
-          Router.push(`/update/` + id)
+          // Router.push(`/update/` + id)
       }
 
       const deleteBoard = async () => {

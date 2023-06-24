@@ -50,7 +50,7 @@
   width: 1200px;
   padding-right: 20px;
   padding-left: 20px;
-
+  /* border-color: #F24822; */
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -98,6 +98,9 @@
   width: 23%;
   margin-bottom: 40px;
   display: block;
+  border : 10px solid lightgray;
+  
+  
 }
 
 .IconButton_post {  
@@ -106,6 +109,57 @@
   left: 10px;
   /* font-size: 10px; */
   /* z-index: 10; */
+}
+
+.button_position {
+  position: absolute;
+  top: 15px;
+  right: 10px;
+  color: black;
+  background-color: white;
+  border: none;
+  cursor: pointer;
+}
+
+.text_align {
+  text-align: center;
+  background-color: white;
+  
+  
+}
+
+.pagination_style {
+  
+  /* margin-top: 10px; */
+  position: relative;
+  /* left: 700px; */
+  margin-left: 45%;
+  /* margin: 50%; */
+  
+
+}
+
+.b1 {
+  /* left: 40px; */
+  
+  background-color: orange;
+  border: white;
+  border-radius: 100px / 80px;
+  cursor: pointer;
+  transition: transform 0.3s;
+  /* width: 90px;
+  height: 45px; */
+  color: white;
+  font-size: 21.5px;
+  position: relative;
+  left: 45%;
+  
+
+}
+
+.b2 {
+  margin-left: 10%;
+  margin-right: 10%;
 }
 
 .IconButton_post:hover {
@@ -154,3 +208,4 @@
   padding: 20px;
   height: 100%;
 }
+
