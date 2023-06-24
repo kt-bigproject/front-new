@@ -6,7 +6,7 @@ import styles from './styles.module.css'
 import 'boxicons/css/boxicons.min.css';
 import { useRouter } from 'next/router';
 import  { useEffect, useState } from 'react'
-import ReactTooltip from 'react-tooltip';
+// import ReactTooltip from 'react-tooltip';
 
 
 

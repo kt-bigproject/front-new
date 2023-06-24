@@ -2,13 +2,15 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 // import PostTable from './PostTable'; 
 import CreateTable from './CreateTable'; 
+import { useAxios } from '../../src/components/Axios/axios';
 
 
 export default function Home() {
   const [blog, setBlog] = useState(null);
+  const api=useAxios();
 
   useEffect(() => {
-    axios.get('http://127.0.0.1:8000/api/blog/blog/?')
+    api.get('/blog/blog/?')
       .then(response => {
         setBlog(response.data);
       })

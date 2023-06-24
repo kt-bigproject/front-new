@@ -17,7 +17,7 @@ export default function Check() {
 
 
     const getBoard = async () => {
-        const abcd = await (await axios.get(`http://127.0.0.1:8000/blog/blog/${id}`)).data;
+        const abcd = await (await axios.get(`http://127.0.0.1:8000/api/blog/blog/${id}`)).data;
         setBoard(abcd);
         setLoading(false);
         console.log(abcd)

@@ -18,7 +18,7 @@ export const AuthProvider = ({ children }) => {
     const getToken = localStorage.getItem("authTokens");
     if (getToken) {
       setAuthTokens(JSON.parse(getToken));
-      // setUser(jwt_decode(JSON.parse(getToken).access));
+      setUser(jwt_decode(JSON.parse(getToken).access));
     }
     setLoading(false);
   }, []);
