@@ -21,6 +21,7 @@
     "@leafygreen-ui/modal": "^15.0.3",
     "@leafygreen-ui/password-input": "^1.0.7",
     "@leafygreen-ui/side-nav": "^13.0.10",
+    "@leafygreen-ui/skeleton-loader": "^1.0.1",
     "@leafygreen-ui/table": "^12.0.4",
     "@leafygreen-ui/text-input": "^12.1.13",
     "@mui/icons-material": "^5.11.16",
