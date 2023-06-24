@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import {Footer, Banner, BannerDiv, EndBanner, EndBanner1, EndBanner2, FeatureSection, FeatureSection2, FeatureSection3, FeatureSection4, ImageSpan, Main, MainBox, MainDiv, MainFeatures, MainImage, MainP, MenuBox, FooterUl} from '../styles/main/index'
+import {ImageDiv, Footer, Banner, BannerDiv, EndBanner, EndBanner1, EndBanner2, FeatureSection, FeatureSection2, FeatureSection3, FeatureSection4, ImageSpan, Main, MainBox, MainDiv, MainFeatures, MainImage, MainP, MenuBox, FooterUl, Profile, Profile1, ProfileIcon, Name, Position, ProfileCircle, ImageContext, ImageTitle} from '../styles/main/index'
 import LayoutHeader from '../src/commons/layout/header/header';
 export default function MainPage() {
   return (
@@ -58,7 +58,12 @@ export default function MainPage() {
 							<MainP>Blandit varius ut praesent nascetur eu penatibus nisi risus faucibus nunc ornare<br />
 							adipiscing nunc adipiscing. Condimentum turpis massa.</MainP>
 						</MainDiv>
-						<ImageSpan class="image featured"><MainImage src="/main/effect6.png" alt="" /></ImageSpan>
+						<ImageSpan class="image featured">
+              <ImageDiv>
+                <ImageTitle>asdf</ImageTitle>
+                <ImageContext>asdf</ImageContext>
+              </ImageDiv>
+            </ImageSpan>
 					</MainBox>
           </Main>
           <EndBanner1 />
@@ -94,36 +99,60 @@ export default function MainPage() {
           </Banner>
           
 					<div class="row">
-          <img
+          {/* <img
           src="./main/pretty/giphy.gif"
           width="384"
           height="480"
           frameBorder="0"
-          ></img>
-						{/* <div class="col-6 col-12-narrower">
-							<section class="box special">
-								<span class="image featured"><img src="images/pic02.jpg" alt="" /></span>
-								<h3>Sed lorem adipiscing</h3>
-								<p>Integer volutpat ante et accumsan commophasellus sed aliquam feugiat lorem aliquet ut enim rutrum phasellus iaculis accumsan dolore magna aliquam veroeros.</p>
-								<ul class="actions special">
-									<li><a href="#" class="button alt">Learn More</a></li>
-								</ul>
-							</section>
-
-						</div>
-						<div class="col-6 col-12-narrower">
-
-							<section class="box special">
-								<span class="image featured"><img src="images/pic03.jpg" alt="" /></span>
-								<h3>Accumsan integer</h3>
-								<p>Integer volutpat ante et accumsan commophasellus sed aliquam feugiat lorem aliquet ut enim rutrum phasellus iaculis accumsan dolore magna aliquam veroeros.</p>
-								<ul class="actions special">
-									<li><a href="#" class="button alt">Learn More</a></li>
-								</ul>
-							</section>
-
-						</div> */}
-					</div>
+          ></img> */}
+          <Profile>
+            <p>팀원소개</p>
+          <Profile1>
+            <ProfileCircle>
+              <ProfileIcon>아이콘</ProfileIcon>
+              <Name>김무연</Name>
+              <Position>프론트엔드</Position>
+            </ProfileCircle>
+            <ProfileCircle>
+              <ProfileIcon>아이콘</ProfileIcon>
+              <Name>김힘찬</Name>
+              <Position>프론트엔드</Position>
+            </ProfileCircle>
+            <ProfileCircle>
+              <ProfileIcon>아이콘</ProfileIcon>
+              <Name>김규민</Name>
+              <Position>프론트엔드</Position>
+            </ProfileCircle>
+            <ProfileCircle>
+              <ProfileIcon>아이콘</ProfileIcon>
+              <Name>박규정</Name>
+              <Position>프론트엔드</Position>
+            </ProfileCircle>
+          </Profile1>
+          <Profile1>
+          <ProfileCircle>
+              <ProfileIcon>아이콘</ProfileIcon>
+              <Name>박윤수</Name>
+              <Position>AI</Position>
+            </ProfileCircle>
+            <ProfileCircle>
+              <ProfileIcon>아이콘</ProfileIcon>
+              <Name>김혜민</Name>
+              <Position>백엔드</Position>
+            </ProfileCircle>
+            <ProfileCircle>
+              <ProfileIcon>아이콘</ProfileIcon>
+              <Name>문석호</Name>
+              <Position>백엔드</Position>
+            </ProfileCircle>
+            <ProfileCircle>
+              <ProfileIcon>아이콘</ProfileIcon>
+              <Name>이창영</Name>
+              <Position>백엔드</Position>
+            </ProfileCircle>
+          </Profile1>
+          </Profile>
+		</div>
 
 			{/* Footer */}
 				<Footer id="footer">
