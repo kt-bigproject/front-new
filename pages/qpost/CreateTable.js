@@ -61,20 +61,21 @@ export default function CreateTable({data}) {
 
     <MaterialReactTable 
       columns={columns} 
-      data={data.slice().reverse()} 
+      // data={data.slice().reverse()} 
+      data={data}
       enableColumnActions={false}
       enableColumnFilters={false}
       enableSorting={false}
+      enablePagination={false}
+      initialState={{ density: 'compact' }}
 
       enableTopToolbar={false}
-
+      enableBottomToolbar={false}
         // initialState={{ showGlobalFilter: true }}
 
-        muiTablePaginationProps={{
-          rowsPerPageOptions: [10],
-          // showFirstButton: false,
-          // showLastButton: false,
-        }}
+        // muiTablePaginationProps={{
+        //   rowsPerPageOptions: [10],
+        // }}
 
         muiTableBodyCellProps={({ cell }) => ({
           onClick: (event) => {
