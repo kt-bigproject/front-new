@@ -1,11 +1,14 @@
 import styled from "@emotion/styled"
 import Link from "next/link"
 import { UserOutlined } from "@ant-design/icons"
-import React from 'react';
+// import React from 'react';
 import styles from './styles.module.css'
-// import 'boxicons/css/boxicons.min.css';
+import 'boxicons/css/boxicons.min.css';
 import { useRouter } from 'next/router';
-import { useEffect, useState } from 'react';
+import  { useEffect, useState } from 'react'
+// import ReactTooltip from 'react-tooltip';
+
+
 
 
 export default function LayoutHeader() {
@@ -41,36 +44,54 @@ export default function LayoutHeader() {
   const onClickbutton6 = () => {
     a6.push('/login')
   }
+ 
 
-
-
-
-  const [scrolled, setScrolled] = useState(false);
+  const [showHeader, setShowHeader] = useState(true);
 
   useEffect(() => {
+    let prevScrollPos = window.scrollY;
+
     const handleScroll = () => {
-      const isScrolled = window.scrollY > 0;
-      setScrolled(isScrolled);
+      const currentScrollPos = window.scrollY;
+      const isScrolledDown = currentScrollPos > prevScrollPos;
+
+      setShowHeader(!isScrolledDown);
+      prevScrollPos = currentScrollPos;
+
+      console.log('Scroll event occurred');
     };
 
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+
   
   return (
-    <header className={`${styles.headerwrap} ${scrolled ? styles.scrolled : ''}`}>
-      <img src="/Logo.svg" className={styles.title1} width={190} height={62} />
-      <div className={styles.headcontainer}>
-        <span className={styles.n1} onClick={onClickbutton1}>낙서장</span>
-        <span className={styles.n2} onClick={onClickbutton2}>놀이터</span>
-        <span className={styles.n3} onClick={onClickbutton3}>자랑하기</span>
-        <span className={styles.n4} onClick={onClickbutton4}>문의하기</span>
-        <span className={styles.n5} onClick={onClickbutton5}>랭킹</span>
+    <header className={`${styles.header} ${showHeader ? styles.showHeader : styles.hideHeader}`}>
+      <div className={styles.upperSection}>
+        <div className={styles.logoContainer}>
+          <img src="/Logo.svg" className={styles.title1} width={190} height={62} />
+        </div>
       </div>
-      <div className={styles.headcontainer2}>
-        <button className={styles.b1} onClick={onClickbutton6}>로그아웃</button>
+      <div className={`${styles.lowerSection} `}>  
+      <div className={styles.menuContainer}>
+          <span className={styles.menuItem} onClick={onClickbutton1}>
+            <i className='bx bxs-edit-alt' ></i>낙서장
+            </span>
+          <span className={styles.menuItem} onClick={onClickbutton2}>
+            <i className='bx bx-joystick' ></i>놀이터</span>
+          <span className={styles.menuItem} onClick={onClickbutton3}>
+            <i className='bx bx-like' ></i>자랑하기</span>
+          <span className={styles.menuItem} onClick={onClickbutton4}>
+            <i className='bx bx-message-dots' ></i>문의하기</span>
+          <span className={styles.menuItem} onClick={onClickbutton5}>
+            <i className='bx bx-trophy' ></i>랭킹</span>
       </div>
+      <div className={styles.logoutContainer}>
+          <button className={`${styles.logoutItem} ${styles.alignRight}`} onClick={onClickbutton6}>로그아웃</button>
+      </div>
+    </div>
     </header>
   );
 }
