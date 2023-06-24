@@ -22,6 +22,7 @@ const Mydiv = styled.div`
   flex-direction: row;
 `
 
+
 export default function PraticePage(props) {
 
   const [inputValue, setInputValue] = useState('쓰고싶은 글을 써주세요.');
@@ -244,7 +245,7 @@ export default function PraticePage(props) {
 
     useEffect(() => {
       const Fetchsentence = async () => {
-        const result = await api.get('practice/sentence/')
+        const result = await api.get('/practice/sentence/')
         const random = Math.floor(Math.random() * result.data['length'])
         // console.log(result.data[1])
         setSent(result.data[random].sentence)
@@ -270,29 +271,44 @@ export default function PraticePage(props) {
 
   return(
     <>
-    <Alldiv style={{ backgroundColor: "#FFF0E5"}}>
-      {/* <wrap1div style={{ backgroundImage: "url('/pback5.jpg')", width: "100%", padding: 20,
-                        backgroundSize: "100% 100%", height: 600}}> */}
-        <div style= {{textAlign:"center"}}>
+    <Alldiv style={{ margin: 0, display: "block"}}>
+      <div className="updiv" style={{ backgroundImage: "url('/wrap9.jpg')", width: "100%", 
+                          margin: 0, height: 570, display: "flex", flexDirection: "row", justifyContent: "center"}}>
+        {/* <div style= {{textAlign:"center"}}> */}
           {/* <img style = {{width: 250, height: 140}} src="/LOGO.png" /> */}
             
-          </div>
-            <contdiv style={{ display: "flex", flexDirection: "column", 
+          {/* </div> */}
+            <div className="lefdiv" style={{ display: "flex", flexDirection: "row", justifyContent: "center", 
+                            alignItems: "center"}}>
+                 <div className="imgdiv" style={{ position: "relative"}}>            
+                    <img style = {{width: 470, height: 510}} src="/upp5.png" />   
+                    <img style = {{width: 330, height: 360, position: "absolute", top: 70, left: 77}} src="/ipp1.jpg" />     
+
+
+
+                  </div> 
+            </div>
+            {/* <contdiv style={{ display: "flex", flexDirection: "column", 
                               alignItems: "center", justifyContent: "center", 
-                              backgroundColor: "skyblue", marginTop: 0}}>
-              <div style= {{ display: "flex", flexDirection: "column", justifyContent: "center", 
-                            alignItems: "center", gap: 50, marginTop: 60}}>
+                              backgroundColor: "skyblue", marginTop: 0}}> */}
+              <div className="rigdiv" style= {{ display: "flex", flexDirection: "column", justifyContent: "center", 
+                                alignItems: "center", gap: 50, marginLeft: 90}}>         
                 {/* <ReadOutlined style={{fontSize:100, color:"#fa6400"}}/>              */}
-                <h2 style={{ fontSize:80, color: "Orange" }}>글씨 낙서장</h2>
+                <h2 style={{ fontSize:80, color: "#fa6400", fontFamily: "Kimjungchul" }}>『글씨 낙서장』</h2>
                 <div style={{ display: "flex", flexDirection: "column", justifyContent: "center"}}>
-                  <h3 style={{ fontSize:30 }}>다양한 서체를 적용하여 글씨체를 연습해보세요</h3>
-                  <h4 style={{ fontSize:25 }}>손글씨를 연습하고 싶은 분들을 위한 특별한 공간입니다.</h4>
+                  <div style={{ display: "flex", flexDirection: "column", 
+                                justifyContent: "center", gap: 20}}>
+                    <h3 style={{ fontSize:30, fontFamily: "Kimjungchul" }}>다양한 서체를 적용하여 글씨체를 연습해보세요</h3>
+                    <h4 style={{ fontSize:25, fontFamily: "Kimjungchul" }}>손글씨를 연습하고 싶은 분들을 위한 특별한 공간입니다.</h4>
+                    <h5 style={{ fontSize:25, fontFamily: "Kimjungchul" }}>손글씨의 아름다움과 창의성을 함께 향상시킬 수 있는 공간, 손글씨 낙서장입니다.</h5>
+                  </div>
                 </div>
               </div>
-          {/* </wrap1div> */}
-          {/* <wrap2div style={{ backgroundImage: "url('/pback6.jpg')", display: "flex", flexDirection: "column", 
-                            alignItems: "center", justifyContent: "center", width: "100%", backgroundSize: "100% 100%"}}> */}
-              <Mydiv2 style= {{marginTop:50, backgroundColor: "white"}}>
+          </div>
+          <div className="downdiv" style={{ backgroundImage: "url('/wrap3.jpg')", display: "flex", flexDirection: "column", 
+                            alignItems: "center", justifyContent: "center", 
+                            width: "100%", marginBottom: 0}}>
+              <Mydiv2 style= {{marginTop:50}}>
                   <img style = {{width: 130, height: 130}} src="/left.png" />
                   {/* <div style={MyDivStyle}>{sent}</div> */}
                   <input type="text" style={MyDivStyle} value={inputValue} onChange={handleInputChange}/>
@@ -301,8 +317,8 @@ export default function PraticePage(props) {
               <Mydiv3>
               <Dropdown menu={{ items,}}>
                 <a onClick={(e) => e.preventDefault()}>
-                  <Space style={{fontFamily:"one", fontSize:30, marginTop:30}}>
-                    폰트를 선택하세요
+                  <Space style={{ fontFamily:"one", fontSize:30, marginTop:30}}>
+                    <span style={{ fontFamily: "Kimjungchul" }}>폰트를 선택하세요</span>
                   <DownOutlined />
                   </Space>
                 </a>
@@ -329,23 +345,23 @@ export default function PraticePage(props) {
               </Mydiv4>
             </Mydiv>
               <Mydiv5>
-               <buttondiv style={{ display: "flex", flexDirection: "row", 
+               <div className="butdiv" style={{ display: "flex", flexDirection: "row", 
                                 alignItems: "center", justifyContent: "center", 
                                 gap: 60}}>
                 <MyButton1 size="default" onClick={onClickSubmit} style={{ backgroundColor: "#fa6400", 
-                                                                          width: 140, height: 40, fontSize: 17, marginBottom: 20}}>
-                    <h4>손글씨 등록하기</h4></MyButton1>
+                                                                          width: 140, height: 40, fontSize: 15, marginBottom: 20}}>
+                    <h4 style={{ fontFamily: "Kimjungchul" }}>손글씨 등록하기</h4></MyButton1>
                 <MyButton2 onClick={() => setOpen(curr => !curr)} style={{ width: 140, height: 40, fontSize: 17, marginBottom: 20}}>
-                  <h4>사진 등록하기</h4></MyButton2>
-              </buttondiv>  
+                  <h4 style={{ fontFamily: "Kimjungchul" }}>사진 등록하기</h4></MyButton2>
+              </div>  
               <Modal open={open} setOpen={setOpen}>
                  
             <h1 style={{textAlign:"center"}}>서체를 사진으로 찍어 등록 해주세요!</h1>
             <ImageUpload font={font}/>
           </Modal>
           </Mydiv5>
-          </contdiv> 
-        {/* </wrap2div> */}
+          {/* </contdiv>  */}
+        </div>
         </Alldiv>
     </>
   )
