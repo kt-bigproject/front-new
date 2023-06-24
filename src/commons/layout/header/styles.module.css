@@ -28,7 +28,7 @@
 .lowerSection {
   height: 40px;
   width: 100%;
-  background-color: #fa6400;
+  background-color: #FFDCC8;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -58,17 +58,18 @@
   margin: 0 10px;
   font-size: 24px;
   cursor: pointer;
+  font-family: Kimjungchul;
 }
 
 .menuItem:hover {
-  color: orange;
+  color: #fa6400;
   font-weight: bolder;
 }
 
 .logoutItem {
   font-size: 20px;
   cursor: pointer;
-  background-color: orange;
+  background-color: #fa6400;
   color: white;
   border: white;
   width: 80px;
@@ -77,6 +78,7 @@
   transition: transform 0.3s;
   position: relative;
   left: 240px;
+  font-family: Kimjungchul;
 }
 
 .logoutItem:hover {
