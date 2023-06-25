@@ -281,8 +281,9 @@ export default function PraticePage(props) {
             <div className="lefdiv" style={{ display: "flex", flexDirection: "row", justifyContent: "center", 
                             alignItems: "center"}}>
                  <div className="imgdiv" style={{ position: "relative"}}>            
-                    <img style = {{width: 470, height: 510}} src="/upp5.png" />   
-                    <img style = {{width: 330, height: 360, position: "absolute", top: 70, left: 77}} src="/ipp1.jpg" />     
+                    <img style = {{width: 480, height: 500, transform: "rotate(-7deg)"}} src="/upp7.png" />   
+                    <img style = {{width: 300, height: 310, 
+                                  position: "absolute", top: 95, left: 97, transform: "rotate(-7deg)" }} src="/ipp2.png" />     
 
 
 
@@ -292,7 +293,7 @@ export default function PraticePage(props) {
                               alignItems: "center", justifyContent: "center", 
                               backgroundColor: "skyblue", marginTop: 0}}> */}
               <div className="rigdiv" style= {{ display: "flex", flexDirection: "column", justifyContent: "center", 
-                                alignItems: "center", gap: 50, marginLeft: 90}}>         
+                                alignItems: "center", gap: 50}}>         
                 {/* <ReadOutlined style={{fontSize:100, color:"#fa6400"}}/>              */}
                 <h2 style={{ fontSize:80, color: "#fa6400", fontFamily: "Kimjungchul" }}>『글씨 낙서장』</h2>
                 <div style={{ display: "flex", flexDirection: "column", justifyContent: "center"}}>
@@ -305,7 +306,7 @@ export default function PraticePage(props) {
                 </div>
               </div>
           </div>
-          <div className="downdiv" style={{ backgroundImage: "url('/wrap3.jpg')", display: "flex", flexDirection: "column", 
+          <div className="downdiv" style={{ backgroundImage: "url('/wrap2.jpg')", display: "flex", flexDirection: "column", 
                             alignItems: "center", justifyContent: "center", 
                             width: "100%", marginBottom: 0}}>
               <Mydiv2 style= {{marginTop:50}}>
@@ -347,12 +348,12 @@ export default function PraticePage(props) {
               <Mydiv5>
                <div className="butdiv" style={{ display: "flex", flexDirection: "row", 
                                 alignItems: "center", justifyContent: "center", 
-                                gap: 60}}>
+                                gap: 50}}>
                 <MyButton1 size="default" onClick={onClickSubmit} style={{ backgroundColor: "#fa6400", 
-                                                                          width: 140, height: 40, fontSize: 15, marginBottom: 20}}>
-                    <h4 style={{ fontFamily: "Kimjungchul" }}>손글씨 등록하기</h4></MyButton1>
-                <MyButton2 onClick={() => setOpen(curr => !curr)} style={{ width: 140, height: 40, fontSize: 17, marginBottom: 20}}>
-                  <h4 style={{ fontFamily: "Kimjungchul" }}>사진 등록하기</h4></MyButton2>
+                                                                          width: 140, height: 40, fontSize: 15, marginBottom: 40}}>
+                    <span style={{ fontFamily: "Kimjungchul" }}>손글씨 등록하기</span></MyButton1>
+                <MyButton2 onClick={() => setOpen(curr => !curr)} style={{ width: 140, height: 40, fontSize: 17, marginBottom: 40}}>
+                  <span style={{ fontFamily: "Kimjungchul" }}>사진 등록하기</span></MyButton2>
               </div>  
               <Modal open={open} setOpen={setOpen}>
                  
