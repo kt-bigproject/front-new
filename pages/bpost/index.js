@@ -11,6 +11,7 @@ import FavoriteIcon from '@mui/icons-material/Favorite';
 import { Modal, Box, Typography, TextField, Button, IconButton} from '@mui/material';
 import Image from 'next/image';
 import ImgModal from './ImgModal';
+import { PlusOutlined } from '@ant-design/icons';
 
 const BoardList = () => {
   // const [boardList, setBoardList] = useState([]);
@@ -109,29 +110,29 @@ const BoardList = () => {
   };
 
   return (
-    <div>
-      <div className={styles.b2}>
+    <div >
+      <div>
         <div className={styles.content_wrapper}>
-          Content_Wrapper
-          <div className={styles.content_title}>
-            자랑하기 게시판 - Contents_Title
+          {/* Content_Wrapper */}
+          <td className={styles.content_title}>
+            {/* 자랑하기 게시판 - Contents_Title */}
+            <span className={styles.b4}>자랑</span><hr />해보세요  <img src='pencil.png' width={35} />
+            {/* <td> */}
+            <div className={styles.b1}>
+            <button onClick={moveToWrite} className={styles.b2}><img src='plus.png' className={styles.b3}/></button>
           </div>
+            {/* </td> */}
+          </td>
           <div className={styles.section}></div>
+          {/* <div className={styles.b5}> */}
             <div className={styles.figure_wrapper}>
               <div className={styles.figure_list}>
-                {boardShow.map((figureInfo, index) =>     
+                {boardShow.map((figureInfo, index) =>
+                
                     <div className={styles.card} key={figureInfo.id}>   
-                    
-                      <Image
-                        // style={{marginBottom: 20}}                        
-                        src={figureInfo.image}
-                        width="550"
-                        height="550"
-                        onClick={() => handleOpen(figureInfo)}
-                        alt={figureInfo.id}
-                      />    
-                      
-                      <IconButton
+                    Photo CARD
+                    <td>
+                    <IconButton
                         className={styles.IconButton_post}
                         onClick={() => handleClick(index)}>
                         { 
@@ -139,31 +140,46 @@ const BoardList = () => {
                           ? <FavoriteIcon className={styles.heart}/>
                           : <FavoriteBorderIcon className={styles.heart}/>
                         }
-                      </IconButton>                                     
-                      <div className={styles.text_align}>Title : {figureInfo.title}</div>
-                        
+                      </IconButton>
+                    </td>
+                      <Image 
+                        // style={{marginBottom: 20}}                        
+                        src={figureInfo.image}
+                        width="300"
+                        height="300"
+                        onClick={() => handleOpen(figureInfo)}
+                        alt={figureInfo.id}
+                      />  
+                      {/* <div className={styles.text_align}>   */}
+                      <div >
+                      
+                      <div className={styles.text_align2}>Title : {figureInfo.title}</div>
+                      </div>                                   
+                     
+                      {/* </div>   */}
                     </div>  
                     
                 )}
                               
               </div>              
             </div>
-            
+            {/* </div> */}
             <ImgModal open={open} onClose={handleClose} figureInfo={clickFigure}/> 
       </div>
       </div>
-      <div >
-        <Pagination className={styles.pagination_style}
-          count={count} 
-          page={curPage}
-          onChange={handleChangePage}
-          showFirstButton 
-          showLastButton />
-          <div>
-            <button onClick={moveToWrite} className={styles.b1}>글쓰기</button>
+          
+      <div>
+          <div className={styles.bottom_style}>
+            <Pagination className={styles.pagination_style}
+              count={count} 
+              page={curPage}
+              onChange={handleChangePage}
+              showFirstButton 
+              showLastButton />
+              
           </div>
+          
       </div>
-      
         
         
       <div/>
