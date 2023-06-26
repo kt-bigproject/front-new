@@ -272,7 +272,7 @@ export default function PraticePage(props) {
   return(
     <>
     <Alldiv style={{ margin: 0, display: "block"}}>
-      <div className="updiv" style={{ backgroundImage: "url('/wrap9.jpg')", width: "100%", 
+      <div className="updiv" style={{ backgroundColor: "#faf0e6", width: "100%", 
                           margin: 0, height: 570, display: "flex", flexDirection: "row", justifyContent: "center"}}>
         {/* <div style= {{textAlign:"center"}}> */}
           {/* <img style = {{width: 250, height: 140}} src="/LOGO.png" /> */}
