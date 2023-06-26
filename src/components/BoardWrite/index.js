@@ -8,6 +8,7 @@ import { Modal, Upload } from 'antd';
 import styles from '../../../styles/post/post.module.css'
 import AuthContext from "../AuthContext/AuthContext"; // *
 import { useAxios } from '../Axios/axios'; //** 
+import dynamic from 'next/dynamic';
 
 const ImgUploadContainer = styled.div`
   margin-top:50px;
@@ -69,6 +70,9 @@ const getBase64 = (file) =>
         reader.onerror = (error) => reject(error);
     });
 
+const QuillEditor = dynamic( () => import('../Qpost/QuillEditor'), {
+  ssr : false
+})
 
 const BoardWrite = () => {
   const Router = useRouter();
@@ -175,6 +179,9 @@ const BoardWrite = () => {
     Router.push('/bpost');
 
     };
+
+    
+
   return (
     <div>
       <div>
@@ -205,20 +212,11 @@ const BoardWrite = () => {
               onChange={e => setBody(e.target.value)}>
             </textarea>
           </div>
+          {/* <div>
+          <QuillEditor onChange={setBody} value={content}/>
+          </div> */}
           <hr className={styles.line}></hr>
-        </label>
-      
-      
-          {/* <input
-            type="textbox"
-            id="Content"
-            cols="50"
-            rows="50"
-            onChange={e => setBody(e.target.value)}
-            placeholder="내용을 입력해주세요"
-            required
-          /> */}
-          
+        </label>        
       </div>
       <br />
       
