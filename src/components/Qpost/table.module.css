@@ -1,0 +1,101 @@
+
+.tableContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.writeBtn {
+  align-self: flex-start;
+}
+
+.Box {
+  border-radius: 2px;
+  box-shadow: rgb(0, 0, 0, 0.1) 0px 1px 3px 0px;
+  border: 1px solid rgb(16, 22, 47);
+}
+
+.Text {
+  padding: 30px 20px;
+  margin: -10px;
+}
+
+.table {
+  width: 1000px;
+  border-collapse: collapse;
+  margin: 0 0 10px;
+  text-align: left;
+}
+
+.listBody {
+  background-color: white;
+  border-top: 2px solid #10162f !important;
+  border-bottom: 2px solid #10162f !important;
+}
+
+.listHead {
+  padding-bottom: 10px !important;
+}
+
+.listItem {
+  background-color: #fff;
+  border-left: 2px solid #10162f;
+  border-right: 3px solid #10162f;
+  border-bottom: 8px solid #10162f;  
+  outline: 0.2rem solid #FAF0E6;
+}
+
+.table .listData {
+  padding: 20px 5px; 
+}
+
+.table .listData:first-of-type {
+  padding-left: 10px;
+  text-align: center;
+}
+
+.table .listData:last-of-type {
+  padding-left: 10px;
+}
+
+.titleText {
+  cursor: pointer;
+}
+
+.listItem:last-child {
+  border-bottom: 2px solid #10162f !important;
+}
+
+.table .type {
+ width: 50px;
+}
+
+.table .date {
+  width: 100px;
+  text-align: center;
+}
+
+.table .user {
+  width: 100px;
+  text-align: center;
+}
+
+.table .views {
+  width: 50px;
+  text-align: center;
+}
+
+.comment {
+  font-weight: 600;
+  color: #fa6400;
+}
+
+.titleText.announcement {
+  font-weight: bold;
+  color: #fa6400;
+}
+
+.table .announcement {
+  background-color: #F5FCFF;
+}

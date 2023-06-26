@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
 import { useRouter } from "next/router";
-import Edit from "./Edit"
+import Edit from "/src/components/Qpost/Edit"
 import AuthContext from "/src/components/AuthContext/AuthContext";
 import { useAxios } from "/src/components/Axios/axios";
 import { FormSkeleton } from '@leafygreen-ui/skeleton-loader';
