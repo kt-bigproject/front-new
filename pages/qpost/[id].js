@@ -2,7 +2,9 @@ import React, { useState, useEffect, useContext } from 'react';
 // import axios from 'axios';
 import DeleteBtn from "/src/components/Qpost/DeleteBtn"
 // import Link from 'next/link';
-import Comment from '/src/components/Qpost/Comment'
+// import Comment from '/src/components/Qpost/Comment';
+import CommentList from '/src/components/Qpost/Comment/CommentList';
+// import Comment from '/src/components/Qpost/RecursiveComment'
 import { useRouter } from 'next/router'
 import Button from '@leafygreen-ui/button';
 import { useAxios } from "/src/components/Axios/axios";
@@ -77,7 +79,7 @@ export default function PostDetail() {
       }
       
       <hr/>
-      <Comment blog={blog}/>
+      <CommentList blog={blog}/>
     </div>
   );
 }
