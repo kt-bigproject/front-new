@@ -8,6 +8,7 @@ import { Modal, Upload } from 'antd';
 import styles from '../../../styles/post/post.module.css'
 import AuthContext from "../AuthContext/AuthContext"; // *
 import { useAxios } from '../Axios/axios'; //** 
+import dynamic from 'next/dynamic';
 
 const ImgUploadContainer = styled.div`
   margin-top:50px;
@@ -69,6 +70,9 @@ const getBase64 = (file) =>
         reader.onerror = (error) => reject(error);
     });
 
+const QuillEditor = dynamic( () => import('../Qpost/QuillEditor'), {
+  ssr : false
+})
 
 const BoardWrite = () => {
   const Router = useRouter();
@@ -91,6 +95,8 @@ const BoardWrite = () => {
       setPreviewTitle(file.name || file.url.substring(file.url.lastIndexOf('/') + 1));
   };
   let { authTokens } = useContext(AuthContext);
+  console.log(authTokens)
+  console.log("authTokens")
 
   const handleChange = ({ fileList: newFileList }) => setFileList(newFileList);
   const uploadButton = (
@@ -170,12 +176,16 @@ const BoardWrite = () => {
         console.log(formData);
     };
     alert('등록되었습니다.');
-    // Router.push('/bpost');
+    Router.push('/bpost');
 
     };
+
+    
+
   return (
     <div>
-      <div>게시물 작성</div>
+      <div>
+      <div>게시판 글쓰기</div>
       <hr className={styles.line}></hr>
       <div>
         <label htmlFor="title">
@@ -202,20 +212,11 @@ const BoardWrite = () => {
               onChange={e => setBody(e.target.value)}>
             </textarea>
           </div>
+          {/* <div>
+          <QuillEditor onChange={setBody} value={content}/>
+          </div> */}
           <hr className={styles.line}></hr>
-        </label>
-      
-      
-          {/* <input
-            type="textbox"
-            id="Content"
-            cols="50"
-            rows="50"
-            onChange={e => setBody(e.target.value)}
-            placeholder="내용을 입력해주세요"
-            required
-          /> */}
-          
+        </label>        
       </div>
       <br />
       
@@ -263,6 +264,7 @@ const BoardWrite = () => {
         <button onClick={backToList} className={styles.cancel_btn}>뒤로</button>
       </div>
       <div>
+      </div>
       </div>
     </div>
   );

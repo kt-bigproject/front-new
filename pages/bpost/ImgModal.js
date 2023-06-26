@@ -4,9 +4,11 @@ import FavoriteIcon from '@mui/icons-material/Favorite';
 import SendIcon from '@mui/icons-material/Send';
 import Image from 'next/image';
 import styles from './page.module.css';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Router } from 'react-router-dom';
 import { useRouter } from 'next/router';
+import Board from '../update/[number]/index';
+
 
 export default function ImgModal({open, onClose, figureInfo}) {
 
@@ -36,10 +38,15 @@ export default function ImgModal({open, onClose, figureInfo}) {
     marginLeft: '20px',
   }
 
+//   const listBoard = { title, user, body, image, id };
+ 
   const Router = useRouter();
-  const onClick = () => {
-    Router.push('/BoardUpdate/' + id)
+  const onClick = () => { 
+    Router.push(`/update/` + figureInfo.id )
   }
+
+  const [comments, setComments] = useState([]);
+  
 
   return (
     <Modal
@@ -53,12 +60,14 @@ export default function ImgModal({open, onClose, figureInfo}) {
           sx={boxStyle}
       >
       <div className={styles.modal_wrapper} >
+            
         <Image                        
           src={figureInfo.image}
           width={500}
           height={500}        
           alt={figureInfo.id}
         />    
+        
         <div className={styles.commentBox}>
           <div className={styles.input_wrapper}>          
             <TextField sx={inputStyle} fullWidth label="댓글" variant="standard"/>
@@ -71,6 +80,7 @@ export default function ImgModal({open, onClose, figureInfo}) {
           </div>
 
           <div className={styles.likeBtn}>
+            
           <IconButton
               onClick={() => setLike(!like)}>
               { 
@@ -82,21 +92,26 @@ export default function ImgModal({open, onClose, figureInfo}) {
           </div>
           
           <div className={styles.commentBody}>
+            
             title: {figureInfo.title}<br/>
             <span style={{fontWeight: 'bold'}}>user : {figureInfo.user}</span>{' '}
             <div>
               <span>text : {figureInfo.body}</span>
             </div>
-            <div>
-              <button onClick={onClick}>수정</button>
-            </div>
+            
 
 
             {/* 댓글여기에 쓰기 */}
 
             
           </div>
+            <div className={styles.button_position}>
+              <button onClick={onClick} className={styles.button_click}>
+                <img src='fix_icon.png' width='40' ></img>
+              </button>
+            </div>
         </div>
+        
       </div>
       </Box>
   </Modal>

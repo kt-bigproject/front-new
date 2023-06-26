@@ -16,7 +16,7 @@ export default function Routing() {
                     <Route path="/" element={<Pages />} />
                     <Route path="/home" element={<Home />} />
                     <Route path="/boardcheck/:id" element={Check} />   
-                    <Route path="/update/:id" element={{Edit}} />                 
+                               
                 </Routes>
             </BrowserRouter>
         </div>
