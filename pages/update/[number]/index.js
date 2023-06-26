@@ -8,6 +8,8 @@ import { Modal, Upload } from 'antd';
 import { PlusOutlined } from '@ant-design/icons';
 import styled from '@emotion/styled';
 import { useAxios } from "../../../src/components/Axios/axios";
+import dynamic from "next/dynamic";
+
 
 const getBase64 = (file) =>
     new Promise((resolve, reject) => {
@@ -209,6 +211,9 @@ const BoardUpdate = () => {
     alert('수정되었습니다.');
     Router.push('/bpost');
     };
+    const QuillEditor = dynamic( () => import('../../../src/components/Qpost/QuillEditor'), {
+      ssr : false
+    })
 
   return (
     <div>

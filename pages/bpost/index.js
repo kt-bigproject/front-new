@@ -12,6 +12,7 @@ import { Modal, Box, Typography, TextField, Button, IconButton} from '@mui/mater
 import Image from 'next/image';
 import ImgModal from './ImgModal';
 import { PlusOutlined } from '@ant-design/icons';
+import { Margin } from '@mui/icons-material';
 
 const BoardList = () => {
   // const [boardList, setBoardList] = useState([]);
@@ -110,7 +111,34 @@ const BoardList = () => {
   };
 
   return (
-    <div >
+    <div /*style={{backgroundColor: '#ebddcc', width: '1200px', margin: 'auto'}}*/>
+      <div >
+      <div className={styles.main_page}>
+        <div className={styles.main_page_color}>
+          {/* 상단 메인 페이지 */}
+          <div className={styles.main_box1}>
+            {/* test */}
+            {/* <img src='upp7.png' style={{width: 500, height: 300}} /> */}
+            <img src='board_img.jpg' className={styles.b6} />
+          </div>
+
+          <div className={styles.main_box2}>
+            <h1 style={{fontFamily: "Kimjungchul", fontSize: 40}}><span className={styles.b4}>자랑</span> 게시판에 어서오세요!</h1>
+            <br />
+            <div className={styles.write_text}>
+              <p style={{fontFamily: "Kimjungchul", fontSize: 25}}>우리는 다양한 글씨체의 매력을 발견하고, 창의적인 디자인을 위한 영감을 얻기 위해 이곳을 만들었습니다. </p>
+              <br />
+              <p style={{fontFamily: "Kimjungchul", fontSize: 25}}>한 줄의 글에서도 마치 작품처럼 아름다움을 담아보세요. 여기서는 당신의 상상력이 자유로워집니다. 다양한 글씨체를 활용하여 감동적인 메시지를 전달해보세요.</p>
+              <br />
+              {/* <p>놀라운 글씨체들과 함께 표현력을 높이고, 독특한 스타일을 완성해보세요. 이제 당신의 문장도 작품으로 거듭날 차례입니다!</p> */}
+              {/* <br /> */}
+              {/* <p style={{fontFamily: "Kimjungchul", fontSize: 25}}>저희 게시판에서는 꾸준히 새로운 글씨체를 업데이트하며, 당신의 참여와 공유를 기다립니다. 함께하는 모든 분들을 위한 특별한 공간으로 이곳에서 만나요!</p> */}
+            </div>
+          </div>
+        </div>
+        
+      </div>
+      {/* <hr /> */}
       <div>
         <div className={styles.content_wrapper}>
           {/* Content_Wrapper */}
@@ -130,9 +158,20 @@ const BoardList = () => {
                 {boardShow.map((figureInfo, index) =>
                 
                     <div className={styles.card} key={figureInfo.id}>   
-                    Photo CARD
-                    <td>
-                    <IconButton
+                    {/* Photo CARD */}
+                    {/* <td> */}
+                    
+                    {/* </td> */}
+                    <div>
+                      <Image 
+                        className={styles.img_border}                    
+                        src={figureInfo.image}
+                        width="300"
+                        height="300"
+                        onClick={() => handleOpen(figureInfo)}
+                        alt={figureInfo.id}
+                      /> 
+                      <IconButton
                         className={styles.IconButton_post}
                         onClick={() => handleClick(index)}>
                         { 
@@ -141,19 +180,11 @@ const BoardList = () => {
                           : <FavoriteBorderIcon className={styles.heart}/>
                         }
                       </IconButton>
-                    </td>
-                      <Image 
-                        // style={{marginBottom: 20}}                        
-                        src={figureInfo.image}
-                        width="300"
-                        height="300"
-                        onClick={() => handleOpen(figureInfo)}
-                        alt={figureInfo.id}
-                      />  
+                      </div>
                       {/* <div className={styles.text_align}>   */}
-                      <div >
-                      
-                      <div className={styles.text_align2}>Title : {figureInfo.title}</div>
+                      <div className={styles.text_align2}>
+                      Title : {figureInfo.title}             
+                      {/* <div className={styles.text_align2}>Title : {figureInfo.title}</div> */}
                       </div>                                   
                      
                       {/* </div>   */}
@@ -183,6 +214,7 @@ const BoardList = () => {
         
         
       <div/>
+      </div>
     </div>
   );
 

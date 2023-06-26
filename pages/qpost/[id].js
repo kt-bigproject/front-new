@@ -12,6 +12,7 @@ import AuthContext from "/src/components/AuthContext/AuthContext";
 import { FormSkeleton } from '@leafygreen-ui/skeleton-loader';
 import ErrorAlert from '/src/components/Qpost/ErrorAlert';
 
+
 export default function PostDetail() {
   
   const api = useAxios()

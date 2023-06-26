@@ -183,9 +183,12 @@ const BoardWrite = () => {
     
 
   return (
-    <div>
-      <div>
-      <div>게시판 글쓰기</div>
+    <div className={styles.write_page1}>
+      <div className={styles.board_title}>"게시판 글쓰기"</div>
+
+      <div >
+      {/* <hr className={styles.line}></hr>
+      <div style={{fontSize: 30}}>"게시판 글쓰기"</div> */}
       <hr className={styles.line}></hr>
       <div>
         <label htmlFor="title">
@@ -193,16 +196,23 @@ const BoardWrite = () => {
               type="text"
               id="title"
               onChange={e => setTitle(e.target.value)}
-              placeholder="제목을 입력해주세요."
+              placeholder="30자 이내로 제목을 입력해주세요."
               className={styles.title}
+              maxLength={30}
               required
             />
             <hr className={styles.line}></hr>
         </label>
       </div>
+      <div style={{fontSize: 30, marginLeft: 10}}>내용을 입력해 주세요.</div>
+      <hr className={styles.line}></hr>
       <div>
+          <div style={{height: 600}}>
+            <QuillEditor onChange={setBody} value={body}  />
+          </div>
+          <hr className={styles.line}></hr>
         <label htmlFor="Content">
-          <div>
+          {/* <div>
             <textarea 
               placeholder='내용을 입력해주세요.' 
               id="Content" 
@@ -211,16 +221,13 @@ const BoardWrite = () => {
               className={styles.textbox} 
               onChange={e => setBody(e.target.value)}>
             </textarea>
-          </div>
-          {/* <div>
-          <QuillEditor onChange={setBody} value={content}/>
           </div> */}
-          <hr className={styles.line}></hr>
+          
         </label>        
       </div>
       <br />
       
-      <div style={{flexDirection : "row", flex:1, display:"flex"}}>
+      {/* <div style={{flexDirection : "row", flex:1, display:"flex"}}>
         <div >
           <div className={styles.h2}>-사진 업로드-</div>
           <div className={styles.h4}>사진을 업로드 해주세요 -→</div>
@@ -254,14 +261,14 @@ const BoardWrite = () => {
           
         </div>
         
-      </div>
+      </div> */}
       {/*서버 제출 버튼*/}
       
-      <div>
-      <button variant="outline-primary" id='submit-btn' type='submit' onClick={handleApi} className={styles.save_btn}>저장</button>
+      <div className={styles.button_div}>
+      <button variant="outline-primary" id='submit-btn' type='submit' onClick={handleApi} className={styles.save_btn}>저장하기</button>
         {/* <button onClick={saveBoard} className={styles.save_btn}>저장</button> */}
         <span>    </span>
-        <button onClick={backToList} className={styles.cancel_btn}>뒤로</button>
+        <button onClick={backToList} className={styles.cancel_btn}>뒤로가기</button>
       </div>
       <div>
       </div>
