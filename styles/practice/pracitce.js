@@ -99,7 +99,8 @@ export const MyButton2 = styled.button`
   -webkit-user-select: none;
   touch-action: manipulation;
   vertical-align: baseline;
-  width: auto;
+  width: 133.08px;
+  height: 48.67px;
 
   &:hover,
   &:focus {
