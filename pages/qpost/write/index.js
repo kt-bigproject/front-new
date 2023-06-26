@@ -1,18 +1,22 @@
 'use client'
-import React, { useState, useContext, useEffect} from 'react';
+import React, { useState, useContext, useEffect, useRef } from 'react';
 import dynamic from 'next/dynamic';
 import { useRouter } from 'next/router';
 import { useAxios } from "/src/components/Axios/axios";
 import AuthContext from "/src/components/AuthContext/AuthContext";
 import { FormSkeleton } from '@leafygreen-ui/skeleton-loader';
 import ErrorAlert from '/src/components/Qpost/ErrorAlert';
+import SelectType from '/src/components/Qpost/SelectType';
+import Button from '@leafygreen-ui/button';
+import Icon from '@leafygreen-ui/icon';
+import TextInput from '@leafygreen-ui/text-input';
 
 const QuillEditor = dynamic( () => import('/src/components/Qpost/QuillEditor'), {
   ssr : false
 })
 
 export default function Write() {
-
+  
   const router = useRouter()
   const api = useAxios()
   const { user } = useContext(AuthContext);
@@ -20,8 +24,12 @@ export default function Write() {
   const [content, setContent] = useState('');
   const [title, setTitle] = useState('');
   const [errorMessage, setErrorMessage] = useState(false);
+  const [type, setType] = useState("normal")
 
   const [loading, setLoading] = useState(true);
+  const [file, setFile] = useState(null);
+  const [selectedFileName, setSelectedFileName] = useState('');
+  const fileInput = useRef();
 
   console.log(user)
 
@@ -37,6 +45,16 @@ export default function Write() {
     return <FormSkeleton/>
   }
 
+
+  const handleFileChange = (e) => {
+    setFile(e.target.files[0]);
+    setSelectedFileName(e.target.files[0].name);
+  };
+
+  const handleClick = () => {
+    fileInput.current.click();
+  };
+
   const handleSubmit = async e => {
     e.preventDefault();
     // console.log(title)
@@ -49,6 +67,10 @@ export default function Write() {
       const formData = new FormData();
       formData.append('title', title)
       formData.append('body', content)
+      formData.append('radio_field', type)
+      if (file !== null) {
+        formData.append('file', file);
+      }
 
       const response = await api.post('/font/blog/', formData)
 
@@ -62,14 +84,27 @@ export default function Write() {
     }
   };
 
+  console.log(type)
   return (
     <>
       <ErrorAlert parentState={[errorMessage, setErrorMessage]}/>
       <form onSubmit={handleSubmit}>
-        <input name="title" onChange={(e)=>{ 
-        setTitle(e.target.value) 
-        }}/>
+        <SelectType typeState={[type, setType]}/>      
+        <TextInput
+          aria-labelledby="title" 
+          placeholder="제목을 입력해 주세요."
+          onChange={(e)=>{ 
+            setTitle(e.target.value) 
+          }}
+        />
 
+        <input
+          type="file"
+          style={{ display: 'none' }}
+          ref={fileInput}
+          onChange={handleFileChange}
+        />
+        <Button leftGlyph={<Icon glyph="Upload" fill="#FF0000"/>} onClick={handleClick}>파일 업로드</Button>{selectedFileName}
         {/* <ReactQuill theme="snow" value={content} onChange={setContent} modules={modules}/> */}
         <QuillEditor onChange={setContent} value={content}/>
         {/* {typeof window !== 'undefined' && (
@@ -81,7 +116,7 @@ export default function Write() {
         )} */}
         {/* {value} */}
         <input type="hidden" name="content" value={content}/>
-        <button type='submit'>글쓰기</button>
+        <Button type='submit'>글쓰기</Button>
       </form>
     </>
   )  

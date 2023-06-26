@@ -87,7 +87,17 @@ export default function CreateTable({data}) {
          },
         })}
 
-        
+        muiTablePaperProps={{
+          elevation: 0, //change the mui box shadow
+          //customize paper styles
+          sx: {
+            // borderRadius: '100',
+            borderLeft: '2px solid #10162f',
+            borderRight: '3px solid #10162f',
+            borderBottom: '8px solid #10162f',
+            outline: '0.2rem solid #fff'
+          },
+        }}
 
         
     

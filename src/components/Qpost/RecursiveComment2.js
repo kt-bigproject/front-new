@@ -2,13 +2,10 @@
 
 import { useEffect, useState } from "react";
 import CommentDelete from '/src/components/Qpost/CommentDelete';
-// import { SpaceContext } from "antd/es/space";
 import { useAxios } from "/src/components/Axios/axios";
-// import AuthContext from "/src/components/AuthContext/AuthContext";
 
-export default function Comment({blog}) {
+export default function Comment({ reply, blog, level = 0 }) {
 
-  console.log(blog.id)
   const [comment, setComment] = useState('')
   // let [commentList, setCommentList] = useState([])
   const [data, setData] = useState([])
