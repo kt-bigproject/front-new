@@ -1,56 +1,78 @@
 import Link from 'next/link';
-import {ImageDiv, Footer, Banner, BannerDiv, EndBanner, EndBanner1, EndBanner2, FeatureSection, FeatureSection2, FeatureSection3, FeatureSection4, ImageSpan, Main, MainBox, MainDiv, MainFeatures, MainImage, MainP, MenuBox, FooterUl, Profile, Profile1, ProfileIcon, Name, Position, ProfileCircle, ImageContext, ImageTitle} from '../styles/main/index'
-import LayoutHeader from '../src/commons/layout/header/header';
+import {BannerButtonDiv, Footer, Banner, BannerDiv, EndBanner, EndBanner1, EndBanner2, FeatureSection, FeatureSection2, FeatureSection3, Main, MainBox, MainDiv, MainFeatures, MainImage, MainP, MenuBox, FooterUl, Profile, Profile1, ProfileIcon, Name, Position, ProfileCircle, FunctionSpan, FunctionDiv, FunctionTitle, FunctionContext, Function, GIFdiv, FeatureP, BannerSection} from '../styles/main/index'
+import LayoutHeader from '../src/commons/layout/header2/header';
+import { MyButton1, MyButton2 } from '../styles/practice/pracitce';
+import { Anchor } from "@codecademy/gamut"
+
 export default function MainPage() {
   return (
     <>
-    <body class="landing">
-		<div id="page-wrapper">
-
-			{/* Header */}
-				{/* <header id="header" class="alt">
-					<h1><a href="index.html">Alpha</a> by HTML5 UP</h1>
-					<nav id="nav">
-						<ul>
-							<li><a href="index.html">Home</a></li>
-							<li>
-								<a href="#" class="icon solid fa-angle-down">Layouts</a>
-								<ul>
-									<li><a href="generic.html">Generic</a></li>
-									<li><a href="contact.html">Contact</a></li>
-									<li><a href="elements.html">Elements</a></li>
-									<li>
-										<a href="#">Submenu</a>
-										<ul>
-											<li><a href="#">Option One</a></li>
-											<li><a href="#">Option Two</a></li>
-											<li><a href="#">Option Three</a></li>
-											<li><a href="#">Option Four</a></li>
-										</ul>
-									</li>
-								</ul>
-							</li>
-							<li><a href="#" class="button">Sign Up</a></li>
-						</ul>
-					</nav>
-				</header> */}
-
-			{/* Banner */}
-      <LayoutHeader />
 				<Banner>
-          <BannerDiv>
-					  <h1>오늘의 <br/>글씨</h1>
-					  <p>Another fine responsive site template freebie by HTML5 UP.</p>
-					  <div>
-              <button>a</button>
-              <button>b</button>
-					  </div>
-          </BannerDiv>
+					<BannerSection>
+          	<BannerDiv>
+						  <h1>오늘의 글씨</h1>
+							<br />
+							<GIFdiv>
+								<img
+          			src="./main/pretty/giphy.gif"
+          			width="180"
+          			height="240"
+          			frameBorder="0"
+          			></img>
+							</GIFdiv>
+							<br />
+						  <p>Another fine responsive site template freebie by HTML5 UP.</p>
+						  <br />
+							<BannerButtonDiv>
+          	    <MyButton1>Sign Up</MyButton1>
+          	    <MyButton2>About</MyButton2>
+						  </BannerButtonDiv>
+          	</BannerDiv>
+					</BannerSection>
+
 
 			{/* Main */}
+			<MenuBox>
+							<FeatureSection>
+								<span></span>
+								<h3>올바른 자세!</h3>
+								<img
+          			src="./main/pretty/giphy.gif"
+          			width="180"
+          			height="240"
+          			frameBorder="0"
+          			></img>
+                <br />
+								<FeatureP>글쓰기 연습을 할 때는 언제나 올바른 자세로! 잘못된 자세는 허리에 부담을 줄 수가 있어요!</FeatureP>
+							</FeatureSection>
+							<FeatureSection2>
+								<span></span>
+								<h3>밝은 장소!</h3>
+								<img
+          			src="./main/pretty/giphy2.gif"
+          			width="180"
+          			height="240"
+          			frameBorder="0"
+          			></img>
+                <br />
+								<FeatureP>글쓰기를 할때는 언제나 밝은 곳에서! 어두운 곳에서 하는 글쓰기 연습은 시력에 안 좋은 영향을 미칠 수 가 있어요!</FeatureP>
+							</FeatureSection2>
+							<FeatureSection3>
+								<span></span>
+								<h3>올바른 파지법</h3>
+								<img
+          			src="./main/pretty/giphy3.gif"
+          			width="180"
+          			height="240"
+          			frameBorder="0"
+          			></img>
+                <br />
+								<FeatureP>연필을 잡을 때는 언제나 올바른 파지법으로! 잘못된 파지법은 손에 부담을 줄 수가 있어요!</FeatureP>
+							</FeatureSection3>
+				</MenuBox>
 
-				<Main id="main" class="container">
-					<MainBox class="box special">
+				<Main>
+					<MainBox>
 						<MainDiv>
 							<h2>Introducing the ultimate mobile app
 							<br />
@@ -58,53 +80,54 @@ export default function MainPage() {
 							<MainP>Blandit varius ut praesent nascetur eu penatibus nisi risus faucibus nunc ornare<br />
 							adipiscing nunc adipiscing. Condimentum turpis massa.</MainP>
 						</MainDiv>
-						<ImageSpan class="image featured">
-              <ImageDiv>
-                <ImageTitle>asdf</ImageTitle>
-                <ImageContext>asdf</ImageContext>
-              </ImageDiv>
-            </ImageSpan>
+						<FunctionSpan>
+							<Function>
+              	<FunctionDiv>
+              	  <FunctionTitle>
+										<h3>글씨 연습장</h3>
+									</FunctionTitle>
+              	  <FunctionContext>
+										<p>Integer volutpat ante et accumsan commophasellus sed aliquam feugiat lorem aliquet ut enim rutrum phasellus iaculis accumsan dolore magna aliquam veroeros.</p>
+									</FunctionContext>
+              	</FunctionDiv>
+								<FunctionDiv>
+              	  <FunctionTitle>
+										<h3>글씨 놀이터</h3>
+									</FunctionTitle>
+              	  <FunctionContext>
+										<p>Integer volutpat ante et accumsan commophasellus sed aliquam feugiat lorem aliquet ut enim rutrum phasellus iaculis accumsan dolore magna aliquam veroeros.</p>
+									</FunctionContext>
+              	</FunctionDiv>
+							</Function>
+							<Function>
+								<FunctionDiv>
+              	  <FunctionTitle>
+										<h3>손글씨 자랑하기</h3>
+									</FunctionTitle>
+              	  <FunctionContext>
+										<p>Integer volutpat ante et accumsan commophasellus sed aliquam feugiat lorem aliquet ut enim rutrum phasellus iaculis accumsan dolore magna aliquam veroeros.</p>
+									</FunctionContext>
+              	</FunctionDiv>
+								<FunctionDiv>
+              	  <FunctionTitle>
+										<h3>폰트 만들어보기</h3>
+									</FunctionTitle>
+              	  <FunctionContext>
+										<p>Integer volutpat ante et accumsan commophasellus sed aliquam feugiat lorem aliquet ut enim rutrum phasellus iaculis accumsan dolore magna aliquam veroeros.</p>
+									</FunctionContext>
+              	</FunctionDiv>
+							</Function>
+            </FunctionSpan>
 					</MainBox>
           </Main>
-          <EndBanner1 />
 
-					<MenuBox class="box special features">
-							<FeatureSection>
-								<span class="icon solid major fa-bolt accent2"></span>
-								<h3>Magna etiam</h3>
-                <br />
-								<p>Integer volutpat ante et accumsan commophasellus sed aliquam feugiat lorem aliquet ut enim rutrum phasellus iaculis accumsan dolore magna aliquam veroeros.</p>
-							</FeatureSection>
-							<FeatureSection2>
-								<span class="icon solid major fa-chart-area accent3"></span>
-								<h3>Ipsum dolor</h3>
-                <br />
-								<p>Integer volutpat ante et accumsan commophasellus sed aliquam feugiat lorem aliquet ut enim rutrum phasellus iaculis accumsan dolore magna aliquam veroeros.</p>
-							</FeatureSection2>
-							<FeatureSection3>
-								<span class="icon solid major fa-cloud accent4"></span>
-								<h3>Sed feugiat</h3>
-                <br />
-								<p>Integer volutpat ante et accumsan commophasellus sed aliquam feugiat lorem aliquet ut enim rutrum phasellus iaculis accumsan dolore magna aliquam veroeros.</p>
-							</FeatureSection3>
-							<FeatureSection4>
-								<span class="icon solid major fa-lock accent5"></span>
-								<h3>Enim phasellus</h3>
-                <br />
-								<p>Integer volutpat ante et accumsan commophasellus sed aliquam feugiat lorem aliquet ut enim rutrum phasellus iaculis accumsan dolore magna aliquam veroeros.</p>
-							</FeatureSection4>
-					</MenuBox>
-          <button>DO IT DO IT!!!</button>
-          <EndBanner2 />
-          </Banner>
+
+					<EndBanner1 />
+
+
+
           
-					<div class="row">
-          {/* <img
-          src="./main/pretty/giphy.gif"
-          width="384"
-          height="480"
-          frameBorder="0"
-          ></img> */}
+					<div>
           <Profile>
             <p>팀원소개</p>
           <Profile1>
@@ -152,31 +175,26 @@ export default function MainPage() {
             </ProfileCircle>
           </Profile1>
           </Profile>
+
 		</div>
+		</Banner>
+		<EndBanner2 />
+
 
 			{/* Footer */}
-				<Footer id="footer">
-					<FooterUl class="icons">
-						{/* <li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
-						<li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>
-						<li><a href="#" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
-						<li><a href="#" class="icon brands fa-github"><span class="label">Github</span></a></li>
-						<li><a href="#" class="icon brands fa-dribbble"><span class="label">Dribbble</span></a></li>
-						<li><a href="#" class="icon brands fa-google-plus"><span class="label">Google+</span></a></li> */}
+				<Footer>
+					<FooterUl>						
             <Link href="/"><a>Twitter</a></Link>
             <Link href="/"><a>Google</a></Link>
             <Link href="/"><a>Facebook</a></Link>
             <Link href="/"><a>instagram</a></Link>
             <Link href="/"><a>git</a></Link>
           </FooterUl>
-					<ul class="copyright">
+					<ul>
 						<div>&copy; Untitled. All rights reserved.</div>
 					</ul>
 				</Footer>
 
-		</div>
-
-	</body>
     </>
   );
 }
