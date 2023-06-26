@@ -20,18 +20,18 @@ export default function LayoutFooter() {
      <div className={styles.container2}>
         <div className={styles.iconwrap}>
           <a href="https://www.instagram.com" target="_blank">
-          <i className='bx bxl-instagram' style={{ color: 'navy' }}></i>
+          <i className='bx bxl-instagram' style={{ color: '#fa6400' }}></i>
           </a> 
           <a href="https://www.facebook.com" target="_blank"> 
-          <i className='bx bxl-facebook' style={{ color: 'navy' }}></i>
+          <i className='bx bxl-facebook' style={{ color: '#fa6400' }}></i>
           </a>
           <a href="https://www.twitter.com" target="_blank">
-          <i className='bx bxl-twitter' style={{ color: 'navy' }}></i>
+          <i className='bx bxl-twitter' style={{ color: '#fa6400' }}></i>
           </a>
         </div>
         <div className={styles.text2}>© KT 에이블스쿨. All rights reserved.</div>
         <div className={styles.text3}>
-        <span>개인정보 처리방침</span><span>이용약관</span>
+        <span className={styles.text4}>개인정보 처리방침</span><span className={styles.text5}>이용약관</span>
         </div>
       </div> 
       

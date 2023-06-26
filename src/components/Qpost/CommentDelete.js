@@ -1,31 +1,44 @@
 // 'use client'
 import IconButton from '@leafygreen-ui/icon-button';
 import Icon from '@leafygreen-ui/icon';
-import X from '@leafygreen-ui/icon/dist/X';
-
+import { useAxios } from "/src/components/Axios/axios";
+import { useState } from 'react';
+import ErrorAlert from '/src/components/Qpost/ErrorAlert';
 
 export default function CommentDelete({id, state}) {
 
-  const IconX = () => <Icon glyph="X" fill="#F24822" />;
+  const [forbidden, setForbidden] = useState(false);
+
+  const api = useAxios()
+  const IconX = () => <Icon glyph="X" fill="#d32f2f" />;
   
   const [del, setDel] = state;
 
   const handleDelete = async () => {
-    const response = await fetch('http://127.0.0.1:8000/blog/comment/' + id + '/', {
-      method : 'DELETE',
-    });
+    try {
+      const response = await api.delete('/font/comment/' + id + '/');
 
-    if ( response.ok ) {
-      console.log("Post deleted successfully");
-      setDel(!del);
-    } else {
-      console.log("Error in deletion");
+      if ( response.status == 204 ) {
+        console.log("Post deleted successfully");
+        setDel(!del);
+      }
+    } catch (error) {
+      if ( error.response && error.response.status == 403 ) {
+        setForbidden(error.response.data.detail);        
+        console.log(error.response)
+      } else {
+        console.log(error.response)
+        console.log("Error in deletion");
+      }
     }
   };
 
   return (    
-    <IconButton className="CommentDelete" onClick={handleDelete}>
-      <IconX/>
-    </IconButton>
+    <>
+      <ErrorAlert parentState={[forbidden, setForbidden]}/>
+      <IconButton className="CommentDelete" onClick={handleDelete} aria-label="delete" >
+        <IconX/>
+      </IconButton>
+    </>
   );
 }

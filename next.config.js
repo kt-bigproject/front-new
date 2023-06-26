@@ -1,3 +1,5 @@
+const withTM = require('next-transpile-modules')(['@codecademy/gamut-illustrations', '@codecademy/gamut-patterns', '@codecademy/gamut-styles', '@codecademy/variance']); 
+
 /** @type {import('next').NextConfig} */
 
 const nextConfig = {
@@ -16,4 +18,5 @@ const nextConfig = {
 }
 
 
-module.exports = nextConfig
+// module.exports = nextConfig
+module.exports = withTM(nextConfig);
