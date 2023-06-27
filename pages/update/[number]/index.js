@@ -216,40 +216,54 @@ const BoardUpdate = () => {
     })
 
   return (
-    <div>
-      <div>
-        <span>작성자</span>
-        <input type="text" name="user" value={user} readOnly={true} />
+    <div className={styles.write_page1}>
+      <div className={styles.board_title}>
+        "게시판 수정하기"
       </div>
-      <br />
+      <hr className={styles.line}></hr>
       <div>
-        <span>제목</span>
-        <input type="text" name="title" value={title} onChange={onChange} placeholder="제목을 입력해주세요."
-              className={styles.title}/>
+        <span style={{marginLeft: 10, fontSize: 33}}>작성자 : </span>
+        <input 
+          type="text" 
+          name="user" 
+          value={user} 
+          readOnly={true} 
+          style={{fontSize: 33}}
+          className={styles.user}
+          />
       </div>
-      <br />
+      <hr className={styles.line}></hr>
       <div>
-        <span>내용</span>
+        <span style={{marginLeft: 10, fontSize: 33}}>제목 : </span>
+        <input 
+        type="text" 
+        name="title" 
+        value={title} 
+        onChange={onChange} 
+        placeholder="30자 이내로 제목을 입력해주세요."
+        className={styles.update_title}
+        maxLength={30}
+        />
+      </div>
+      <hr className={styles.line}></hr>
+      <div>
+        <span style={{marginLeft: 10, fontSize: 33}}>내용</span>
         <textarea
           placeholder='내용을 입력해주세요.'
-          className={styles.textbox}
+          className={styles.update_textbox}
           name="body"
-          cols="30"
-          rows="10"
           value={body}
           onChange={onChange}
         ></textarea>
       </div>
-      <br />
+      <hr className={styles.line}></hr>
              <div style={{ flexDirection: "row", flex: 1, display: "flex" }}>
-                 <div>
-                     <div className={styles.h2}>-사진 업로드-</div>
-                     <div className={styles.h4}>사진을 업로드 해주세요 -→</div>
-                 </div>
+             <div className={styles.h2}>사진을 업로드 해주세요.</div>
                  <div className={styles.upload_box}>
-                     <ImgUploadContainer className={styles.upload_box2}>
-                         <Global styles={MainFontStyles}></Global>
+                     <div className={styles.upload_box2}>
+                         {/* <Global styles={MainFontStyles}></Global> */}
                          <Upload
+                            className={styles.h5}
                             name="image"
                             value={image}
                             action="http://localhost:3000/"
@@ -268,14 +282,15 @@ const BoardUpdate = () => {
                                 }}
                                 src={previewImage} />
                         </Modal>
-                    </ImgUploadContainer>
+                    </div>
 
                 </div>
                 </div>
-      <div>
-        <button type="submit" onClick={handleApi}>수정</button>
-        <button onClick={deleteBoard}>삭제</button>
-        <button onClick={backToDetail}>취소</button>
+                <hr className={styles.line}></hr>
+      <div className={styles.update_div}>
+        <button type="submit" onClick={handleApi} className={styles.save_btn}>수정하기</button>
+        <button onClick={deleteBoard} className={styles.delete_btn}>삭제하기</button>
+        <button onClick={backToDetail} className={styles.cancel_btn}>취소하기</button>
       </div>
     </div>
   );
