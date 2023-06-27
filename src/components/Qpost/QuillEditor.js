@@ -8,20 +8,65 @@ import { ImageDrop } from 'quill-image-drop-module'
 import { css } from '@emotion/react'
 
 const quillEditorStyle = css`
+
+.ql-snow .ql-picker.ql-font .ql-picker-label[data-value="one"]::before,
+.ql-snow .ql-picker.ql-font .ql-picker-item[data-value="one"]::before {
+  content: "교보 2019";
+  font-family: "one";
+}
 .ql-font-one {
   font-family: 'one';
+}
+
+.ql-snow .ql-picker.ql-font .ql-picker-label[data-value="two"]::before,
+.ql-snow .ql-picker.ql-font .ql-picker-item[data-value="two"]::before {
+  content: "네이버 클로바 느릿느릿";
+  font-family: "two";
 }
 .ql-font-two {
   font-family: 'two';
 }
+
+.ql-snow .ql-picker.ql-font .ql-picker-label[data-value="three"]::before,
+.ql-snow .ql-picker.ql-font .ql-picker-item[data-value="three"]::before {
+  content: "조선 궁서체";
+  font-family: "three";
+}
+
 .ql-font-three {
   font-family: 'three';
 }
+
+.ql-snow .ql-picker.ql-font .ql-picker-label[data-value="four"]::before,
+.ql-snow .ql-picker.ql-font .ql-picker-item[data-value="four"]::before {
+  content: "교보 2020박도연";
+  font-family: "four";
+}
+
 .ql-font-four {
   font-family: 'four';
 }
+
+.ql-snow .ql-picker.ql-font .ql-picker-label[data-value="five"]::before,
+.ql-snow .ql-picker.ql-font .ql-picker-item[data-value="five"]::before {
+  content: "KCC안중근";
+  font-family: "five";
+}
+
 .ql-font-five {
   font-family: 'five';
+}
+
+.ql-size-small {
+    font-size: 0.75em;
+}
+
+.ql-size-large {
+    font-size: 1.5em;
+}
+
+.ql-size-huge {
+    font-size: 2.5em;
 }
 `
 
@@ -31,62 +76,29 @@ Quill.register('modules/imageDrop', ImageDrop);
 const Font = Quill.import('formats/font');
 
 const fonts = ['one', 'two', 'three', 'four', 'five'];
-const fontNames = ['Font One', 'Font Two', 'Font Three', 'Font Four', 'Font Five'];
-
-// const fontNames = Object.keys(fonts);
 fonts.forEach((font) => Font.whitelist.push(font));
+
 Quill.register(Font, true);
 
 export default function QuillEditor({value, onChange, style}) {
 
-  // const quillRef = useRef(null);
-
-  // https://velog.io/@runprogrmm/Next.js-React-react-quill-%EC%97%90%EB%94%94%ED%84%B0%EB%A1%9C-%EC%9D%B4%EB%AF%B8%EC%A7%80-%EC%B2%98%EB%A6%AC%ED%95%98%EA%B8%B0
-  // const imageHandler = () => {
-  //   const input = document.createElement('input');
-  //   input.setAttribute('type', 'file');
-  //   input.setAttribute('accept', 'image/*');
-  //   input.click();
-
-  //   input.addEventListener('change', async () => {
-  //     const file = input.files[0];
-
-  //     try {
-  //       const res = await imageAPI({ img: file });
-  //       const imgUrl = res.data.imgUrl;
-  //       const editor = quillRef.current.getEditor(); 
-  //       const range = editor.getSelection();
-  //       editor.insertEmbed(range.index, 'image', imgUrl);
-  //       editor.setSelection(range.index + 1);
-  //     } catch (error) {
-  //       console.log(error);
-  //     }
-  //   });
-  // };
-
-  // 렌더링이 발생할 때마다 포커스가 벗어나는 문제
-  // const modules = useMemo <- 근데 import한 모듈 덮어쓰기 warning이 나서 사용안하기로
   const modules = {
     toolbar: {
         container: [
-          // [{ 'header': [1, 2, 3, 4, 5, 6, false] }],         
           [{'font': fonts}],
           [{'size':[]}],
-          // [{ 'align': [] }],
           ['bold', 'italic', 'underline', 'strike', 'blockquote'],
           [{ 'list': 'ordered' }, { 'list': 'bullet' }, { 'align': [] }],
-          // [{ 'list': 'ordered' }, { 'list': 'bullet' }, 'link'],
-          [{ 'color': ['#000000', '#e60000', '#ff9900', '#ffff00', '#008a00', '#0066cc', '#9933ff', '#ffffff', '#facccc', '#ffebcc', '#ffffcc', '#cce8cc', '#cce0f5', '#ebd6ff', '#bbbbbb', '#f06666', '#ffc266', '#ffff66', '#66b966', '#66a3e0', '#c285ff', '#888888', '#a10000', '#b26b00', '#b2b200', '#006100', '#0047b2', '#6b24b2', '#444444', '#5c0000', '#663d00', '#666600', '#003700', '#002966', '#3d1466', 'custom-color'] }, { 'background': [] }],
+          [{ 'color': ['#000000', '#e60000', '#ff9900', '#ffff00', '#008a00', '#0066cc', '#9933ff', '#ffffff', '#facccc', '#ffebcc', '#ffffcc', '#cce8cc', '#cce0f5', '#ebd6ff', '#bbbbbb', '#f06666', '#ffc266', '#ffff66', '#66b966', '#66a3e0', '#c285ff', '#888888', '#a10000', '#b26b00', '#b2b200', '#006100', '#0047b2', '#6b24b2', '#444444', '#5c0000', '#663d00', '#666600', '#003700', '#002966', '#3d1466'] }, { 'background': [] }],
           ['image'],
           ['clean']  
         ],
     },
-    // handlers: { image: imageHandler },
     ImageResize: {
       parchment: Quill.import('parchment')
     },
     imageDrop: true,
-  };
+  }
 
   return (
     <div>
