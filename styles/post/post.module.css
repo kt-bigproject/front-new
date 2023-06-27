@@ -43,8 +43,8 @@
 }
 
 .board_title {
-    font-size: 40px;
-    text-align: center;
+    font-size: 35px;
+    /* text-align: center; */
 }
 
 .submit_btn {
@@ -79,10 +79,11 @@
 }
 
 .write_page1 {
-    height: auto;
-    width: 1200px;
+    background-color: #faf0e6;
+    /* height: auto; */
+    width: 1100px;
     margin: auto;
-    border: double 2px black;
+    /* border: double 2px black; */
     /* border-left: solid 1px black;
     border-right: solid 1px black; */
 }
@@ -90,6 +91,76 @@
 .write_page2 {
     margin-top: 40px;
 }
+
+.detailContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+  }
+
+.detailWrapper {
+    display: block;
+}
+
+.detailHeader {
+    display: inherit;
+    height: 50px;
+    padding-top: 50px;
+    align-self: flex-start;
+}
+
+.detailBody {
+    width: 900px;
+    box-sizing: border-box;
+    padding: 50px;
+    min-height: 600px;
+    margin-bottom: 20px;
+  }
+
+.Box {
+    border-radius: 2px;
+    box-shadow: rgb(0, 0, 0, 0.1) 0px 1px 3px 0px;
+    border: 1px solid rgb(16, 22, 47);
+  
+    background-color: white;
+  
+  }
+
+.toList {
+    font-weight: 600;
+    cursor: pointer;
+    color: #fa6400;
+  }
+
+.contents {
+    box-sizing: border-box;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    overflow-x: auto;
+    overflow-y: auto;
+    height: 500px;  
+  }
+  
+.detailFooter {
+    margin-bottom: 100px;
+  }
+  
+.writeBtn {
+    display: flex;
+    justify-content: flex-end;
+  }
+  
+.writeTitle {
+    display: flex;
+    margin-bottom: 10px;
+    width: 100%;
+  }
+  
+.titleInput {
+    /* padding-left: 10px;   */
+    width: 100%;
+  }
 
 .upload_box {
     border: dashed black 2px;
@@ -117,7 +188,7 @@
 
 .title {
     border: none;
-    height: 100px;
+    height: 10px;
     font-size: 30px;
     width: 1196.3px;
 }
