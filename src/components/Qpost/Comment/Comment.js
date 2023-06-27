@@ -2,7 +2,7 @@ import CommentForm from './CommentForm';
 import CommentDelete from './CommentDelete';
 import { useState } from "react";
 import SubdirectoryArrowRightIcon from '@mui/icons-material/SubdirectoryArrowRight';
-import moment from 'moment';
+// import moment from 'moment';
 import styles from './comment.module.css';
 
 export default function Comment({ blog, comment, level = 0, deleteComment, setDeleteComment, setComments, fetchComments }) {

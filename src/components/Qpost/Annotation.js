@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from 'react';
-import { annotate } from 'rough-notation';
+// import { annotation } from 'rough-notation';
 
 export default function Annotation({text, type}) {
   const elementRef = useRef();
