@@ -55,6 +55,7 @@
     "react-router-dom": "^6.12.0",
     "react-scripts": "^5.0.1",
     "react-tooltip": "^5.14.0",
+    "rough-notation": "^0.5.1",
     "roughjs": "^4.5.2",
     "wired-elements": "^3.0.0-rc.6",
     "wired-elements-react": "^0.1.5",

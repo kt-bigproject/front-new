@@ -96,6 +96,18 @@ export default function PostDetail() {
   .ql-font-five {
     font-family: 'five';
   }
+    
+  .ql-size-small {
+      font-size: 0.75em;
+  }
+
+  .ql-size-large {
+      font-size: 1.5em;
+  }
+
+  .ql-size-huge {
+      font-size: 2.5em;
+  }
   `
 
   return (
