@@ -3,6 +3,7 @@ import DateFormat from '/src/components/Qpost/DateFormat'
 import styles from './table.module.css';
 import Badge from '@leafygreen-ui/badge';
 import Button from '@leafygreen-ui/button';
+import Icon from '@leafygreen-ui/icon';
 
 const types = {
   normal: "일반",
@@ -43,7 +44,7 @@ export default function CustomTable({data}) {
               <tr key={index} className={`${styles.listHead} ${styles.listItem} ${styles[item.radio_field]}`}>
                 <td className={`${styles.listData} ${styles.type}`}><Badge variant={variantMap[item.radio_field]}>{types[item.radio_field]}</Badge></td>
                 <td className={`${styles.listData}`}>
-                  <span className={`${styles.titleText} ${styles[item.radio_field]}`} onClick={()=> router.push(`/qpost/${item.id}`)}>{item.title} </span>
+                  <span className={`${styles.titleText} ${styles[item.radio_field]}`} onClick={()=> router.push(`/qpost/${item.id}`)}>{item.title} {item.file && (<Icon glyph="File" fill="#FF6960"/>)} </span>
                   <span className={styles.comment}>{item.num_comments > 0 && '['+item.num_comments+']'}</span>
                 </td>
                 <td className={`${styles.listData} ${styles.user}`}>{item.user}</td>

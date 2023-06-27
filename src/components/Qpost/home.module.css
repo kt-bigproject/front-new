@@ -1,12 +1,68 @@
 .headerContainer {
-  height: 350px;
-  padding-top: 50px;
+  height: 500px;
+  padding-top: 30px;
+
+  display: flex;
+  align-items: center; 
+  justify-content: center; 
+  flex-direction: column;
 }
 
 .pageHeader {
-  padding-top: 50px;
+  width: 1000px;
+  /* padding-top: 50px; */
   padding-bottom: 10px;
+  display: flex;
+  /* position: relative; */
+  justify-content: space-between;
+}
+
+.headerPostit {
+  display: flex;
   position: relative;
+}
+
+.headerTemplate {
+  display: flex;
+  position: absolute;
+  bottom: 10%;
+  left: 10% ;
+}
+
+.headerDeco {
+  display: inline-block;
+  position: absolute;
+  bottom: 10%;
+  left: 25% ;
+}
+
+.headerFig {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.postitP1 {
+  position: absolute;
+  top: 10%;
+  left: 10% ;
+}
+
+.postitP2 {
+  position: absolute;
+  top: 30%;
+  left: 10% ;
+}
+
+.postitP3 {
+  position: absolute;
+  top: 40%;
+  left: 10% ;
+}
+
+.postitP4 {
+  position: absolute;
+  top: 50%;
+  left: 10% ;
 }
 
 .pageIntro {
