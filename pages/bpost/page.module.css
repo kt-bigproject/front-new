@@ -83,6 +83,11 @@
   margin-left: 100px;
 }
 
+.commentdiv {
+  /* margin-right: 40px; */
+  border: solid 2px black;
+}
+
 .section {
   display:flex;
   width: 100%;
@@ -276,7 +281,7 @@
 .input_wrapper {
   display: flex;
   width: 350px;
-  flex-direction: row;
+  /* flex-direction: row; */
 }
 
 .text_align {

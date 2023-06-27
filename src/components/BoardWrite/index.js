@@ -39,7 +39,7 @@ const MainFontStyles = css`
   .img-container{
     width:100%;
     height: calc(100%/2 - 200px);
-    margin-bottom: 30px;
+    /* margin-bottom: 30px; */
   }
 
   savebtn {
@@ -204,39 +204,37 @@ const BoardWrite = () => {
             <hr className={styles.line}></hr>
         </label>
       </div>
-      <div style={{fontSize: 30, marginLeft: 10}}>내용을 입력해 주세요.</div>
+      <div className={styles.h3}>내용을 입력해 주세요.</div>
       <hr className={styles.line}></hr>
       <div>
-          <div style={{height: 600}}>
-            <QuillEditor onChange={setBody} value={body}  />
-          </div>
+          {/* <div style={{height: 600}}> */}
+            {/* <QuillEditor onChange={setBody} value={body}  /> */}
+          {/* </div> */}
           <hr className={styles.line}></hr>
         <label htmlFor="Content">
-          {/* <div>
+          <div>
             <textarea 
               placeholder='내용을 입력해주세요.' 
               id="Content" 
-              rows="10"
-              cols="40" 
               className={styles.textbox} 
               onChange={e => setBody(e.target.value)}>
             </textarea>
-          </div> */}
+          </div>
           
         </label>        
       </div>
       <br />
-      
-      {/* <div style={{flexDirection : "row", flex:1, display:"flex"}}>
-        <div >
-          <div className={styles.h2}>-사진 업로드-</div>
-          <div className={styles.h4}>사진을 업로드 해주세요 -→</div>
-        </div>
+      <hr className={styles.line}></hr>
+      {/* <div className={styles.h2}>사진을 업로드 해주세요.</div>
+      <hr className={styles.line}></hr> */}
+      <div style={{flexDirection : "row", flex:1, display:"flex"}}> 
+      <div className={styles.h2}>사진을 업로드 해주세요.</div>
         <div className={styles.upload_box}>
-          <ImgUploadContainer className={styles.upload_box2}>
-                  <Global styles={MainFontStyles} ></Global>
+          <div className={styles.upload_box2}>
+                  {/* <Global></Global> */}
+                  
                   <Upload
-                      
+                      className={styles.h5}
                       action="http://localhost:3000/"
                       listType="picture-card"
                       fileList={fileList}
@@ -245,6 +243,7 @@ const BoardWrite = () => {
                   >
                       {fileList.length >= 1 ? null : uploadButton}
                   </Upload>
+                  
 
                   <Modal open={previewOpen} title={previewTitle} footer={null} onCancel={handleCancel} >
                       <img
@@ -257,13 +256,13 @@ const BoardWrite = () => {
 
                   
 
-          </ImgUploadContainer >
+          </div >
           
         </div>
         
-      </div> */}
+      </div>
       {/*서버 제출 버튼*/}
-      
+      <hr className={styles.line}></hr>
       <div className={styles.button_div}>
       <button variant="outline-primary" id='submit-btn' type='submit' onClick={handleApi} className={styles.save_btn}>저장하기</button>
         {/* <button onClick={saveBoard} className={styles.save_btn}>저장</button> */}
