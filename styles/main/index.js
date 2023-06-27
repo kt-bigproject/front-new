@@ -1,18 +1,23 @@
 import styled from "@emotion/styled";
+import { keyframes } from "@emotion/react"
 
 export const Banner = styled.section`
-  background-image: url('/main/bg2.jpg');
-  background-size: 100vw 100vh;
-  background-attachment: fixed;
-	background-repeat: no-repeat;
   background-color: #FAF0E6;
-	/* color: #fff; 흰색계열이데 좀 이쁨 */
+	background-image: url('/main/Cover2.png');
+  /* color: #fff; 흰색계열이데 좀 이쁨 */
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
   text-align: center;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  border: 1px solid;
+`
+
+export const All = styled.div`
+  /* background-image: linear-gradient(to bottom, #f9f8f7 0%, #FAF0E6 100%); */
+  background-image: linear-gradient(to bottom, #FAF0E6 0%, #f9f8f7 100%);
+  /* #f9f8f7 */
 `
 export const BannerSection = styled.div`
   width: 100vw;
@@ -36,15 +41,15 @@ export const BannerDiv = styled.div`
 `
 
 export const BannerButtonDiv = styled.div`
-  width: 30%;
+  width: 280px;
   display: flex;
   justify-content: space-between;
 `
 
 export const GIFdiv = styled.div`
-  background-image: url('/main/effect6.png');
+  /* background-image: url('/main/effect6.png');
   background-repeat: no-repeat;
-  background-size: 100%;
+  background-size: 100%; */
   display: flex;
   align-items: center;
   justify-content: center;
@@ -52,56 +57,92 @@ export const GIFdiv = styled.div`
   height: 250px;
 `
 
-
-export const Main = styled.section`
-  background-image: url('/main/effect16.png');
+export const Section1 = styled.div`
+  background-image: url('/main/frame.png');
   background-repeat: no-repeat;
   background-size: 100% 100%;
-  margin: 0 auto 14em auto;
+  width: 100vw;
+  height: 100vh;
+`
+
+export const Main = styled.section`
+  margin: 0 auto 6em auto;
 	max-width: calc(100% - 5em);
 	width: 80em;
-  border:1px solid;
 `
 
 export const MainBox = styled.section`
-
-	border-radius: 6px;
-	box-shadow: 0 2px 0 0 #e5e5e5;
-	padding: 3em 3em 0 3em;
-  height: 900px;
+	padding: 3em;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
 `
 
 export const MainDiv = styled.div`
-  border:1px solid;
   padding: 100px 100px;
   text-align: center;
 `
-
-export const FunctionSpan = styled.div`
+export const Section2 = styled.div`
+  background-image: url('/main/frame.png');
   background-repeat: no-repeat;
   background-size: 100% 100%;
-  border-radius: 0;
-	display: flex;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
   flex-direction: column;
-	width: calc(100%);
-  padding: 0 0 6em 0;
+  justify-content: center;
+  align-items: center;
 `
+
 export const Function = styled.div`
   display: flex;
   flex: row;
+  width: 80%;
+  height: 35%;
 `
 
-export const FunctionDiv = styled.div`
-  border: 1px solid;
-  height: 200px;
+export const FunctionDiv1 = styled.div`
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
   width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  border-right: 3px dashed;
+  border-bottom: 3px dashed;
+`
+
+export const FunctionDiv2 = styled.div`
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-bottom: 3px dashed;
+`
+
+export const FunctionDiv3 = styled.div`
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+`
+
+export const FunctionDiv4 = styled.div`
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-left: 3px dashed;
 `
 
 export const FunctionTitle = styled.div`
@@ -110,30 +151,18 @@ export const FunctionTitle = styled.div`
 
 export const FunctionContext = styled.div`
   width: 75%;
-  border-top: 1px solid;
 
 `
 
 export const MainP = styled.p`
-  border-top: solid 2px #e5e5e5;
   position: relative;
 `
 
-export const MainImage = styled.img`
-	border-radius: 0 0 6px 6px;
-	display: block;
-	/* margin: 3em 0 0 -3em; */
-	position: relative;
-	width: calc(100% + 6em);
-`
 export const MenuBox = styled.section`
-	padding: 3em 0;
-  margin-bottom: 3em;
   display: flex;
-  margin: 0 auto 14em auto;
+  /* margin: 0 auto 8em auto; */
 	max-width: calc(100% - 5em);
-	width: 80em;
-  border:1px solid;
+	width: 70em;
 `
 
 export const FeatureSection = styled.section`
@@ -151,7 +180,6 @@ export const FeatureSection = styled.section`
 export const FeatureSection2 = styled.section`
   /* background-image: url('/main/post/post3.png'); */
   background-image: url('/caution/caution1.png');
-
   background-repeat: no-repeat;
   background-size: 100% 100%;
   background-position: center;
@@ -191,7 +219,6 @@ export const EndBanner1 = styled.div`
   background-size: 100% 100%;
   height: 500px;
   width: 100%;
-  border: 1px solid;
   margin: 0 auto 8em auto;
 
 `
@@ -201,8 +228,71 @@ export const EndBanner2 = styled.div`
   background-size: 100% 100%;
   height: 100px;
   width: 100%;
-
 `
+export const Section3 = styled.div`
+  background-image: url('/main/frame.png');
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+`
+const rotateAnimation = keyframes`
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+`;
+
+export const Section3Img = styled.div`
+  width: 45%;
+  text-align: center;
+  img {
+    animation: ${rotateAnimation} 80s linear infinite;
+  }
+`
+
+export const Section3Div = styled.div`
+  width: 40%;
+  height: 20%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+`
+
+export const Section4 = styled.div`
+  background-image: url('/main/frame.png');
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: row;
+  justify-content: left;
+  position : relative;
+`
+
+export const Section4Div = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: left;
+  padding: 14em;
+`
+
+export const Cover = styled.div`
+  background-image: url('/main/CoverTeam.png');
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  width: 100vw;
+  height: 100vh;
+  position : absolute;
+`
+
 export const Profile = styled.div`
   border: 1px solid;
   display: flex;
