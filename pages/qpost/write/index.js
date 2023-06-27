@@ -10,6 +10,7 @@ import SelectType from '/src/components/Qpost/SelectType';
 import Button from '@leafygreen-ui/button';
 import Icon from '@leafygreen-ui/icon';
 import TextInput from '@leafygreen-ui/text-input';
+import styles from '/src/components/Qpost/write.module.css';
 
 const QuillEditor = dynamic( () => import('/src/components/Qpost/QuillEditor'), {
   ssr : false
@@ -86,17 +87,37 @@ export default function Write() {
 
   console.log(type)
   return (
-    <>
+    <div style={{backgroundColor:'#FAF0E6', width: '1100px', margin: 'auto' }}> 
+      <div className={styles.detailContainer}>
+        <div className={styles.detailWrapper}>
+        <div className={styles.detailHeader}>
+          <p style={{fontSize:'35px'}}>{"문의하기 게시판 > 글쓰기"}</p>
+        </div>
+        <div className={`${styles.detailBody} ${styles.Box}`}> 
       <ErrorAlert parentState={[errorMessage, setErrorMessage]}/>
+
+      <div style={{paddingBottom: '20px'}}>
+      <span className={styles.toList} onClick={()=> router.push('/qpost')}>
+              {"목록으로 >"}             
+      </span>      
+      </div>
+
       <form onSubmit={handleSubmit}>
-        <SelectType typeState={[type, setType]}/>      
-        <TextInput
-          aria-labelledby="title" 
-          placeholder="제목을 입력해 주세요."
-          onChange={(e)=>{ 
-            setTitle(e.target.value) 
-          }}
-        />
+
+        <div className={styles.writeTitle}>
+          <div>
+          <SelectType typeState={[type, setType]}/>      
+          </div>
+          <div className={styles.titleInput}>
+          <TextInput            
+            aria-labelledby="title" 
+            placeholder="제목을 입력해 주세요."
+            onChange={(e)=>{ 
+              setTitle(e.target.value) 
+            }}
+          />
+          </div>
+        </div>
 
         <input
           type="file"
@@ -104,9 +125,11 @@ export default function Write() {
           ref={fileInput}
           onChange={handleFileChange}
         />
-        <Button leftGlyph={<Icon glyph="Upload" fill="#FF0000"/>} onClick={handleClick}>파일 업로드</Button>{selectedFileName}
+        <Button leftGlyph={<Icon glyph="Upload" fill="#FF0000"/>} onClick={handleClick}>파일 업로드</Button><span style={{margin: 10}}>{selectedFileName}</span>
         {/* <ReactQuill theme="snow" value={content} onChange={setContent} modules={modules}/> */}
-        <QuillEditor onChange={setContent} value={content}/>
+        <div className={styles.contents}>
+        <QuillEditor style={{height: '425px'}} onChange={setContent} value={content}/>
+        </div>
         {/* {typeof window !== 'undefined' && (
           <div 
             dangerouslySetInnerHTML={{ 
@@ -116,8 +139,14 @@ export default function Write() {
         )} */}
         {/* {value} */}
         <input type="hidden" name="content" value={content}/>
-        <Button type='submit'>글쓰기</Button>
+        <div className={styles.writeBtn} >
+          <Button style={{width: '100px'}} type='submit'>글쓰기</Button>    
+        </div>    
       </form>
-    </>
+      </div>
+      <div className={styles.detailFooter}/>          
+      </div>
+      </div>
+    </div>
   )  
 }

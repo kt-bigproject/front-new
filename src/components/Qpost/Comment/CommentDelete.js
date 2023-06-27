@@ -10,7 +10,6 @@ export default function CommentDelete({id, state}) {
   const [forbidden, setForbidden] = useState(false);
 
   const api = useAxios()
-  const IconX = () => <Icon glyph="X" fill="#d32f2f" />;
   
   const [del, setDel] = state;
 
@@ -37,7 +36,7 @@ export default function CommentDelete({id, state}) {
     <>
       <ErrorAlert parentState={[forbidden, setForbidden]}/>
       <IconButton className="CommentDelete" onClick={handleDelete} aria-label="delete" >
-        <IconX/>
+        <Icon glyph="X" />
       </IconButton>
     </>
   );

@@ -1,14 +1,43 @@
+/** @jsxImportSource @emotion/react */
 import 'react-quill/dist/quill.snow.css';
 // import { useMemo } from 'react';
 import ReactQuill, {Quill} from 'react-quill';
 // import ImageResize  from '@looop/quill-image-resize-module-react'
 import ImageResize from 'quill-image-resize';
 import { ImageDrop } from 'quill-image-drop-module'
+import { css } from '@emotion/react'
+
+const quillEditorStyle = css`
+.ql-font-one {
+  font-family: 'one';
+}
+.ql-font-two {
+  font-family: 'two';
+}
+.ql-font-three {
+  font-family: 'three';
+}
+.ql-font-four {
+  font-family: 'four';
+}
+.ql-font-five {
+  font-family: 'five';
+}
+`
 
 Quill.register('modules/ImageResize', ImageResize);
 Quill.register('modules/imageDrop', ImageDrop);
 
-export default function QuillEditor({value, onChange}) {
+const Font = Quill.import('formats/font');
+
+const fonts = ['one', 'two', 'three', 'four', 'five'];
+const fontNames = ['Font One', 'Font Two', 'Font Three', 'Font Four', 'Font Five'];
+
+// const fontNames = Object.keys(fonts);
+fonts.forEach((font) => Font.whitelist.push(font));
+Quill.register(Font, true);
+
+export default function QuillEditor({value, onChange, style}) {
 
   // const quillRef = useRef(null);
 
@@ -41,7 +70,7 @@ export default function QuillEditor({value, onChange}) {
     toolbar: {
         container: [
           // [{ 'header': [1, 2, 3, 4, 5, 6, false] }],         
-          [{ 'font': [] }],
+          [{'font': fonts}],
           [{'size':[]}],
           // [{ 'align': [] }],
           ['bold', 'italic', 'underline', 'strike', 'blockquote'],
@@ -60,11 +89,15 @@ export default function QuillEditor({value, onChange}) {
   };
 
   return (
-    <ReactQuill
-      theme="snow" 
-      value={value} 
-      onChange={onChange} 
-      modules={modules}
-    />
+    <div>
+      <ReactQuill            
+        css={quillEditorStyle}
+        style={style}
+        theme="snow" 
+        value={value} 
+        onChange={onChange} 
+        modules={modules}
+      />
+    </div>
   )
 }
