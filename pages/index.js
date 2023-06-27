@@ -4,16 +4,63 @@ import LayoutHeader from '../src/commons/layout/header2/header';
 import { MyButton1, MyButton2 } from '../styles/practice/pracitce';
 import Modal from '@leafygreen-ui/modal';
 import {useState} from "react"
+import { Anchor } from 'antd';
+
 export default function MainPage() {
 	const [open, setOpen] = useState(false);
+
 	const onClcikTeam = () => {
 		setOpen(curr => !curr)
 	}
+
+
   return (
     <>
-		{/* <LayoutHeader /> */}
 				<Banner>
-					<BannerSection>
+				<LayoutHeader />
+				<div>
+      <Anchor style={{
+      		  padding: '15px',
+						fontWeight: 'bold',
+						width : '23vw',
+						display: 'flex',
+						justifyContent:'center',
+						backgroundImage: "url('/anchor.png')",
+						backgroundSize:'100% 100%',
+						zIndex: 2,
+						marginTop: '10px'
+		}}
+        direction="horizontal"
+        items={[
+          {
+            key: 'part-1',
+            href: '#part-1',
+            title: 'Main',
+          },
+          {
+            key: 'part-2',
+            href: '#part-2',
+            title: 'Caution',
+          },
+          {
+            key: 'part-3',
+            href: '#part-3',
+            title: 'Function',
+          },
+          {
+            key: 'part-4',
+            href: '#part-4',
+            title: 'Tech',
+          },
+          {
+            key: 'part-5',
+            href: '#part-5',
+            title: 'Coworker',
+          },
+        ]}
+      />
+    </div>
+					<BannerSection id="part-1">
           	<BannerDiv>
 						  <h1>오늘의 글씨</h1>
 							<br />
@@ -22,11 +69,12 @@ export default function MainPage() {
 								<div style={{width:280 , height: 280, backgroundColor:"white"}}></div>
 							</GIFdiv>
 							<br />
+							<br />
 						  <p>Another fine responsive site template freebie by HTML5 UP.</p>
 						  <br />
 							<BannerButtonDiv>
           	    <MyButton1>Sign Up</MyButton1>
-          	    <MyButton2>About</MyButton2>
+          	    <MyButton2>Sign in</MyButton2>
 						  </BannerButtonDiv>
           	</BannerDiv>
 					</BannerSection>
@@ -36,7 +84,7 @@ export default function MainPage() {
 
 			{/* Main */}
 			<All>
-				<Section1>
+				<Section1 id="part-2">
 				<Main>
 					<MainBox>
 						<MainDiv>
@@ -87,12 +135,13 @@ export default function MainPage() {
 						</MainBox>
         	</Main>
 				</Section1>
-				<Section2>
+				<Section2 id="part-3">
 							<Function>
               	<FunctionDiv1>
               	  <FunctionTitle>
 										<h3>글씨 연습장</h3>
 									</FunctionTitle>
+									<img src="/vector/vector1.png" />
               	  <FunctionContext>
 										<p>Integer volutpat ante et accumsan commophasellus sed aliquam feugiat lorem aliquet ut enim rutrum phasellus iaculis accumsan dolore magna aliquam veroeros.</p>
 									</FunctionContext>
@@ -101,6 +150,7 @@ export default function MainPage() {
               	  <FunctionTitle>
 										<h3>글씨 놀이터</h3>
 									</FunctionTitle>
+									<img src="/vector/vector2.png" />
               	  <FunctionContext>
 										<p>Integer volutpat ante et accumsan commophasellus sed aliquam feugiat lorem aliquet ut enim rutrum phasellus iaculis accumsan dolore magna aliquam veroeros.</p>
 									</FunctionContext>
@@ -111,6 +161,7 @@ export default function MainPage() {
               	  <FunctionTitle>
 										<h3>손글씨 자랑하기</h3>
 									</FunctionTitle>
+									<img src="/vector/vector3.png" />
               	  <FunctionContext>
 										<p>Integer volutpat ante et accumsan commophasellus sed aliquam feugiat lorem aliquet ut enim rutrum phasellus iaculis accumsan dolore magna aliquam veroeros.</p>
 									</FunctionContext>
@@ -119,13 +170,14 @@ export default function MainPage() {
               	  <FunctionTitle>
 										<h3>폰트 만들어보기</h3>
 									</FunctionTitle>
+									<img src="/vector/vector4.png" />
               	  <FunctionContext>
 										<p>Integer volutpat ante et accumsan commophasellus sed aliquam feugiat lorem aliquet ut enim rutrum phasellus iaculis accumsan dolore magna aliquam veroeros.</p>
 									</FunctionContext>
               	</FunctionDiv4>
 							</Function>
 					</Section2>
-					<Section3>
+					<Section3 id="part-4">
 						<Section3Img>
 							<img src="/main/A.png"/>
 						</Section3Img>
@@ -134,55 +186,47 @@ export default function MainPage() {
 							<p>Integer volutpat ante et accumsan commophasellus sed aliquam feugiat lorem aliquet ut enim rutrum phasellus iaculis accumsan dolore magna aliquam veroeros.</p>
 						</Section3Div>
 					</Section3>
-					<Section4>
+					<Section4 id="part-5">
 					<Cover onClick={onClcikTeam}/>
 					<Section4Div>
 						<h1>Who with us?</h1>
 						<p>누가누가 우리랑 같이 했을까</p>
 					</Section4Div>
-					<Modal open={open} setOpen={setOpen}>
+					<Modal open={open} setOpen={setOpen} size={'large'}>
+						{/* <div style={{height:"110px"}}></div> */}
 					<Profile>
-            <p>팀원소개</p>
           <Profile1>
-            <ProfileCircle>
-              <ProfileIcon>아이콘</ProfileIcon>
+            <ProfileCircle style={{backgroundImage:'url("/profile/1.png")', backgroundSize:"100% 100%"}}>
               <Name>김무연</Name>
               <Position>프론트엔드</Position>
             </ProfileCircle>
-            <ProfileCircle>
-              <ProfileIcon>아이콘</ProfileIcon>
+            <ProfileCircle style={{backgroundImage:'url("/profile/2.png")', backgroundSize:"100% 100%"}}>
               <Name>김힘찬</Name>
               <Position>프론트엔드</Position>
             </ProfileCircle>
-            <ProfileCircle>
-              <ProfileIcon>아이콘</ProfileIcon>
+            <ProfileCircle style={{backgroundImage:'url("/profile/3.png")', backgroundSize:"100% 100%"}}>
               <Name>김규민</Name>
               <Position>프론트엔드</Position>
             </ProfileCircle>
-            <ProfileCircle>
-              <ProfileIcon>아이콘</ProfileIcon>
+            <ProfileCircle style={{backgroundImage:'url("/profile/4.png")', backgroundSize:"100% 100%"}}>
               <Name>박규정</Name>
               <Position>프론트엔드</Position>
             </ProfileCircle>
           </Profile1>
           <Profile1>
-          <ProfileCircle>
-              <ProfileIcon>아이콘</ProfileIcon>
+            <ProfileCircle style={{backgroundImage:'url("/profile/5.png")', backgroundSize:"100% 100%"}}>
               <Name>박윤수</Name>
               <Position>AI</Position>
             </ProfileCircle>
-            <ProfileCircle>
-              <ProfileIcon>아이콘</ProfileIcon>
+            <ProfileCircle style={{backgroundImage:'url("/profile/8.png")', backgroundSize:"100% 100%"}}>
               <Name>김혜민</Name>
               <Position>백엔드</Position>
             </ProfileCircle>
-            <ProfileCircle>
-              <ProfileIcon>아이콘</ProfileIcon>
+            <ProfileCircle style={{backgroundImage:'url("/profile/5.png")', backgroundSize:"100% 100%"}}>
               <Name>문석호</Name>
               <Position>백엔드</Position>
             </ProfileCircle>
-            <ProfileCircle>
-              <ProfileIcon>아이콘</ProfileIcon>
+            <ProfileCircle style={{backgroundImage:'url("/profile/7.png")', backgroundSize:"100% 100%"}}>
               <Name>이창영</Name>
               <Position>백엔드</Position>
             </ProfileCircle>
@@ -194,11 +238,11 @@ export default function MainPage() {
 			{/* Footer */}
 				<Footer>
 					<FooterUl>						
-            <Link href="/"><a>Twitter</a></Link>
-            <Link href="/"><a>Google</a></Link>
-            <Link href="/"><a>Facebook</a></Link>
-            <Link href="/"><a>instagram</a></Link>
-            <Link href="/"><a>git</a></Link>
+            <Link href="https://twitter.com/"><a><img src='/icon/1.png' /></a></Link>
+            <Link href="https://www.google.com/"><a><img src='/icon/2.png' /></a></Link>
+            <Link href="https://ko-kr.facebook.com/"><a><img src='/icon/3.png' /></a></Link>
+            <Link href="https://www.instagram.com/"><a><img src='/icon/4.png' /></a></Link>
+            <Link href="https://github.com/"><a><img src='/icon/5.png' /></a></Link>
           </FooterUl>
 					<ul>
 						<div>&copy; Untitled. All rights reserved.</div>

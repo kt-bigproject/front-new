@@ -16,7 +16,8 @@ export const Banner = styled.section`
 
 export const All = styled.div`
   /* background-image: linear-gradient(to bottom, #f9f8f7 0%, #FAF0E6 100%); */
-  background-image: linear-gradient(to bottom, #FAF0E6 0%, #f9f8f7 100%);
+  /* background-image: linear-gradient(to bottom, #FAF0E6 0%, #f9f8f7 100%); */
+  background-color: #FAF0E6;
   /* #f9f8f7 */
 `
 export const BannerSection = styled.div`
@@ -63,6 +64,7 @@ export const Section1 = styled.div`
   background-size: 100% 100%;
   width: 100vw;
   height: 100vh;
+  box-shadow:0 0 15px 0 gray;
 `
 
 export const Main = styled.section`
@@ -107,7 +109,7 @@ export const FunctionDiv1 = styled.div`
   width: 100%;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-evenly;
   align-items: center;
   border-right: 3px dashed;
   border-bottom: 3px dashed;
@@ -119,7 +121,7 @@ export const FunctionDiv2 = styled.div`
   width: 100%;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-evenly;
   align-items: center;
   border-bottom: 3px dashed;
 `
@@ -130,7 +132,7 @@ export const FunctionDiv3 = styled.div`
   width: 100%;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-evenly;
   align-items: center;
 `
 
@@ -140,7 +142,7 @@ export const FunctionDiv4 = styled.div`
   width: 100%;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-evenly;
   align-items: center;
   border-left: 3px dashed;
 `
@@ -239,6 +241,7 @@ export const Section3 = styled.div`
   flex-direction: row;
   justify-content: center;
   align-items: center;
+  box-shadow:0 0 15px 0 gray;
 `
 const rotateAnimation = keyframes`
   0% {
@@ -275,6 +278,7 @@ export const Section4 = styled.div`
   flex-direction: row;
   justify-content: left;
   position : relative;
+  box-shadow:0 0 15px 0 gray;
 `
 
 export const Section4Div = styled.div`
@@ -294,44 +298,34 @@ export const Cover = styled.div`
 `
 
 export const Profile = styled.div`
-  border: 1px solid;
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin: 0 auto 8em auto;
+  justify-content: space-between;
   width: auto;
-
+  height: 45vh;
 `
 
 export const Profile1 = styled.div`
- border: 1px solid;
+ width: 90%;
  display: flex;
  justify-content: space-between;
 `
 export const ProfileCircle = styled.div`
   display: flex;
   flex-direction: column;
+  align-items: flex-end;
   justify-content: center;
-  align-items: center;
   /* background-color: #f5f5f5; */
-  width: 200px;
+  width: 150px;
   height: 200px;
-  border-radius: 50%;
-  border: 1px solid;
-`;
-
-export const ProfileIcon = styled.div`
-  width: 80px;
-  height: 80px;
-  /* object-fit: cover; */
-  /* border-radius: 50%; */
-  margin-bottom: 10px;
+  padding-right: 3em;
 `;
 
 export const Name = styled.div`
   font-size: 18px;
   font-weight: bold;
-  margin-bottom: 5px;
+  margin-bottom: 30px;
 `;
 
 export const Position = styled.div`
@@ -340,7 +334,7 @@ export const Position = styled.div`
 `;
 
 export const Footer = styled.footer`
-		background: #f0f0f0;
+		background: #f9f8f7;
 		padding: 4em 0 6em 0;
 		text-align: center;
 ` 

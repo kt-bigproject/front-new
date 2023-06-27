@@ -1,68 +1,64 @@
 .header {
-  height: 100px;
   width: 100%;
   display: flex;
   flex-direction: column;
-  /* position: fixed; */
-  z-index: 2;
-}
-
-/* .hideHeader {
-  display: none;
-}
-.showHeader {
-  height: 100px;
-} */
-
-
-
-.upperSection {
-  height: 60px;
-  width: 100%;
-  background-color: white;
-  display: flex;
-  align-items: center;
   justify-content: center;
+  align-items: center;
+  margin-top: 10px;
 }
 
 .lowerSection {
-  height: 40px;
-  width: 100%;
-  background-color: #fa6400;
+  width: 60vw;
+  background-color: #fa7400;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  justify-content: space-between;
   align-items: center;
-  font-family: "one";
-  /* border: 1px solid; */
   border-radius: 30px;
-  margin-left: 10%;
-  width: 80vw
-}
-
-.lowerSection.scrolled {
-  box-shadow: 0 3px 5px rgba(0, 0, 0, 0.2);
-}
-
-.logoContainer {
-  display: flex;
-  align-items: center;
+  border: 3px dashed ;
 }
 
 .menuContainer {
   display: flex;
   align-items: center;
-  justify-content: center;
-  gap: 40px;
+  justify-content: space-between;
+  width: 65%
 }
 
-.logoutContainer {
-  /* margin-right: 20px; */
-}
 
 .menuItem {
-  margin: 0 10px;
-  font-size: 24px;
+  align-items: center;
+  background-clip: padding-box;
+  background-color: #fa7400;
+  border: 1px solid transparent;
+  border-radius: .25rem;
+  box-shadow: rgba(0, 0, 0, 0.02) 0 1px 3px 0;
+  box-sizing: border-box;
+  color: #fff;
   cursor: pointer;
+  display: inline-flex;
+  font-family: "one";
+  font-size: 19px;
+  font-weight: 600;
+  justify-content: center;
+  line-height: 1.25;
+  margin: 0;
+  min-height: 3rem;
+  position: relative;
+  text-decoration: none;
+  transition: all 250ms;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  vertical-align: baseline;
+  width: 133.08px;
+  height: 48.67px;
+}
+
+.menuItem:hover,
+.menuItem:focus {
+  background-color: #FAF0E6;
+  box-shadow: rgba(0, 0, 0, 0.1) 0 4px 12px;
 }
 
 .menuItem:hover {
@@ -70,23 +66,6 @@
   font-weight: bolder;
 }
 
-.logoutItem {
-  font-size: 20px;
-  cursor: pointer;
-  background-color: orange;
-  color: white;
-  border: white;
-  width: 80px;
-  height: 30px;
-  border-radius: 100px / 80px;
-  transition: transform 0.3s;
-  position: relative;
-  left: 240px;
-}
-
-.logoutItem:hover {
-  transform: scale(1.1);
-}
 .alignRight {
   margin-left: auto;
 }

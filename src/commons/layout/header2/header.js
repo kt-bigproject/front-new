@@ -70,29 +70,21 @@ export default function LayoutHeader() {
   return (
     <>
     <header className={`${styles.header} ${showHeader ? styles.showHeader : styles.hideHeader}`}>
-      <div className={styles.upperSection}>
-        <div className={styles.logoContainer}>
-          <img src="/Logo.svg" className={styles.title1} width={190} height={62} />
-        </div>
-      </div>
       <div className={`${styles.lowerSection} `}>  
-      <div className={styles.menuContainer} style={{fontFamily:"two"}}>
+        <div className={styles.menuContainer} style={{fontFamily:"two"}}>
           <span className={styles.menuItem} onClick={onClickbutton1}>
-            <i className='bx bxs-edit-alt' ></i>낙서장
+            <i className='bx bxs-edit-alt' ></i>  낙서장
             </span>
           <span className={styles.menuItem} onClick={onClickbutton2}>
-            <i className='bx bx-joystick' ></i>놀이터</span>
+            <i className='bx bx-joystick' ></i>  놀이터</span>
           <span className={styles.menuItem} onClick={onClickbutton3}>
-            <i className='bx bx-like' ></i>자랑하기</span>
+            <i className='bx bx-like' ></i>  자랑하기</span>
           <span className={styles.menuItem} onClick={onClickbutton4}>
-            <i className='bx bx-message-dots' ></i>문의하기</span>
+            <i className='bx bx-message-dots' ></i>  문의하기</span>
           <span className={styles.menuItem} onClick={onClickbutton5}>
-            <i className='bx bx-trophy' ></i>랭킹</span>
+            <i className='bx bx-trophy' ></i>  랭킹</span>
+        </div>
       </div>
-      <div className={styles.logoutContainer}>
-          <button className={`${styles.logoutItem} ${styles.alignRight}`} onClick={onClickbutton6}>로그아웃</button>
-      </div>
-    </div>
     </header>
     </>
   );
