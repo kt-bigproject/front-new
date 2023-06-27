@@ -1,113 +1,67 @@
 'use client'
 
 import { useEffect, useState } from "react";
-import CommentDelete from '/src/components/Qpost/CommentDelete';
 import { useAxios } from "/src/components/Axios/axios";
+import CommentDelete from './CommentDelete';
 import CommentForm from "./CommentForm";
+import Comment from './Comment';
 
-export default function CommentList({blog}) {
+export default function CommentList({blog, setNumComments}) {
 
-  // const [comment, setComment] = useState('')
-  // let [commentList, setCommentList] = useState([])
   const [comments, setComments] = useState([])
   const [deleteComment, setDeleteComment] = useState(false)
   const api = useAxios()
-  // const authContextValue = useContext(AuthContext); 
-  // console.log(authContextValue)
-  const [showReplyInput, setShowReplyInput] = useState(false);
-  const [replyText, setReplyText] = useState('');
-  const [commentId, setCommentId] = useState('');
 
-  const handleReplyClick = (commentId) => {
-    setCommentId(commentId);
-    setShowReplyInput(!showReplyInput);
+  const fetchComments = async () => {
+    const response = await api.get(`/font/comment/?blog=${blog.id}`)
+    setComments(response.data)
+  }
+
+  useEffect(() => {
+    fetchComments()
+  }, [deleteComment, blog.id])
+
+  const countComments = (comments) => {
+    let count = comments.length;
+    comments.forEach(comment => {
+      if (comment.replies) {
+        count += countComments(comment.replies);
+      }
+    });
+    return count;
   };
 
-  console.log(blog.id)
-
-  useEffect(()=>{
-    api.get(`/font/comment/?blog=${blog.id}`)
-      .then(response => {
-        setComments(response.data)
-    })
-  }, [comments, deleteComment] );
-
-  // const handleSubmit = async e => {
-  //   e.preventDefault();
-
-  //   const formData = new FormData();
-  //   formData.append('blog', blog.id);
-  //   formData.append('comment', comment);
-
-  //   const response = await api.post('/font/comment/', formData)
-
-  //   const data = await response.data;
-  //   console.log(data)
-  //   if ( response.status == 201 ) {
-  //     console.log(data)
-  //   } else {
-  //     console.log(response.status)
-  //   }
-  //   setData(prevData => [...prevData, data]);
-  // };
-      // .then((res) => console.log(res.status) )
-
-  const submitReply = async e => {
-    e.preventDefault();
-
-    const formData = new FormData();
-    formData.append('blog', blog.id);
-    formData.append('comment', replyText);
-    formData.append('parent', commentId);
-
-    const response = await api.post('/font/comment/', formData)
-    const data = await response.data;
-    console.log(data)
-    if ( response.status == 201 ) {
-      console.log(data) 
-    } else {
-      console.log(response.status)
-    }
-    setComments(prevData => [...prevData, data]);
-
-    setCommentId('');
-    setReplyText('');
-    setShowReplyInput(false);
-  };
+  useEffect(() => {
+    setNumComments(countComments(comments));    
+  }, [comments]);  
+  
+  // useEffect(()=>{
+  //   api.get(`/font/comment/?blog=${blog.id}`)
+  //     .then(response => {
+  //       setComments(response.data)
+  //   })
+  // }, [comments, deleteComment] );
 
   return (        
       <div>
-        <CommentForm blog={blog} setComments={setComments}/>
+        <CommentForm blog={blog} setComments={setComments} isReply={false} fetchComments={fetchComments}/>
 
         {
           comments.length > 0 ?
-          comments.slice().reverse().map((comment) => (
-            <Comment key={comment.id} comment={comment} onSubmitReply={submitReply} deleteComment={deleteComment} setDeleteComment={setDeleteComment}/>
-            // <div key={comment.id}>
-            //   <span>{comment.user} {comment.comment} {comment.created_at}</span>
-            //   <span onClick={() => handleReplyClick(comment.id)}>답글쓰기</span>              
-            //   <CommentDelete id={comment.id} state={[del, setDel]}/>
-
-            //   {comment.replies.length > 0 && (
-            //     <div>
-            //       {comment.replies.map((reply) => (
-            //         <Comment key={reply.id} comment={reply} />
-            //       ))}
-            //     </div>
-            //   )} 
-
-            //    {showReplyInput && commentId === comment.id &&(
-            //     <div>
-            //       <form onSubmit={submitReply}>
-            //         <input onChange={(e)=>{ setReplyText(e.target.value) }}/>
-            //         <button type='submit'>전송</button>
-            //       </form>
-            //     </div>
-            //   )} 
-              
-            // </div>
+          // comments.slice().reverse().map((reply) => (
+          comments.map((reply) => (
+            <Comment 
+              blog={blog}
+              key={reply.id} 
+              comment={reply} 
+              // onSubmitReply={onSubmitReply} 
+              deleteComment={deleteComment}
+              setDeleteComment={setDeleteComment}
+              setComments={setComments}
+              fetchComments={fetchComments}
+          />
           ))
-          : '댓글없음 --> 로딩중 ui'
+          : null
         }
       </div>
   );

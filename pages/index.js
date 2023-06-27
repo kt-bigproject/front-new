@@ -1,24 +1,25 @@
 import Link from 'next/link';
-import {BannerButtonDiv, Footer, Banner, BannerDiv, EndBanner, EndBanner1, EndBanner2, FeatureSection, FeatureSection2, FeatureSection3, Main, MainBox, MainDiv, MainFeatures, MainImage, MainP, MenuBox, FooterUl, Profile, Profile1, ProfileIcon, Name, Position, ProfileCircle, FunctionSpan, FunctionDiv, FunctionTitle, FunctionContext, Function, GIFdiv, FeatureP, BannerSection} from '../styles/main/index'
+import {BannerButtonDiv, Footer, Banner, BannerDiv, Section3Img, Section3Div, EndBanner, EndBanner1, EndBanner2, FeatureSection, FeatureSection2, FeatureSection3, Main, MainBox, MainDiv, MainFeatures,  MainP, MenuBox, FooterUl, Profile, Profile1, ProfileIcon, Name, Position, ProfileCircle, FunctionSpan, FunctionDiv, FunctionTitle, FunctionContext, Function, GIFdiv, FeatureP, BannerSection, All, Section1, Section2, FunctionDiv1, FunctionDiv2, FunctionDiv3, FunctionDiv4, Section3, Section4, Cover, Section4Div} from '../styles/main/index'
 import LayoutHeader from '../src/commons/layout/header2/header';
 import { MyButton1, MyButton2 } from '../styles/practice/pracitce';
-import { Anchor } from "@codecademy/gamut"
-
+import Modal from '@leafygreen-ui/modal';
+import {useState} from "react"
 export default function MainPage() {
+	const [open, setOpen] = useState(false);
+	const onClcikTeam = () => {
+		setOpen(curr => !curr)
+	}
   return (
     <>
+		{/* <LayoutHeader /> */}
 				<Banner>
 					<BannerSection>
           	<BannerDiv>
 						  <h1>오늘의 글씨</h1>
 							<br />
+							<br />
 							<GIFdiv>
-								<img
-          			src="./main/pretty/giphy.gif"
-          			width="180"
-          			height="240"
-          			frameBorder="0"
-          			></img>
+								<div style={{width:280 , height: 280, backgroundColor:"white"}}></div>
 							</GIFdiv>
 							<br />
 						  <p>Another fine responsive site template freebie by HTML5 UP.</p>
@@ -29,10 +30,23 @@ export default function MainPage() {
 						  </BannerButtonDiv>
           	</BannerDiv>
 					</BannerSection>
+		</Banner>
+
 
 
 			{/* Main */}
-			<MenuBox>
+			<All>
+				<Section1>
+				<Main>
+					<MainBox>
+						<MainDiv>
+							<h2>Introducing the ultimate mobile app
+							<br />
+							for doing stuff with your phone</h2>
+							<MainP>Blandit varius ut praesent nascetur eu penatibus nisi risus faucibus nunc ornare<br />
+							adipiscing nunc adipiscing. Condimentum turpis massa.</MainP>
+						</MainDiv>
+						<MenuBox>
 							<FeatureSection>
 								<span></span>
 								<h3>올바른 자세!</h3>
@@ -69,66 +83,65 @@ export default function MainPage() {
                 <br />
 								<FeatureP>연필을 잡을 때는 언제나 올바른 파지법으로! 잘못된 파지법은 손에 부담을 줄 수가 있어요!</FeatureP>
 							</FeatureSection3>
-				</MenuBox>
-
-				<Main>
-					<MainBox>
-						<MainDiv>
-							<h2>Introducing the ultimate mobile app
-							<br />
-							for doing stuff with your phone</h2>
-							<MainP>Blandit varius ut praesent nascetur eu penatibus nisi risus faucibus nunc ornare<br />
-							adipiscing nunc adipiscing. Condimentum turpis massa.</MainP>
-						</MainDiv>
-						<FunctionSpan>
+						</MenuBox>
+						</MainBox>
+        	</Main>
+				</Section1>
+				<Section2>
 							<Function>
-              	<FunctionDiv>
+              	<FunctionDiv1>
               	  <FunctionTitle>
 										<h3>글씨 연습장</h3>
 									</FunctionTitle>
               	  <FunctionContext>
 										<p>Integer volutpat ante et accumsan commophasellus sed aliquam feugiat lorem aliquet ut enim rutrum phasellus iaculis accumsan dolore magna aliquam veroeros.</p>
 									</FunctionContext>
-              	</FunctionDiv>
-								<FunctionDiv>
+              	</FunctionDiv1>
+								<FunctionDiv2>
               	  <FunctionTitle>
 										<h3>글씨 놀이터</h3>
 									</FunctionTitle>
               	  <FunctionContext>
 										<p>Integer volutpat ante et accumsan commophasellus sed aliquam feugiat lorem aliquet ut enim rutrum phasellus iaculis accumsan dolore magna aliquam veroeros.</p>
 									</FunctionContext>
-              	</FunctionDiv>
+              	</FunctionDiv2>
 							</Function>
 							<Function>
-								<FunctionDiv>
+								<FunctionDiv3>
               	  <FunctionTitle>
 										<h3>손글씨 자랑하기</h3>
 									</FunctionTitle>
               	  <FunctionContext>
 										<p>Integer volutpat ante et accumsan commophasellus sed aliquam feugiat lorem aliquet ut enim rutrum phasellus iaculis accumsan dolore magna aliquam veroeros.</p>
 									</FunctionContext>
-              	</FunctionDiv>
-								<FunctionDiv>
+              	</FunctionDiv3>
+								<FunctionDiv4>
               	  <FunctionTitle>
 										<h3>폰트 만들어보기</h3>
 									</FunctionTitle>
               	  <FunctionContext>
 										<p>Integer volutpat ante et accumsan commophasellus sed aliquam feugiat lorem aliquet ut enim rutrum phasellus iaculis accumsan dolore magna aliquam veroeros.</p>
 									</FunctionContext>
-              	</FunctionDiv>
+              	</FunctionDiv4>
 							</Function>
-            </FunctionSpan>
-					</MainBox>
-          </Main>
-
-
-					<EndBanner1 />
-
-
-
-          
-					<div>
-          <Profile>
+					</Section2>
+					<Section3>
+						<Section3Img>
+							<img src="/main/A.png"/>
+						</Section3Img>
+						<Section3Div>
+							<h1>What's Model Use?</h1>
+							<p>Integer volutpat ante et accumsan commophasellus sed aliquam feugiat lorem aliquet ut enim rutrum phasellus iaculis accumsan dolore magna aliquam veroeros.</p>
+						</Section3Div>
+					</Section3>
+					<Section4>
+					<Cover onClick={onClcikTeam}/>
+					<Section4Div>
+						<h1>Who with us?</h1>
+						<p>누가누가 우리랑 같이 했을까</p>
+					</Section4Div>
+					<Modal open={open} setOpen={setOpen}>
+					<Profile>
             <p>팀원소개</p>
           <Profile1>
             <ProfileCircle>
@@ -175,12 +188,9 @@ export default function MainPage() {
             </ProfileCircle>
           </Profile1>
           </Profile>
-
-		</div>
-		</Banner>
-		<EndBanner2 />
-
-
+      		</Modal>
+					</Section4>
+				</All>
 			{/* Footer */}
 				<Footer>
 					<FooterUl>						
@@ -194,7 +204,6 @@ export default function MainPage() {
 						<div>&copy; Untitled. All rights reserved.</div>
 					</ul>
 				</Footer>
-
     </>
   );
 }

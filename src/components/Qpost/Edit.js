@@ -1,11 +1,16 @@
 // 'use client'
-import { useState, useContext, useEffect } from 'react';
+import { useState, useRef } from 'react';
 import { useRouter } from 'next/router';
 import { useAxios } from "/src/components/Axios/axios";
 // import AuthContext from "/src/components/AuthContext/AuthContext";
 // import { FormSkeleton } from '@leafygreen-ui/skeleton-loader';
 import dynamic from 'next/dynamic';
 import ErrorAlert from '/src/components/Qpost/ErrorAlert';
+import styles from '/src/components/Qpost/write.module.css';
+import Button from '@leafygreen-ui/button';
+import SelectType from '/src/components/Qpost/SelectType';
+import TextInput from '@leafygreen-ui/text-input';
+import Icon from '@leafygreen-ui/icon';
 
 const QuillEditor = dynamic( () => import('/src/components/Qpost/QuillEditor'), {
   ssr : false
@@ -21,6 +26,24 @@ export default function Edit({blog}) {
   const [content, setContent] = useState(blog.body);
   const [title, setTitle] = useState(blog.title);
   const [errorMessage, setErrorMessage] = useState(false);
+
+  const [type, setType] = useState(blog.radio_field)
+
+  const [file, setFile] = useState(blog.file);
+  const [selectedFileName, setSelectedFileName] = useState(getFilenameFromUrl(blog.file));
+
+  const fileInput = useRef();
+
+  const handleFileChange = (e) => {
+    setFile(e.target.files[0]);
+    setSelectedFileName(e.target.files[0].name);
+  };
+
+  const handleClick = () => {
+    fileInput.current.click();
+  };
+
+
 
   // const [loading, setLoading] = useState(true);
 
@@ -49,6 +72,9 @@ export default function Edit({blog}) {
       formData.append('id', blog.id)
       formData.append('title', title)
       formData.append('body', content)
+      if (file !== null && file !== blog.file) {
+        formData.append('file', file);
+      }
 
       const response = await api.put('/font/blog/'+blog.id+'/', formData);
       //  {
@@ -72,22 +98,71 @@ export default function Edit({blog}) {
     }
   };
 
-  return (
-    <>
-      <ErrorAlert parentState={[errorMessage, setErrorMessage]}/>
-      <form onSubmit={handleSubmit}>
-        <input 
-          name="title" 
-          defaultValue={blog.title}
-          onChange={(e)=>{ 
-        setTitle(e.target.value) 
-        }}/>
+  function getFilenameFromUrl(url) {
+    if (url === null) {
+      return null;
+    }
+    
+    const splitUrl = url.split("/");
+    const encodedFilename = splitUrl[splitUrl.length - 1];
+    const decodedFilename = decodeURIComponent(encodedFilename);
+    
+    return decodedFilename;    
+  };
 
-        <QuillEditor onChange={setContent}  value={content}/>
+  return (
+    <div style={{backgroundColor:'#FAF0E6', width: '1100px', margin: 'auto' }}> 
+      <div className={styles.detailContainer}>
+        <div className={styles.detailWrapper}>
+        <div className={styles.detailHeader}>
+          <p style={{fontSize:'35px'}}>{"문의하기 게시판 > 수정하기"}</p>
+        </div>
+        <div className={`${styles.detailBody} ${styles.Box}`}> 
+      <ErrorAlert parentState={[errorMessage, setErrorMessage]}/>
+
+      <div style={{paddingBottom: '20px'}}>
+      <span className={styles.toList} onClick={()=> router.push('/qpost')}>
+              {"목록으로 >"}             
+      </span>      
+      </div>
+
+      <form onSubmit={handleSubmit}>
+      <div className={styles.writeTitle}>
+          <div>
+          <SelectType typeState={[type, setType]}/>      
+          </div>
+          <div className={styles.titleInput}>
+          <TextInput            
+            aria-labelledby="title" 
+            value={blog.title}
+            onChange={(e)=>{ 
+              setTitle(e.target.value) 
+            }}
+          />
+          </div>
+        </div>
+
+        <input
+          type="file"
+          style={{ display: 'none' }}
+          ref={fileInput}
+          onChange={handleFileChange}
+        />
+        <Button leftGlyph={<Icon glyph="Upload" fill="#FF0000"/>} onClick={handleClick}>파일 업로드</Button><span style={{margin: 10}}>{selectedFileName}</span>
+        {/* <ReactQuill theme="snow" value={content} onChange={setContent} modules={modules}/> */}
+        <div className={styles.contents}>
+        <QuillEditor style={{height: '425px'}} onChange={setContent} value={content}/>
+        </div>
 
         <input type="hidden" name="content" value={content}/>
-        <button type='submit'>수정완료</button>
+        <div className={styles.writeBtn} >
+          <Button style={{width: '100px'}} type='submit'>수정완료</Button>    
+        </div>    
       </form>
-    </>
+      </div>
+      <div className={styles.detailFooter}/>          
+      </div>
+      </div>
+    </div>
   )  
 }

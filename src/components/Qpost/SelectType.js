@@ -10,11 +10,15 @@ export default function SelectType({typeState}) {
 
   const CustomSelect= styled(Select)`
   width: 100px;
+
+  button {
+    height: 40px;
+  }
 `
 
   return (
     <>
-      <CustomSelect aria-label={'select-type'} placeholder={"일반"} defaultValue={"normal"} value={type} onChange={(value)=>{setType(value)}} allowDeselect={false} >
+      <CustomSelect  aria-label={'select-type'} placeholder={"일반"} defaultValue={"normal"} value={type} onChange={(value)=>{setType(value)}} allowDeselect={false} >
         <Option value="normal">일반</Option>
         <Option value="inquiry">문의</Option>
         <Option value="announcement">공지</Option>

@@ -28,10 +28,15 @@
 .lowerSection {
   height: 40px;
   width: 100%;
-  background-color: #FAF0E6;
+  background-color: #fa6400;
   display: flex;
   justify-content: center;
   align-items: center;
+  font-family: "one";
+  /* border: 1px solid; */
+  border-radius: 30px;
+  margin-left: 10%;
+  width: 80vw
 }
 
 .lowerSection.scrolled {
