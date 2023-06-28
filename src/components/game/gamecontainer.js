@@ -11,11 +11,14 @@ import AuthContext from "../AuthContext/AuthContext";
 import { Alldiv, Mydiv2, Mydiv3, Mydiv4, Mydiv5, MyButton1, MyButton2 } from "../../../styles/practice/pracitce"
 import { useRouter } from "next/router";
 import { useAxios } from "../Axios/axios";
+import { HomeOffice, Blocks } from '@codecademy/gamut-illustrations';
+import { DiagonalBRegular } from "@codecademy/gamut-patterns";
 
 
 const Mycanvas = styled.canvas`
 border: 1px solid;
 background-image: url("/grid.png");
+background-color: white;
 `
 
 const Mydiv = styled.div`
@@ -271,37 +274,52 @@ export default function Gamepage(props) {
 
   return(
     <>
-    <Alldiv style={{ margin: 0, display: "block"}}>
+    <Alldiv style={{ margin: 0, display: "flex", alignItems: "center", justifyContent: "center"}}>
         <div className="up2div" style={{ display: "flex", flexDirection: "row", 
-                                        justifyContent: "center", backgroundImage: "url('/wrap6.jpg')", 
-                                        width: "100%", margin: 0, height: 570}}>
-                 <div className="lef2div" style={{ display: "flex", flexDirection: "row", justifyContent: "center", 
-                                                  alignItems: "center"}}>
-                  <div className="imgdiv" style={{ position: "relative"}}>            
+                                        justifyContent: "center", backgroundColor: "#faf0e6", 
+                                        width: "1200px", margin: 0, height: 570}}>
+                 {/* <div className="lef2div" style={{ display: "flex", flexDirection: "row", justifyContent: "center", 
+                                                  alignItems: "center"}}> */}
+                  {/* <div className="imgdiv" style={{ position: "relative"}}>            
                     <img style = {{width: 520, height: 520, transform: "rotate(6deg)"}} src="/gamei3.png" />   
                     <img style = {{width: 270, height: 320, position: "absolute", top: 100, left: 125,
                                     transform: "rotate(5deg)"}} src="/gamei1.png" />     
+                      </div>*/}
+                     <div className="icon" style={{ marginTop: 140}}> 
+                      <HomeOffice width={380}/>
+                      </div> 
+                          <div style= {{textAlign:"center", marginTop:20}}>
+                            {/* <img style = {{width: 250, height: 140}} src="/LOGO.png" /> */}
+                            {/* <ReadOutlined style={{fontSize:100, color:"#fa6400"}}/> */}
+                          </div>
 
+                  {/* </div>   */}
+                        <div className="rig2div" style={{ display: "flex", flexDirection: "column", 
+                                      alignItems: "center", justifyContent: "center", gap: 20, marginLeft: 30}}>
+                              
 
+                            <div className="pattern2" style={{ position: "relative", marginTop: 100}}>
+                              <svg height="280" width="620" >            
+                                <DiagonalBRegular height={300} />
+                              </svg> 
 
-                  </div>                                                    
-          <div style= {{textAlign:"center", marginTop:30}}>
-            {/* <img style = {{width: 250, height: 140}} src="/LOGO.png" /> */}
-            {/* <ReadOutlined style={{fontSize:100, color:"#fa6400"}}/> */}
-          </div>
-
-                  </div>  
-                  <div className="rig2div" style={{ display: "flex", flexDirection: "column", 
-                                alignItems: "center", justifyContent: "center", gap: 30}}>
-                        <div vstyle= {{marginTop:10}}>
-                          <h2 style={{ fontSize:80, color: "#fa6400", 
-                                      fontFamily: "Kimjungchul"}}>『글씨 놀이터』</h2>
-                        </div>
-                          <h3 style={{ fontSize:25, fontFamily: "Kimjungchul" }} >연습한 글씨체를 게임을 통해 직접 적어보세요!</h3>
-                        <div className="text" style={{ display: "flex", flexDirection: "column", 
-                                                      alignItems: "center", justifyContent: "center", gap: 25}}>
-                          <h4 style={{ fontSize:25, fontFamily: "Kimjungchul" }} >단어와 문장을 듣고 발음을 연습할 수 있는 기능도 제공합니다. </h4>
-                            <h5 style={{ fontSize:25, fontFamily: "Kimjungchul" }} >언어 학습의 재미를 경험해보세요. </h5>
+                                <div style={{ boxSizing: "border-box", border: "1px solid", 
+                                                      textAlign: "left", backgroundColor: "#faf0e6",
+                                                      padding: 25, position: "absolute", top: -50, left: 20, 
+                                                      marginTop: 30, width: 620 }}>
+                                                        
+                                      <h2 style={{ fontSize:50, color: "#fa6400", 
+                                                  fontFamily: "Kimjungchul", marginBottom: 20}}>『글씨 놀이터』</h2>
+                                      <h3 style={{ fontSize:30, fontFamily: "Kimjungchul", marginBottom: 20 }} >연습한 글씨체를 게임을 통해 직접 적어보세요!</h3>
+                                    
+                                      <h4 style={{ fontSize:24, fontFamily: "Kimjungchul", marginBottom: 20 }} >단어와 문장을 듣고 발음을 연습할 수 있는 기능도 제공합니다. </h4>
+                                        <h5 style={{ fontSize:25, fontFamily: "Kimjungchul" }} >언어 학습의 재미를 경험해보세요. </h5>
+                                     
+                                </div> 
+                          </div>
+                        
+                           <div className="short" style={{ display: "flex", 
+                                                        flexDirection: "row", alignItems: "center", justifyContent: "center"}}>
                             <button onClick={props.NextLevel} 
                                     style={{ fontFamily: "Kimjungchul", color: "white", 
                                               backgroundColor: "#fa6400", border: "white", cursor: "pointer",
@@ -312,35 +330,42 @@ export default function Gamepage(props) {
                                               borderBottomRightRadius: "100px",
                                               transform: isHovered ? "scale(1.1)" : "none",
                                               transition: "transform 0.3s ease",
-                                              marginTop: 20, textAlign: "center"}}
+                                              textAlign: "center"}}
                                               onMouseEnter={handleMouseEnter}
-                                              onMouseLeave={handleMouseLeave}>start</button>                           
+                                              onMouseLeave={handleMouseLeave}>start</button>
+                                <Blocks width={80}/>              
+                            </div>
                         </div>
+
+
+
+                        
+                        
                           {/* <img style = {{width: 190, height: 120}} src="/g2.gif"/>  */}
-                      </div>
+                      
                     </div>  
           <div className="down2div" style={{ display: "flex", flexDirection: "column", 
                                               alignItems: "center", justifySelf: "center", 
-                                              backgroundImage: "url('/gamed6.jpg')", width: "100%" }}>
-            <Mydiv2 style= {{marginTop:50}}>
-                <img style = {{width: 130, height: 130}} src="/left.png" />
-                <div style={MyDivStyle}>{props.sent}</div>
-                <img style = {{width: 130, height: 130}} src="/right.png" />
-            </Mydiv2>
-            <br />
-            <Mydiv>
-            <Mycanvas ref={canvasRef}
-                      onMouseDown={startDrawing} // 마우스 버튼을 눌렀을때
-                      onMouseUp={EndDrawing} // 마우스마우스 버튼을 땠을 때
-                      onMouseMove={drawing} // 마우스가 움직일 때
-                      onMouseLeave={EndDrawing} // 마우스가 캔버스를 벗어낫을 때
-            ></Mycanvas>
-            <Mydiv4>
-              <Button type="text" onClick={onClickClear}><DeleteOutlined /></Button>
-              <Button type="text" onClick={onClickEraser}><UndoOutlined /></Button>
-              <Button type="text" onClick={onClickPencil}><HighlightOutlined /></Button>
-            </Mydiv4>
-          </Mydiv>
+                                               width: "1200px", backgroundColor: "#faf0e6" }}>                         
+                      <Mydiv2 style= {{marginTop:50}}>
+                          <img style = {{width: 130, height: 130}} src="/left.png" />
+                          <div style={MyDivStyle}>{props.sent}</div>
+                          <img style = {{width: 130, height: 130}} src="/right.png" />
+                      </Mydiv2>
+                      <br />
+                      <Mydiv>
+                      <Mycanvas ref={canvasRef}
+                                onMouseDown={startDrawing} // 마우스 버튼을 눌렀을때
+                                onMouseUp={EndDrawing} // 마우스마우스 버튼을 땠을 때
+                                onMouseMove={drawing} // 마우스가 움직일 때
+                                onMouseLeave={EndDrawing} // 마우스가 캔버스를 벗어낫을 때
+                      ></Mycanvas>
+                      <Mydiv4>
+                        <Button type="text" onClick={onClickClear}><DeleteOutlined /></Button>
+                        <Button type="text" onClick={onClickEraser}><UndoOutlined /></Button>
+                        <Button type="text" onClick={onClickPencil}><HighlightOutlined /></Button>
+                      </Mydiv4>
+                    </Mydiv>
             <Mydiv5>
                 <div className="butdiv2" style={{ display: "flex", flexDirection: "row", 
                                 alignItems: "center", justifyContent: "center", 
