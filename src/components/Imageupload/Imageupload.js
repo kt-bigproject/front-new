@@ -4,7 +4,7 @@ import { useState } from 'react';
 import axios from "axios";
 import styled from "@emotion/styled";
 import Button from "@leafygreen-ui/button"
-
+import { useAxios } from '../Axios/axios';
 
 const ImgUploadContainer = styled.div`
   margin-top:50px;
@@ -25,7 +25,7 @@ const getBase64 = (file) =>
 
 
 export default function ImageUpload(props) {
-
+    const api = useAxios()
     const [previewOpen, setPreviewOpen] = useState(false);
     const [previewImage, setPreviewImage] = useState('');
     const [previewTitle, setPreviewTitle] = useState('');
@@ -63,7 +63,7 @@ export default function ImageUpload(props) {
 
         data: formData
         try {
-            const response = await axios.post('http://127.0.0.1:8000/practice/upload/', formData, {
+            const response = await api.post('/practice/upload/', formData, {
                 headers: { "Content-Type": "multipart/form-data", }, // 헤더 추가
             });
             if (response.status === 201) {

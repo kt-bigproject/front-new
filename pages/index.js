@@ -16,9 +16,9 @@ export default function MainPage() {
 
   return (
     <>
-				<Banner>
-				<LayoutHeader />
-				<div>
+			<Banner>
+			<LayoutHeader />
+			<div>
       <Anchor style={{
       		  padding: '15px',
 						fontWeight: 'bold',
