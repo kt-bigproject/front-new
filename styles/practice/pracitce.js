@@ -1,11 +1,22 @@
 import styled from "@emotion/styled";
 
 export const Alldiv = styled.div`
+  background-image: url('/Practice/practicepage.png');
+  background-size: 100% 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
 `
+export const Alldiv2 = styled.div`
+  background-image: url('/Practice/gamepage.png');
+  background-size: 100% 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+`
+
 export const BannerDiv = styled.div`
   width: 1010px; 
   display : flex;
@@ -52,7 +63,7 @@ export const Mydiv = styled.div`
 `
 
 export const Mydiv2 = styled.div`
-  background-image: url('/main/effect5.png');
+  background-image: url('/Practice/line1.png');
   background-size: 100% 100%;
   margin-top: 50px;
   display: flex;
@@ -75,6 +86,7 @@ export const Mydiv5 = styled.div`
   width: 280px;
   justify-content: space-between;
   margin-top: 50px;
+  margin-bottom: 5em;
 `
 
 export const MyButton1 = styled.button`

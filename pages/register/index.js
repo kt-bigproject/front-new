@@ -117,7 +117,7 @@ export default function Register() {
       <div className={styles.col2}>        
         <div className={styles.boxLwrap}>
           <div className={styles.headerLogo}>
-            <Image src='/Logo.svg' width={150} height={40}/>
+            <Image src='/logo.png' width={150} height={40}/>
           </div>
           <h2 className={styles.headerText}>회원가입</h2>
           <span className={styles.accountQuery}>"이미 계정이 있으신가요?"

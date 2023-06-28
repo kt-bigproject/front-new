@@ -5,8 +5,8 @@ import { DeleteOutlined, DownOutlined, HighlightOutlined, ReadOutlined, Solution
 import { Dropdown, Space } from 'antd';
 import AuthContext from "../../src/components/AuthContext/AuthContext";
 import { useAxios } from "../../src/components/Axios/axios";
-import LayoutHeader from "../../src/commons/layout/header2/header";
 
+import LayoutHeader from "../../src/commons/layout/header2/header";
 import Modal from '@leafygreen-ui/modal';
 import Button from "@leafygreen-ui/button"
 import { Mydiv, Alldiv, Mydiv2, Mydiv3, Mydiv4, Mydiv5, MyButton1, MyButton2, BannerDiv, BannerDiv2, ImageDiv, Function, Context } from "../../styles/practice/pracitce"
@@ -38,27 +38,33 @@ export default function PraticePage(props) {
   const [clear, setClear] = useState("")
 
   const [font, setFont] = useState("one") // font지정 state
-
+  const [fontsent, setFontsent] = useState("폰트를 선택하세요")
   const [ sent, setSent ] = useState("")
 
   const [change, setChange] = useState(false) // 화면 전환 state
   
   const [open, setOpen] = useState(false);
+  
 
   const onClcikFont1 = () => { // 폰트 설정 함수
     setFont("one")
+    setFontsent("교보 2019년 손글씨체")
   }
   const onClcikFont2 = () => {
     setFont("two")
+    setFontsent("네이버 클로바 느릿느릿체")
   }
   const onClcikFont3 = () => {
     setFont("three")
+    setFontsent("조선 궁서체")
   }
   const onClcikFont4 = () => {
     setFont("four")
+    setFontsent("교보 2020년 박도연체")
   }
   const onClcikFont5 = () => {
     setFont("five")
+    setFontsent("KCC 안중근체")
   }
 
   const items = [ // dropbox옵션
@@ -124,7 +130,7 @@ export default function PraticePage(props) {
 
     context.font = `75pt ${font}` //폰트 넣을 수 있는 기능인데 보류
     context.fillStyle = "lightgray";
-    context.fillText(sent, 35, 120)
+    context.fillText(sent, 20, 150)
     contextRef.current = context;
     setCtx(contextRef.current)
 
@@ -204,8 +210,8 @@ export default function PraticePage(props) {
     const formData = new FormData(); // 이미지는 formdata객체를 만들어서 보내줘야 함
     formData.append("font", font);
     formData.append("image", file);
-    formData.append("sentence", sent)
-  
+    formData.append("sentence", sent);
+    
     console.log("******************************")
     // FormData의 key 확인
     for (let key of formData.keys()) {
@@ -218,6 +224,11 @@ export default function PraticePage(props) {
         console.log("formData values");
         console.log(value);
     }
+    console.log(formData['font'])
+    // console.log(ImageURL)
+    // console.log(response)
+    // console.log(blob)
+    // console.log(file)
 
     try {
       const response = await api.post('/practice/upload/', formData, {
@@ -231,8 +242,6 @@ export default function PraticePage(props) {
       }
     } catch (event) {
         console.error('이미지 전송 실패', event)
-        console.log('asd')
-        console.log(response)
     };
 
     
@@ -289,8 +298,8 @@ export default function PraticePage(props) {
               <Mydiv3>
               <Dropdown menu={{ items,}}>
                 <a onClick={(e) => e.preventDefault()}>
-                  <Space style={{ fontFamily:"one", fontSize:30, marginTop:30}}>
-                    <span>폰트를 선택하세요</span>
+                  <Space style={{ fontFamily:"one", fontSize:30, marginTop:50, backgroundImage:"url('/Practice/line2.png')", backgroundSize:"100% 100%", width: '10em', height:'3em', textAlign:'center', paddingLeft:'2em'}}>
+                    <span>{fontsent}</span>
                   <DownOutlined />
                   </Space>
                 </a>
@@ -321,7 +330,7 @@ export default function PraticePage(props) {
                 <Modal open={open} setOpen={setOpen}>
                   
               <h1 style={{textAlign:"center"}}>서체를 사진으로 찍어 등록 해주세요!</h1>
-              <ImageUpload font={font}/>
+              <ImageUpload font={font} sentence={sent}/>
             </Modal>
             </Mydiv5>
           </Function>

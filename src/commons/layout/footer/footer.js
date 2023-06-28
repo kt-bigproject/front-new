@@ -1,41 +1,34 @@
-import styles from './styles.module.css';
-import React from 'react';
-import 'boxicons/css/boxicons.min.css';
+import Modal from '@leafygreen-ui/modal';
+import { Footer, FooterUl, FooterUl2 } from "../../../../styles/main";
+import Condition from '../../../../src/components/Conditions/Conditions';
+import Secure from '../../../../src/components/Secure/secure';
+import Link from "next/link";
+import {useState} from "react"
 
-
-export default function LayoutFooter() {
+export default function Layoutfooter() {
+  const [open, setOpen] = useState(false);
+  const [open2, setOpen2] = useState(false);
   return (
-    <footer className={styles.footerwrap}>
-     <div className={styles.container1}>
-      <div className={styles.up}>
-        <img src="/Logo.svg" className={styles.logo} width={190} height={62} />
-        <p className={styles.text}>
-              오늘의 손글씨에 오신 것을 환영합니다!<br/>
-              오늘의 손글씨는 만 13세 미만의 어린이와 외국인을 대상으로 손글씨 학습을 제공하는 사이트입니다.<br/> 
-              손글씨를 연습하고 개선하며 창의적인 작품을 만들어보세요.
-            </p>
-      </div>
-     </div>
-      <div className={styles.line}></div> 
-     <div className={styles.container2}>
-        <div className={styles.iconwrap}>
-          <a href="https://www.instagram.com" target="_blank">
-          <i className='bx bxl-instagram' style={{ color: '#fa6400' }}></i>
-          </a> 
-          <a href="https://www.facebook.com" target="_blank"> 
-          <i className='bx bxl-facebook' style={{ color: '#fa6400' }}></i>
-          </a>
-          <a href="https://www.twitter.com" target="_blank">
-          <i className='bx bxl-twitter' style={{ color: '#fa6400' }}></i>
-          </a>
-        </div>
-        <div className={styles.text2}>© KT 에이블스쿨. All rights reserved.</div>
-        <div className={styles.text3}>
-        {/* <span className={styles.text4}>개인정보 처리방침</span><span className={styles.text5}>이용약관</span> */}
-        </div>
-      </div> 
-      
-      
-      </footer>
-  );
+    <>
+      <Footer>
+          <FooterUl>						
+            <Link href="https://twitter.com/"><a><img src='/icon/1.png' /></a></Link>
+            <Link href="https://www.google.com/"><a><img src='/icon/2.png' /></a></Link>
+            <Link href="https://ko-kr.facebook.com/"><a><img src='/icon/3.png' /></a></Link>
+            <Link href="https://www.instagram.com/"><a><img src='/icon/4.png' /></a></Link>
+            <Link href="https://github.com/"><a><img src='/icon/5.png' /></a></Link>
+          </FooterUl>
+					<FooterUl2>
+            <span style={{cursor:"pointer"}} onClick={() => setOpen(curr => !curr)}>개인정보 처리방침</span> | <span style={{cursor:"pointer"}} onClick={() => setOpen2(curr => !curr)}>이용약관</span><br/><br/>
+						<div>&copy; kt AIVLE. All rights reserved.</div>
+					</FooterUl2>
+          <Modal open={open} setOpen={setOpen}>
+          <Secure />
+          </Modal>
+          <Modal open={open2} setOpen={setOpen2}>
+          <Condition />
+          </Modal>
+      </Footer>
+    </>
+    )
 }
