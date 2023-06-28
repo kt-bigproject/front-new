@@ -88,69 +88,69 @@ export default function ImgModal({open, onClose, figureInfo}) {
 
   // 아래는 댓글기능 구현 (시도)코드입니다.
 
-  const [data, setData] = useState([])
-  const [del, setDel] = useState(false)
-  const [showReplyInput, setShowReplyInput] = useState(false);
-  const [replyText, setReplyText] = useState('');
-  const [commentId, setCommentId] = useState('');
+  // const [data, setData] = useState([])
+  // const [del, setDel] = useState(false)
+  // const [showReplyInput, setShowReplyInput] = useState(false);
+  // const [replyText, setReplyText] = useState('');
+  // const [commentId, setCommentId] = useState('');
 
-  const handleReplyClick = (commentId) => {
-    setCommentId(commentId);
-    setShowReplyInput(!showReplyInput);
-  };
+  // const handleReplyClick = (commentId) => {
+  //   setCommentId(commentId);
+  //   setShowReplyInput(!showReplyInput);
+  // };
 
-  console.log(figureInfo.id)
+  // console.log(figureInfo.id)
 
-  useEffect(()=>{
-    api.get(`/blog/comment/?blog=${figureInfo.id}`)
-      .then(response => {
-        setData(response.data)
-    })
-  }, [setData, del] );
+  // useEffect(()=>{
+  //   api.get(`/blog/comment/?blog=${figureInfo.id}`)
+  //     .then(response => {
+  //       setData(response.data)
+  //   })
+  // }, [setData, del] );
 
-  const handleSubmit = async e => {
-    e.preventDefault();
+  // const handleSubmit = async e => {
+  //   e.preventDefault();
 
-    console.log(comment);
-    console.log(figureInfo.id);
+  //   console.log(comment);
+  //   console.log(figureInfo.id);
 
-    const formData = new FormData();
-    formData.append('blog', figureInfo.id);
-    formData.append('comment', comment);
+  //   const formData = new FormData();
+  //   formData.append('blog', figureInfo.id);
+  //   formData.append('comment', comment);
 
-    const response = await api.post('/blog/comment/', formData)
-    const data = await response.data;
-    console.log(data)
-    if ( response.status == 201 ) {
-      console.log(data)
-    } else {
-      console.log(response.status)
-    }
-    setData(prevData => [...prevData, data]);
-  };
+  //   const response = await api.post('/blog/comment/', formData)
+  //   const data = await response.data;
+  //   console.log(data)
+  //   if ( response.status == 201 ) {
+  //     console.log(data)
+  //   } else {
+  //     console.log(response.status)
+  //   }
+  //   setData(prevData => [...prevData, data]);
+  // };
 
-  const submitReply = async e => {
-    e.preventDefault();
+  // const submitReply = async e => {
+  //   e.preventDefault();
 
-    const formData = new FormData();
-    formData.append('blog', figureInfo.id);
-    formData.append('comment', replyText);
-    formData.append('parent', commentId);
+  //   const formData = new FormData();
+  //   formData.append('blog', figureInfo.id);
+  //   formData.append('comment', replyText);
+  //   formData.append('parent', commentId);
 
-    const response = await api.post('/font/comment/', formData)
-    const data = await response.data;
-    console.log(data)
-    if ( response.status == 201 ) {
-      console.log(data)
-    } else {
-      console.log(response.status)
-    }
-    setData(prevData => [...prevData, data]);
+  //   const response = await api.post('/font/comment/', formData)
+  //   const data = await response.data;
+  //   console.log(data)
+  //   if ( response.status == 201 ) {
+  //     console.log(data)
+  //   } else {
+  //     console.log(response.status)
+  //   }
+  //   setData(prevData => [...prevData, data]);
 
-    setCommentId('');
-    setReplyText('');
-    setShowReplyInput(false);
-  };
+  //   setCommentId('');
+  //   setReplyText('');
+  //   setShowReplyInput(false);
+  // };
 
   // --------------------------------------------------------
   
@@ -192,7 +192,7 @@ export default function ImgModal({open, onClose, figureInfo}) {
             -------------
             /> */}
             {/* 힘찬님 코드 추가 (아래) */}
-            <div >
+            {/* <div >
             <form onSubmit={handleSubmit} >
             <input style={{ marginLeft: 10}} onChange={(e)=>{ setComment(e.target.value) }}/>
             <div>
@@ -202,15 +202,15 @@ export default function ImgModal({open, onClose, figureInfo}) {
             </div>
             </form>
             </div>
-            <div style={{height: 250}}>
+            <div style={{height: 250}}> */}
               {/* <ScrollView */}
-                {
+                {/* {
                 data.length > 0 &&
                 data.slice().reverse().map((comment) => (
                   <div className={styles.commentdiv} key={comment.id}>
                     <span>{comment.user} {comment.comment} {comment.created_at}</span>
                     <span onClick={() => handleReplyClick(comment.id)} style={{cursor: 'pointer'}}>답글쓰기</span>
-                    <CommentDeleteblog id={comment.id} state={[del, setDel]}/>
+                    <CommentDeleteblog id={comment.id} state={[del, setDel]}/> */}
 
                     {/* {comment.replies.length > 0 && (
                       <div>
@@ -220,7 +220,7 @@ export default function ImgModal({open, onClose, figureInfo}) {
                       </div>
                     )} */}
 
-                    {showReplyInput && commentId === comment.id &&(
+                    {/* {showReplyInput && commentId === comment.id &&(
                       <div>
                         <form onSubmit={submitReply}>
                           <input onChange={(e)=>{ setReplyText(e.target.value) }}/>
@@ -232,7 +232,7 @@ export default function ImgModal({open, onClose, figureInfo}) {
                 ))
                 //  : ''
                     }
-              </div>
+              </div> */}
             {/* 힘찬님 코드 추가 (위) */}
 
             

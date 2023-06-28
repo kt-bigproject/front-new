@@ -11,6 +11,7 @@ import FavoriteIcon from '@mui/icons-material/Favorite';
 import { Modal, Box, Typography, TextField, Button, IconButton} from '@mui/material';
 import Image from 'next/image';
 import ImgModal from './ImgModal';
+import WriteModal from './writeModal';
 import { PlusOutlined } from '@ant-design/icons';
 import { Margin } from '@mui/icons-material';
 import { useAxios } from '../../src/components/Axios/axios';
@@ -88,11 +89,12 @@ const BoardList = () => {
   
 
 
-  
+  console.log(boardShow)
 
   const [like, setLike] = useState(new Array(boardShow.length).fill(false));
 
   const [open, setOpen] = useState(false);
+  const [writeOpen, setWriteOpen] = useState(false);
 
   const [clickFigure, setClickFigure] = useState({});
 
@@ -106,6 +108,16 @@ const BoardList = () => {
     setClickFigure({});
     setOpen(false);
   };
+
+  const handleWriteOpen = () => {
+    setWriteOpen(true);    
+  };
+
+  const handleWriteClose = () => {
+    setWriteOpen(false);
+  };
+
+  
 
   const handleClick = index => {
     const newLike = [...like];
@@ -150,7 +162,7 @@ const BoardList = () => {
             <span className={styles.b4}>자랑</span><hr />해보세요  <img src='pencil.png' width={35} />
             {/* <td> */}
             <div className={styles.b1}>
-            <button onClick={moveToWrite} className={styles.b2}><img src='plus.png' className={styles.b3}/></button>
+            <button onClick={handleWriteOpen} className={styles.b2}><img src='plus.png' className={styles.b3}/></button>
           </div>
             {/* </td> */}
           </td>
@@ -198,7 +210,7 @@ const BoardList = () => {
               </div>              
             </div>
             {/* </div> */}
-            <ImgModal open={open} onClose={handleClose} figureInfo={clickFigure}/> 
+            <ImgModal open={open} onClose={handleClose} figureInfo={clickFigure}/>
       </div>
       </div>
           
@@ -212,10 +224,8 @@ const BoardList = () => {
               showLastButton />
               
           </div>
-          
+          <WriteModal open={writeOpen} onClose={handleWriteClose}/> 
       </div>
-        
-        
       <div/>
       </div>
     </div>
