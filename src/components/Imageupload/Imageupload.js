@@ -59,6 +59,7 @@ export default function ImageUpload(props) {
 
         formData.append('font', props.font)  //서버전달용
         formData.append(`image`, fileList[0].originFileObj) 
+        formData.append("sentence", props.sent)
         // FormData의 key 확인
 
         data: formData

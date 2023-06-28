@@ -11,7 +11,7 @@
   width: 60vw;
   background-color: #fa7400;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   justify-content: space-between;
   align-items: center;
   border-radius: 30px;
@@ -39,8 +39,8 @@
   cursor: pointer;
   display: inline-flex;
   font-family: "one";
-  font-size: 19px;
-  font-weight: 600;
+  font-size: 20px;
+  font-weight: 500;
   justify-content: center;
   line-height: 1.25;
   margin: 0;
@@ -52,8 +52,8 @@
   -webkit-user-select: none;
   touch-action: manipulation;
   vertical-align: baseline;
-  width: 133.08px;
-  height: 48.67px;
+  width: 120.08px;
+  height: 30.36px;
 }
 
 .menuItem:hover,
@@ -69,6 +69,47 @@
 
 .alignRight {
   margin-left: auto;
+}
+
+.logout {
+  align-items: center;
+  background-clip: padding-box;
+  background-color: #fa7400;
+  border: 1px solid transparent;
+  border-radius: .25rem;
+  box-shadow: rgba(0, 0, 0, 0.02) 0 1px 3px 0;
+  box-sizing: border-box;
+  color: #fff;
+  cursor: pointer;
+  display: inline-flex;
+  font-family: "one";
+  font-size: 20px;
+  font-weight: 500;
+  justify-content: center;
+  line-height: 1.25;
+  margin: 0;
+  min-height: 3rem;
+  position: relative;
+  text-decoration: none;
+  transition: all 250ms;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  vertical-align: baseline;
+  width: 70.08px;
+  height: 30.36px;
+  margin-right: 2em;
+}
+
+.logout:hover,
+.logout:focus {
+  background-color: #FAF0E6;
+  box-shadow: rgba(0, 0, 0, 0.1) 0 4px 12px;
+}
+
+.logout:hover {
+  color: orange;
+  font-weight: bolder;
 }
 
 

@@ -8,17 +8,17 @@ import {default as CustomModal} from '@leafygreen-ui/modal';
 import Button from "@leafygreen-ui/button"
 
 import AuthContext from "../AuthContext/AuthContext";
-import { Alldiv, Mydiv2, Mydiv3, Mydiv4, Mydiv5, MyButton1, MyButton2 } from "../../../styles/practice/pracitce"
+import { Mydiv2, Mydiv3, Mydiv4, Mydiv5, MyButton1, MyButton2, ImageDiv, Context, BannerDiv, BannerDiv2, Alldiv2, } from "../../../styles/practice/pracitce"
 import { useRouter } from "next/router";
 import { useAxios } from "../Axios/axios";
-import { HomeOffice, Blocks } from '@codecademy/gamut-illustrations';
-import { DiagonalBRegular } from "@codecademy/gamut-patterns";
+import LayoutHeader from "../../../src/commons/layout/header2/header";
 
 
 const Mycanvas = styled.canvas`
-border: 1px solid;
-background-image: url("/grid.png");
-background-color: white;
+  border: 1px solid;
+  background-image: url("/main/grid2.png");
+  background-size: 100%;
+  background-color: white;
 `
 
 const Mydiv = styled.div`
@@ -94,7 +94,8 @@ export default function Gamepage(props) {
     event.preventDefault();
     const formData = new FormData();
     formData.append('font', "one")  //서버전달용
-    formData.append(`image`, fileList[0].originFileObj) 
+    formData.append(`image`, fileList[0].originFileObj)
+    formData.append(`sentence`, props.sent) 
     // FormData의 key 확인
     setIsLoading(true)
     setgameOpen(curr => !curr)
@@ -119,8 +120,8 @@ export default function Gamepage(props) {
 
   useEffect(() =>{
     const canvas = canvasRef.current;
-    canvas.width = window.innerWidth * 0.6
-    canvas.height = window.innerHeight * 0.43
+    canvas.width = 1010
+    canvas.height = 400
 
     const context = canvas.getContext('2d')
     context.lineWidth = 4;
@@ -186,6 +187,7 @@ export default function Gamepage(props) {
     const formData = new FormData(); // 이미지는 formdata객체를 만들어서 보내줘야 함
     formData.append("font", "one");
     formData.append("image", file);
+    formData.append("sentence", props.sent);
   
     console.log("******************************")
     // FormData의 key 확인
@@ -274,86 +276,29 @@ export default function Gamepage(props) {
 
   return(
     <>
-    <Alldiv style={{ margin: 0, display: "flex", alignItems: "center", justifyContent: "center"}}>
-        <div className="up2div" style={{ display: "flex", flexDirection: "row", 
-                                        justifyContent: "center", backgroundColor: "#faf0e6", 
-                                        width: "1200px", margin: 0, height: 570}}>
-                 {/* <div className="lef2div" style={{ display: "flex", flexDirection: "row", justifyContent: "center", 
-                                                  alignItems: "center"}}> */}
-                  {/* <div className="imgdiv" style={{ position: "relative"}}>            
-                    <img style = {{width: 520, height: 520, transform: "rotate(6deg)"}} src="/gamei3.png" />   
-                    <img style = {{width: 270, height: 320, position: "absolute", top: 100, left: 125,
-                                    transform: "rotate(5deg)"}} src="/gamei1.png" />     
-                      </div>*/}
-                     <div className="icon" style={{ marginTop: 140}}> 
-                      <HomeOffice width={380}/>
-                      </div> 
-                          <div style= {{textAlign:"center", marginTop:20}}>
-                            {/* <img style = {{width: 250, height: 140}} src="/LOGO.png" /> */}
-                            {/* <ReadOutlined style={{fontSize:100, color:"#fa6400"}}/> */}
-                          </div>
-
-                  {/* </div>   */}
-                        <div className="rig2div" style={{ display: "flex", flexDirection: "column", 
-                                      alignItems: "center", justifyContent: "center", gap: 20, marginLeft: 30}}>
-                              
-
-                            <div className="pattern2" style={{ position: "relative", marginTop: 100}}>
-                              <svg height="280" width="620" >            
-                                <DiagonalBRegular height={300} />
-                              </svg> 
-
-                                <div style={{ boxSizing: "border-box", border: "1px solid", 
-                                                      textAlign: "left", backgroundColor: "#faf0e6",
-                                                      padding: 25, position: "absolute", top: -50, left: 20, 
-                                                      marginTop: 30, width: 620 }}>
-                                                        
-                                      <h2 style={{ fontSize:50, color: "#fa6400", 
-                                                  fontFamily: "Kimjungchul", marginBottom: 20}}>『글씨 놀이터』</h2>
-                                      <h3 style={{ fontSize:30, fontFamily: "Kimjungchul", marginBottom: 20 }} >연습한 글씨체를 게임을 통해 직접 적어보세요!</h3>
-                                    
-                                      <h4 style={{ fontSize:24, fontFamily: "Kimjungchul", marginBottom: 20 }} >단어와 문장을 듣고 발음을 연습할 수 있는 기능도 제공합니다. </h4>
-                                        <h5 style={{ fontSize:25, fontFamily: "Kimjungchul" }} >언어 학습의 재미를 경험해보세요. </h5>
-                                     
-                                </div> 
-                          </div>
-                        
-                           <div className="short" style={{ display: "flex", 
-                                                        flexDirection: "row", alignItems: "center", justifyContent: "center"}}>
-                            <button onClick={props.NextLevel} 
-                                    style={{ fontFamily: "Kimjungchul", color: "white", 
-                                              backgroundColor: "#fa6400", border: "white", cursor: "pointer",
-                                              width: 120, height: 50, fontSize: 40, 
-                                              borderTopLeftRadius: "80px",
-                                              borderTopRightRadius: "100px",
-                                              borderBottomLeftRadius: "100px",
-                                              borderBottomRightRadius: "100px",
-                                              transform: isHovered ? "scale(1.1)" : "none",
-                                              transition: "transform 0.3s ease",
-                                              textAlign: "center"}}
-                                              onMouseEnter={handleMouseEnter}
-                                              onMouseLeave={handleMouseLeave}>start</button>
-                                <Blocks width={80}/>              
-                            </div>
-                        </div>
-
-
-
-                        
-                        
-                          {/* <img style = {{width: 190, height: 120}} src="/g2.gif"/>  */}
-                      
-                    </div>  
+    <Alldiv2>
+      <BannerDiv>
+        <LayoutHeader />
+            <BannerDiv2>
+                  <ImageDiv>
+                    <img width='350' height='370' src='/Practice/Practice.png'/>
+                  </ImageDiv>
+                  <Context>
+                    <h1>놀이터</h1>
+                    <p>연습한 글씨체를 게임을 통해 직접 적어보세요!</p>
+                    <p>단어와 문장을 듣고 발음을 연습할 수 있는 기능도 제공합니다.</p>
+                    <p>언어 학습의 재미를 경험해보세요.</p>
+                  </Context>
+                </BannerDiv2>
           <div className="down2div" style={{ display: "flex", flexDirection: "column", 
-                                              alignItems: "center", justifySelf: "center", 
-                                               width: "1200px", backgroundColor: "#faf0e6" }}>                         
-                      <Mydiv2 style= {{marginTop:50}}>
+                                              alignItems: "center", justifySelf: "center",
+                                                }}>                         
+                      <Mydiv2 style= {{marginTop:100}}>
                           <img style = {{width: 130, height: 130}} src="/left.png" />
                           <div style={MyDivStyle}>{props.sent}</div>
                           <img style = {{width: 130, height: 130}} src="/right.png" />
                       </Mydiv2>
-                      <br />
-                      <Mydiv>
+                      <Mydiv style={{marginTop:'5em'}}>
                       <Mycanvas ref={canvasRef}
                                 onMouseDown={startDrawing} // 마우스 버튼을 눌렀을때
                                 onMouseUp={EndDrawing} // 마우스마우스 버튼을 땠을 때
@@ -366,16 +311,10 @@ export default function Gamepage(props) {
                         <Button type="text" onClick={onClickPencil}><HighlightOutlined /></Button>
                       </Mydiv4>
                     </Mydiv>
-            <Mydiv5>
-                <div className="butdiv2" style={{ display: "flex", flexDirection: "row", 
-                                alignItems: "center", justifyContent: "center", 
-                                gap: 50}}>
-                  <MyButton1 size="default" onClick={onClickSubmit} style={{ backgroundColor: "#fa6400", 
-                                                                          width: 140, height: 40, marginBottom: 40}}>
-                    <span style={{ fontFamily: "Kimjungchul", fontSize: 15 }}>손글씨 등록하기</span></MyButton1>
-                  <MyButton2 onClick={() => setOpen(curr => !curr)} style={{ width: 140, height: 40, fontSize: 17, marginBottom: 40 }}>
-                    <span style={{ fontFamily: "Kimjungchul" }}>사진 등록하기</span></MyButton2>
-                </div>  
+                  <Mydiv5>
+
+                  <MyButton1 size="default" onClick={onClickSubmit} >손글씨 등록하기</MyButton1>
+                  <MyButton2 onClick={() => setOpen(curr => !curr)} >사진 등록하기</MyButton2>
             <CustomModal open={open} setOpen={setOpen}>
               <h1 style={{textAlign:"center"}}>서체를 사진으로 찍어 등록 해주세요!</h1>
               <ImgUploadContainer>
@@ -433,8 +372,9 @@ export default function Gamepage(props) {
                 </div>
             </CustomModal>
             </Mydiv5>
-            </div>  
-    </Alldiv>
+            </div>
+      </BannerDiv>    
+    </Alldiv2>
     </>
   )
 }

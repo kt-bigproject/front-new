@@ -72,7 +72,7 @@ export default function LoginPage() {
       <div className={styles.boxLwrap}>
 
         <div className={styles.headerLogo}>
-          <Image src='/Logo.svg' width={150} height={40}/>
+          <Image src='/logo.png' width={150} height={40}/>
         </div>
         <h2 className={styles.headerText}>로그인</h2>
         <span className={styles.accountQuery}>"계정이 없으신가요?"
