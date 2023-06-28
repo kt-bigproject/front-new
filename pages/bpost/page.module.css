@@ -134,20 +134,21 @@
 
 .main_page {
   display: block;
-  margin: 0;
+  /* margin: 0; */
 }
 
 .main_page_color {
-  background-color: #ebddcc;
-  margin: 0;
+  /* background-color: #ebddcc; */
+  margin-top: 100px;
   height: 570px;
   display: flex;
   flex-direction: row;
   justify-content: center;
-  width: 1200px;
-  height: 550px;
-  margin: auto;
-  border: solid 1px;
+  width: 1010px;
+  height: 410px;
+  margin-left: 208.665px;
+  /* margin: 100 auto; */
+  /* border: solid 1px; */
   /* border-image: url('../../public/pngwing.com (1).png') 200 / 40px; */
 }
 
@@ -267,15 +268,17 @@
 }
 
 .modal_wrapper {
-  flex-direction: column;
+  flex-direction: row;
   display: flex;
   background-color: #FAF0E6;
+  border: black;
 }
 
 .modal_content_wrapper {
-  flex-direction: column;
-  margin: 0 auto;
+  flex-direction: row;
+  margin-left: 10px;
   display: flex;
+  /* border: black; */
 }
 
 .commentBox {
@@ -286,8 +289,8 @@
 }
 
 .commentBox_write {
-  /* display: flex; */
-  /* flex-direction: column-reverse; */
+  display: flex;
+  flex-direction: row;
   height: 500px;
   width: 50%;
   /* border: solid 1px black; */
@@ -378,17 +381,21 @@
   font-size: 15px;
 }
 
+.form_head {
+  margin-top: 9%;
+}
+
 .form_Style {
-  display: flex;
+  /* display: flex; */
   border: solid 1px black;
   /* bottom: 50px; */
   /* margin-left: 30px; */
   justify-content: center;
   /* padding: 40px; */
   background-color: white;
-  /* margin-top: 24%; */
+  margin-top: 24%;
   margin: 10px;
-  width: 300px;
+  width: 405px;
   height: 400px;
   /* width: 100%;
   height: 100%; */
