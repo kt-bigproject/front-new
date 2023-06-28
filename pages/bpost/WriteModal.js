@@ -128,76 +128,55 @@ export default function WriteModal({open, onClose}) {
           sx={boxStyle}
       >
       <div className={styles.modal_wrapper} >
-      <form onSubmit={handleApi} className={styles.form_Style}>
-            <input
-              type='file'
-              style={{ display: 'none' }}
-              fileList={fileList}
-              ref={fileInput}
-              // onPreview={handlePreview}
-              onChange={handleFileChange}
-          />
-          <div onClick={handleClick} 
-          style={{cursor: 'pointer', width: '100%', height: '100%',
-          border: '1px dashed #ccc', display: 'flex', alignItems: 'center', 
-          justifyContent: 'center', position: 'relative', overflow: 'hidden',
-          }}
-          >
-            {selectedImage ? (
-              <Image
-                src={selectedImage}
-                // alt="Selected Image"
-                // style={{ 
-                  // position: 'absolute',
-                //   top: '50%',
-                //   left: '50%',
-                //   transform: 'translate(-50%, -50%)',
-                //   maxWidth: '100%', maxHeight: '100%' }}
-                // }}
-                width={500}
-                height={500}
-              />
-            ) : (
-              <InboxOutlined style={{ fontSize: '32px' }} />
-            )}
-            <div>파일 업로드</div>
-            </div>
-          {/* <Button leftGlyph={<Icon glyph="Upload" fill="#FF0000"/>}
-            onClick={handleClick}>파일 업로드</Button> */}
-            </form>
-          </div>
-      {/* <div onClick={handleClick} 
-          style={{cursor: 'pointer', width: '100%', height: '100%',
-          border: '1px dashed #ccc', display: 'flex', alignItems: 'center', 
-          justifyContent: 'center', position: 'relative', overflow: 'hidden',
-          }}
-          >
-            {selectedImage ? (
-              <Image
-                src={selectedImage}
-                // alt="Selected Image"
-                style={{ 
-                  position: 'absolute',
-                //   top: '50%',
-                //   left: '50%',
-                //   transform: 'translate(-50%, -50%)',
-                //   maxWidth: '100%', maxHeight: '100%' }}
-                }}
-                width={500}
-                height={500}
-                
-              />
-            ) : (
-              <InboxOutlined style={{ fontSize: '32px' }} />
-            )}
-            <div>파일 업로드</div>
-            </div> */}
         
+      
+      
+       {/* */ }
         <div className={styles.commentBox_write}>
-          <div className={styles.form_style}>
+          <div className={styles.form_head}>
               {/* 왼쪽 이미지 */}
+              <form onSubmit={handleApi} className={styles.form_Style}>
+                <input
+                  type='file'
+                  style={{ display: 'none' }}
+                  fileList={fileList}
+                  ref={fileInput}
+                  // onPreview={handlePreview}
+                  onChange={handleFileChange}
+                />
+              
+              <div onClick={handleClick} 
+                style={{cursor: 'pointer', width: '405px', height: '400px',
+                border: '1px dashed #ccc', display: 'flex', alignItems: 'center', 
+                justifyContent: 'center', position: 'absolute', overflow: 'hidden',
+              }}
+              >
+                {selectedImage ? (
+                  <Image
+                    src={selectedImage}
+                    // alt="Selected Image"
+                    // style={{ 
+                      // position: 'absolute',
+                      // top: '50%',
+                      // left: '50%',
+                    //   transform: 'translate(-50%, -50%)',
+                    //   maxWidth: '100%', maxHeight: '100%' }}
+                    // }}
+                    width={500}
+                    height={500}
+                    
+                  />
+                ) : (
+                  <InboxOutlined style={{ fontSize: '32px' }} >파일 업로드</InboxOutlined>
+                )}
+                {/* <div>파일 업로드</div> */}
+              </div>
+              {/* <Button leftGlyph={<Icon glyph="Upload" fill="#FF0000"/>}
+                onClick={handleClick}>파일 업로드</Button> */}
+        </form>
 
         </div>
+        <div>
         <div className={styles.modal_content_wrapper}>
             <div style={{backgroundColor: '#faf0e6', width: '100%', margin: 'auto'}}>
                 <div className={styles.detailContainer}>
@@ -265,7 +244,8 @@ export default function WriteModal({open, onClose}) {
                 </div>
             </div>
         </div>
-        
+        </div>
+        </div> {/**/}
       </div>
       </Box>
   </Modal>
