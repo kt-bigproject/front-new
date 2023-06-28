@@ -1,0 +1,40 @@
+
+.modal_wrapper {
+  flex-direction: row;
+  display: flex;
+}
+
+.commentBox {
+  display: flex;
+  flex-direction: column;
+  height: 500px;
+  width: 350px;
+}
+
+.input_wrapper {
+  display: flex;
+  width: 350px;
+}
+
+
+.commentBody {
+  padding: 10px;
+  height: 100%;
+  overflow-x: visible;
+  overflow-y: auto;
+  position: relative
+}
+
+.editIcon {
+  padding-top: 5px;
+  padding-right: 5px;
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+.input_wrapper {
+  padding: 10px;
+  box-sizing: border-box;
+}
+

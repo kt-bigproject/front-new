@@ -12,7 +12,7 @@ import Image from 'next/image';
 import styles from '../../src/components/Qpost/home.module.css';
 import { styled  } from '@material-ui/styles';
 // import Icon from '@leafygreen-ui/icon';
-import Annotation from '/src/components/Qpost/Annotation';
+// import Annotation from '/src/components/Qpost/Annotation';
 
 // const SomeComponent = () => <Icon glyph="Plus" fill="#FF0000" />;
 
