@@ -1,13 +1,13 @@
 @font-face {
-  font-family: 'Kimjungchul';
-  src: url('/fonts/Kimjungchul.ttf');
+  font-family: "one";
+  src: url("/fonts/초보.ttf");
 }
 
 .footerwrap {
   background-color: #FEF8E2;
   height: 200px;
   width: 100%;
-  font-family: Kimjungchul;
+  font-family: "one";
   margin: 0 auto;
   display: flex;
   flex-direction: column;
@@ -37,7 +37,6 @@
 }
 .text {
   font-size: 20px;
-  font-family: Kimjungchul;
 }
 
 .iconwrap {
@@ -54,7 +53,6 @@
   align-items: center;
   justify-content: center;
   font-size: 16px;
-  font-family: Kimjungchul;
 }
 .text3 {
   display: flex;
@@ -67,17 +65,15 @@
 }
 
 .text4 {
-  font-family: Kimjungchul;
   color: gray;
 }
 .text5 {
-  font-family: Kimjungchul;
   color: gray;
 }
 
 .iconwrap a:hover {
   animation: shake 0.3s ease-in-out;
-  animation-iteration-count: infinite;
+  animation-iteration-count: 1;
   transform-origin: center;
 }
 @keyframes shake {

@@ -1,17 +1,23 @@
 import Link from 'next/link';
-import {BannerButtonDiv, Footer, Banner, BannerDiv, Section3Img, Section3Div, EndBanner, EndBanner1, EndBanner2, FeatureSection, FeatureSection2, FeatureSection3, Main, MainBox, MainDiv, MainFeatures,  MainP, MenuBox, FooterUl, Profile, Profile1, ProfileIcon, Name, Position, ProfileCircle, FunctionSpan, FunctionDiv, FunctionTitle, FunctionContext, Function, GIFdiv, FeatureP, BannerSection, All, Section1, Section2, FunctionDiv1, FunctionDiv2, FunctionDiv3, FunctionDiv4, Section3, Section4, Cover, Section4Div} from '../styles/main/index'
+import {BannerButtonDiv, Footer, Banner, BannerDiv, Section3Img, Section3Div, EndBanner, EndBanner1, EndBanner2, FeatureSection, FeatureSection2, FeatureSection3, Main, MainBox, MainDiv, MainFeatures,  MainP, MenuBox, FooterUl, Profile, Profile1, ProfileIcon, Name, Position, ProfileCircle, FunctionSpan, FunctionDiv, FunctionTitle, FunctionContext, Function, GIFdiv, FeatureP, BannerSection, All, Section1, Section2, FunctionDiv1, FunctionDiv2, FunctionDiv3, FunctionDiv4, Section3, Section4, Cover, Section4Div, BannerButtonDiv2} from '../styles/main/index'
 import LayoutHeader from '../src/commons/layout/header2/header';
 import { MyButton1, MyButton2 } from '../styles/practice/pracitce';
 import Modal from '@leafygreen-ui/modal';
-import {useState} from "react"
+import {useState, useContext} from "react"
 import { Anchor } from 'antd';
+import AuthContext from '../src/components/AuthContext/AuthContext';
+import { useRouter } from 'next/router';
 
 export default function MainPage() {
 	const [open, setOpen] = useState(false);
-
+	const { user } = useContext(AuthContext)
+	console.log(user)
 	const onClcikTeam = () => {
 		setOpen(curr => !curr)
 	}
+
+	const router = useRouter()
+
 
 
   return (
@@ -62,20 +68,31 @@ export default function MainPage() {
     </div>
 					<BannerSection id="part-1">
           	<BannerDiv>
-						  <h1>오늘의 글씨</h1>
-							<br />
-							<br />
 							<GIFdiv>
-								<div style={{width:280 , height: 280, backgroundColor:"white"}}></div>
+								<img src="/logo.png" />
 							</GIFdiv>
-							<br />
-							<br />
+							{user? 
+							(
+							<>
+						  <p style={{fontSize:"25px"}}>{user.username} 님 환영합니다!</p>
+						  <br />
+							<BannerButtonDiv2>
+          	    <MyButton1 onClick={() => {router.push('/practice')}}>Try it!</MyButton1>
+						  </BannerButtonDiv2>
+							</>
+							)	: (
+							<>
 						  <p>Another fine responsive site template freebie by HTML5 UP.</p>
 						  <br />
 							<BannerButtonDiv>
-          	    <MyButton1>Sign Up</MyButton1>
-          	    <MyButton2>Sign in</MyButton2>
+          	    <MyButton1 onClick={() => {router.push('/register')}}>회원가입</MyButton1>
+          	    <MyButton2 onClick={() => {router.push('/login')}}>로그인</MyButton2>
 						  </BannerButtonDiv>
+							</>
+							)} 
+
+						
+
           	</BannerDiv>
 					</BannerSection>
 		</Banner>
@@ -235,19 +252,6 @@ export default function MainPage() {
       		</Modal>
 					</Section4>
 				</All>
-			{/* Footer */}
-				<Footer>
-					<FooterUl>						
-            <Link href="https://twitter.com/"><a><img src='/icon/1.png' /></a></Link>
-            <Link href="https://www.google.com/"><a><img src='/icon/2.png' /></a></Link>
-            <Link href="https://ko-kr.facebook.com/"><a><img src='/icon/3.png' /></a></Link>
-            <Link href="https://www.instagram.com/"><a><img src='/icon/4.png' /></a></Link>
-            <Link href="https://github.com/"><a><img src='/icon/5.png' /></a></Link>
-          </FooterUl>
-					<ul>
-						<div>&copy; Untitled. All rights reserved.</div>
-					</ul>
-				</Footer>
     </>
   );
 }

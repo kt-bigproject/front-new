@@ -24,12 +24,13 @@ export default function Layout(props) {
         {isMain? 
         <>
         {props.children}
+        <LayoutFooter />
         </>
         : 
             <>
-            <div style={{backgroundImage:"url('/main/Noise.png')",backgroundSize:"100% 100%", backgroundColor: '#faf0e6'}}>
-            {props.children}
-            </div>
+              <div style={{backgroundImage: "url('/main/Noise.png')", backgroundSize: "100% 100%", backgroundColor: '#faf0e6'}}>
+                {props.children}
+              </div>
             <LayoutFooter />
             </>  
         }

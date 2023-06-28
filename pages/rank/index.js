@@ -1,4 +1,5 @@
 import { useRouter } from "next/router"
+import Secure from "@../../../src/components/Secure/secure"
 
 export default function Page() {
   
@@ -6,6 +7,7 @@ export default function Page() {
   return ( 
   <>
     <button onClick={e => router.push('/rank/2')}>ㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴ</button>
+    <Secure />
   </>
   )
 }

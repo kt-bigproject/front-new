@@ -35,16 +35,22 @@ export const BannerDiv = styled.div`
   /* background-size: 100%; */
   display : flex;
   flex-direction: column;
-  justify-content: center;
+  /* justify-content: center; */
   align-items: center;
   width: 50%;
-  height: 70%;
+  height: 50%;
 `
 
 export const BannerButtonDiv = styled.div`
   width: 280px;
   display: flex;
   justify-content: space-between;
+`
+
+export const BannerButtonDiv2 = styled.div`
+  width: 280px;
+  display: flex;
+  justify-content: center;
 `
 
 export const GIFdiv = styled.div`
@@ -311,6 +317,17 @@ export const Profile1 = styled.div`
  display: flex;
  justify-content: space-between;
 `
+const HoverAnimation = keyframes`
+  0% {
+    transform: translateY(0);
+    box-shadow: 0 0 0 rgba(135, 206, 250, 0);
+  }
+  100% {
+    transform: translateY(-10px);
+    box-shadow: 0 4px 8px rgba(135, 206, 250, 0.4);
+  }
+`;
+
 export const ProfileCircle = styled.div`
   display: flex;
   flex-direction: column;
@@ -320,6 +337,9 @@ export const ProfileCircle = styled.div`
   width: 150px;
   height: 200px;
   padding-right: 3em;
+  &:hover {
+    animation: ${HoverAnimation} 0.3s ease-in-out forwards;
+  }
 `;
 
 export const Name = styled.div`
@@ -339,6 +359,7 @@ export const Footer = styled.footer`
     display: flex;
     flex-direction: column;
     align-items: center;
+    border-top: 3px dashed;
 ` 
 
 export const FooterUl = styled.div`
@@ -346,4 +367,8 @@ export const FooterUl = styled.div`
     display: flex;
     justify-content: space-between;
     width: 15vw;
+`
+
+export const FooterUl2 = styled.div`
+  text-align: center;
 `
