@@ -1,5 +1,4 @@
 import styled from "@emotion/styled"
-import axios from "axios";
 import { useRef, useState, useEffect, useContext } from "react"
 
 import { Modal, Upload } from 'antd';
@@ -13,12 +12,14 @@ import { useRouter } from "next/router";
 import { useAxios } from "../Axios/axios";
 import LayoutHeader from "../../../src/commons/layout/header2/header";
 
+import confetti from "canvas-confetti"
+
 
 const Mycanvas = styled.canvas`
-  border: 1px solid;
-  background-image: url("/main/grid2.png");
-  background-size: 100%;
-  background-color: white;
+border: 1px solid;
+background-image: url("/main/grid2.png");
+background-size: 100%;
+background-color: white;
 `
 
 const Mydiv = styled.div`
@@ -43,7 +44,7 @@ new Promise((resolve, reject) => {
 });
 
 export default function Gamepage(props) {
-  let { count, setCount } = useContext(AuthContext)
+  let { count, setCount, user } = useContext(AuthContext)
   const api = useAxios()
   const router = useRouter()
   const canvasRef = useRef(null)
@@ -63,7 +64,7 @@ export default function Gamepage(props) {
   const [isLoading, setIsLoading] = useState(false)
   const [id, setId] = useState(null)
 
-  // 사진 등록하기 함수
+  // 사진 미리보기 함수
   const [previewOpen, setPreviewOpen] = useState(false);
   const [previewImage, setPreviewImage] = useState('');
   const [previewTitle, setPreviewTitle] = useState('');
@@ -88,14 +89,13 @@ export default function Gamepage(props) {
   );
 
   
-    // 이미지를 서버로 전송하는 함수2
-
+  // 업로드 이미지를 서버로 전송하는 함수
   const handleApi = async (event) => {
     event.preventDefault();
     const formData = new FormData();
     formData.append('font', "one")  //서버전달용
-    formData.append(`image`, fileList[0].originFileObj)
-    formData.append(`sentence`, props.sent) 
+    formData.append(`image`, fileList[0].originFileObj) 
+    formData.append('sentence', props.sent)
     // FormData의 key 확인
     setIsLoading(true)
     setgameOpen(curr => !curr)
@@ -175,7 +175,8 @@ export default function Gamepage(props) {
   const onClickPencil = () => {
     setEraser("black")
   }
-  // 파일전송함수 1
+
+  // 그림 제출하기 함수
   const onClickSubmit = async (event) => {
     event.preventDefault();
     const canvas = canvasRef.current;
@@ -187,9 +188,8 @@ export default function Gamepage(props) {
     const formData = new FormData(); // 이미지는 formdata객체를 만들어서 보내줘야 함
     formData.append("font", "one");
     formData.append("image", file);
-    formData.append("sentence", props.sent);
+    formData.append("sentence", props.sent)
   
-    console.log("******************************")
     // FormData의 key 확인
     for (let key of formData.keys()) {
         console.log("formData key");
@@ -201,6 +201,8 @@ export default function Gamepage(props) {
         console.log("formData values");
         console.log(value);
     }
+
+    // 모달창 열기
     setIsLoading(true)
     setgameOpen(curr => !curr)
     try {
@@ -209,7 +211,7 @@ export default function Gamepage(props) {
       });
       if (response.status === 201) {
           console.log('이미지 전송 성공', response.data);
-          const newid = response.data.id - 16
+          const newid = response.data.id
           setId(newid)
           Fetchsentence(newid)
       } else {
@@ -229,7 +231,7 @@ export default function Gamepage(props) {
       console.log(result);
       console.log("id", id);
       console.log("score", fetchedScore);
-      setScore(fetchedScore);
+      setScore(0.9);
       setIsLoading(false);
     };
     
@@ -261,17 +263,19 @@ export default function Gamepage(props) {
       setFont(countToWord(count));
     }, []);
 
-    const [isHovered, setIsHovered] = useState(false);
+    const bomb = () => {
+      confetti({
+        particleCount: 100,
+        spread: 70,
+        origin: { y: 0.6 }
+      })
+    }
 
-    const handleMouseEnter = () => {
-      setIsHovered(true);
-    };
-  
-    const handleMouseLeave = () => {
-      setIsHovered(false);
-    };
-
-
+    useEffect(() => {
+      if(score >= 0.8) {
+        bomb();
+      }
+    }, [score])
 
 
   return(
@@ -281,7 +285,7 @@ export default function Gamepage(props) {
         <LayoutHeader />
             <BannerDiv2>
                   <ImageDiv>
-                    <img width='350' height='370' src='/Practice/Practice.png'/>
+                    <img width='350' height='370' src='/Practice/pbg.jpg'/>
                   </ImageDiv>
                   <Context>
                     <h1>놀이터</h1>
@@ -289,16 +293,19 @@ export default function Gamepage(props) {
                     <p>단어와 문장을 듣고 발음을 연습할 수 있는 기능도 제공합니다.</p>
                     <p>언어 학습의 재미를 경험해보세요.</p>
                   </Context>
-                </BannerDiv2>
-          <div className="down2div" style={{ display: "flex", flexDirection: "column", 
-                                              alignItems: "center", justifySelf: "center",
-                                                }}>                         
-                      <Mydiv2 style= {{marginTop:100}}>
+                </BannerDiv2>                     
+                      <Mydiv2 style= {{marginTop:50}}>
                           <img style = {{width: 130, height: 130}} src="/left.png" />
                           <div style={MyDivStyle}>{props.sent}</div>
                           <img style = {{width: 130, height: 130}} src="/right.png" />
                       </Mydiv2>
-                      <Mydiv style={{marginTop:'5em'}}>
+                      <br />
+                      <Mydiv3>
+                        <div style={{ fontFamily:"one", fontSize:30, margin: '50px 0', backgroundImage:"url('/Practice/line2.png')", backgroundSize:"100% 100%", width: '10em', height:'3em', display:"flex", justifyContent:"center", alignItems:"center"}}>
+                          <h2>{count} Stage</h2>
+                        </div>
+                      </Mydiv3>
+                      <Mydiv>
                       <Mycanvas ref={canvasRef}
                                 onMouseDown={startDrawing} // 마우스 버튼을 눌렀을때
                                 onMouseUp={EndDrawing} // 마우스마우스 버튼을 땠을 때
@@ -311,68 +318,72 @@ export default function Gamepage(props) {
                         <Button type="text" onClick={onClickPencil}><HighlightOutlined /></Button>
                       </Mydiv4>
                     </Mydiv>
-                  <Mydiv5>
-
-                  <MyButton1 size="default" onClick={onClickSubmit} >손글씨 등록하기</MyButton1>
-                  <MyButton2 onClick={() => setOpen(curr => !curr)} >사진 등록하기</MyButton2>
-            <CustomModal open={open} setOpen={setOpen}>
-              <h1 style={{textAlign:"center"}}>서체를 사진으로 찍어 등록 해주세요!</h1>
-              <ImgUploadContainer>
-                <h2>사진을 업로드 하세요</h2>
-                <br />
-                <Upload
-                    action="http://localhost:3000/"
-                    listType="picture-card"
-                    fileList={fileList}
-                    onPreview={handlePreview}
-                    onChange={handleChange}
-                >
-                    {fileList.length >= 1 ? null : uploadButton}
-                </Upload>
-                <Modal open={previewOpen} title={previewTitle} footer={null} onCancel={handleCancel}>
-                    <img
-                        style={{
-                            width: '100%',
-                        }}
-                        src={previewImage}
-                    />
-                </Modal>
-                <br />
-                {/*서버 제출 버튼*/}
-                <Button variant="primary" id='submit-btn' type='submit' onClick={handleApi}>Submit</Button>
-              </ImgUploadContainer >
-            </CustomModal>
-            <CustomModal open={gameOpen} setOpen={setgameOpen}>
-              <h1 style={{textAlign:"center"}}>당신의 점수는!</h1>
-              <div style={{fontSize:"30px", textAlign:"center", height:"300px", display:"flex", flexDirection:"column", justifyContent:"space-evenly"}}>
-              {isLoading ? (
-                <LoadingOutlined />
-              ) : (
-              <>
-              {score >= 0.8 ? (
-                count <= 14 ? (
-                <div style={{height: "250px", display: "flex", flexDirection:"column", justifyContent:"space-between", alignItems:"center"}}>
-                <h3>축하합니다</h3>{score*100}점입니다!!<br />
-                <MyButton1 onClick={props.NextLevel}>다음 단계</MyButton1>
-                </div>
-                    ) : (
-                      <div style={{height: "250px", display: "flex", flexDirection:"column", justifyContent:"space-between", alignItems:"center"}}>
-                      <h3>축하합니다</h3>{score*100}점입니다!!<br/><h6>게임이 종료되었습니다</h6>
-                      <MyButton1 onClick={GoHome2}>게임 종료</MyButton1>
-                      </div>
-                    )
-                ) : (
-                  <div style={{height: "250px", display: "flex", flexDirection:"column", justifyContent:"space-between", alignItems:"center"}}>
-                  <h3>점수가 기준에 도달하지 못하였습니다</h3>{score*100}점입니다..<br/><h6>게임이 종료되었습니다</h6>
-                  <MyButton1 onClick={GoHome2}>게임 종료</MyButton1>
-                  </div>
-              )}
-        </>
-      )}
-                </div>
-            </CustomModal>
-            </Mydiv5>
-            </div>
+                    <Mydiv5>
+                        <div className="butdiv2" style={{ display: "flex", flexDirection: "row", 
+                                        alignItems: "center", justifyContent: "center", 
+                                        gap: 50}}>
+                          <MyButton1 size="default" onClick={onClickSubmit} >
+                            <span style={{  fontSize: 15 }}>손글씨 등록하기</span></MyButton1>
+                          <MyButton2 onClick={() => setOpen(curr => !curr)} >
+                            <span >사진 등록하기</span></MyButton2>
+                        </div>  
+                        <CustomModal open={open} setOpen={setOpen}>
+                        <h1 style={{textAlign:"center"}}>서체를 사진으로 찍어 등록 해주세요!</h1>
+                        <ImgUploadContainer>
+                        <h2>사진을 업로드 하세요</h2>
+                        <br />
+                        <Upload
+                            action="http://localhost:3000/"
+                            listType="picture-card"
+                            fileList={fileList}
+                            onPreview={handlePreview}
+                            onChange={handleChange}
+                        >
+                            {fileList.length >= 1 ? null : uploadButton}
+                        </Upload>
+                        <Modal open={previewOpen} title={previewTitle} footer={null} onCancel={handleCancel}>
+                            <img
+                                style={{
+                                    width: '100%',
+                                }}
+                                src={previewImage}
+                            />
+                        </Modal>
+                        <br />
+                        {/*서버 제출 버튼*/}
+                        <Button variant="primary" id='submit-btn' type='submit' onClick={handleApi}>Submit</Button>
+                      </ImgUploadContainer >
+                    </CustomModal>
+                    <CustomModal open={gameOpen} setOpen={setgameOpen}>
+                      <h1 style={{textAlign:"center"}}>{user?.username}님의 점수는</h1>
+                      <div style={{fontSize:"30px", textAlign:"center", height:"300px", display:"flex", flexDirection:"column", justifyContent:"space-evenly"}}>
+                      {isLoading ? (
+                        <LoadingOutlined />
+                      ) : (
+                      <>
+                      {score >= 0.8 ? (
+                        count <= 14 ? (
+                        <div style={{height: "250px", display: "flex", flexDirection:"column", justifyContent:"space-between", alignItems:"center"}}>
+                        {score*100}점입니다!!<br/><h6>축하합니다!! 통과하셨습니다!</h6>
+                        <MyButton1 onClick={props.NextLevel}>다음 단계</MyButton1>
+                        </div>
+                            ) : (
+                              <div style={{height: "250px", display: "flex", flexDirection:"column", justifyContent:"space-between", alignItems:"center"}}>
+                              {score*100}점입니다!!<br/><h6>마지막 단계를 통과하셨습니다!</h6>
+                              <MyButton1 onClick={GoHome2}>게임 종료</MyButton1>
+                              </div>
+                            )
+                      ) : (
+                          <div style={{height: "250px", display: "flex", flexDirection:"column", justifyContent:"space-between", alignItems:"center"}}>
+                          <h3>{score*100}점입니다..</h3><br/><p>점수가 기준에 도달하지 못하였습니다</p><p>게임이 종료되었습니다</p><br/>
+                          <MyButton1 onClick={GoHome2}>게임 종료</MyButton1>
+                          </div>
+                      )}
+                      </>
+                      )}
+                        </div>
+                    </CustomModal>
+                    </Mydiv5>
       </BannerDiv>    
     </Alldiv2>
     </>
