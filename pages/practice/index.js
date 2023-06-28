@@ -1,27 +1,23 @@
 import styled from "@emotion/styled"
 import ImageUpload from "../../src/components/Imageupload/Imageupload";
-import axios from "axios";
 import { useRef, useState, useEffect, useContext } from "react"
-import { DeleteOutlined, DownOutlined, HighlightOutlined, ReadOutlined, UndoOutlined } from '@ant-design/icons';
+import { DeleteOutlined, DownOutlined, HighlightOutlined, ReadOutlined, SolutionOutlined, UndoOutlined } from '@ant-design/icons';
 import { Dropdown, Space } from 'antd';
 import AuthContext from "../../src/components/AuthContext/AuthContext";
 import { useAxios } from "../../src/components/Axios/axios";
+import LayoutHeader from "../../src/commons/layout/header2/header";
 
 import Modal from '@leafygreen-ui/modal';
 import Button from "@leafygreen-ui/button"
-import { Alldiv, Mydiv2, Mydiv3, Mydiv4, Mydiv5, MyButton1, MyButton2 } from "../../styles/practice/pracitce"
+import { Mydiv, Alldiv, Mydiv2, Mydiv3, Mydiv4, Mydiv5, MyButton1, MyButton2, BannerDiv, BannerDiv2, ImageDiv, Function, Context } from "../../styles/practice/pracitce"
 
 
 const Mycanvas = styled.canvas`
   border: 1px solid;
-  background-image: url("/grid.png");
+  background-image: url("/main/grid2.png");
+  background-size: 100%;
+  background-color: white;
 `
-
-const Mydiv = styled.div`
-  display: flex;
-  flex-direction: row;
-`
-
 
 export default function PraticePage(props) {
 
@@ -49,9 +45,6 @@ export default function PraticePage(props) {
   
   const [open, setOpen] = useState(false);
 
-  const onClickChange = () => {
-    {change? setChange(false): setChange(true)}
-  }
   const onClcikFont1 = () => { // 폰트 설정 함수
     setFont("one")
   }
@@ -117,12 +110,12 @@ export default function PraticePage(props) {
 
   useEffect(() =>{
     const canvas = canvasRef.current;
-    canvas.width = window.innerWidth * 0.6
-    canvas.height = window.innerHeight * 0.43
+    canvas.width = 1010
+    canvas.height = 400
 
     const hidden = hiddenRef.current;
-    hidden.width = window.innerWidth * 0.6
-    hidden.height = window.innerHeight * 0.43
+    hidden.width = 1010
+    hidden.height = 400
 
     const context = canvas.getContext('2d')
     context.lineWidth = 5;
@@ -131,7 +124,7 @@ export default function PraticePage(props) {
 
     context.font = `75pt ${font}` //폰트 넣을 수 있는 기능인데 보류
     context.fillStyle = "lightgray";
-    context.fillText(inputValue, 50, 150)
+    context.fillText(sent, 35, 120)
     contextRef.current = context;
     setCtx(contextRef.current)
 
@@ -145,7 +138,7 @@ export default function PraticePage(props) {
     // hiddenContext.fillText(sent, 50, 150)
     hiddenContextRef.current = hiddenContext;
     sethiddenCtx(hiddenContextRef.current)
-  }, [clear, inputValue, font, change]);
+  }, [clear, inputValue, font, change, sent]);
 
   useEffect(() => { // 지우개 쓰기 위해서 렌더링
     if (ctx && hiddenCtx) {
@@ -211,6 +204,7 @@ export default function PraticePage(props) {
     const formData = new FormData(); // 이미지는 formdata객체를 만들어서 보내줘야 함
     formData.append("font", font);
     formData.append("image", file);
+    formData.append("sentence", sent)
   
     console.log("******************************")
     // FormData의 key 확인
@@ -237,6 +231,7 @@ export default function PraticePage(props) {
       }
     } catch (event) {
         console.error('이미지 전송 실패', event)
+        console.log('asd')
         console.log(response)
     };
 
@@ -271,61 +266,36 @@ export default function PraticePage(props) {
 
   return(
     <>
-    <Alldiv style={{ margin: 0, display: "block"}}>
-      <div className="updiv" style={{ backgroundColor: "#faf0e6", width: "100%", 
-                          margin: 0, height: 570, display: "flex", flexDirection: "row", justifyContent: "center"}}>
-        {/* <div style= {{textAlign:"center"}}> */}
-          {/* <img style = {{width: 250, height: 140}} src="/LOGO.png" /> */}
-            
-          {/* </div> */}
-            <div className="lefdiv" style={{ display: "flex", flexDirection: "row", justifyContent: "center", 
-                            alignItems: "center"}}>
-                 <div className="imgdiv" style={{ position: "relative"}}>            
-                    <img style = {{width: 480, height: 500, transform: "rotate(-7deg)"}} src="/upp7.png" />   
-                    <img style = {{width: 300, height: 310, 
-                                  position: "absolute", top: 95, left: 97, transform: "rotate(-7deg)" }} src="/ipp2.png" />     
-
-
-
-                  </div> 
-            </div>
-            {/* <contdiv style={{ display: "flex", flexDirection: "column", 
-                              alignItems: "center", justifyContent: "center", 
-                              backgroundColor: "skyblue", marginTop: 0}}> */}
-              <div className="rigdiv" style= {{ display: "flex", flexDirection: "column", justifyContent: "center", 
-                                alignItems: "center", gap: 50}}>         
-                {/* <ReadOutlined style={{fontSize:100, color:"#fa6400"}}/>              */}
-                <h2 style={{ fontSize:80, color: "#fa6400", fontFamily: "Kimjungchul" }}>『글씨 낙서장』</h2>
-                <div style={{ display: "flex", flexDirection: "column", justifyContent: "center"}}>
-                  <div style={{ display: "flex", flexDirection: "column", 
-                                justifyContent: "center", gap: 20}}>
-                    <h3 style={{ fontSize:30, fontFamily: "Kimjungchul" }}>다양한 서체를 적용하여 글씨체를 연습해보세요</h3>
-                    <h4 style={{ fontSize:25, fontFamily: "Kimjungchul" }}>손글씨를 연습하고 싶은 분들을 위한 특별한 공간입니다.</h4>
-                    <h5 style={{ fontSize:25, fontFamily: "Kimjungchul" }}>손글씨의 아름다움과 창의성을 함께 향상시킬 수 있는 공간, 손글씨 낙서장입니다.</h5>
-                  </div>
-                </div>
-              </div>
-          </div>
-          <div className="downdiv" style={{ backgroundImage: "url('/wrap2.jpg')", display: "flex", flexDirection: "column", 
-                            alignItems: "center", justifyContent: "center", 
-                            width: "100%", marginBottom: 0}}>
-              <Mydiv2 style= {{marginTop:50}}>
+    <Alldiv>
+      <BannerDiv>
+            <LayoutHeader />
+            <BannerDiv2>
+              <ImageDiv>
+                <img width='350' height='370' src='/Practice/Practice.png'/>
+              </ImageDiv>
+              <Context>
+                <h1>낙서장</h1>
+                <p>다양한 서체를 적용하여 글씨체를 연습해보세요</p>
+                <p>손글씨를 연습하고 싶은 분들을 위한 특별한 공간입니다.</p>
+                <p>손글씨의 아름다움과 창의성을 함께 향상시킬 수 있는 공간, 손글씨 낙서장입니다</p>
+              </Context>
+            </BannerDiv2>
+            <Function>
+              <Mydiv2>
                   <img style = {{width: 130, height: 130}} src="/left.png" />
-                  {/* <div style={MyDivStyle}>{sent}</div> */}
-                  <input type="text" style={MyDivStyle} value={inputValue} onChange={handleInputChange}/>
+                  <p style={{fontSize : "30px", fontFamily:font}}>{sent}</p>
                   <img style = {{width: 130, height: 130}} src="/right.png" />
               </Mydiv2>
               <Mydiv3>
               <Dropdown menu={{ items,}}>
                 <a onClick={(e) => e.preventDefault()}>
                   <Space style={{ fontFamily:"one", fontSize:30, marginTop:30}}>
-                    <span style={{ fontFamily: "Kimjungchul" }}>폰트를 선택하세요</span>
+                    <span>폰트를 선택하세요</span>
                   <DownOutlined />
                   </Space>
                 </a>
               </Dropdown>
               </Mydiv3>
-              <br />
               <Mydiv>
               <canvas ref={hiddenRef} 
                         onMouseDown={startDrawing} // 마우스 버튼을 눌렀을때
@@ -338,31 +308,24 @@ export default function PraticePage(props) {
                         onMouseUp={EndDrawing} // 마우스마우스 버튼을 땠을 때
                         onMouseMove={drawing} // 마우스가 움직일 때
                         onMouseLeave={EndDrawing} // 마우스가 캔버스를 벗어낫을 때
-              ></Mycanvas>
+              />
               <Mydiv4>
                 <Button type="text" onClick={onClickClear}><DeleteOutlined /></Button>
                 <Button type="text" onClick={onClickEraser}><UndoOutlined /></Button>
                 <Button type="text" onClick={onClickPencil}><HighlightOutlined /></Button>
               </Mydiv4>
-            </Mydiv>
+              </Mydiv>
               <Mydiv5>
-               <div className="butdiv" style={{ display: "flex", flexDirection: "row", 
-                                alignItems: "center", justifyContent: "center", 
-                                gap: 50}}>
-                <MyButton1 size="default" onClick={onClickSubmit} style={{ backgroundColor: "#fa6400", 
-                                                                          width: 140, height: 40, fontSize: 15, marginBottom: 40}}>
-                    <span style={{ fontFamily: "Kimjungchul" }}>손글씨 등록하기</span></MyButton1>
-                <MyButton2 onClick={() => setOpen(curr => !curr)} style={{ width: 140, height: 40, fontSize: 17, marginBottom: 40}}>
-                  <span style={{ fontFamily: "Kimjungchul" }}>사진 등록하기</span></MyButton2>
-              </div>  
-              <Modal open={open} setOpen={setOpen}>
-                 
-            <h1 style={{textAlign:"center"}}>서체를 사진으로 찍어 등록 해주세요!</h1>
-            <ImageUpload font={font}/>
-          </Modal>
-          </Mydiv5>
-          {/* </contdiv>  */}
-        </div>
+                  <MyButton1 size="default" onClick={onClickSubmit}>손글씨 등록하기</MyButton1>
+                  <MyButton2 onClick={() => setOpen(curr => !curr)}>사진 등록하기</MyButton2>
+                <Modal open={open} setOpen={setOpen}>
+                  
+              <h1 style={{textAlign:"center"}}>서체를 사진으로 찍어 등록 해주세요!</h1>
+              <ImageUpload font={font}/>
+            </Modal>
+            </Mydiv5>
+          </Function>
+          </BannerDiv>
         </Alldiv>
     </>
   )
