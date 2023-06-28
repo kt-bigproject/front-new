@@ -336,12 +336,14 @@ export const Position = styled.div`
 export const Footer = styled.footer`
 		background: #f9f8f7;
 		padding: 4em 0 6em 0;
-		text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 ` 
 
 export const FooterUl = styled.div`
 		margin: 0 0 2em 0;
     display: flex;
-    justify-content: space-around;
-    padding: 0 50rem;
+    justify-content: space-between;
+    width: 15vw;
 `

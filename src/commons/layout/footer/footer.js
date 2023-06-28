@@ -31,7 +31,7 @@ export default function LayoutFooter() {
         </div>
         <div className={styles.text2}>© KT 에이블스쿨. All rights reserved.</div>
         <div className={styles.text3}>
-        <span className={styles.text4}>개인정보 처리방침</span><span className={styles.text5}>이용약관</span>
+        {/* <span className={styles.text4}>개인정보 처리방침</span><span className={styles.text5}>이용약관</span> */}
         </div>
       </div> 
       
