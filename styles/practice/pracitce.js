@@ -3,17 +3,63 @@ import styled from "@emotion/styled";
 export const Alldiv = styled.div`
   display: flex;
   flex-direction: column;
-  text-align: center;
   align-items: center;
-  padding-left: 70;
+  justify-content: center;
+`
+export const BannerDiv = styled.div`
+  width: 1010px; 
+  display : flex;
+  flex-direction : column;
+  align-items: center;
+`
+
+export const BannerDiv2 = styled.div`
+  display: flex;
+  flex-direction: row;
+  width: 1010px;
+  height: 410px;
+  background-image: url("/Practice/qpost.png");
+  background-size: 100% 100%;
+  margin-top: 100px;
+  justify-content: space-around;
+`
+
+export const ImageDiv = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`
+export const Context = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+`
+
+export const Function = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  /* background-image: url('/main/effect17.png'); */
+  /* background-size: 100% 100%; */
+
+`
+export const Mydiv = styled.div`
+  display: flex;
+  flex-direction: row;
+  padding-top: 70px;
 `
 
 export const Mydiv2 = styled.div`
+  background-image: url('/main/effect5.png');
+  background-size: 100% 100%;
+  margin-top: 50px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 50%;
-  box-shadow: rgba(17, 17, 26, 0.05) 0px 1px 0px, rgba(17, 17, 26, 0.1) 0px 0px 8px;
+  width: 1010px;
+  /* box-shadow: rgba(17, 17, 26, 0.05) 0px 1px 0px, rgba(17, 17, 26, 0.1) 0px 0px 8px; */
 `
 
 export const Mydiv3 = styled.div`
@@ -50,7 +96,6 @@ export const MyButton1 = styled.button`
   margin: 0;
   min-height: 3rem;
   padding: calc(.875rem - 1px) calc(1.5rem - 1px);
-  position: relative;
   text-decoration: none;
   transition: all 250ms;
   user-select: none;
@@ -84,7 +129,7 @@ export const MyButton2 = styled.button`
   color: rgba(0, 0, 0, 0.85);
   cursor: pointer;
   display: inline-flex;
-  font-family: system-ui,-apple-system,system-ui,"Helvetica Neue",Helvetica,Arial,sans-serif;
+  font-family: "one";
   font-size: 16px;
   font-weight: 600;
   justify-content: center;
@@ -92,7 +137,6 @@ export const MyButton2 = styled.button`
   margin: 0;
   min-height: 3rem;
   padding: calc(.875rem - 1px) calc(1.5rem - 1px);
-  position: relative;
   text-decoration: none;
   transition: all 250ms;
   user-select: none;

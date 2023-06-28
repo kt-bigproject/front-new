@@ -18,7 +18,7 @@ export const AuthProvider = ({ children }) => {
     const getToken = localStorage.getItem("authTokens");
     if (getToken) {
       setAuthTokens(JSON.parse(getToken));
-      // setUser(jwt_decode(JSON.parse(getToken).access));
+      setUser(jwt_decode(JSON.parse(getToken).access));
     }
     setLoading(false);
   }, []);
@@ -39,9 +39,9 @@ export const AuthProvider = ({ children }) => {
     // 로그인에 성공했을 경우 홈으로 이동
     if (response.status === 200) {
       setAuthTokens(data);
-      // setUser(jwt_decode(data.access));
+      setUser(jwt_decode(data.access));
       localStorage.setItem("authTokens", JSON.stringify(data));
-      // console.log(jwt_decode(data.access))
+      console.log(jwt_decode(data.access))
       console.log(data)
       router.push("/");
     } else {
