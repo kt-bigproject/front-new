@@ -1,13 +1,18 @@
 import { useRouter } from "next/router"
-import Secure from "@../../../src/components/Secure/secure"
+import confetti from "canvas-confetti"
 
 export default function Page() {
-  
+  const onClcikButton = () => {
+    confetti({
+      particleCount: 100,
+      spread: 70,
+      origin: { y: 0.6 }
+    });
+  }
   const router = useRouter()
   return ( 
   <>
-    <button onClick={e => router.push('/rank/2')}>ㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴ</button>
-    <Secure />
+    <button onClick={onClcikButton}>ㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴㄴ</button>
   </>
   )
 }

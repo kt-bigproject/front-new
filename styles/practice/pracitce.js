@@ -1,4 +1,4 @@
-import styled from "@emotion/styled";
+import styled from "@emotion/styled"
 
 export const Alldiv = styled.div`
   background-image: url('/Practice/practicepage.png');

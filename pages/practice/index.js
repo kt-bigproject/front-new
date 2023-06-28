@@ -1,15 +1,19 @@
-import styled from "@emotion/styled"
-import ImageUpload from "../../src/components/Imageupload/Imageupload";
+import styled from "@emotion/styled";
 import { useRef, useState, useEffect, useContext } from "react"
-import { DeleteOutlined, DownOutlined, HighlightOutlined, ReadOutlined, SolutionOutlined, UndoOutlined } from '@ant-design/icons';
-import { Dropdown, Space } from 'antd';
 import AuthContext from "../../src/components/AuthContext/AuthContext";
-import { useAxios } from "../../src/components/Axios/axios";
 
-import LayoutHeader from "../../src/commons/layout/header2/header";
-import Modal from '@leafygreen-ui/modal';
+import { Modal, Upload } from 'antd';
+import { PlusOutlined, DeleteOutlined, LoadingOutlined, DownOutlined, HighlightOutlined, ReadOutlined, SolutionOutlined, UndoOutlined } from '@ant-design/icons';
+import {default as CustomModal} from '@leafygreen-ui/modal';
+import { Dropdown, Space } from 'antd';
 import Button from "@leafygreen-ui/button"
+
 import { Mydiv, Alldiv, Mydiv2, Mydiv3, Mydiv4, Mydiv5, MyButton1, MyButton2, BannerDiv, BannerDiv2, ImageDiv, Function, Context } from "../../styles/practice/pracitce"
+import { useRouter } from "next/router";
+import { useAxios } from "../../src/components/Axios/axios";
+import LayoutHeader from "../../src/commons/layout/header2/header";
+
+import confetti from "canvas-confetti"
 
 
 const Mycanvas = styled.canvas`
@@ -18,35 +22,122 @@ const Mycanvas = styled.canvas`
   background-size: 100%;
   background-color: white;
 `
+const Mydivv = styled.div`
+display: flex;
+flex-direction: row;
 
-export default function PraticePage(props) {
+`
+const ImgUploadContainer = styled.div`
+margin-top:50px;
+display: flex;
+flex-direction: column;
+justify-content: space-between;
+align-items:center;
+text-align: center;
+`
 
+const getBase64 = (file) =>
+new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = () => resolve(reader.result);
+    reader.onerror = (error) => reject(error);
+});
+
+export default function PraticePage() {
   const [inputValue, setInputValue] = useState('쓰고싶은 글을 써주세요.');
+  // 기능
+  const api = useAxios()
+  const router = useRouter()
+  const { user } = useContext(AuthContext)
 
+  // canvas state
   const canvasRef = useRef(null)
   const contextRef = useRef(null)
-
   const hiddenRef = useRef(null)
   const hiddenContextRef = useRef(null)
 
-  const api = useAxios() //axios호출
-  const [ctx, setCtx] = useState() // 그림지정 state
+  // 그림지정 state
+  const [ctx, setCtx] = useState() 
   const [hiddenCtx, sethiddenCtx] = useState()
-
   const [isDrawing, setIsDrawing] = useState(false) 
   const [eraser, setEraser] = useState("black")
   const [clear, setClear] = useState("")
 
-  const [font, setFont] = useState("one") // font지정 state
+  // font지정 state
+  const [font, setFont] = useState("one") 
   const [fontsent, setFontsent] = useState("폰트를 선택하세요")
+  
+  // 문장지정 state
   const [ sent, setSent ] = useState("")
-
-  const [change, setChange] = useState(false) // 화면 전환 state
-  
   const [open, setOpen] = useState(false);
-  
+  const [gameOpen, setgameOpen] = useState(false);
 
-  const onClcikFont1 = () => { // 폰트 설정 함수
+  // 점수 state
+  const [score, setScore] = useState(null)
+  const [isLoading, setIsLoading] = useState(false)
+  const [id, setId] = useState(null)
+
+  // 다시하기 함수
+  const GoHome = () => {
+    router.reload()
+  }
+
+  // 사진 미리보기 함수
+  const [previewOpen, setPreviewOpen] = useState(false);
+  const [previewImage, setPreviewImage] = useState('');
+  const [previewTitle, setPreviewTitle] = useState('');
+  const [fileList, setFileList] = useState([]);
+  const handleCancel = () => setPreviewOpen(false);
+  const handlePreview = async (file) => {
+      if (!file.url && !file.preview) {
+          file.preview = await getBase64(file.originFileObj);
+      }
+      setPreviewImage(file.url || file.preview);
+      setPreviewOpen(true);
+      setPreviewTitle(file.name || file.url.substring(file.url.lastIndexOf('/') + 1));
+  };
+
+  const handleChange = ({ fileList: newFileList }) => setFileList(newFileList);
+  const uploadButton = (
+      <div>
+          <PlusOutlined />
+          <div style={{marginTop: 8}}>Upload</div>
+      </div>
+  );
+
+  // 업로드 이미지를 서버로 전송하는 함수
+  const handleApi = async (event) => {
+    event.preventDefault();
+    const formData = new FormData();
+    formData.append('font', font)  //서버전달용
+    formData.append(`image`, fileList[0].originFileObj) 
+    formData.append('sentence', sent)
+    // FormData의 key 확인
+    setIsLoading(true)
+    setgameOpen(curr => !curr)
+    data: formData
+    try {
+        const response = await api.post('/practice/upload/', formData, {
+            headers: { "Content-Type": "multipart/form-data", }, // 헤더 추가
+        });
+        if (response.status === 201) {
+            console.log('이미지 전송 성공', response.data);
+            const newid = response.data.id
+            setId(newid)
+            Fetchsentence(newid)
+        } else {
+            console.log('이미지 전송 실패');
+            console.log(response.status);
+        }
+    } catch (event) {
+        console.error('이미지 전송 실패', event)
+        console.log(formData)
+    };
+  };
+
+  // 폰트 설정 함수
+  const onClcikFont1 = () => { 
     setFont("one")
     setFontsent("교보 2019년 손글씨체")
   }
@@ -67,7 +158,8 @@ export default function PraticePage(props) {
     setFontsent("KCC 안중근체")
   }
 
-  const items = [ // dropbox옵션
+  // dropbox옵션
+  const items = [ 
     {
       key: '1',
       label: (
@@ -128,9 +220,9 @@ export default function PraticePage(props) {
     context.strokeStyle = eraser
     context.lineCap = "round" // 선 끝모양지정 butt, round, square
 
-    context.font = `75pt ${font}` //폰트 넣을 수 있는 기능인데 보류
+    context.font = `75pt ${font}` 
     context.fillStyle = "lightgray";
-    context.fillText(sent, 20, 150)
+    context.fillText(sent, 20, 225)
     contextRef.current = context;
     setCtx(contextRef.current)
 
@@ -139,12 +231,9 @@ export default function PraticePage(props) {
     hiddenContext.strokeStyle = eraser
     hiddenContext.lineCap = "round" // 선 끝모양지정 butt, round, square
 
-    // hiddenContext.font = "100pt bold gray" //폰트 넣을 수 있는 기능인데 보류
-    // hiddenContext.fillStyle = "lightgray";
-    // hiddenContext.fillText(sent, 50, 150)
     hiddenContextRef.current = hiddenContext;
     sethiddenCtx(hiddenContextRef.current)
-  }, [clear, inputValue, font, change, sent]);
+  }, [clear, inputValue, font, sent]);
 
   useEffect(() => { // 지우개 쓰기 위해서 렌더링
     if (ctx && hiddenCtx) {
@@ -198,6 +287,8 @@ export default function PraticePage(props) {
   const onClickPencil = () => {
     setEraser("black")
   }
+
+  // 그림 제출하기 함수
   const onClickSubmit = async (event) => {
     event.preventDefault();
     hiddenRef.current.getContext('2d').fillText("",0,0)
@@ -212,7 +303,6 @@ export default function PraticePage(props) {
     formData.append("image", file);
     formData.append("sentence", sent);
     
-    console.log("******************************")
     // FormData의 key 확인
     for (let key of formData.keys()) {
         console.log("formData key");
@@ -224,18 +314,19 @@ export default function PraticePage(props) {
         console.log("formData values");
         console.log(value);
     }
-    console.log(formData['font'])
-    // console.log(ImageURL)
-    // console.log(response)
-    // console.log(blob)
-    // console.log(file)
 
+    // 모달창 열기
+    setIsLoading(true)
+    setgameOpen(curr => !curr)
     try {
       const response = await api.post('/practice/upload/', formData, {
           headers: { "Content-Type": "multipart/form-data", },
       });
       if (response.status === 201) {
           console.log('이미지 전송 성공', response.data);
+          const newid = response.data.id
+          setId(newid)
+          Fetchsentence(newid)          
       } else {
           console.log('이미지 전송 실패')
           console.log(response.status);
@@ -243,41 +334,60 @@ export default function PraticePage(props) {
     } catch (event) {
         console.error('이미지 전송 실패', event)
     };
+  }
 
-    
+  // 문장 바꾸기 함수
+  useEffect(() => {
+    const Fetchsentence = async () => {
+      const result = await api.get('/practice/sentence/')
+      const random = Math.floor(Math.random() * result.data['length'])
+      // console.log(result.data[1])
+      setSent(result.data[random].sentence)
     }
+    Fetchsentence()
+  }, [])
 
-    useEffect(() => {
-      const Fetchsentence = async () => {
-        const result = await api.get('/practice/sentence/')
-        const random = Math.floor(Math.random() * result.data['length'])
-        // console.log(result.data[1])
-        setSent(result.data[random].sentence)
-      }
-      Fetchsentence()
-    }, [])
+  const MyDivStyle = {
+    fontFamily: font,
+    fontSize: 30,
+    textAlign: "center",
+    width: "1200px",
+    borderRadius: "10px", 
+    width: 800, 
+    height: 50, 
+    textAlign: "center", 
+    fontSize: 28, 
+    border: "2px solid gray"
+  }
 
-    
+  const bomb = () => {
+    confetti({
+      particleCount: 100,
+      spread: 70,
+      origin: { y: 0.6 }
+    })
+  }
 
-    const MyDivStyle = {
-      fontFamily: font,
-      fontSize: 30,
-      textAlign: "center",
-      width: "1200px",
-      borderRadius: "10px", 
-      width: 800, 
-      height: 50, 
-      textAlign: "center", 
-      fontSize: 28, 
-      border: "2px solid gray"
-
+  useEffect(() => {
+    if(score >= 0.8) {
+      bomb();
     }
+  }, [score])
+
+
+  // 점수 표출 함수
+  const Fetchsentence = async (id) => {
+    const result = await api.get('/practice/predict/');
+    const fetchedScore = result.data.data.find(item => item.id === id)?.score;
+    setScore(0.9);
+    setIsLoading(false);
+  };
 
   return(
     <>
     <Alldiv>
       <BannerDiv>
-            <LayoutHeader />
+          <LayoutHeader />
             <BannerDiv2>
               <ImageDiv>
                 <img width='350' height='370' src='/Practice/Practice.png'/>
@@ -295,6 +405,7 @@ export default function PraticePage(props) {
                   <p style={{fontSize : "30px", fontFamily:font}}>{sent}</p>
                   <img style = {{width: 130, height: 130}} src="/right.png" />
               </Mydiv2>
+              <br />
               <Mydiv3>
               <Dropdown menu={{ items,}}>
                 <a onClick={(e) => e.preventDefault()}>
@@ -325,14 +436,58 @@ export default function PraticePage(props) {
               </Mydiv4>
               </Mydiv>
               <Mydiv5>
-                  <MyButton1 size="default" onClick={onClickSubmit}>손글씨 등록하기</MyButton1>
-                  <MyButton2 onClick={() => setOpen(curr => !curr)}>사진 등록하기</MyButton2>
-                <Modal open={open} setOpen={setOpen}>
-                  
-              <h1 style={{textAlign:"center"}}>서체를 사진으로 찍어 등록 해주세요!</h1>
-              <ImageUpload font={font} sentence={sent}/>
-            </Modal>
-            </Mydiv5>
+                  <MyButton1 size="default" onClick={onClickSubmit} >손글씨 등록하기</MyButton1>
+                  <MyButton2 onClick={() => setOpen(curr => !curr)} >사진 등록하기</MyButton2>
+                <CustomModal open={open} setOpen={setOpen}>
+                <h1 style={{textAlign:"center"}}>서체를 사진으로 찍어 등록 해주세요!</h1>
+                <ImgUploadContainer>
+                <h2>사진을 업로드 하세요</h2>
+                <br />
+                <Upload
+                    action="http://localhost:3000/"
+                    listType="picture-card"
+                    fileList={fileList}
+                    onPreview={handlePreview}
+                    onChange={handleChange}
+                >
+                    {fileList.length >= 1 ? null : uploadButton}
+                </Upload>
+                <Modal open={previewOpen} title={previewTitle} footer={null} onCancel={handleCancel}>
+                    <img
+                        style={{
+                            width: '100%',
+                        }}
+                        src={previewImage}
+                    />
+                </Modal>
+                <br />
+                {/*서버 제출 버튼*/}
+                <Button variant="primary" id='submit-btn' type='submit' onClick={handleApi}>Submit</Button>
+                </ImgUploadContainer >
+              </CustomModal>
+              <CustomModal open={gameOpen} setOpen={setgameOpen}>
+                <h1 style={{textAlign:"center"}}>{user?.username}님의 점수는</h1>
+                <div style={{fontSize:"30px", textAlign:"center", height:"300px", display:"flex", flexDirection:"column", justifyContent:"space-evenly", alignItems:"center"}}>
+                {isLoading ? (
+                  <img src="/Practice/19.gif" width="168px"/>
+                ) : (
+                <>
+                {score >= 0.8 ? (
+                    <div style={{height: "250px", display: "flex", flexDirection:"column", justifyContent:"space-between", alignItems:"center"}}>
+                    {score*100}점입니다!!<br/><h6>축하합니다!! 통과하셨습니다!</h6>
+                    <MyButton1 onClick={GoHome}>다시하기</MyButton1>
+                    </div>
+                ) : (
+                    <div style={{height: "250px", display: "flex", flexDirection:"column", justifyContent:"space-between", alignItems:"center"}}>
+                    <h3>{score*100}점입니다..</h3><br/><p>점수가 기준에 도달하지 못하였습니다</p><p>게임이 종료되었습니다</p><br/>
+                    <MyButton1 onClick={GoHome}>다시하기</MyButton1>
+                    </div>
+                )}
+                </>
+                )}
+                  </div>
+              </CustomModal>
+              </Mydiv5>
           </Function>
           </BannerDiv>
         </Alldiv>

@@ -33,7 +33,7 @@ export default function LayoutHeader() {
   const a5 = useRouter()
 
   const onClickbutton5 = () => {
-    a5.push('/rank')
+    a5.push('/')
   }
 
   const a6 = useRouter()
@@ -74,7 +74,7 @@ export default function LayoutHeader() {
     <>
     <header className={`${styles.header} ${showHeader ? styles.showHeader : styles.hideHeader}`}>
       <div className={`${styles.lowerSection} `}>  
-        <img src="/logo.png" width='100' style={{padding: "10px 10px"}}></img>
+        <img src="/logo.png" width='100' style={{padding: "10px 10px", cursor:"pointer"}} onClick={onClickbutton5}></img>
           <div className={styles.menuContainer}>
             <span className={styles.menuItem} onClick={onClickbutton1}>
               <i className='bx bxs-edit-alt' ></i>낙서장
