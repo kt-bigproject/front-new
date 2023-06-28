@@ -76,7 +76,7 @@ const getBase64 = (file) =>
         reader.onerror = (error) => reject(error);
     });
 
-const QuillEditor = dynamic( () => import('../Qpost/QuillEditor'), {
+const QuillEditor = dynamic( () => import('../bpost/QuillEditor'), {
   ssr : false
 })
 
@@ -97,7 +97,7 @@ const BoardWrite = () => {
 
   console.log(user);
 
-
+  
   const api = useAxios(); //**
 
   const handleFileChange = (e) => {
@@ -122,7 +122,7 @@ const BoardWrite = () => {
     formData.append('title', title)  //서버전달용
     formData.append('body', body )
     // formData.append(`image`, fileList[0]?.originFileObj); 
-    formData.append(`image${index}`, file);
+    formData.append(`image`, fileList);
     // if (file !== null) {
     //   formData.append('file', file);
     // }
@@ -223,13 +223,13 @@ const BoardWrite = () => {
             <div className={styles.titleInput}>
               <TextInput 
                   // {/* <input */}
-                    type="text"
-                    id="title"
+                    // type="text"
+                    // id="title"
                     onChange={(e) => {setTitle(e.target.value)}}
                     placeholder="30자 이내로 제목을 입력해 주세요."
-                    className={styles.titleInput}
+                    // className={styles.titleInput}
                     maxLength={30}
-                    required
+                    // required
                   // {/* /> */}
               // {/* </TextInput> */}
               />
@@ -238,9 +238,10 @@ const BoardWrite = () => {
           
 
           <input
+              type='file'
               style={{ display: 'none' }}
-              action="http://localhost:3000/"
-              listType="picture-card"
+              // action="http://localhost:3000/"
+              // listType="picture-card"
               fileList={fileList}
               ref={fileInput}
               // onPreview={handlePreview}
@@ -370,7 +371,7 @@ export default BoardWrite;
 //   const [type, setType] = useState("normal")
 
 //   const [loading, setLoading] = useState(true);
-//   const [file, setFile] = useState(null);
+//   const [files, setFiles] = useState(null);
 //   const [selectedFileName, setSelectedFileName] = useState('');
 //   const fileInput = useRef();
 
@@ -390,7 +391,7 @@ export default BoardWrite;
 
 
 //   const handleFileChange = (e) => {
-//     setFile(e.target.files[0]);
+//     setFiles(e.target.files[0]);
 //     setSelectedFileName(e.target.files[0].name);
 //   };
 
@@ -410,10 +411,10 @@ export default BoardWrite;
 //       const formData = new FormData();
 //       formData.append('title', title)
 //       formData.append('body', content)
-//       formData.append(`image`, fileList[0]?.originFileObj); 
+//       formData.append('image', files[0]?.originFileObj); 
 //       // formData.append('image', type)
-//       if (file !== null) {
-//         formData.append('file', file);
+//       if (files !== null) {
+//         formData.append('file', files);
 //       }
 
 //       const response = await api.post('/blog/blog/', formData)
@@ -448,9 +449,9 @@ export default BoardWrite;
 //       <form onSubmit={handleSubmit}>
 
 //         <div className={styles.writeTitle}>
-//           <div>
+//           {/* <div>
 //           <SelectType typeState={[type, setType]}/>      
-//           </div>
+//           </div> */}
 //           <div className={styles.titleInput}>
 //           <TextInput            
 //             aria-labelledby="title" 
