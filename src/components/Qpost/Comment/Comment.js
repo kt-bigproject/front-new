@@ -13,6 +13,16 @@ export default function Comment({ blog, comment, level = 0, deleteComment, setDe
     setShowReplyInput(!showReplyInput);
   };
 
+  function formatDateTime(date) {
+    const year = date.getFullYear();
+    const month = ('0' + (date.getMonth() + 1)).slice(-2);
+    const day = ('0' + date.getDate()).slice(-2);
+    const hour = ('0' + date.getHours()).slice(-2);
+    const minute = ('0' + date.getMinutes()).slice(-2);
+
+    return `${year}-${month}-${day} ${hour}:${minute}`;
+  }
+
   return (
     <div className={styles.commentContainer}>
       <div className={styles.commentBoxWrapper}>
@@ -24,7 +34,7 @@ export default function Comment({ blog, comment, level = 0, deleteComment, setDe
         <div style={{display: 'inline-block'}}>
           <p className={styles.userName}>{comment.user}</p>
           <p className={styles.commentFrame}>{comment.comment}</p>
-          <span className={styles.commentDate}>{moment(new Date(comment.created_at).toISOString()).format('YYYY-MM-DD HH:mm')}</span>
+          <span className={styles.commentDate}>{formatDateTime(new Date(comment.created_at))}</span>
           <span className={styles.replyText} onClick={handleReplyClick}>답글쓰기</span>   
         </div>  
 

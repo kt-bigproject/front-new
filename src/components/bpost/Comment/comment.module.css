@@ -1,0 +1,39 @@
+
+
+
+.commentBox {
+  width: 100%;
+  position: relative;
+}
+
+.commentIcon {
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 5px;
+}
+
+.textArea {
+  resize: none;
+  width: 100%;
+  height: 50px;
+  box-sizing: border-box;
+  padding: 10px;
+  font-size: 16px;
+}
+
+.user_text {
+  font-family: "four";
+  font-weight: 600;
+  margin-right: 5px;
+}
+
+.comment_text {
+  margin-right: 5px;
+}
+
+.created_at_text {
+  font-size: x-small;
+  font-weight: 300;
+  color: #666666;
+}

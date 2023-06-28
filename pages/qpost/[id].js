@@ -11,7 +11,7 @@ import AuthContext from "/src/components/AuthContext/AuthContext";
 import { FormSkeleton } from '@leafygreen-ui/skeleton-loader';
 import ErrorAlert from '/src/components/Qpost/ErrorAlert';
 import styles from '/src/components/Qpost/detail.module.css';
-import moment from 'moment';
+// import moment from 'moment';
 import IconButton from '@leafygreen-ui/icon-button';
 import Icon from '@leafygreen-ui/icon';
 import Popover from '@leafygreen-ui/popover';
@@ -110,6 +110,16 @@ export default function PostDetail() {
   }
   `
 
+  function formatDateTime(date) {
+    const year = date.getFullYear();
+    const month = ('0' + (date.getMonth() + 1)).slice(-2);
+    const day = ('0' + date.getDate()).slice(-2);
+    const hour = ('0' + date.getHours()).slice(-2);
+    const minute = ('0' + date.getMinutes()).slice(-2);
+
+    return `${year}-${month}-${day} ${hour}:${minute}`;
+  }
+
   return (
     <div style={{backgroundColor:'#FAF0E6', width: '1100px', margin: 'auto' }}> 
       <div className={styles.detailContainer}>
@@ -138,7 +148,7 @@ export default function PostDetail() {
 
             <div style={{display: 'flex', justifyContent: 'space-between', color: '#666666', paddingTop: '15px'}}>
               <div style={{display: 'flex', width: '170px', justifyContent: 'space-between'}}>
-                <h5>{moment(new Date(blog.created_at).toISOString()).format('YYYY-MM-DD HH:mm')}</h5>
+                <h5>{formatDateTime(new Date(blog.created_at))}</h5>
                 <h5>조회: {blog.views}</h5>
               </div>
 
