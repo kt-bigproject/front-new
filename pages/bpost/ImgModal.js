@@ -1,10 +1,10 @@
 import { Modal, Box, IconButton} from '@mui/material';
-import { useAxios } from '/src/components/Axios/axios';
+import { useAxios } from '../../src/components/Axios/axios';
 import Image from 'next/image';
 import styles from './detail.module.css';
 import { useState, useEffect  } from 'react';
-import Comment from '/src/components/bpost/Comment/Comment';
-import CommentList from '/src/components/bpost/Comment/CommentList';
+import Comment from '../../src/components/bpost/Comment/Comment';
+import CommentList from '../../src/components/bpost/Comment/CommentList';
 import EditIcon from '@mui/icons-material/Edit';
 import Heart from "react-animated-heart";
 

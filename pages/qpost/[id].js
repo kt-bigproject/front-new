@@ -1,21 +1,22 @@
 /** @jsxImportSource @emotion/react */
 import { useState, useEffect, useContext } from 'react';
 // import axios from 'axios';
-import DeleteIconBtn from "/src/components/Qpost/DeleteIconBtn"
+import DeleteIconBtn from "../../src/components/Qpost/DeleteIconBtn"
 // import Link from 'next/link';
-import CommentList from '/src/components/Qpost/Comment/CommentList';
+import CommentList from '../../src/components/Qpost/Comment/CommentList';
 import { useRouter } from 'next/router'
 // import Button from '@leafygreen-ui/button';
-import { useAxios } from "/src/components/Axios/axios";
-import AuthContext from "/src/components/AuthContext/AuthContext";
+import { useAxios } from "../../src/components/Axios/axios";
+import AuthContext from "../../src/components/AuthContext/AuthContext";
 import { FormSkeleton } from '@leafygreen-ui/skeleton-loader';
-import ErrorAlert from '/src/components/Qpost/ErrorAlert';
-import styles from '/src/components/Qpost/detail.module.css';
+import ErrorAlert from '../../src/components/Qpost/ErrorAlert';
+import styles from '../../src/components/Qpost/detail.module.css';
 // import moment from 'moment';
 import IconButton from '@leafygreen-ui/icon-button';
 import Icon from '@leafygreen-ui/icon';
 import Popover from '@leafygreen-ui/popover';
 import { css } from '@emotion/react'
+import LayoutHeader from '../../src/commons/layout/header2/header';
 
 
 export default function PostDetail() {
@@ -121,6 +122,7 @@ export default function PostDetail() {
   }
 
   return (
+    <><LayoutHeader />
     <div style={{backgroundColor:'#FAF0E6', width: '1100px', margin: 'auto' }}> 
       <div className={styles.detailContainer}>
         <div className={styles.detailWrapper}>
@@ -208,6 +210,6 @@ export default function PostDetail() {
 
       </div>
       </div>
-    </div>
+    </div></>
   );
 }

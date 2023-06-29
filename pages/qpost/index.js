@@ -11,6 +11,7 @@ import Image from 'next/image';
 // import { RainLoose, DiagonalBRegular, RainRegular } from "@codecademy/gamut-patterns";
 import styles from '../../src/components/Qpost/home.module.css';
 import { styled  } from '@material-ui/styles';
+import LayoutHeader from '../../src/commons/layout/header2/header';
 // import Icon from '@leafygreen-ui/icon';
 // import Annotation from '/src/components/Qpost/Annotation';
 
@@ -64,6 +65,8 @@ export default function Home() {
 }
 
   return (
+    <>
+    <LayoutHeader />
     <div style={{ width: '1100px', margin: 'auto' }}>    
 
       
@@ -90,6 +93,6 @@ export default function Home() {
           showLastButton />
       </div>
     </div>
-
+    </>
   )
 }
