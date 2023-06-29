@@ -16,13 +16,12 @@
   width: 350px;
 }
 
-
 .commentBody {
   padding: 10px;
   height: 100%;
   overflow-x: visible;
   overflow-y: auto;
-  position: relative
+  position: relative;
 }
 
 .editIcon {
@@ -33,8 +32,27 @@
   right: 0;
 }
 
-.input_wrapper {
+.inputWrapper {
   padding: 10px;
   box-sizing: border-box;
 }
 
+.LikeWrapper {
+  display: block;
+  position: relative;
+  height: 70px;
+}
+
+
+.LikeBtn {
+  position: absolute;
+  bottom: -30px;
+  left: -20px;
+}
+
+.LikeNum {
+  position: absolute;
+  bottom: 8px;
+  left: 60px;
+  font-size: 20px;
+}

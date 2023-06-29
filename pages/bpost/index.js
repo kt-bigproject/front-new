@@ -1,113 +1,98 @@
-import React, {useEffect, useState} from 'react';
-import axios from "axios";
-import Link from 'next/link';
-import { useRouter } from 'next/router';
-// import TestFolders from '../Test';
-
+import React, { useState, useEffect, useContext, useRef } from 'react';
+import axios from 'axios';
 import Pagination from '@mui/material/Pagination';
-import styles from './page.module.css';
-import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
-import FavoriteIcon from '@mui/icons-material/Favorite';
-import { Modal, Box, Typography, TextField, Button, IconButton} from '@mui/material';
+import { useAxios } from '/src/components/Axios/axios';
+import { styled  } from '@material-ui/styles';
+import AuthContext from '/src/components/AuthContext/AuthContext';
+import styles from './home.module.css';
 import Image from 'next/image';
+import ChatBubbleIcon from '@mui/icons-material/ChatBubble';
+import FavoriteIcon from '@mui/icons-material/Favorite';
+import VisibilityIcon from '@mui/icons-material/Visibility';
+
 import ImgModal from './ImgModal';
-import WriteModal from './writeModal';
-import { PlusOutlined } from '@ant-design/icons';
-import { Margin } from '@mui/icons-material';
-import { useAxios } from '../../src/components/Axios/axios';
-import LayoutHeader from '../../src/commons/layout/header2/header';
+import WriteModal from './WriteModal';
+
+// import { RoughNotation } from 'react-rough-notation';
 
 
-const BoardList = () => {
-  // const [boardList, setBoardList] = useState([]);
-  // const [pageList, setPageList] = useState([]);
-  const [boardShow, setBoardshow] = useState([]);
-  const api = useAxios();
+const CustomPagination = styled(Pagination)({
+  '& button[type="button"]': {
+    fontFamily: 'inherit',
+  },
+});
 
-  const [curPage, setCurPage] = useState(1); //현재 페이지 세팅
-  // const [prevBlock, setPrevBlock] = useState(0); //이전 페이지 블록
-  // const [nextBlock, setNextBlock] = useState(0); //다음 페이지 블록
-  // const [lastPage, setLastPage] = useState(0); //마지막 페이지
-  const Router = useRouter()
+export default function Home() {
 
+  const { user, logoutUser } = useContext(AuthContext);
+
+  // console.log(user)
+  
+  const api = useAxios()
+  const [blog, setBlog] = useState(null);
+  const [page, setPage] = useState(1);
   const [count, setCount] = useState(0);
-  // const [search, setSearch] = useState({
-  //   page: 1,
-  //   sk: '',
-  //   sv: '',
-  // });
-
-
-  const getBoardList = async() => {
-  //   if (search.page === curPage) return; //현재 페이지와 누른 페이지가 같으면 return
-
-  //   const queryString = Object.entries(search)
-  //     .map((e) => e.join('='))
-  //     .join('&');
-
-    const resp = await(
-      await api.get('/blog/blog/')).data;
-      // await axios.get('http://127.0.0.1:8000/blog/blog/' + queryString)).data;
-      // console.log(resp)
-      const pageSize = 8;
-      setCount(Math.ceil(resp.count / pageSize));
-      
-      // console.log(count)
-    }
-
-  
-  const getBoard = async () => {    
-      const abc = await (await api.get('/blog/blog/?page=' + curPage)).data; // 2) 게시글 목록 데이터에 할당  
-      
-      setBoardshow(abc.results);    
-      
-    };
-  
-
-  const moveToWrite = () => {
-    Router.push('/BoardWrite');
-  }
-  const moveTofix = () => {
-    Router.push('/Test');
-  }
-  const moveToCheck = (id) => {
-    Router.push(`/boardcheck/${id}`)
-  }
-
-  
-  useEffect(() => {
-    getBoardList(); // 1) 게시글 목록 조회 함수 호출
-  }, []);
-
-  const handleChangePage = (event, newPage) => {
-    setCurPage(newPage);
-  };
-
-  useEffect(() => {
-    getBoard();
-    // console.log(boardShow)
-  }, [curPage])
-  
-
-
-  console.log(boardShow)
-
-  const [like, setLike] = useState(new Array(boardShow.length).fill(false));
 
   const [open, setOpen] = useState(false);
   const [writeOpen, setWriteOpen] = useState(false);
-
   const [clickFigure, setClickFigure] = useState({});
 
-  const handleOpen = (figureInfo) => {
-    setClickFigure(figureInfo);
-    setOpen(true);    
-    console.log(figureInfo)
+  // const [isHovered, setIsHovered] = useState(false);
+
+
+  const handleChangePage = (event, newPage) => {
+    setPage(newPage);
   };
 
-  const handleClose = () => {
+
+  const baseURL = 'http://127.0.0.1:8000/api';
+
+  useEffect(() => {
+    axios.get( baseURL + '/blog/blog/')
+      .then(response => {
+        const pageSize = 8;
+        setCount(Math.ceil(response.data.count / pageSize));
+      })
+    }, []);
+
+  useEffect(() => {
+    axios.get( baseURL + '/blog/blog/?page='+page)
+      .then(response => {
+        setBlog(response.data.results);
+      })
+      .catch(error => console.error(error));
+  }, [page]);
+
+  if (blog === null) {
+    return <div>Loading</div>;
+  }
+
+
+  const handleOpen = async (figureInfo) => {
+    try {
+      const response = await api.post('/blog/blog/' + figureInfo.id + '/increase_views/');
+
+      const likeResponse = await api.get(`/blog/blog/${figureInfo.id}/is_liked/`); 
+      const isLiked = likeResponse.data.is_liked;
+
+      setClickFigure({...figureInfo, isLiked});
+      setOpen(true);    
+      // console.log(response, likeResponse, isLiked)
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const handleClose = async () => {
     setClickFigure({});
     setOpen(false);
+
+    const response = await api.get('/blog/blog/' + clickFigure.id);
+    const updatedFigureInfo = response.data;
+
+    setBlog(blog.map(figureInfo => 
+      figureInfo.id === updatedFigureInfo.id ? updatedFigureInfo : figureInfo
+    ));
   };
 
   const handleWriteOpen = () => {
@@ -118,120 +103,116 @@ const BoardList = () => {
     setWriteOpen(false);
   };
 
-  
-
-  const handleClick = index => {
-    const newLike = [...like];
-    newLike[index] = !newLike[index];
-    setLike(newLike);
-  };
-
+  // console.log(blog)
   return (
-    <div style={{margin: 'auto'}}>
-      <div >
-      <LayoutHeader />
-      <div className={styles.main_page}>
-        <div className={styles.main_page_color}>
-          {/* 상단 메인 페이지 */}
-          <img src='bpost-2.png' />
-          <div className={styles.main_box1}>
-            {/* test */}
-            {/* <img src='upp7.png' style={{width: 500, height: 300}} /> */}
-            
-          </div>
+    <div style={{ width: '1010px', margin: 'auto' }}>    
 
-          <div className={styles.main_box2}>
-            <h1 style={{fontFamily: "Kimjungchul", fontSize: 40}}><span className={styles.b4}>자랑</span> 게시판에 어서오세요!</h1>
-            <br />
-            {/* <div className={styles.write_text}>
-              <p style={{fontFamily: "Kimjungchul", fontSize: 25}}>우리는 다양한 글씨체의 매력을 발견하고, 창의적인 디자인을 위한 영감을 얻기 위해 이곳을 만들었습니다. </p>
-              <br />
-              <p style={{fontFamily: "Kimjungchul", fontSize: 25}}>한 줄의 글에서도 마치 작품처럼 아름다움을 담아보세요. 여기서는 당신의 상상력이 자유로워집니다. 다양한 글씨체를 활용하여 감동적인 메시지를 전달해보세요.</p>
-              <br />
-            </div> */}
+      
+    <div className={styles.headerContainer}>
+      <div className={styles.pageHeader}>        
+        <div className={styles.headerPostit}>
+          
+        <Image src='/bpost-2.png' width={1010} height={410} priority/>
+        <p className={styles.postitP1} style={{fontSize:'45px'}}>자랑하기 게시판입니다.</p>
+        <p className={styles.postitP2} style={{fontSize:'20px'}}>열심히 연습한 글씨를 공유하고 자랑해보세요.</p>
+        <p className={styles.postitP3} style={{fontSize:'20px'}}>좋아요를 받고 댓글로 칭찬을 남겨주세요.</p>
+        <p className={styles.postitP4} style={{fontSize:'20px'}}>아래의 좋아요 아이콘을 눌러 글을 작성할 수 있습니다.</p>
+        <div className={styles.headerIcon}>
+          <Image 
+            src="/good.png"             
+            width={80} 
+            height={80} 
+            onClick={handleWriteOpen}            
+          />
+        {/* <div style={{ position: 'relative', display: 'inline-block' }}>
+          <RoughNotation 
+            type="circle" 
+            show={isHovered}
+            color="red"
+            strokeWidth={5} 
+            animationDuration={800}
+            padding={10}         
+          >
+          <Image 
+            src="/good.png"             
+            onMouseEnter={() => setIsHovered(true)}
+            onMouseLeave={() => setIsHovered(false)}
+            width={80} 
+            height={80} 
+            onClick={handleWriteOpen}            
+          />  
+          </RoughNotation>
+        </div>           */}
+        </div>
+          {/* <Image src="/qpost_postit.svg" width={600} height={400}/>          
+          <p className={styles.postitP1} style={{fontSize:'45px'}}>문의하기 게시판입니다.</p>
+          <p className={styles.postitP2} style={{fontSize:'20px'}}>누군가의 예쁜 손글씨를 소유하고 싶지 않으신가요?</p>
+          <p className={styles.postitP3} style={{fontSize:'20px'}}>본인 혹은 좋아하는 사람의 손글씨를 폰트로 바꿔드립니다.</p>
+          <p className={styles.postitP4} style={{fontSize:'20px'}}>아래의 템플릿을 완성하여 문의해주세요!</p>
+          <div className={styles.headerTemplate}>
+            <Image src="/qpost_template.svg" width={80} height={100}/>            
+          </div>
+          <div className={styles.headerDeco}>
+            <Image src="/qpost_deco.svg" width={460} height={310}/>    
           </div>
         </div>
-        
-      </div>
-      {/* <hr /> */}
-      <div>
-        <div className={styles.content_wrapper}>
-          {/* Content_Wrapper */}
-          <td className={styles.content_title}>
-            {/* 자랑하기 게시판 - Contents_Title */}
-            <span className={styles.b4}>자랑</span><hr />해보세요  <img src='pencil.png' width={35} />
-            {/* <td> */}
-            <div className={styles.b1}>
-            <button onClick={handleWriteOpen} className={styles.b2}><img src='plus.png' className={styles.b3}/></button>
-          </div>
-            {/* </td> */}
-          </td>
-          <div className={styles.section}></div>
-          {/* <div className={styles.b5}> */}
-            <div className={styles.figure_wrapper}>
-              <div className={styles.figure_list}>
-                {boardShow.map((figureInfo, index) =>
-                
-                    <div className={styles.card} key={figureInfo.id}>   
-                    {/* Photo CARD */}
-                    {/* <td> */}
-                    
-                    {/* </td> */}
-                    <div>
-                      <Image 
-                        className={styles.img_border}                    
-                        src={figureInfo.image}
-                        width="300"
-                        height="300"
-                        onClick={() => handleOpen(figureInfo)}
-                        alt={figureInfo.id}
-                      /> 
-                      <IconButton
-                        className={styles.IconButton_post}
-                        onClick={() => handleClick(index)}>
-                        { 
-                          like[index] 
-                          ? <FavoriteIcon className={styles.heart}/>
-                          : <FavoriteBorderIcon className={styles.heart}/>
-                        }
-                      </IconButton>
-                      </div>
-                      {/* <div className={styles.text_align}>   */}
-                      <div className={styles.text_align2}>
-                      Title : {figureInfo.title}             
-                      {/* <div className={styles.text_align2}>Title : {figureInfo.title}</div> */}
-                      </div>                                   
-                     
-                      {/* </div>   */}
-                    </div>  
-                    
-                )}
-                              
-              </div>              
-            </div>
-            {/* </div> */}
-            <ImgModal open={open} onClose={handleClose} figureInfo={clickFigure}/>
-      </div>
-      </div>
-          
-      <div>
-          <div className={styles.bottom_style}>
-            <Pagination className={styles.pagination_style}
-              count={count} 
-              page={curPage}
-              onChange={handleChangePage}
-              showFirstButton 
-              showLastButton />
-              
-          </div>
-          <WriteModal open={writeOpen} onClose={handleWriteClose}/> 
-      </div>
-      <div/>
+        <div className={styles.headerFig}>
+          <Image src="/qpost_fig.png" width={350} height={350}/> */}
+        </div>
       </div>
     </div>
-  );
+    
 
-  };
+    <WriteModal open={writeOpen} onClose={handleWriteClose}/> 
+    <div className={styles.figureWrapper}>
+        {blog.map((figureInfo, index) =>
+        <div className={styles.figureItem} key={figureInfo.id} >
+        
+          <div style={{ 
+            position: 'relative', 
+            width: '245px',
+            height: '245px',
+          }}>
+            <div style={{ transform: 'scale(0.97)', position: 'relative', width: '100%', height: '100%' }}>
+                <Image 
+                    layout="fill"
+                    // objectFit="cover"
+                    src={figureInfo.image}
+                    // onClick={() => handleOpen(figureInfo)}
+                    alt={figureInfo.id}
+                />
+            </div>
+            <Image               
+              layout="fill"
+              objectFit="contain"
+              src="/bpost_frame.svg" 
+              onClick={() => handleOpen(figureInfo)}
+            />  
+          </div>
+        
+          <div className={styles.infoWrapper}>
+            <span className={styles.figureTitle}>{figureInfo.title}</span>
+            <div className={styles.infoText}>
+              <FavoriteIcon sx={{ fontSize: 15, margin: '0px 2px 0px 2px' }} color="action"/>{figureInfo.num_likes}
+              <ChatBubbleIcon sx={{ fontSize: 15, margin: '0px 2px 0px 2px'  }} color="action"/>{figureInfo.num_comments}
+              <VisibilityIcon sx={{ fontSize: 15, margin: '0px 2px 0px 2px' }} color="action"/>{figureInfo.views}
+            </div>
+          </div>
+        </div>
+        )}
+  </div>
 
-  export default BoardList;
+  <ImgModal open={open} onClose={handleClose} figureInfo={clickFigure}/> 
+
+  <div className={styles.pagination}>
+    <CustomPagination 
+      count={count} 
+      page={page}
+      onChange={handleChangePage}
+      showFirstButton 
+      showLastButton />
+    </div>
+  </div>
+  )
+};
 

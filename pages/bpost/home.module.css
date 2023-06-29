@@ -46,25 +46,32 @@
 .postitP1 {
   position: absolute;
   top: 10%;
-  left: 10% ;
+  left: 35% ;
 }
 
 .postitP2 {
   position: absolute;
   top: 30%;
-  left: 10% ;
+  left: 35% ;
 }
 
 .postitP3 {
   position: absolute;
   top: 40%;
-  left: 10% ;
+  left: 35% ;
 }
 
 .postitP4 {
   position: absolute;
   top: 50%;
-  left: 10% ;
+  left: 35% ;
+}
+
+.headerIcon {
+  position: absolute;
+  top: 64%;
+  left: 40% ;
+  cursor: pointer;
 }
 
 
@@ -72,7 +79,7 @@
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   grid-template-rows: repeat(2, 1fr);
-  grid-gap: 20px 20px;
+  grid-gap: 20px 10px;
   margin-bottom: 20px;
 }
 
@@ -90,6 +97,9 @@
   padding-bottom: 100px;
 }
 
-.infoText {
-  justify-self: start;
+.infoWrapper {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-content: flex-end;
 }
