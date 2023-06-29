@@ -206,10 +206,6 @@
   color: #F24822;
 }
 
-.writeBtn {
-  text-align: end;
-}
-
 .heart2 {
   color: #F24822;
   bottom: 30px;
@@ -315,7 +311,7 @@
 .detailHeader {
   display: inherit;
   height: 50px;
-  /* padding-top: 20px; */
+  padding-top: 20px;
   align-self: flex-start;
   align-content: center;
 }
@@ -323,7 +319,7 @@
 .detailBody {
   width: 400px;
   box-sizing: border-box;
-  padding: 25px;
+  padding: 20px;
   min-height: 100%;
   margin-bottom: 20px;
 }
@@ -379,7 +375,6 @@
 }
 
 .button_style {
-  
   width: '100px';
   background-color: #fa6400;
   color: white;

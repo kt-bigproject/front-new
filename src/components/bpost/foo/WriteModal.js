@@ -3,17 +3,21 @@ import { Modal, Box, TextField, IconButton} from '@mui/material';
 import styles from './page.module.css';
 import { useRouter } from 'next/router';
 import { useState, useContext, useEffect, useRef } from 'react';
-// import { Upload } from 'antd';
+import { Upload } from 'antd';
 import { InboxOutlined } from '@ant-design/icons';
-// import AuthContext from "/src/components/AuthContext/AuthContext"; 
-import { useAxios } from '/src/components/Axios/axios';
-import ErrorAlert from '/src/components/Qpost/ErrorAlert';
+import AuthContext from "../../src/components/AuthContext/AuthContext"; // *
+import { useAxios } from '../../src/components/Axios/axios';
+import ErrorAlert from '../../src/components/Qpost/ErrorAlert';
 import TextInput from '@leafygreen-ui/text-input';
 import Button from '@leafygreen-ui/button';
-// import Icon from '@leafygreen-ui/icon';
+import Icon from '@leafygreen-ui/icon';
+// import dynamic from 'next/dynamic';
 import Image from 'next/image';
 
 export default function WriteModal({open, onClose}) {
+
+
+  
 
   const boxStyle = {
     position: 'absolute',
@@ -25,11 +29,21 @@ export default function WriteModal({open, onClose}) {
     bgcolor: 'background.paper',
     border: '2px solid #000',
     boxShadow: 1,
+    // pt: 2,
+    // px: 4,
+    // pb: 3,
   };
 
 
+  const inputStyle ={
+    width: 270,
+    display: 'flex',
+    paddingBottom: '10px',
+    marginLeft: '20px',
+  }
+
   const [errorMessage, setErrorMessage] = useState(false);
-  // const { user } = useContext(AuthContext);
+  const { user } = useContext(AuthContext);
   const fileInput = useRef();
   const [fileList, setFileList] = useState([]);
   const [ body, setBody] = useState("");
@@ -47,11 +61,16 @@ export default function WriteModal({open, onClose}) {
     setFileList(file);
     setSelectedFileName(file?.name);
     setSelectedImage(URL.createObjectURL(file));
+
   };
 
   const handleClick = () => {
     fileInput.current.click();
   };
+
+  // const QuillEditor = dynamic( () => import('../../src/components/bpost/QuillEditor'), {
+  //   ssr : false
+  // })
 
   const handleApi = async (event) => {
     event.preventDefault();
@@ -65,7 +84,11 @@ export default function WriteModal({open, onClose}) {
 
       formData.append('title', title)  //서버전달용
       formData.append('body', body )
-      formData.append('image', fileList);
+      // formData.append(`image`, fileList[0]?.originFileObj); 
+      formData.append(`image`, fileList);
+      // if (file !== null) {
+      //   formData.append('file', file);
+      // }
 
       for (let key of formData.keys()) {
           console.log("formData key");
@@ -74,9 +97,9 @@ export default function WriteModal({open, onClose}) {
 
       const response = await api.post('/blog/blog/', formData)
 
-      // const data = await response.data;
+      const data = await response.data;
       if (response.status === 201) {
-        console.log(response.data)
+        console.log(data)
         Router.push('/bpost')
       } else {
         console.log(response.status)
@@ -86,7 +109,10 @@ export default function WriteModal({open, onClose}) {
           console.log("formData values");
           console.log(value);
       }
+
       alert('등록되었습니다.')
+      
+
     };
     };
 
@@ -98,16 +124,22 @@ export default function WriteModal({open, onClose}) {
       aria-describedby="modal-modal-description"
       >
 
-      <Box sx={boxStyle} >
+      <Box
+          sx={boxStyle}
+      >
       <div className={styles.modal_wrapper} >
+        
+      
+      
+       {/* */ }
         <div className={styles.commentBox_write}>
           <div className={styles.form_head}>
-
+              {/* 왼쪽 이미지 */}
               <form onSubmit={handleApi} className={styles.form_Style}>
                 <input
                   type='file'
                   style={{ display: 'none' }}
-                  // fileList={fileList}
+                  fileList={fileList}
                   ref={fileInput}
                   // onPreview={handlePreview}
                   onChange={handleFileChange}
@@ -150,7 +182,7 @@ export default function WriteModal({open, onClose}) {
                 <div className={styles.detailContainer}>
                   <div className={styles.detailWrapper}>
                     <div className={styles.detailHeader}>
-                    {/* <p className={styles.board_title}>{"자랑하기 게시판 > 글쓰기"}</p> */}
+                    <p className={styles.board_title}>{"자랑하기 게시판 > 글쓰기"}</p>
                     </div>
                       <div className={`${styles.detailBody} ${styles.Box}`}>
                       <ErrorAlert parentState={[errorMessage, setErrorMessage]}/>
@@ -160,25 +192,37 @@ export default function WriteModal({open, onClose}) {
                               <SelectType typeState={[type, setType]} />
                             </div> */}
                             <div className={styles.titleInput}>
-                              <TextInput   
-                                aria-labelledby="text-input"
-                                type="text"
-                                id="title"
-                                onChange={(e) => {setTitle(e.target.value)}}
-                                placeholder="30자 이내로 제목을 입력해 주세요."
-                                maxLength={30}
+                              <TextInput 
+                                  // {/* <input */}
+                                    type="text"
+                                    id="title"
+                                    onChange={(e) => {setTitle(e.target.value)}}
+                                    placeholder="30자 이내로 제목을 입력해 주세요."
+                                    // className={styles.titleInput}
+                                    maxLength={30}
+                                    // required
+                                  // {/* /> */}
+                              // {/* </TextInput> */}
                               />
                             </div>
                           </div>
                           
-{/* 
+
                           <input
                               type='file'
                               style={{ display: 'none' }}
+                              // action="http://localhost:3000/"
+                              // listType="picture-card"
                               fileList={fileList}
                               ref={fileInput}
+                              // onPreview={handlePreview}
                               onChange={handleFileChange}
-                          /> */}
+                          />
+                              {/* {fileList.length >= 1 ? null : uploadButton} */}
+                          {/* </input> */}
+                        
+                            {/* <span style={{margin: 10}}>{selectedFileName}</span> */}
+                            {/* <span style={{margin: 10}} /> */}
                             <div >
                             <textarea 
                               placeholder='내용을 입력해주세요.' 
@@ -186,6 +230,7 @@ export default function WriteModal({open, onClose}) {
                               className={styles.textbox} 
                               onChange={e => setBody(e.target.value)}>
                             </textarea>
+                              {/* <QuillEditor onChange={setBody} value={body} style={{height: '100px'}} /> */}
                             </div>
                             <input type="hidden" name="content" value={body}/>
                             <div className={styles.writeBtn} >
@@ -200,7 +245,7 @@ export default function WriteModal({open, onClose}) {
             </div>
         </div>
         </div>
-        </div>
+        </div> {/**/}
       </div>
       </Box>
   </Modal>
