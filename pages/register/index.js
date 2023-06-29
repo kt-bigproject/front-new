@@ -13,8 +13,12 @@ import styles from './RegisterPage.module.css';
 import Checkbox from "@leafygreen-ui/checkbox";
 import { Modal, Box } from "@mui/material";
 import ModalContent from "./ModalContent.js";
-import Callout from '@leafygreen-ui/callout';
+// import Callout from '@leafygreen-ui/callout';
 import { useRouter } from "next/router";
+import Link from 'next/link';
+
+const baseURL = 'http://127.0.0.1:8000/api';
+
 const pstyle = {
   fontSize: 10,
   color : 'red',
@@ -22,7 +26,7 @@ const pstyle = {
 
 const CustomButton = styled(Button)`
   width: 300px; 
-  height: 50px;
+  height: 45px;
   color: #5C6C75;
 
 `
@@ -125,23 +129,43 @@ export default function Register() {
           </span>
           <section>
             <form onSubmit={handleSubmit}>
+              <Link href={`${baseURL}/naver/login/`}>
+                  <a>
+                    <img 
+                      style={{border: '1px solid #889397', borderRadius: '6px'}}
+                      src="/login/naver_login.svg" 
+                      alt="Naver Sign-In" 
+                      width="300"
+                  />
+                  </a>
+                </Link>
+                <Link href={`${baseURL}/kakao/login/`}>
+                  <a>
+                    <img 
+                      style={{border: '1px solid #889397', borderRadius: '6px'}}
+                      src="/login/kakao_login_large_wide.png" 
+                      alt="Kakao Sign-In" 
+                      width="300"
+                  />
+                  </a>
+                </Link>
               <CustomButton 
                 style={{ marginBottom: 12 }}
                 href={"/"}
                 variant={"default"}
                 baseFontSize={16}
                 size={"large"}
-                leftGlyph={<Image src="/GoogleLogomark.svg" width={40} height={40}/>}>
+                leftGlyph={<Image src="/GoogleLogomark.svg" width={30} height={30}/>}>
                 Google
               </CustomButton>
-              <CustomButton                  
+              {/* <CustomButton                  
                 href={"/"}
                 variant={"default"}
                 baseFontSize={16}
                 size={"large"}
                 leftGlyph={<Image src="/GitHubLogomark.svg" width={40} height={40}/>}>          
                 GitHub
-              </CustomButton>   
+              </CustomButton>    */}
 
               <div className={styles.hr_sect}>또는</div>
 
