@@ -44,25 +44,35 @@
 .postitP1 {
   position: absolute;
   top: 10%;
-  left: 10% ;
+  left: 5% ;
 }
 
 .postitP2 {
   position: absolute;
   top: 30%;
-  left: 10% ;
+  left: 4% ;
 }
 
 .postitP3 {
   position: absolute;
   top: 40%;
-  left: 10% ;
+  left: 4% ;
 }
 
 .postitP4 {
   position: absolute;
   top: 50%;
-  left: 10% ;
+  left: 4% ;
+}
+
+.templateBox {
+  position: absolute;
+  top: 71%;
+  left: 6% ;
+  width: 255px;
+  height: 70px;
+  /* border: 1px solid black;  */
+  cursor: pointer;
 }
 
 .pageIntro {
