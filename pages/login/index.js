@@ -3,20 +3,22 @@ import AuthContext from "../../src/components/AuthContext/AuthContext";
 
 // UI import
 import Modal from '@leafygreen-ui/modal';
-import { useState } from 'react';
+// import { useState } from 'react';
 import styled from '@emotion/styled';
 import Button from '@leafygreen-ui/button';
-import Image from 'next/image';
 import { PasswordInput } from '@leafygreen-ui/password-input';
 import TextInput from '@leafygreen-ui/text-input';
-import { palette } from '@leafygreen-ui/palette';
-import { SideNav, SideNavGroup, SideNavItem } from '@leafygreen-ui/side-nav';
-import Icon from '@leafygreen-ui/icon';
+// import { palette } from '@leafygreen-ui/palette';
+// import { SideNav, SideNavGroup, SideNavItem } from '@leafygreen-ui/side-nav';
+// import Icon from '@leafygreen-ui/icon';
+import Link from 'next/link';
+import Image from 'next/image';
+
 import styles from './LoginPage.module.css';
 
 const CustomButton = styled(Button)`
   width: 300px; 
-  height: 50px;
+  height: 45px;
   color: #5C6C75;
 
 `
@@ -59,6 +61,9 @@ const LoginButton = styled(Button)`
 `
 
 export default function LoginPage() {
+
+  const baseURL = "http://127.0.0.1:8000/api";
+
   const { loginUser } = useContext(AuthContext);
   const handleSubmit = e => {
     e.preventDefault();
@@ -80,25 +85,44 @@ export default function LoginPage() {
         </span>
           <section>
             <form onSubmit={handleSubmit}>
-              {/* <h1>로그인</h1> */}
-              {/* <hr /> */}
+                <Link href={`${baseURL}/naver/login`}>
+                  <a>
+                    <img 
+                      style={{border: '1px solid #889397', borderRadius: '6px'}}
+                      src="/login/naver_login.svg" 
+                      alt="Naver Sign-In" 
+                      width="300"
+                  />
+                  </a>
+                </Link>
+                <Link href={`${baseURL}/kakao/login`}>
+                  <a>
+                    <img 
+                      style={{border: '1px solid #889397', borderRadius: '6px'}}
+                      src="/login/kakao_login_large_wide.png" 
+                      alt="Kakao Sign-In" 
+                      width="300"
+                  />
+                  </a>
+                </Link>
+
               <CustomButton 
                   style={{ marginBottom: 12 }}
                   href={"/"}
                   variant={"default"}
                   baseFontSize={16}
                   size={"large"}
-                  leftGlyph={<Image src="/GoogleLogomark.svg" width={40} height={40}/>}>
+                  leftGlyph={<Image src="/GoogleLogomark.svg" width={30} height={30}/>}>
                   Google
                 </CustomButton>
-                <CustomButton                  
+                {/* <CustomButton                  
                   href={"/"}
                   variant={"default"}
                   baseFontSize={16}
                   size={"large"}
                   leftGlyph={<Image src="/GitHubLogomark.svg" width={40} height={40}/>}>          
                   GitHub
-                </CustomButton>   
+                </CustomButton>    */}
 
               <div className={styles.hr_sect}>또는</div>
 
