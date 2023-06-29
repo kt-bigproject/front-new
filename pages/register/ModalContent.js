@@ -28,7 +28,7 @@ export default function ModalContent() {
         </thead>
         <tbody>
           <tr>
-            <td style={cellStyle}>성명, 이메일, 아이디, 비밀번호</td>
+            <td style={cellStyle}>이메일, 아이디, 비밀번호</td>
             <td style={cellStyle}>본인여부 확인 및 이용자 식별</td>
             <td style={cellStyle}>회원 탈퇴 시까지</td>
           </tr>
