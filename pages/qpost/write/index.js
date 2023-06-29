@@ -2,15 +2,16 @@
 import React, { useState, useContext, useEffect, useRef } from 'react';
 import dynamic from 'next/dynamic';
 import { useRouter } from 'next/router';
-import { useAxios } from "/src/components/Axios/axios";
-import AuthContext from "/src/components/AuthContext/AuthContext";
+import { useAxios } from "../../../src/components/Axios/axios";
+import AuthContext from "../../../src/components/AuthContext/AuthContext";
 import { FormSkeleton } from '@leafygreen-ui/skeleton-loader';
-import ErrorAlert from '/src/components/Qpost/ErrorAlert';
-import SelectType from '/src/components/Qpost/SelectType';
+import ErrorAlert from '../../../src/components/Qpost/ErrorAlert';
+import SelectType from '../../../src/components/Qpost/SelectType';
 import Button from '@leafygreen-ui/button';
 import Icon from '@leafygreen-ui/icon';
 import TextInput from '@leafygreen-ui/text-input';
-import styles from '/src/components/Qpost/write.module.css';
+import styles from '../../../src/components/Qpost/write.module.css';
+import LayoutHeader from '../../../src/commons/layout/header2/header';
 
 const QuillEditor = dynamic( () => import('/src/components/Qpost/QuillEditor'), {
   ssr : false
@@ -87,6 +88,8 @@ export default function Write() {
 
   console.log(type)
   return (
+    <>
+    <LayoutHeader />
     <div style={{backgroundColor:'#FAF0E6', width: '1100px', margin: 'auto' }}> 
       <div className={styles.detailContainer}>
         <div className={styles.detailWrapper}>
@@ -148,5 +151,6 @@ export default function Write() {
       </div>
       </div>
     </div>
+    </>
   )  
 }

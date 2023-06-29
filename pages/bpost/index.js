@@ -1,9 +1,9 @@
 import React, { useState, useEffect, useContext, useRef } from 'react';
 import axios from 'axios';
 import Pagination from '@mui/material/Pagination';
-import { useAxios } from '/src/components/Axios/axios';
+import { useAxios } from '../../src/components/Axios/axios';
 import { styled  } from '@material-ui/styles';
-import AuthContext from '/src/components/AuthContext/AuthContext';
+import AuthContext from '../../src/components/AuthContext/AuthContext';
 import styles from './home.module.css';
 import Image from 'next/image';
 import ChatBubbleIcon from '@mui/icons-material/ChatBubble';
@@ -12,6 +12,7 @@ import VisibilityIcon from '@mui/icons-material/Visibility';
 
 import ImgModal from './ImgModal';
 import WriteModal from './WriteModal';
+import LayoutHeader from '../../src/commons/layout/header2/header';
 
 // import { RoughNotation } from 'react-rough-notation';
 
@@ -70,7 +71,7 @@ export default function Home() {
 
   const handleOpen = async (figureInfo) => {
     try {
-      const response = await api.post('/blog/blog/' + figureInfo.id + '/increase_views/');
+      // const response = await api.post('/blog/blog/' + figureInfo.id + '/increase_views/');
 
       const likeResponse = await api.get(`/blog/blog/${figureInfo.id}/is_liked/`); 
       const isLiked = likeResponse.data.is_liked;
@@ -105,7 +106,9 @@ export default function Home() {
 
   // console.log(blog)
   return (
-    <div style={{ width: '1010px', margin: 'auto' }}>    
+    <>
+    <LayoutHeader />
+    <div style={{ width: '1010px', margin: 'auto', backgroundImage: "url('/Practice/bpost.png')", backgroundSize:"150% 100%" }}>    
 
       
     <div className={styles.headerContainer}>
@@ -213,6 +216,7 @@ export default function Home() {
       showLastButton />
     </div>
   </div>
+  </>
   )
 };
 

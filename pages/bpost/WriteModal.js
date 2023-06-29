@@ -6,8 +6,8 @@ import { useState, useContext, useEffect, useRef } from 'react';
 // import { Upload } from 'antd';
 import { InboxOutlined } from '@ant-design/icons';
 // import AuthContext from "/src/components/AuthContext/AuthContext"; 
-import { useAxios } from '/src/components/Axios/axios';
-import ErrorAlert from '/src/components/Qpost/ErrorAlert';
+import { useAxios } from '../../src/components/Axios/axios';
+import ErrorAlert from '../../src/components/Qpost/ErrorAlert';
 import TextInput from '@leafygreen-ui/text-input';
 import Button from '@leafygreen-ui/button';
 // import Icon from '@leafygreen-ui/icon';
@@ -87,6 +87,7 @@ export default function WriteModal({open, onClose}) {
           console.log(value);
       }
       alert('등록되었습니다.')
+      Router.reload()
     };
     };
 
