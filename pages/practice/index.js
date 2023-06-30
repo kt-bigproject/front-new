@@ -77,6 +77,7 @@ export default function PraticePage() {
   const [score, setScore] = useState(null)
   const [isLoading, setIsLoading] = useState(false)
   const [id, setId] = useState(null)
+  const [correct, setCorrect] = useState(null)
 
   // 다시하기 함수
   const GoHome = () => {
@@ -290,6 +291,8 @@ export default function PraticePage() {
 
   // 그림 제출하기 함수
   const onClickSubmit = async (event) => {
+    const randomNumber = Math.floor(Math.random() * 100000)
+
     event.preventDefault();
     hiddenRef.current.getContext('2d').fillText("",0,0)
     const canvas = hiddenRef.current;
@@ -297,7 +300,7 @@ export default function PraticePage() {
   
     const response = await fetch(ImageURL);
     const blob = await response.blob();
-    const file = new File([blob], "myImage.png", { type: "image/png" });
+    const file = new File([blob], `image${randomNumber}.png`, { type: "image/png" });
     const formData = new FormData(); // 이미지는 formdata객체를 만들어서 보내줘야 함
     formData.append("font", font);
     formData.append("image", file);
@@ -378,14 +381,27 @@ export default function PraticePage() {
   // 점수 표출 함수
   const Fetchsentence = async (id) => {
     const result = await api.get('/practice/predict/');
-    const fetchedScore = result.data.data.find(item => item.id === id)?.score;
-    setScore(0.9);
+    const fetchedScore = result.data.data.find(item => item.id === id)?.confidence;
+    const corrected = result.data.data.find(item => item.id === id)?.is_correct;
+
+    setCorrect(corrected)
+    setScore(fetchedScore);
     setIsLoading(false);
   };
 
+  const TEST = async (id) => {
+    const result = await api.get('/practice/predict/');
+    // const fetchedScore = result.data.data.find(item => item.id === id)?.score;
+    console.log(result.data.data[6].is_correct);
+    console.log(result)
+    // console.log("score", fetchedScore);
+  };
+
+  // console.log(correct)
   return(
     <>
     <Alldiv>
+      <button onClick={TEST}>asdf</button>
       <BannerDiv>
           <LayoutHeader />
             <BannerDiv2>

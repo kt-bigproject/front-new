@@ -17,9 +17,9 @@ import confetti from "canvas-confetti"
 
 const Mycanvas = styled.canvas`
 border: 1px solid;
-background-image: url("/main/grid2.png");
-background-size: 100%;
-background-color: white;
+/* background-image: url("/main/grid2.png"); */
+/* background-size: 100%; */
+/* background-color: white; */
 `
 
 const Mydiv = styled.div`
@@ -51,18 +51,19 @@ export default function Gamepage(props) {
   const contextRef = useRef(null)
 
   // 폰트 지정 state
-  const [font, setFont] = useState("one")
+  const [font, setFont] = useState("two")
   const [ctx, setCtx] = useState() // 그림지정 state
   const [isDrawing, setIsDrawing] = useState(false) 
   const [eraser, setEraser] = useState("black")
 
-  
   const [open, setOpen] = useState(false);
   const [gameOpen, setgameOpen] = useState(false);
 
+  // 점수관련 state
   const [score, setScore] = useState(null)
   const [isLoading, setIsLoading] = useState(false)
   const [id, setId] = useState(null)
+  const [correct, setCorrect] = useState(null)
 
   // 사진 미리보기 함수
   const [previewOpen, setPreviewOpen] = useState(false);
@@ -93,9 +94,12 @@ export default function Gamepage(props) {
   const handleApi = async (event) => {
     event.preventDefault();
     const formData = new FormData();
-    formData.append('font', "one")  //서버전달용
-    formData.append(`image`, fileList[0].originFileObj) 
-    formData.append('sentence', props.sent)
+    formData.append('font', "three")  //서버전달용
+    formData.append(`image`, fileList[0].originFileObj)
+    formData.append('sentence', '가') 
+    // formData.append('sentence', props.sent)
+    console.log(fileList[0].originFileObj)
+
     // FormData의 key 확인
     setIsLoading(true)
     setgameOpen(curr => !curr)
@@ -106,7 +110,7 @@ export default function Gamepage(props) {
         });
         if (response.status === 201) {
             console.log('이미지 전송 성공', response.data);
-            const newid = response.data.id - 16
+            const newid = response?.data.id
             setId(newid)
             Fetchsentence(newid)
         } else {
@@ -123,15 +127,19 @@ export default function Gamepage(props) {
     canvas.width = 1010
     canvas.height = 400
 
+
+
     const context = canvas.getContext('2d')
     context.lineWidth = 4;
     context.strokeStyle = eraser
     context.lineCap = "round" // 선 끝모양지정 butt, round, square
 
-    // context.font = "bold 100px serif" //폰트 넣을 수 있는 기능인데 보류
-    // context.strokeText("Hello world", 50, 100); //글씨 써주는것
     contextRef.current = context;
     setCtx(contextRef.current)
+
+    context.fillStyle = 'white';
+    context.fillRect(0, 0, canvas.width, canvas.height);
+
   }, []);
 
   useEffect(() => { // 지우개 쓰기 위해서 렌더링
@@ -178,17 +186,21 @@ export default function Gamepage(props) {
 
   // 그림 제출하기 함수
   const onClickSubmit = async (event) => {
+    //파일명 아무거나로 바꾸기
+    const randomNumber = Math.floor(Math.random() * 100000)
+
     event.preventDefault();
     const canvas = canvasRef.current;
     const ImageURL = canvas.toDataURL(); // base64 타입 데이터로 변환
   
     const response = await fetch(ImageURL);
     const blob = await response.blob();
-    const file = new File([blob], "myImage.png", { type: "image/png" });
+    const file = new File([blob], `image${randomNumber}.png`, { type: "image/png" });
     const formData = new FormData(); // 이미지는 formdata객체를 만들어서 보내줘야 함
-    formData.append("font", "one");
+    formData.append("font", "three");
     formData.append("image", file);
-    formData.append("sentence", props.sent)
+    // formData.append("sentence", props.sent)
+    formData.append('sentence', '가') 
   
     // FormData의 key 확인
     for (let key of formData.keys()) {
@@ -205,13 +217,14 @@ export default function Gamepage(props) {
     // 모달창 열기
     setIsLoading(true)
     setgameOpen(curr => !curr)
+    data: formData
     try {
       const response = await api.post('/game/upload/', formData, {
           headers: { "Content-Type": "multipart/form-data", }, // 헤더 추가
       });
       if (response.status === 201) {
           console.log('이미지 전송 성공', response.data);
-          const newid = response.data.id
+          const newid = response?.data.id
           setId(newid)
           Fetchsentence(newid)
       } else {
@@ -227,11 +240,13 @@ export default function Gamepage(props) {
     // 점수 표출 함수
     const Fetchsentence = async (id) => {
       const result = await api.get('/game/predict/');
-      const fetchedScore = result.data.data.find(item => item.id === id)?.score;
+      const fetchedScore = result.data.data.find(item => item.id === id).score;
+      const corrected = result.data.data.find(item => item.id === id)?.is_correct;
+      setCorrect(corrected)
       console.log(result);
       console.log("id", id);
       console.log("score", fetchedScore);
-      setScore(0.9);
+      setScore(fetchedScore);
       setIsLoading(false);
     };
     
@@ -242,17 +257,12 @@ export default function Gamepage(props) {
       width: "1200px",
     };
 
-    const GoHome = () => {
-      router.push("/")
-    }
-
     const GoHome2 = () => {
       setCount(1)
       router.push("/")
     }
+    
 
-
-    console.log(count)
 
     useEffect(() => {
       const countToWord = (count) => {
@@ -277,7 +287,8 @@ export default function Gamepage(props) {
       }
     }, [score])
 
-
+    // console.log(correct)
+    console.log(font, "가")
   return(
     <>
     <Alldiv2>

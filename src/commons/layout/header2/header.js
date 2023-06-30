@@ -1,78 +1,44 @@
-import { LoginOutlined, LogoutOutlined } from '@ant-design/icons';
 import styles from './styles.module.css'
 import 'boxicons/css/boxicons.min.css';
 import { useRouter } from 'next/router';
-import  { useEffect, useState, useContext } from 'react'
+import  { useContext } from 'react'
 import AuthContext from '../../../../src/components/AuthContext/AuthContext';
-import Link from 'next/link';
 export default function LayoutHeader() {
-
 
   const {user, logoutUser} = useContext(AuthContext)
 
-  const a1 = useRouter()
+  const router = useRouter()
 
   const onClickbutton1 = () => {
-    a1.push('/practice')
+    router.push('/practice')
   }
-  const a2 = useRouter()
 
   const onClickbutton2 = () => {
-    a2.push('/game')
+    router.push('/game')
   }
-  const a3 = useRouter()
 
   const onClickbutton3 = () => {
-    a3.push('/bpost')
+    router.push('/bpost')
   }
-  const a4 = useRouter()
 
   const onClickbutton4 = () => {
-    a4.push('/qpost')
+    router.push('/qpost')
   }
-  const a5 = useRouter()
-
   const onClickbutton5 = () => {
-    a5.push('/')
+    router.push('/')
   }
-
-  const a6 = useRouter()
 
   const onClickbutton6 = () => {
-    a6.push('/login')
+    router.push('/login')
   }
-
-
 
   const logout = () => {
     logoutUser()
   }
  
-
-  const [showHeader, setShowHeader] = useState(true);
-
-  useEffect(() => {
-    let prevScrollPos = window.scrollY;
-
-    const handleScroll = () => {
-      const currentScrollPos = window.scrollY;
-      const isScrolledDown = currentScrollPos > prevScrollPos;
-
-      setShowHeader(!isScrolledDown);
-      prevScrollPos = currentScrollPos;
-
-      console.log('Scroll event occurred');
-    };
-
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
-
-  
   return (
     <>
-    <header className={`${styles.header} ${showHeader ? styles.showHeader : styles.hideHeader}`}>
+    <header className={`${styles.header} `}>
       <div className={`${styles.lowerSection} `}>  
         <img src="/logo.png" width='100' style={{padding: "10px 10px", cursor:"pointer"}} onClick={onClickbutton5}></img>
           <div className={styles.menuContainer}>
