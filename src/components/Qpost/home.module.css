@@ -43,26 +43,26 @@
 
 .postitP1 {
   position: absolute;
-  top: 10%;
+  top: 20%;
   left: 5% ;
 }
 
 .postitP2 {
   position: absolute;
-  top: 30%;
-  left: 4% ;
+  top: 35%;
+  left: 5% ;
 }
 
 .postitP3 {
   position: absolute;
   top: 40%;
-  left: 4% ;
+  left: 5% ;
 }
 
 .postitP4 {
   position: absolute;
-  top: 50%;
-  left: 4% ;
+  top: 45%;
+  left: 5% ;
 }
 
 .templateBox {

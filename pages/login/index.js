@@ -108,7 +108,7 @@ export default function LoginPage() {
 
               <CustomButton 
                   style={{ marginBottom: 12 }}
-                  href={"/"}
+                  href={`${baseURL}/google/login`}
                   variant={"default"}
                   baseFontSize={16}
                   size={"large"}
