@@ -108,6 +108,10 @@ export default function PraticePage() {
 
   // 업로드 이미지를 서버로 전송하는 함수
   const handleApi = async (event) => {
+    if (!user) {
+      alert("로그인 후 이용해주세요.")
+      router.push('/')
+    }
     event.preventDefault();
     const formData = new FormData();
     formData.append('font', font)  //서버전달용
@@ -202,10 +206,12 @@ export default function PraticePage() {
     },
   ]
 
-  const handleInputChange = (event) => {
-    setInputValue(event.target.value);
-  };
-
+  useEffect(() =>{
+    if (!user) {
+      alert("로그인 후 이용해주세요.")
+      router.push('/')
+    }
+  },[])
   useEffect(() =>{
     const canvas = canvasRef.current;
     canvas.width = 1010
@@ -290,6 +296,8 @@ export default function PraticePage() {
 
   // 그림 제출하기 함수
   const onClickSubmit = async (event) => {
+    const randomNumber = Math.floor(Math.random() * 100000)
+
     event.preventDefault();
     hiddenRef.current.getContext('2d').fillText("",0,0)
     const canvas = hiddenRef.current;
@@ -479,7 +487,7 @@ export default function PraticePage() {
                     </div>
                 ) : (
                     <div style={{height: "250px", display: "flex", flexDirection:"column", justifyContent:"space-between", alignItems:"center"}}>
-                    <h3>{score*100}점입니다..</h3><br/><p>점수가 기준에 도달하지 못하였습니다</p><p>게임이 종료되었습니다</p><br/>
+                    <h3>{score*100}점입니다..</h3><br/><p>점수가 기준에 도달하지 못하였습니다</p><p>다시 해보시겠습니까?</p><br/>
                     <MyButton1 onClick={GoHome}>다시하기</MyButton1>
                     </div>
                 )}

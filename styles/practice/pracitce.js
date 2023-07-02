@@ -1,3 +1,4 @@
+import { ReloadOutlined } from "@ant-design/icons"
 import styled from "@emotion/styled"
 
 export const Alldiv = styled.div`
@@ -45,7 +46,7 @@ export const Context = styled.div`
   flex-direction: column;
   justify-content: center;
   width: 434px;
-  height: 410px
+  height: 410px;
 `
 
 export const Function = styled.div`
@@ -173,44 +174,39 @@ export const MyButton2 = styled.button`
 
   &:active {
     background-color: #F0F0F1;
+    
     border-color: rgba(0, 0, 0, 0.15);
     box-shadow: rgba(0, 0, 0, 0.06) 0 2px 4px;
     color: rgba(0, 0, 0, 0.65);
     transform: translateY(0);
   }
 ` 
-export const MyButton3 = styled.button`
+export const MyButton3 = styled(ReloadOutlined)`
   align-items: center;
-  background-color: #FFFFFF;
-  border: 1px solid rgba(0, 0, 0, 0.1);
-  border-radius: 1rem;
-  box-shadow: rgba(0, 0, 0, 0.02) 0 1px 3px 0;
+  border: 1px solid;
+  box-shadow: rgba(0, 0, 0, 0.1) 0 4px 12px;
   box-sizing: border-box;
-  color: rgba(0, 0, 0, 0.85);
   cursor: pointer;
   display: inline-flex;
-  font-family: "one";
-  font-size: 16px;
-  font-weight: 600;
   justify-content: center;
-  line-height: 1.25;
-  margin: 0;
-  min-height: 3rem;
-  padding: calc(.875rem - 1px) calc(1.5rem - 1px);
-  text-decoration: none;
   transition: all 250ms;
   user-select: none;
   -webkit-user-select: none;
   touch-action: manipulation;
   vertical-align: baseline;
-  width: 133.08px;
+  width: 50.08px;
   height: 48.67px;
+  margin-bottom: 10px;
+  color: #fa6400;
+  border-radius: 12px;
 
   &:hover,
   &:focus {
-    border-color: rgba(0, 0, 0, 0.15);
+    /* border-color: rgba(0, 0, 0, 0.15); */
+    border-color: #fa6400;
+
     box-shadow: rgba(0, 0, 0, 0.1) 0 4px 12px;
-    color: rgba(0, 0, 0, 0.65);
+    color: #fa6400;
   }
 
   &:hover {
@@ -219,9 +215,10 @@ export const MyButton3 = styled.button`
 
   &:active {
     background-color: #F0F0F1;
-    border-color: rgba(0, 0, 0, 0.15);
-    box-shadow: rgba(0, 0, 0, 0.06) 0 2px 4px;
-    color: rgba(0, 0, 0, 0.65);
+    border-color: #fa6400;
+    /* border-color: rgba(0, 0, 0, 0.15); */
+    box-shadow: #fa6400 0 4px 8px;
+    color: #fa6400;
     transform: translateY(0);
   }
 ` 

@@ -9,12 +9,9 @@ export default function Game3() {
   const [ sent, setSent ] = useState("")
   const api = useAxios()
   const router = useRouter();
-  let { count, setCount, authTokens, user } = useContext(AuthContext)
+  let { count, setCount, authTokens,  } = useContext(AuthContext)
+  
   useEffect(() => {
-    if (!user) {
-      alert("로그인 후 이용해주세요.")
-      router.push('/')
-    }
     const Fetchsentence = async () => {
       const result = await api.get('/game/syllable/')
       const random = Math.floor(Math.random() * result.data['length'])
