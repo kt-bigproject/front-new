@@ -3,7 +3,7 @@ import { keyframes } from "@emotion/react"
 
 export const Banner = styled.section`
   background-color: #FAF0E6;
-	background-image: url('/main/Cover2.png');
+	background-image: url('/main/Noise.png');
   /* color: #fff; 흰색계열이데 좀 이쁨 */
   background-repeat: no-repeat;
   background-size: 100% 100%;
@@ -27,6 +27,8 @@ export const BannerSection = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  background-image: url('/page/main.png');
+  background-size: 100% 100%;
 `
 
 export const BannerDiv = styled.div`
@@ -35,7 +37,6 @@ export const BannerDiv = styled.div`
   align-items: center;
   width: 50%;
   height: 50%;
-  /* border: 1px solid; */
 `
 
 export const BannerButtonDiv = styled.div`
@@ -69,28 +70,47 @@ export const Section1 = styled.div`
   height: 100vh;
   box-shadow:0 0 15px 0 gray;
 `
+export const Section1div = styled.div`
+  background-image: url('/page/caution.png');
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  width: 100vw;
+  height: 100vh;
+`
 
 export const Main = styled.section`
-  margin: 0 auto 6em auto;
+  margin: 0 auto 0 auto;
 	max-width: calc(100% - 5em);
 	width: 80em;
+  height: 100%;
+
 `
 
 export const MainBox = styled.section`
-	padding: 3em;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  align-items: center;
+  height: 100%;
 `
 
 export const MainDiv = styled.div`
-  padding: 100px 100px;
+  padding-top: 70px;
   text-align: center;
+  padding-bottom: 30px;
 `
 export const Section2 = styled.div`
   background-image: url('/main/frame.png');
   background-repeat: no-repeat;
   background-size: 100% 100%;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+`
+
+export const Section2div = styled.div`
   width: 100vw;
   height: 100vh;
   display: flex;
@@ -145,7 +165,7 @@ export const FunctionDiv4 = styled.div`
   width: 100%;
   display: flex;
   flex-direction: column;
-  justify-content: space-evenly;
+  justify-content: space-between;
   align-items: center;
   border-left: 3px dashed;
 `
@@ -165,9 +185,9 @@ export const MainP = styled.p`
 
 export const MenuBox = styled.section`
   display: flex;
-  /* margin: 0 auto 8em auto; */
 	max-width: calc(100% - 5em);
 	width: 70em;
+  height: 50vh;
 `
 
 export const FeatureSection = styled.section`
@@ -175,7 +195,6 @@ export const FeatureSection = styled.section`
   background-image: url('/caution/caution3.png');
   background-repeat: no-repeat;
   background-size: 100% 100%;
-  height: 500px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -246,6 +265,7 @@ export const Section3 = styled.div`
   align-items: center;
   box-shadow:0 0 15px 0 gray;
 `
+
 const rotateAnimation = keyframes`
   0% {
     transform: rotate(0deg);
@@ -254,6 +274,17 @@ const rotateAnimation = keyframes`
     transform: rotate(360deg);
   }
 `;
+
+export const Section3div = styled.div`
+  background-image: url('/page/tech.png');
+  background-size: 100% 90%;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+`
 
 export const Section3Img = styled.div`
   width: 45%;
