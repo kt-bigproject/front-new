@@ -33,32 +33,37 @@ export default function MainPage() {
   const [eraser, setEraser] = useState("black")
   const [clear, setClear] = useState("")
 
-	if (user) {
-		useEffect(() =>{
-			const img = new Image()
-			img.src = '/main/mainlogo.png'
-	
-			const canvas = canvasRef.current;
-			canvas.width = 1010
-			canvas.height = 400
-	
-			const context = canvas.getContext('2d')
-			context.lineWidth = 4;
-			context.strokeStyle = eraser
-			context.lineCap = "round" // 선 끝모양지정 butt, round, square
-			
-			context.drawImage(img, 300, 10, 404, 128)
+	useEffect(() =>{
+		const img = new Image()
+		img.src = '/main/mainlogo.png'
+
+		const canvas = canvasRef.current;
+		canvas.width = 1010
+		canvas.height = 400
+
+		const context = canvas.getContext('2d')
+		context.lineWidth = 4;
+		context.strokeStyle = eraser
+		context.lineCap = "round" // 선 끝모양지정 butt, round, square
+		
+		context.drawImage(img, 300, 10, 404, 128)
+
+		if (user) {
 			context.font = `50pt one` 
 			context.fillStyle = "lightgray";
 			context.fillText(`${user.username} 님 환영합니다`,250, 225)
-	
-			context.font = `30pt one` 
-			context.fillText('그림을 그려보세요!',380, 300)
-			contextRef.current = context;
-			setCtx(contextRef.current)
-	
-		}, [clear]);
-	}
+		} else {
+			context.font = `50pt one` 
+			context.fillStyle = "lightgray";
+			context.fillText(`오늘의 글씨`,380, 225)
+		}
+
+		context.font = `30pt one` 
+		context.fillText('그림을 그려보세요!',380, 300)
+		contextRef.current = context;
+		setCtx(contextRef.current)
+
+	}, [clear]);
 
 
   useEffect(() => { // 지우개 쓰기 위해서 렌더링
@@ -99,19 +104,19 @@ export default function MainPage() {
 
 	const router = useRouter()
 
-	useEffect(() => {
-    if (hasCookie('token')) {
+	// useEffect(() => {
+  //   if (hasCookie('token')) {
 
-			const access = getCookie('token');
-			const refresh = getCookie('refresh_token');
-			const authTokens = { access, refresh}
+	// 		const access = getCookie('token');
+	// 		const refresh = getCookie('refresh_token');
+	// 		const authTokens = { access, refresh}
 
-			socialLogin(authTokens)
+	// 		socialLogin(authTokens)
 
-			deleteCookie('token')
-			deleteCookie('refresh_token')
-    }
-  }, []);
+	// 		deleteCookie('token')
+	// 		deleteCookie('refresh_token')
+  //   }
+  // }, []);
 
 
   return (
@@ -178,11 +183,17 @@ export default function MainPage() {
 							</>
 							)	: (
 							<>
-							<GIFdiv>
+							{/* <GIFdiv>
 								<img src="/logo.png" />
 							</GIFdiv>
 							<p style={{fontSize:"25px"}}>오늘의 글씨에 오신것을 환영합니다!</p>
-						  <br />
+						  <br /> */}
+								<Mycanvas ref={canvasRef}
+            			onMouseDown={startDrawing} // 마우스 버튼을 눌렀을때
+            			onMouseUp={EndDrawing} // 마우스마우스 버튼을 땠을 때
+            			onMouseMove={drawing} // 마우스가 움직일 때
+            			onMouseLeave={EndDrawing} // 마우스가 캔버스를 벗어낫을 때
+                ></Mycanvas>
 							<BannerButtonDiv>
           	    <MyButton1 onClick={() => {router.push('/register')}}>회원가입</MyButton1>
           	    <MyButton2 onClick={() => {router.push('/login')}}>로그인</MyButton2>
