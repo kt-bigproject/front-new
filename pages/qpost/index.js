@@ -7,6 +7,7 @@ import AuthContext from "../../src/components/AuthContext/AuthContext";
 import { TableSkeleton } from '@leafygreen-ui/skeleton-loader';
 // import Button from '@leafygreen-ui/button';
 import Image from 'next/image';
+import {useRouter} from 'next/router';
 // import { Syllabus, Heart } from '@codecademy/gamut-illustrations';
 // import { RainLoose, DiagonalBRegular, RainRegular } from "@codecademy/gamut-patterns";
 import styles from '../../src/components/Qpost/home.module.css';
@@ -26,7 +27,7 @@ const CustomPagination = styled(Pagination)({
 export default function Home() {
 
   const { user, logoutUser } = useContext(AuthContext);
-
+  const router = useRouter()
   console.log(user)
   
   const [blog, setBlog] = useState(null);
@@ -40,11 +41,15 @@ export default function Home() {
   const baseURL = 'http://127.0.0.1:8000/api';
 
   useEffect(() => {
+    if (!user) {
+      alert("로그인 후 이용해주세요.")
+      router.push('/')
+    } else {
     axios.get( baseURL + '/font/blog/')
       .then(response => {
         const pageSize = 10;
         setCount(Math.ceil(response.data.count / pageSize));
-      })
+      }) }
     }, []);
 
   useEffect(() => {
@@ -66,31 +71,31 @@ export default function Home() {
 
   return (
     <>
-    <LayoutHeader />
-    <div style={{ width: '1100px', margin: 'auto' }}>    
-
-      
-      <div className={styles.headerContainer}>
-        <div className={styles.pageHeader}>        
-        <div className={styles.headerPostit}>
-          <Image src="/qpost_svg.svg" width={1010} height={410}/>          
-          <p className={styles.postitP1} style={{fontSize:'35px'}}>나만의 폰트 만들기 <span style={{fontSize:'25px'}}>게시판 입니다.</span></p>
-          <p className={styles.postitP2} style={{fontSize:'20px'}}>누군가의 예쁜 손글씨를 소유하고 싶지 않으신가요?</p>
-          <p className={styles.postitP3} style={{fontSize:'20px'}}>본인 혹은 좋아하는 사람의 손글씨를 폰트로 바꿔드립니다.</p>
-          <p className={styles.postitP4} style={{fontSize:'20px'}}>아래의 템플릿을 완성하여 문의해주세요!</p>
-          <div className={styles.templateBox} onClick={downloadTemplate}/>
+    <div style={{backgroundImage: "url('/Practice/qpost2.png')", backgroundSize:'100% 100%' }}>
+      <LayoutHeader />
+      <div style={{ width: '1100px', margin: 'auto' }}>    
+        <div className={styles.headerContainer}>
+          <div className={styles.pageHeader}>        
+          <div className={styles.headerPostit}>
+            <Image src="/qpost_svg.svg" width={1010} height={410}/>          
+            <h1 className={styles.postitP1} style={{fontSize:'35px'}}>나만의 폰트 만들기</h1>
+            <p className={styles.postitP2} style={{fontSize:'20px'}}>누군가의 예쁜 손글씨를 소유하고 싶지 않으신가요?</p>
+            <p className={styles.postitP3} style={{fontSize:'20px'}}>본인 혹은 좋아하는 사람의 손글씨를 폰트로 바꿔드립니다.</p>
+            <p className={styles.postitP4} style={{fontSize:'20px'}}>아래의 템플릿을 완성하여 문의해주세요!</p>
+            <div className={styles.templateBox} onClick={downloadTemplate}/>
+          </div>
+          </div>
         </div>
-        </div>
-      </div>
 
-      <CustomTable data={blog}/>
-      <div className={styles.pagination}>
-        <CustomPagination 
-          count={count} 
-          page={page}
-          onChange={handleChangePage}
-          showFirstButton 
-          showLastButton />
+        <CustomTable data={blog}/>
+        <div className={styles.pagination}>
+          <CustomPagination 
+            count={count} 
+            page={page}
+            onChange={handleChangePage}
+            showFirstButton 
+            showLastButton />
+        </div>
       </div>
     </div>
     </>

@@ -50,9 +50,9 @@ export default function LayoutHeader() {
             <span className={styles.menuItem} onClick={onClickbutton3}>
               <i className='bx bx-like' ></i>자랑하기</span>
             <span className={styles.menuItem} onClick={onClickbutton4}>
-              <i className='bx bx-message-dots' ></i>문의하기</span>
-            <span className={styles.menuItem} onClick={onClickbutton5}>
-              <i className='bx bx-trophy' ></i>랭킹</span>
+              <i className='bx bx-message-dots' ></i>폰트 만들기</span>
+            {/* <span className={styles.menuItem} onClick={onClickbutton5}>
+              <i className='bx bx-trophy' ></i>랭킹</span> */}
           </div>
         {user ? (
           <>
