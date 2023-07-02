@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import {BannerButtonDiv, Banner, BannerDiv, Section3Img, Section3Div, EndBanner, EndBanner1, EndBanner2, FeatureSection, FeatureSection2, FeatureSection3, Main, MainBox, MainDiv, MainFeatures,  MainP, MenuBox, FooterUl, Profile, Profile1, ProfileIcon, Name, Position, ProfileCircle, FunctionSpan, FunctionDiv, FunctionTitle, FunctionContext, Function, GIFdiv, FeatureP, BannerSection, All, Section1, Section2, FunctionDiv1, FunctionDiv2, FunctionDiv3, FunctionDiv4, Section3, Section4, Cover, Section4Div, BannerButtonDiv2} from '../styles/main/index'
+import {BannerButtonDiv, Banner, BannerDiv, Section3Img, Section3Div, EndBanner, EndBanner1, EndBanner2, FeatureSection, FeatureSection2, FeatureSection3, Main, MainBox, MainDiv, MainFeatures,  MainP, MenuBox, FooterUl, Profile, Profile1, ProfileIcon, Name, Position, ProfileCircle, FunctionSpan, FunctionDiv, FunctionTitle, FunctionContext, Function, GIFdiv, FeatureP, BannerSection, All, Section1, Section2, FunctionDiv1, FunctionDiv2, FunctionDiv3, FunctionDiv4, Section3, Section4, Cover, Section4Div, BannerButtonDiv2, Section1div, Section2div, Section3div} from '../styles/main/index'
 import LayoutHeader from '../src/commons/layout/header2/header';
 import { MyButton1, MyButton2, MyButton3 } from '../styles/practice/pracitce';
 import Modal from '@leafygreen-ui/modal';
@@ -210,6 +210,7 @@ export default function MainPage() {
 			{/* Main */}
 			<All>
 				<Section1 id="part-2">
+				<Section1div>
 				<Main>
 					<MainBox>
 						<MainDiv style={{marginTop: '35px'}}>
@@ -217,7 +218,7 @@ export default function MainPage() {
 							<br />
 							<br />
 							</span>
-							<MainP style={{fontSize: '27px'}}>글씨 연습장은 더 나은 글쓰기 경험을 위해 설계된 도구입니다.<br /><p style={{margin: '10px'}}/>
+							<MainP style={{fontSize: '20px'}}>글씨 연습장은 더 나은 글쓰기 경험을 위해 설계된 도구입니다.<br /><p style={{margin: '10px'}}/>
 							편안한 자세로 앉아 등과 어깨를 펴고, 팔과 손목을 자연스럽게 위치시켜 최적의 글쓰기 자세를 유지하세요.<br /><p style={{margin: '10px'}}/>
 							이렇게 하면 손글씨의 흐름과 정확성을 더욱 개선할 수 있답니다.<br /><p style={{margin: '10px'}}/>
 							시작하기 전에 자세와 환경을 체크하고, 손글씨 마스터로의 여정을 시작해보세요!</MainP>
@@ -262,8 +263,10 @@ export default function MainPage() {
 						</MenuBox>
 						</MainBox>
         	</Main>
+					</Section1div>
 				</Section1>
 				<Section2 id="part-3">
+					<Section2div>
 							<Function>
               	<FunctionDiv1>
               	  <FunctionTitle>
@@ -304,8 +307,10 @@ export default function MainPage() {
 									</FunctionContext>
               	</FunctionDiv4>
 							</Function>
+							</Section2div>
 					</Section2>
 					<Section3 id="part-4">
+						<Section3div>
 						<Section3Img>
 							<img src="/main/A.png"/>
 						</Section3Img>
@@ -313,6 +318,7 @@ export default function MainPage() {
 							<h1>손글씨 예측을 위한 AI모델 소개{/*합니다.*/} </h1>
 							<p>우리 사이트는 아이들과 외국인들의 손글씨 개선을 위하여 AI모델을 적용 시켰습니다. AI는 당신의 손글씨를 분석하여 정해진 폰트와의 정확도를 예측하고, 그에 따른 사용자의 필체가 폰트와 정확할수록 예측 점수는 올라갑니다.</p>
 						</Section3Div>
+						</Section3div>
 					</Section3>
 					<Section4 id="part-5">
 					<Cover onClick={onClcikTeam}/>
