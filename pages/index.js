@@ -193,11 +193,12 @@ export default function MainPage() {
             			onMouseUp={EndDrawing} // 마우스마우스 버튼을 땠을 때
             			onMouseMove={drawing} // 마우스가 움직일 때
             			onMouseLeave={EndDrawing} // 마우스가 캔버스를 벗어낫을 때
-                ></Mycanvas>
+                >
+								</Mycanvas>
 							<BannerButtonDiv>
           	    <MyButton1 onClick={() => {router.push('/register')}}>회원가입</MyButton1>
-          	    <MyButton2 onClick={() => {router.push('/login')}}>로그인</MyButton2>
-						  </BannerButtonDiv>
+          	    <MyButton2 onClick={() => {router.push('/login')}}>로그인</MyButton2>						
+							</BannerButtonDiv>
 							</>
 							)} 
           	</BannerDiv>
