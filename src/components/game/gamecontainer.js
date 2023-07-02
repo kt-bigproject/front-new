@@ -275,7 +275,7 @@ export default function Gamepage(props) {
       console.log(result);
       console.log("id", id);
       console.log("score", fetchedScore);
-      setScore(fetchedScore);
+      setScore(0.99);
       setIsLoading(false);
     };
     
