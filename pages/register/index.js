@@ -151,7 +151,7 @@ export default function Register() {
                 </Link>
               <CustomButton 
                 style={{ marginBottom: 12 }}
-                href={"/"}
+                href={`${baseURL}/google/login/`}
                 variant={"default"}
                 baseFontSize={16}
                 size={"large"}

@@ -90,11 +90,11 @@ export default function Write() {
   return (
     <>
     <LayoutHeader />
-    <div style={{backgroundColor:'#FAF0E6', width: '1100px', margin: 'auto' }}> 
+    <div style={{width: '1100px', margin: 'auto' }}> 
       <div className={styles.detailContainer}>
         <div className={styles.detailWrapper}>
         <div className={styles.detailHeader}>
-          <p style={{fontSize:'35px'}}>{"문의하기 게시판 > 글쓰기"}</p>
+          <p style={{fontSize:'35px'}}>{"나만의 폰트 만들기 > 글쓰기"}</p>
         </div>
         <div className={`${styles.detailBody} ${styles.Box}`}> 
       <ErrorAlert parentState={[errorMessage, setErrorMessage]}/>

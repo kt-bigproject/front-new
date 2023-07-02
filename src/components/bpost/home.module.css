@@ -45,35 +45,47 @@
 
 .postitP1 {
   position: absolute;
-  top: 10%;
-  left: 35% ;
+  top: 25%;
+  left: 52.5% ;
 }
 
 .postitP2 {
   position: absolute;
-  top: 30%;
-  left: 35% ;
+  top: 40%;
+  left: 52.5% ;
 }
 
 .postitP3 {
   position: absolute;
-  top: 40%;
-  left: 35% ;
+  top: 45%;
+  left: 52.5% ;
 }
 
 .postitP4 {
   position: absolute;
   top: 50%;
-  left: 35% ;
+  left: 52.5% ;
 }
 
-.headerIcon {
+.writeBox {
   position: absolute;
-  top: 64%;
-  left: 40% ;
+  top: 65%;
+  left: 53.75% ;
+  width: 255px;
+  height: 70px;
+  /* border: 1px solid black;  */
   cursor: pointer;
+  /* position: relative; */
 }
 
+.writeBox .innerText {
+  position: absolute;
+  top: 20px;
+  left: 95px;
+
+  font-size: 30px;
+  color: #FE7A15;
+}
 
 .figureWrapper {
   display: grid;

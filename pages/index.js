@@ -3,14 +3,15 @@ import {BannerButtonDiv, Footer, Banner, BannerDiv, Section3Img, Section3Div, En
 import LayoutHeader from '../src/commons/layout/header2/header';
 import { MyButton1, MyButton2 } from '../styles/practice/pracitce';
 import Modal from '@leafygreen-ui/modal';
-import {useState, useContext} from "react"
+import {useState, useContext, useEffect} from "react"
 import { Anchor } from 'antd';
 import AuthContext from '../src/components/AuthContext/AuthContext';
 import { useRouter } from 'next/router';
+import { hasCookie, getCookie, getCookies, deleteCookie } from 'cookies-next';
 
 export default function MainPage() {
 	const [open, setOpen] = useState(false);
-	const { user } = useContext(AuthContext)
+	const { user, socialLogin } = useContext(AuthContext)
 	console.log(user)
 	const onClcikTeam = () => {
 		setOpen(curr => !curr)
@@ -18,6 +19,19 @@ export default function MainPage() {
 
 	const router = useRouter()
 
+	useEffect(() => {
+    if (hasCookie('token')) {
+
+			const access = getCookie('token');
+			const refresh = getCookie('refresh_token');
+			const authTokens = { access, refresh}
+
+			socialLogin(authTokens)
+
+			deleteCookie('token')
+			deleteCookie('refresh_token')
+    }
+  }, []);
 
 
   return (
