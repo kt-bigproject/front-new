@@ -6,14 +6,15 @@ import { useState, useContext, useEffect, useRef } from 'react';
 // import { Upload } from 'antd';
 import { InboxOutlined } from '@ant-design/icons';
 // import AuthContext from "/src/components/AuthContext/AuthContext"; 
-import { useAxios } from '../../src/components/Axios/axios';
-import ErrorAlert from '../../src/components/Qpost/ErrorAlert';
+import { useAxios } from '/src/components/Axios/axios';
+import ErrorAlert from '/src/components/Qpost/ErrorAlert';
 import TextInput from '@leafygreen-ui/text-input';
 import Button from '@leafygreen-ui/button';
 // import Icon from '@leafygreen-ui/icon';
 import Image from 'next/image';
+import DeleteBtn from './DeleteBtn'
 
-export default function WriteModal({open, onClose}) {
+export default function EditModal({open, onClose, figureInfo}) {
 
   const boxStyle = {
     position: 'absolute',
@@ -31,20 +32,23 @@ export default function WriteModal({open, onClose}) {
   const [errorMessage, setErrorMessage] = useState(false);
   // const { user } = useContext(AuthContext);
   const fileInput = useRef();
-  const [fileList, setFileList] = useState([]);
-  const [ body, setBody] = useState("");
-  const [title, setTitle] = useState("");
+  const [ body, setBody] = useState(figureInfo.body);
+  const [title, setTitle] = useState(figureInfo.title);
   const [selectedFileName, setSelectedFileName] = useState('');
-  const [selectedImage, setSelectedImage] = useState(null);
+  const [selectedImage, setSelectedImage] = useState(figureInfo.image);
   const Router = useRouter();
   const api = useAxios();
 
+  const [fileList, setFileList] = useState(null);
+
+  
   const handleFileChange = (e) => {
     // setFileList(e.target.files[0]);
     // setSelectedFileName(e.target.files[0]?.name);
 
     const file = e.target.files[0];
     setFileList(file);
+
     setSelectedFileName(file?.name);
     setSelectedImage(URL.createObjectURL(file));
   };
@@ -65,19 +69,22 @@ export default function WriteModal({open, onClose}) {
 
       formData.append('title', title)  //서버전달용
       formData.append('body', body )
-      formData.append('image', fileList);
+      if (fileList) {
+        formData.append('image', fileList);
+      }
 
       for (let key of formData.keys()) {
           console.log("formData key");
           console.log(key);
       }
 
-      const response = await api.post('/blog/blog/', formData)
+      const response = await api.put('/blog/blog/'+figureInfo.id+'/', formData)
 
       // const data = await response.data;
       if (response.status === 201) {
         console.log(response.data)
         Router.push('/bpost')
+
       } else {
         console.log(response.status)
       }
@@ -86,7 +93,7 @@ export default function WriteModal({open, onClose}) {
           console.log("formData values");
           console.log(value);
       }
-      alert('등록되었습니다.')
+      alert('수정되었습니다.')
       Router.reload()
     };
     };
@@ -168,6 +175,7 @@ export default function WriteModal({open, onClose}) {
                                 onChange={(e) => {setTitle(e.target.value)}}
                                 placeholder="30자 이내로 제목을 입력해 주세요."
                                 maxLength={30}
+                                value={title}
                               />
                             </div>
                           </div>
@@ -185,14 +193,19 @@ export default function WriteModal({open, onClose}) {
                               placeholder='내용을 입력해주세요.' 
                               id="Content" 
                               className={styles.textbox} 
-                              onChange={e => setBody(e.target.value)}>
+                              onChange={e => setBody(e.target.value)}
+                              value={body}>
                             </textarea>
                             </div>
+
                             <input type="hidden" name="content" value={body}/>
                             <div className={styles.writeBtn} >
+                           
                               {/* <Button variant="outline-primary" id='submit-btn' type='submit' onClick={handleApi} style={{width: '100px'}} >글쓰기</Button>     */}
                               <Button className={styles.button_style}
-                              type='submit' >글쓰기</Button> 
+                              type='submit' >수정하기</Button> 
+
+                              <DeleteBtn id={figureInfo.id}/>
                             </div> 
                         </form>
                       </div>

@@ -1,17 +1,19 @@
 import React, { useState, useEffect, useContext, useRef } from 'react';
 import axios from 'axios';
 import Pagination from '@mui/material/Pagination';
+import { useRouter } from 'next/router';
 import { useAxios } from '/src/components/Axios/axios';
 import { styled  } from '@material-ui/styles';
 import AuthContext from '/src/components/AuthContext/AuthContext';
-import styles from './home.module.css';
+import styles from '/src/components/bpost/home.module.css';
 import Image from 'next/image';
 import ChatBubbleIcon from '@mui/icons-material/ChatBubble';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 
-import ImgModal from './ImgModal';
-import WriteModal from './WriteModal';
+import LayoutHeader from '/src/commons/layout/header2/header';
+import ImgModal from '/src/components/bpost/ImgModal';
+import WriteModal from '/src/components/bpost/WriteModal';
 
 // import { RoughNotation } from 'react-rough-notation';
 
@@ -24,6 +26,7 @@ const CustomPagination = styled(Pagination)({
 
 export default function Home() {
 
+  const router = useRouter()
   const { user, logoutUser } = useContext(AuthContext);
 
   // console.log(user)
@@ -66,21 +69,25 @@ export default function Home() {
   if (blog === null) {
     return <div>Loading</div>;
   }
-
+  
 
   const handleOpen = async (figureInfo) => {
-    try {
-      const response = await api.post('/blog/blog/' + figureInfo.id + '/increase_views/');
+    if (!user) {
+      router.push('/login');
+    } else {
+      try {
+        const response = await api.post('/blog/blog/' + figureInfo.id + '/increase_views/');
 
-      const likeResponse = await api.get(`/blog/blog/${figureInfo.id}/is_liked/`); 
-      const isLiked = likeResponse.data.is_liked;
+        const likeResponse = await api.get(`/blog/blog/${figureInfo.id}/is_liked/`); 
+        const isLiked = likeResponse.data.is_liked;
 
-      setClickFigure({...figureInfo, isLiked});
-      setOpen(true);    
-      // console.log(response, likeResponse, isLiked)
-    } catch (error) {
-      console.error(error);
-    }
+        setClickFigure({...figureInfo, isLiked});
+        setOpen(true);    
+        // console.log(response, likeResponse, isLiked)
+      } catch (error) {
+        console.error(error);
+      }
+    };
   };
 
   const handleClose = async () => {
@@ -96,7 +103,11 @@ export default function Home() {
   };
 
   const handleWriteOpen = () => {
-    setWriteOpen(true);    
+    if (!user) {
+      router.push('/login');
+    } else {
+      setWriteOpen(true);    
+    }
   };
 
   const handleWriteClose = () => {
@@ -105,6 +116,8 @@ export default function Home() {
 
   // console.log(blog)
   return (
+    <>
+    <LayoutHeader/>
     <div style={{ width: '1010px', margin: 'auto' }}>    
 
       
@@ -112,18 +125,18 @@ export default function Home() {
       <div className={styles.pageHeader}>        
         <div className={styles.headerPostit}>
           
-        <Image src='/bpost-2.png' width={1010} height={410} priority/>
-        <p className={styles.postitP1} style={{fontSize:'45px'}}>자랑하기 게시판입니다.</p>
-        <p className={styles.postitP2} style={{fontSize:'20px'}}>열심히 연습한 글씨를 공유하고 자랑해보세요.</p>
+        <Image src='/bpost_svg.svg' width={1010} height={410} priority/>
+        <p className={styles.postitP1} style={{fontSize:'35px'}}>자랑하기 게시판입니다.</p>
+        <p className={styles.postitP2} style={{fontSize:'20px'}}>열심히 연습한 글씨를 공유하고 자랑하는 공간입니다.</p>
         <p className={styles.postitP3} style={{fontSize:'20px'}}>좋아요를 받고 댓글로 칭찬을 남겨주세요.</p>
-        <p className={styles.postitP4} style={{fontSize:'20px'}}>아래의 좋아요 아이콘을 눌러 글을 작성할 수 있습니다.</p>
-        <div className={styles.headerIcon}>
-          <Image 
+        <p className={styles.postitP4} style={{fontSize:'20px'}}>아래의 버튼을 눌러 글을 쓸 수 있습니다.</p>
+        <div className={styles.writeBox} onClick={handleWriteOpen}><span className={styles.innerText}>자랑글쓰기</span></div>
+          {/* <Image 
             src="/good.png"             
             width={80} 
             height={80} 
             onClick={handleWriteOpen}            
-          />
+          /> */}
         {/* <div style={{ position: 'relative', display: 'inline-block' }}>
           <RoughNotation 
             type="circle" 
@@ -143,7 +156,6 @@ export default function Home() {
           />  
           </RoughNotation>
         </div>           */}
-        </div>
           {/* <Image src="/qpost_postit.svg" width={600} height={400}/>          
           <p className={styles.postitP1} style={{fontSize:'45px'}}>문의하기 게시판입니다.</p>
           <p className={styles.postitP2} style={{fontSize:'20px'}}>누군가의 예쁜 손글씨를 소유하고 싶지 않으신가요?</p>
@@ -192,9 +204,9 @@ export default function Home() {
           <div className={styles.infoWrapper}>
             <span className={styles.figureTitle}>{figureInfo.title}</span>
             <div className={styles.infoText}>
-              <FavoriteIcon sx={{ fontSize: 15, margin: '0px 2px 0px 2px' }} color="action"/>{figureInfo.num_likes}
-              <ChatBubbleIcon sx={{ fontSize: 15, margin: '0px 2px 0px 2px'  }} color="action"/>{figureInfo.num_comments}
-              <VisibilityIcon sx={{ fontSize: 15, margin: '0px 2px 0px 2px' }} color="action"/>{figureInfo.views}
+              <FavoriteIcon sx={{ fontSize: 15, margin: '0px 2px 0px 2px', color: '#F24822'}} color="action"/>{figureInfo.num_likes}
+              <ChatBubbleIcon sx={{ fontSize: 15, margin: '0px 2px 0px 2px', color: '#F24822'}} color="action"/>{figureInfo.num_comments}
+              <VisibilityIcon sx={{ fontSize: 15, margin: '0px 2px 0px 2px', color: '#F24822'}} color="action"/>{figureInfo.views}
             </div>
           </div>
         </div>
@@ -212,6 +224,7 @@ export default function Home() {
       showLastButton />
     </div>
   </div>
+  </>
   )
 };
 

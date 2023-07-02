@@ -69,7 +69,7 @@ export default function PostDetail() {
 
   const types = {
     normal: "일반",
-    inquiry: "문의",
+    inquiry: "요청",
     announcement: "공지",
   };
 
@@ -123,11 +123,11 @@ export default function PostDetail() {
 
   return (
     <><LayoutHeader />
-    <div style={{backgroundColor:'#FAF0E6', width: '1100px', margin: 'auto' }}> 
+    <div style={{width: '1100px', margin: 'auto' }}> 
       <div className={styles.detailContainer}>
         <div className={styles.detailWrapper}>
         <div className={styles.detailHeader}>
-          <p style={{fontSize:'35px'}}>{"문의하기 게시판 > 게시글"}</p>
+          <p style={{fontSize:'35px'}}>{"나만의 폰트 만들기 > 게시글"}</p>
         </div>
         <div className={`${styles.detailBody} ${styles.Box}`}> 
           <div className={styles.topToolbar}>

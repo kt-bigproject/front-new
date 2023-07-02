@@ -11,7 +11,7 @@ export default function DialogAlert({errorMessage, handleAgree, handleClose}) {
   return (
     <div>
       <Dialog
-        open={open}
+        open={true}
         onClose={handleClose}
         aria-labelledby="alert-dialog-title"
         aria-describedby="alert-dialog-description"

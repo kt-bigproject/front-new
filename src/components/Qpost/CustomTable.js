@@ -7,7 +7,7 @@ import Icon from '@leafygreen-ui/icon';
 
 const types = {
   normal: "일반",
-  inquiry: "문의",
+  inquiry: "요청",
   announcement: "공지",
 };
 

@@ -50,6 +50,14 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
+  const socialLogin = (data) => {
+    setAuthTokens(data);
+    setUser(jwt_decode(data.access));
+    localStorage.setItem("authTokens", JSON.stringify(data));
+    console.log(jwt_decode(data.access))
+    console.log(data)
+  }
+
   const logoutUser = () => {
     setAuthTokens(null);
     setUser(null);
@@ -66,6 +74,7 @@ export const AuthProvider = ({ children }) => {
     logoutUser,
     count,
     setCount,
+    socialLogin,
   };
 
   return (

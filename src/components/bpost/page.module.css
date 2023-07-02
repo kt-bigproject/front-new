@@ -46,7 +46,7 @@
 }
 
 .img_back {
-  background-image: url('../../public/main/bg.jpg');
+  background-image: url('/public/main/bg.jpg');
   width: 2000;
   height: auto;
 }
@@ -261,7 +261,7 @@
 }
 
 .b5 {
-  border-image: url('../../public/pngwing.com (1).png') 200 / 40px;
+  border-image: url('/public/pngwing.com (1).png') 200 / 40px;
 
 }
 
@@ -384,6 +384,8 @@
   background-color: #fa6400;
   color: white;
   font-size: 15px;
+
+  margin-right: 10px;
 }
 
 .form_head {

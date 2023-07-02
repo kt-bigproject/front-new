@@ -74,7 +74,7 @@ export default function Home() {
         <div className={styles.pageHeader}>        
         <div className={styles.headerPostit}>
           <Image src="/qpost_svg.svg" width={1010} height={410}/>          
-          <p className={styles.postitP1} style={{fontSize:'45px'}}>문의하기 게시판입니다.</p>
+          <p className={styles.postitP1} style={{fontSize:'35px'}}>나만의 폰트 만들기 <span style={{fontSize:'25px'}}>게시판 입니다.</span></p>
           <p className={styles.postitP2} style={{fontSize:'20px'}}>누군가의 예쁜 손글씨를 소유하고 싶지 않으신가요?</p>
           <p className={styles.postitP3} style={{fontSize:'20px'}}>본인 혹은 좋아하는 사람의 손글씨를 폰트로 바꿔드립니다.</p>
           <p className={styles.postitP4} style={{fontSize:'20px'}}>아래의 템플릿을 완성하여 문의해주세요!</p>
