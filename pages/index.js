@@ -51,7 +51,7 @@ export default function MainPage() {
 		if (user) {
 			context.font = `50pt one` 
 			context.fillStyle = "lightgray";
-			context.fillText(`${user.username} 님 환영합니다`,250, 225)
+			context.fillText(`"${user.username}" 님 환영합니다`,250, 225)
 		} else {
 			context.font = `50pt one` 
 			context.fillStyle = "lightgray";
@@ -103,6 +103,15 @@ export default function MainPage() {
     }
 
 	const router = useRouter()
+
+	const [modalOpen, setModalOpen] = useState(false);
+
+  	const openModal = () => {
+    	setModalOpen(true);
+	};
+	const closeModal = () => {
+		setModalOpen(false);
+	};
 
 	// useEffect(() => {
   //   if (hasCookie('token')) {
@@ -213,12 +222,12 @@ export default function MainPage() {
 				<Section1div>
 				<Main>
 					<MainBox>
-						<MainDiv style={{marginTop: '35px'}}>
+						<MainDiv>
 							<span style={{fontSize: '40px', fontWeight: 'bolder'}}>"손글씨 마스터!"
 							<br />
 							<br />
 							</span>
-							<MainP style={{fontSize: '20px'}}>글씨 연습장은 더 나은 글쓰기 경험을 위해 설계된 도구입니다.<br /><p style={{margin: '10px'}}/>
+							<MainP>글씨 연습장은 더 나은 글쓰기 경험을 위해 설계된 도구입니다.<br /><p style={{margin: '10px'}}/>
 							편안한 자세로 앉아 등과 어깨를 펴고, 팔과 손목을 자연스럽게 위치시켜 최적의 글쓰기 자세를 유지하세요.<br /><p style={{margin: '10px'}}/>
 							이렇게 하면 손글씨의 흐름과 정확성을 더욱 개선할 수 있답니다.<br /><p style={{margin: '10px'}}/>
 							시작하기 전에 자세와 환경을 체크하고, 손글씨 마스터로의 여정을 시작해보세요!</MainP>
@@ -234,9 +243,11 @@ export default function MainPage() {
           			frameBorder="0"
           			></img>
                 <br />
-								<FeatureP style={{fontSize: '19px'}}>글쓰기 연습을 할 때는 언제나 올바른 자세로! 잘못된 자세는 허리에 부담을 줄 수가 있어요!</FeatureP>
+								<FeatureP>글쓰기 연습을 할 때는 언제나 올바른 자세로! 잘못된 자세는 허리에 부담을 줄 수가 있어요!<br/>
+								<a href='http://www.faber-castell.co.kr/%ED%94%8C%EB%A0%88%EC%9E%89%EB%9F%AC%EB%8B%9D/%EC%93%B0%EA%B8%B0%ED%95%99%EC%8A%B5/%EC%B2%B4%EA%B3%84%EC%A0%81%EC%9D%B8-%EC%93%B0%EA%B8%B0-%ED%95%99%EC%8A%B5%EC%9D%84-%EC%9C%84%ED%95%9C-%EB%AA%87-%EA%B0%80%EC%A7%80-%EC%B6%94%EA%B0%80-%EC%9C%A0%EC%9D%98%EC%82%AC%ED%95%AD/'>"올바른 자세 확인하기"</a>
+								</FeatureP>
 							</FeatureSection>
-							<FeatureSection2 style={{width: '600px'}}>
+							<FeatureSection2>
 								<span></span>
 								<h3>밝은 장소!</h3>
 								<img
@@ -246,7 +257,7 @@ export default function MainPage() {
           			frameBorder="0"
           			></img>
                 <br />
-								<FeatureP style={{fontSize: '19px'}}>어두운 곳에서 하는 글쓰기 연습은 시력에 안 좋은 영향을 미칠 수 가 있어요!</FeatureP>
+								<FeatureP>어두운 곳에서 하는 글쓰기 연습은 시력에 안 좋은 영향을 미칠 수 가 있어요!</FeatureP>
 							</FeatureSection2>
 							<FeatureSection3>
 								<span></span>
@@ -258,7 +269,8 @@ export default function MainPage() {
           			frameBorder="0"
           			></img>
                 <br />
-								<FeatureP style={{fontSize: '19px'}}>연필을 잡을 때는 언제나 올바른 파지법으로! 잘못된 파지법은 손에 부담을 줄 수가 있어요!</FeatureP>
+								<FeatureP>연필을 잡을 때는 언제나 올바른 파지법으로! 잘못된 파지법은 손에 부담을 줄 수가 있어요!<br />
+								<a href='http://www.faber-castell.co.kr/%ED%94%8C%EB%A0%88%EC%9E%89%EB%9F%AC%EB%8B%9D/%EC%93%B0%EA%B8%B0%ED%95%99%EC%8A%B5/%EC%98%AC%EB%B0%94%EB%A5%B8-%EC%9E%90%EC%84%B8-%EC%9D%B5%ED%9E%88%EA%B8%B0/'>"올바른 파지법 확인하기"</a></FeatureP>
 							</FeatureSection3>
 						</MenuBox>
 						</MainBox>
@@ -317,6 +329,12 @@ export default function MainPage() {
 						<Section3Div>
 							<h1>손글씨 예측을 위한 AI모델 소개{/*합니다.*/} </h1>
 							<p>우리 사이트는 아이들과 외국인들의 손글씨 개선을 위하여 AI모델을 적용 시켰습니다. AI는 당신의 손글씨를 분석하여 정해진 폰트와의 정확도를 예측하고, 그에 따른 사용자의 필체가 폰트와 정확할수록 예측 점수는 올라갑니다.</p>
+							<button onClick={openModal}>자세히</button>
+							
+							<Modal open={modalOpen} close={closeModal}>
+								
+								AI 자세한 설명창
+							</Modal>
 						</Section3Div>
 						</Section3div>
 					</Section3>
