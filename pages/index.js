@@ -50,7 +50,7 @@ export default function MainPage() {
 			context.drawImage(img, 300, 10, 404, 128)
 			context.font = `50pt one` 
 			context.fillStyle = "lightgray";
-			context.fillText(`${user.username} 님 환영합니다`,250, 225)
+			context.fillText(`"${user.username}" 님 환영합니다`,250, 225)
 	
 			context.font = `30pt one` 
 			context.fillText('그림을 그려보세요!',380, 300)

@@ -45,6 +45,7 @@ new Promise((resolve, reject) => {
 });
 
 export default function PraticePage() {
+  const [inputValue, setInputValue] = useState('쓰고싶은 글을 써주세요.');
   // 기능
   const api = useAxios()
   const router = useRouter()
@@ -76,7 +77,6 @@ export default function PraticePage() {
   const [score, setScore] = useState(null)
   const [isLoading, setIsLoading] = useState(false)
   const [id, setId] = useState(null)
-  const [correct, setCorrect] = useState(null)
 
   // 다시하기 함수
   const GoHome = () => {
@@ -202,12 +202,10 @@ export default function PraticePage() {
     },
   ]
 
-  useEffect(() =>{
-    if (!user) {
-      alert("로그인 후 이용해주세요.")
-      router.push('/')
-    }
-  },[])
+  const handleInputChange = (event) => {
+    setInputValue(event.target.value);
+  };
+
   useEffect(() =>{
     const canvas = canvasRef.current;
     canvas.width = 1010
@@ -218,7 +216,7 @@ export default function PraticePage() {
     hidden.height = 400
 
     const context = canvas.getContext('2d')
-    context.lineWidth = 4;
+    context.lineWidth = 5;
     context.strokeStyle = eraser
     context.lineCap = "round" // 선 끝모양지정 butt, round, square
 
@@ -235,10 +233,7 @@ export default function PraticePage() {
 
     hiddenContextRef.current = hiddenContext;
     sethiddenCtx(hiddenContextRef.current)
-
-    hiddenContext.fillStyle = 'white';
-    hiddenContext.fillRect(0, 0, canvas.width, canvas.height);
-  }, [clear, font, sent]);
+  }, [clear, inputValue, font, sent]);
 
   useEffect(() => { // 지우개 쓰기 위해서 렌더링
     if (ctx && hiddenCtx) {
@@ -295,8 +290,6 @@ export default function PraticePage() {
 
   // 그림 제출하기 함수
   const onClickSubmit = async (event) => {
-    const randomNumber = Math.floor(Math.random() * 100000)
-
     event.preventDefault();
     hiddenRef.current.getContext('2d').fillText("",0,0)
     const canvas = hiddenRef.current;
@@ -304,7 +297,7 @@ export default function PraticePage() {
   
     const response = await fetch(ImageURL);
     const blob = await response.blob();
-    const file = new File([blob], `image${randomNumber}.png`, { type: "image/png" });
+    const file = new File([blob], "myImage.png", { type: "image/png" });
     const formData = new FormData(); // 이미지는 formdata객체를 만들어서 보내줘야 함
     formData.append("font", font);
     formData.append("image", file);
@@ -354,6 +347,19 @@ export default function PraticePage() {
     Fetchsentence()
   }, [])
 
+  const MyDivStyle = {
+    fontFamily: font,
+    fontSize: 30,
+    textAlign: "center",
+    width: "1200px",
+    borderRadius: "10px", 
+    width: 800, 
+    height: 50, 
+    textAlign: "center", 
+    fontSize: 28, 
+    border: "2px solid gray"
+  }
+
   const bomb = () => {
     confetti({
       particleCount: 100,
@@ -372,27 +378,14 @@ export default function PraticePage() {
   // 점수 표출 함수
   const Fetchsentence = async (id) => {
     const result = await api.get('/practice/predict/');
-    const fetchedScore = result.data.data.find(item => item.id === id)?.confidence;
-    const corrected = result.data.data.find(item => item.id === id)?.is_correct;
-
-    setCorrect(corrected)
-    setScore(fetchedScore);
+    const fetchedScore = result.data.data.find(item => item.id === id)?.score;
+    setScore(0.9);
     setIsLoading(false);
   };
 
-  // const TEST = async (id) => {
-  //   const result = await api.get('/practice/predict/');
-  //   // const fetchedScore = result.data.data.find(item => item.id === id)?.score;
-  //   console.log(result.data.data[6].is_correct);
-  //   console.log(result)
-    // console.log("score", fetchedScore);
-  // };
-
-  // console.log(correct)
   return(
     <>
     <Alldiv>
-      {/* <button onClick={TEST}>asdf</button> */}
       <BannerDiv>
           <LayoutHeader />
             <BannerDiv2>
@@ -400,12 +393,10 @@ export default function PraticePage() {
                 <img width='350' height='370' src='/Practice/Practice.png'/>
               </ImageDiv>
               <Context>
-                <h1 style={{fontSize: '40px'}}>낙서장</h1>
-                <br />
-                <p style={{fontSize: '22px'}}>다양한 서체를 적용하여 글씨체를 연습해보세요</p>
-                <p style={{fontSize: '22px'}}>손글씨를 연습하고 싶은 분들을 위한 특별한 공간입니다.</p>
-                <p style={{fontSize: '22px'}}>손글씨의 아름다움과 창의성을 함께 향상시킬 수 있는 공간, </p>
-                <p style={{fontSize: '22px'}}>손글씨 낙서장입니다.</p>
+                <h1>낙서장</h1>
+                <p>다양한 서체를 적용하여 글씨체를 연습해보세요</p>
+                <p>손글씨를 연습하고 싶은 분들을 위한 특별한 공간입니다.</p>
+                <p>손글씨의 아름다움과 창의성을 함께 향상시킬 수 있는 공간, 손글씨 낙서장입니다</p>
               </Context>
             </BannerDiv2>
             <Function>
