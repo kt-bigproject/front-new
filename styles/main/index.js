@@ -100,6 +100,7 @@ export const MainDiv = styled.div`
   padding-bottom: 30px;
   margin-top: 35px;
 `
+
 export const Section2 = styled.div`
   background-image: url('/main/frame.png');
   background-repeat: no-repeat;
@@ -190,7 +191,7 @@ export const MenuBox = styled.section`
   display: flex;
 	max-width: calc(100% - 5em);
 	width: 70em;
-  height: 50vh;
+  height: 55vh;
 `
 
 export const FeatureSection = styled.section`

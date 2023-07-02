@@ -9,7 +9,6 @@ import AuthContext from '../src/components/AuthContext/AuthContext';
 import { useRouter } from 'next/router';
 import { hasCookie, getCookie, getCookies, deleteCookie } from 'cookies-next';
 import styled from '@emotion/styled';
-import { ReloadOutlined } from '@ant-design/icons';
 
 const Mycanvas = styled.canvas`
 	/* border: 1px solid; */
@@ -19,14 +18,13 @@ const Mycanvas = styled.canvas`
 `
 
 export default function MainPage() {
-
 	const [open, setOpen] = useState(false);
 	const { user, socialLogin } = useContext(AuthContext)
 	console.log(user)
 	const onClcikTeam = () => {
 		setOpen(curr => !curr)
 	}
-	
+
 	// 메인페이지 캔버스 그리기
 	const canvasRef = useRef(null)
   const contextRef = useRef(null)
@@ -34,27 +32,28 @@ export default function MainPage() {
 	const [isDrawing, setIsDrawing] = useState(false) 
   const [eraser, setEraser] = useState("black")
   const [clear, setClear] = useState("")
-	
+
 	useEffect(() =>{
 		const img = new Image()
 		img.src = '/main/mainlogo.png'
-		const canvas = canvasRef.current;
-		const context = canvas.getContext('2d')
-		canvas.width = 1010
-		canvas.height = 340
-		context.drawImage(img, 300, 10, 404, 128)
 
+		const canvas = canvasRef.current;
+		canvas.width = 1010
+		canvas.height = 400
+
+		const context = canvas.getContext('2d')
 		context.lineWidth = 4;
 		context.strokeStyle = eraser
 		context.lineCap = "round" // 선 끝모양지정 butt, round, square
 		
-		context.font = `50pt one` 
+		context.drawImage(img, 300, 10, 404, 128)
+
 		if (user) {
-			context?.font = `50pt one` 
+			context.font = `50pt one` 
 			context.fillStyle = "lightgray";
 			context.fillText(`"${user.username}" 님 환영합니다`,250, 225)
 		} else {
-			context?.font = `50pt one` 
+			context.font = `50pt one` 
 			context.fillStyle = "lightgray";
 			context.fillText(`오늘의 글씨`,380, 225)
 		}
@@ -105,19 +104,28 @@ export default function MainPage() {
 
 	const router = useRouter()
 
-	useEffect(() => {
-    if (hasCookie('token')) {
+	const [modalOpen, setModalOpen] = useState(false);
 
-			const access = getCookie('token');
-			const refresh = getCookie('refresh_token');
-			const authTokens = { access, refresh}
+  	const openModal = () => {
+    	setModalOpen(true);
+	};
+	const closeModal = () => {
+		setModalOpen(false);
+	};
 
-			socialLogin(authTokens)
+	// useEffect(() => {
+  //   if (hasCookie('token')) {
 
-			deleteCookie('token')
-			deleteCookie('refresh_token')
-    }
-  }, []);
+	// 		const access = getCookie('token');
+	// 		const refresh = getCookie('refresh_token');
+	// 		const authTokens = { access, refresh}
+
+	// 		socialLogin(authTokens)
+
+	// 		deleteCookie('token')
+	// 		deleteCookie('refresh_token')
+  //   }
+  // }, []);
 
 
   return (
@@ -196,13 +204,9 @@ export default function MainPage() {
             			onMouseLeave={EndDrawing} // 마우스가 캔버스를 벗어낫을 때
                 >
 								</Mycanvas>
-								<MyButton3  onClick={onClickClear}/>
 							<BannerButtonDiv>
-								{/* <div style={{display: 'flex', flexDirection:'row'}}> */}
-									
           	    <MyButton1 onClick={() => {router.push('/register')}}>회원가입</MyButton1>
           	    <MyButton2 onClick={() => {router.push('/login')}}>로그인</MyButton2>						
-								{/* </div> */}
 							</BannerButtonDiv>
 							</>
 							)} 
@@ -223,7 +227,7 @@ export default function MainPage() {
 							<br />
 							<br />
 							</span>
-							<MainP style={{fontSize: '20px'}}>글씨 연습장은 더 나은 글쓰기 경험을 위해 설계된 도구입니다.<br /><p style={{margin: '10px'}}/>
+							<MainP>글씨 연습장은 더 나은 글쓰기 경험을 위해 설계된 도구입니다.<br /><p style={{margin: '10px'}}/>
 							편안한 자세로 앉아 등과 어깨를 펴고, 팔과 손목을 자연스럽게 위치시켜 최적의 글쓰기 자세를 유지하세요.<br /><p style={{margin: '10px'}}/>
 							이렇게 하면 손글씨의 흐름과 정확성을 더욱 개선할 수 있답니다.<br /><p style={{margin: '10px'}}/>
 							시작하기 전에 자세와 환경을 체크하고, 손글씨 마스터로의 여정을 시작해보세요!</MainP>
