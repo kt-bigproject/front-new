@@ -97,6 +97,7 @@ export const MainDiv = styled.div`
   padding-top: 70px;
   text-align: center;
   padding-bottom: 30px;
+  margin-top: 35px;
 `
 export const Section2 = styled.div`
   background-image: url('/main/frame.png');
@@ -165,7 +166,7 @@ export const FunctionDiv4 = styled.div`
   width: 100%;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: space-evenly;
   align-items: center;
   border-left: 3px dashed;
 `
@@ -181,6 +182,7 @@ export const FunctionContext = styled.div`
 
 export const MainP = styled.p`
   position: relative;
+  font-size: 20px;
 `
 
 export const MenuBox = styled.section`
@@ -211,6 +213,8 @@ export const FeatureSection2 = styled.section`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  width: 600px;
+  margin: 30px;
 `
 
 export const FeatureSection3 = styled.section`
@@ -235,6 +239,7 @@ export const FeatureSection4 = styled.section`
 `
 export const FeatureP = styled.p`
   width: 58%;
+  font-size: 19px;
 `
 
 export const EndBanner1 = styled.div`
