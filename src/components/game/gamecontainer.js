@@ -99,6 +99,10 @@ export default function Gamepage(props) {
   // 업로드 이미지를 서버로 전송하는 함수
   const handleApi = async (event) => {
     event.preventDefault();
+    if (!user) {
+      alert("로그인 후 이용해주세요.")
+      router.push('/')
+    }
     const formData = new FormData();
     formData.append('font', font)  //서버전달용
     formData.append(`image`, fileList[0].originFileObj)
@@ -131,10 +135,14 @@ export default function Gamepage(props) {
 
     // 그림 제출하기 함수
   const onClickSubmit = async (event) => {
+    event.preventDefault();
+    if (!user) {
+      alert("로그인 후 이용해주세요.")
+      router.push('/')
+    }
     //파일명 아무거나로 바꾸기
     const randomNumber = Math.floor(Math.random() * 100000)
 
-    event.preventDefault();
     hiddenRef.current.getContext('2d').fillText("",0,0)
     const canvas = hiddenRef.current;
     const ImageURL = canvas.toDataURL(); // base64 타입 데이터로 변환
