@@ -30,15 +30,12 @@ export const BannerSection = styled.div`
 `
 
 export const BannerDiv = styled.div`
-  /* background-image: url('/main/function/function3.png'); */
-  /* background-repeat: no-repeat; */
-  /* background-size: 100%; */
   display : flex;
   flex-direction: column;
-  /* justify-content: center; */
   align-items: center;
   width: 50%;
   height: 50%;
+  /* border: 1px solid; */
 `
 
 export const BannerButtonDiv = styled.div`

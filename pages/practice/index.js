@@ -45,7 +45,6 @@ new Promise((resolve, reject) => {
 });
 
 export default function PraticePage() {
-  const [inputValue, setInputValue] = useState('쓰고싶은 글을 써주세요.');
   // 기능
   const api = useAxios()
   const router = useRouter()
@@ -203,10 +202,12 @@ export default function PraticePage() {
     },
   ]
 
-  const handleInputChange = (event) => {
-    setInputValue(event.target.value);
-  };
-
+  useEffect(() =>{
+    if (!user) {
+      alert("로그인 후 이용해주세요.")
+      router.push('/')
+    }
+  },[])
   useEffect(() =>{
     const canvas = canvasRef.current;
     canvas.width = 1010
@@ -217,7 +218,7 @@ export default function PraticePage() {
     hidden.height = 400
 
     const context = canvas.getContext('2d')
-    context.lineWidth = 5;
+    context.lineWidth = 4;
     context.strokeStyle = eraser
     context.lineCap = "round" // 선 끝모양지정 butt, round, square
 
@@ -234,7 +235,10 @@ export default function PraticePage() {
 
     hiddenContextRef.current = hiddenContext;
     sethiddenCtx(hiddenContextRef.current)
-  }, [clear, inputValue, font, sent]);
+
+    hiddenContext.fillStyle = 'white';
+    hiddenContext.fillRect(0, 0, canvas.width, canvas.height);
+  }, [clear, font, sent]);
 
   useEffect(() => { // 지우개 쓰기 위해서 렌더링
     if (ctx && hiddenCtx) {
@@ -350,19 +354,6 @@ export default function PraticePage() {
     Fetchsentence()
   }, [])
 
-  const MyDivStyle = {
-    fontFamily: font,
-    fontSize: 30,
-    textAlign: "center",
-    width: "1200px",
-    borderRadius: "10px", 
-    width: 800, 
-    height: 50, 
-    textAlign: "center", 
-    fontSize: 28, 
-    border: "2px solid gray"
-  }
-
   const bomb = () => {
     confetti({
       particleCount: 100,
@@ -389,19 +380,19 @@ export default function PraticePage() {
     setIsLoading(false);
   };
 
-  const TEST = async (id) => {
-    const result = await api.get('/practice/predict/');
-    // const fetchedScore = result.data.data.find(item => item.id === id)?.score;
-    console.log(result.data.data[6].is_correct);
-    console.log(result)
+  // const TEST = async (id) => {
+  //   const result = await api.get('/practice/predict/');
+  //   // const fetchedScore = result.data.data.find(item => item.id === id)?.score;
+  //   console.log(result.data.data[6].is_correct);
+  //   console.log(result)
     // console.log("score", fetchedScore);
-  };
+  // };
 
   // console.log(correct)
   return(
     <>
     <Alldiv>
-      <button onClick={TEST}>asdf</button>
+      {/* <button onClick={TEST}>asdf</button> */}
       <BannerDiv>
           <LayoutHeader />
             <BannerDiv2>

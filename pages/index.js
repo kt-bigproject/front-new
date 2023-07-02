@@ -1,13 +1,21 @@
 import Link from 'next/link';
-import {BannerButtonDiv, Footer, Banner, BannerDiv, Section3Img, Section3Div, EndBanner, EndBanner1, EndBanner2, FeatureSection, FeatureSection2, FeatureSection3, Main, MainBox, MainDiv, MainFeatures,  MainP, MenuBox, FooterUl, Profile, Profile1, ProfileIcon, Name, Position, ProfileCircle, FunctionSpan, FunctionDiv, FunctionTitle, FunctionContext, Function, GIFdiv, FeatureP, BannerSection, All, Section1, Section2, FunctionDiv1, FunctionDiv2, FunctionDiv3, FunctionDiv4, Section3, Section4, Cover, Section4Div, BannerButtonDiv2} from '../styles/main/index'
+import {BannerButtonDiv, Banner, BannerDiv, Section3Img, Section3Div, EndBanner, EndBanner1, EndBanner2, FeatureSection, FeatureSection2, FeatureSection3, Main, MainBox, MainDiv, MainFeatures,  MainP, MenuBox, FooterUl, Profile, Profile1, ProfileIcon, Name, Position, ProfileCircle, FunctionSpan, FunctionDiv, FunctionTitle, FunctionContext, Function, GIFdiv, FeatureP, BannerSection, All, Section1, Section2, FunctionDiv1, FunctionDiv2, FunctionDiv3, FunctionDiv4, Section3, Section4, Cover, Section4Div, BannerButtonDiv2} from '../styles/main/index'
 import LayoutHeader from '../src/commons/layout/header2/header';
-import { MyButton1, MyButton2 } from '../styles/practice/pracitce';
+import { MyButton1, MyButton2, MyButton3 } from '../styles/practice/pracitce';
 import Modal from '@leafygreen-ui/modal';
-import {useState, useContext, useEffect} from "react"
+import {useState, useContext, useEffect, useRef} from "react"
 import { Anchor } from 'antd';
 import AuthContext from '../src/components/AuthContext/AuthContext';
 import { useRouter } from 'next/router';
 import { hasCookie, getCookie, getCookies, deleteCookie } from 'cookies-next';
+import styled from '@emotion/styled';
+
+const Mycanvas = styled.canvas`
+	/* border: 1px solid; */
+	/* background-image: url("/main/grid2.png"); */
+	background-size: 100%;
+	/* background-color: white; */
+`
 
 export default function MainPage() {
 	const [open, setOpen] = useState(false);
@@ -16,6 +24,78 @@ export default function MainPage() {
 	const onClcikTeam = () => {
 		setOpen(curr => !curr)
 	}
+
+	// 메인페이지 캔버스 그리기
+	const canvasRef = useRef(null)
+  const contextRef = useRef(null)
+  const [ctx, setCtx] = useState() // 그림지정 state
+	const [isDrawing, setIsDrawing] = useState(false) 
+  const [eraser, setEraser] = useState("black")
+  const [clear, setClear] = useState("")
+
+	if (user) {
+		useEffect(() =>{
+			const img = new Image()
+			img.src = '/main/mainlogo.png'
+	
+			const canvas = canvasRef.current;
+			canvas.width = 1010
+			canvas.height = 400
+	
+			const context = canvas.getContext('2d')
+			context.lineWidth = 4;
+			context.strokeStyle = eraser
+			context.lineCap = "round" // 선 끝모양지정 butt, round, square
+			
+			context.drawImage(img, 300, 10, 404, 128)
+			context.font = `50pt one` 
+			context.fillStyle = "lightgray";
+			context.fillText(`${user.username} 님 환영합니다`,250, 225)
+	
+			context.font = `30pt one` 
+			context.fillText('그림을 그려보세요!',380, 300)
+			contextRef.current = context;
+			setCtx(contextRef.current)
+	
+		}, [clear]);
+	}
+
+
+  useEffect(() => { // 지우개 쓰기 위해서 렌더링
+    if (ctx) {
+      ctx.strokeStyle = eraser;
+    }
+  }, [eraser, ctx ]);
+
+  const startDrawing = ({ nativeEvent }) => { //그리는 함수
+    const { offsetX, offsetY } = nativeEvent;
+    ctx.beginPath();
+    ctx.moveTo(offsetX, offsetY);
+
+    setIsDrawing(true);
+  }
+  
+  const EndDrawing = () => { // 그리는거 끝내기
+    setIsDrawing(false);
+  }
+
+  const drawing = ({ nativeEvent }) => {
+    const { offsetX, offsetY } = nativeEvent;
+    if (ctx) {
+      if (!isDrawing) {
+        ctx.beginPath(); // 출발점 초기화
+        ctx.moveTo(offsetX, offsetY); // 출발점을 좌표로 옮김
+      } else {
+        ctx.lineTo(offsetX, offsetY); // 도착점을 좌표로 옴김
+        ctx.stroke() // 그림이 그려짐
+      }
+    }
+  }
+
+  const onClickClear = () => {
+      ctx.clearRect(0,0, 10000000, 10000000)
+      setClear(clear+1)
+    }
 
 	const router = useRouter()
 
@@ -40,16 +120,16 @@ export default function MainPage() {
 			<LayoutHeader />
 			<div>
       <Anchor style={{
-      		  padding: '15px',
-						fontWeight: 'bold',
-						width : '23vw',
-						display: 'flex',
-						justifyContent:'center',
-						backgroundImage: "url('/anchor.png')",
-						backgroundSize:'100% 100%',
-						zIndex: 2,
-						marginTop: '10px'
-		}}
+      		padding: '15px',
+					fontWeight: 'bold',
+					width : '23vw',
+					display: 'flex',
+					justifyContent:'center',
+					backgroundImage: "url('/anchor.png')",
+					backgroundSize:'100% 100%',
+					zIndex: 2,
+					marginTop: '10px'
+					}}
         direction="horizontal"
         items={[
           {
@@ -82,21 +162,31 @@ export default function MainPage() {
     </div>
 					<BannerSection id="part-1">
           	<BannerDiv>
-							<GIFdiv>
+							{/* <GIFdiv>
 								<img src="/logo.png" />
-							</GIFdiv>
+							</GIFdiv> */}
 							{user? 
 							(
 							<>
-						  <p style={{fontSize:"25px"}}>{user.username} 님 환영합니다!</p>
+						  {/* <p style={{fontSize:"25px"}}>{user.username} 님 환영합니다!</p>
 						  <br />
 							<BannerButtonDiv2>
           	    <MyButton1 onClick={() => {router.push('/practice')}}>Try it!</MyButton1>
-						  </BannerButtonDiv2>
+						  </BannerButtonDiv2> */}
+								<Mycanvas ref={canvasRef}
+                          onMouseDown={startDrawing} // 마우스 버튼을 눌렀을때
+                          onMouseUp={EndDrawing} // 마우스마우스 버튼을 땠을 때
+                          onMouseMove={drawing} // 마우스가 움직일 때
+                          onMouseLeave={EndDrawing} // 마우스가 캔버스를 벗어낫을 때
+                ></Mycanvas>
+								<MyButton3 onClick={onClickClear}>다시 그리기</MyButton3>
 							</>
 							)	: (
 							<>
-						  <p>Another fine responsive site template freebie by HTML5 UP.</p>
+							<GIFdiv>
+								<img src="/logo.png" />
+							</GIFdiv>
+							<p style={{fontSize:"25px"}}>오늘의 글씨에 오신것을 환영합니다!</p>
 						  <br />
 							<BannerButtonDiv>
           	    <MyButton1 onClick={() => {router.push('/register')}}>회원가입</MyButton1>
@@ -104,9 +194,6 @@ export default function MainPage() {
 						  </BannerButtonDiv>
 							</>
 							)} 
-
-						
-
           	</BannerDiv>
 					</BannerSection>
 		</Banner>
