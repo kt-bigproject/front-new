@@ -12,8 +12,11 @@ import TextInput from '@leafygreen-ui/text-input';
 import Button from '@leafygreen-ui/button';
 // import Icon from '@leafygreen-ui/icon';
 import Image from 'next/image';
+import AuthContext from '../AuthContext/AuthContext';
 
 export default function WriteModal({open, onClose}) {
+
+  const { user } = useContext(AuthContext)
 
   const boxStyle = {
     position: 'absolute',
@@ -77,7 +80,8 @@ export default function WriteModal({open, onClose}) {
       // const data = await response.data;
       if (response.status === 201) {
         console.log(response.data)
-        Router.push('/bpost')
+        alert('등록되었습니다.')
+        Router.reload()
       } else {
         console.log(response.status)
       }
@@ -86,8 +90,7 @@ export default function WriteModal({open, onClose}) {
           console.log("formData values");
           console.log(value);
       }
-      alert('등록되었습니다.')
-      Router.reload()
+      // Router.reload()
     };
     };
 

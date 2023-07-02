@@ -13,7 +13,7 @@ import VisibilityIcon from '@mui/icons-material/Visibility';
 
 import LayoutHeader from '/src/commons/layout/header2/header';
 import ImgModal from '/src/components/bpost/ImgModal';
-import WriteModal from '/src/components/bpost/WriteModal';
+import WriteModal from '../../src/components/bpost/WriteModal';
 
 // import { RoughNotation } from 'react-rough-notation';
 
@@ -51,15 +51,11 @@ export default function Home() {
   const baseURL = 'http://127.0.0.1:8000/api';
 
   useEffect(() => {
-    if (!user) {
-      alert("로그인 후 이용해주세요.")
-      router.push('/')
-    } else {
     axios.get( baseURL + '/blog/blog/')
       .then(response => {
         const pageSize = 8;
         setCount(Math.ceil(response.data.count / pageSize));
-      }) }
+      })
     }, []);
 
   useEffect(() => {

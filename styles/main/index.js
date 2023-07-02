@@ -3,7 +3,8 @@ import { keyframes } from "@emotion/react"
 
 export const Banner = styled.section`
   background-color: #FAF0E6;
-	background-image: url('/main/Noise.png');
+	/* background-image: url('/main/Noise.png'); */
+	background-image: url('/main/cover2.png');
   /* color: #fff; 흰색계열이데 좀 이쁨 */
   background-repeat: no-repeat;
   background-size: 100% 100%;
@@ -27,8 +28,8 @@ export const BannerSection = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-image: url('/page/main.png');
-  background-size: 100% 100%;
+  /* background-image: url('/main/cover2.png'); */
+  /* background-size: 100% 100%; */
 `
 
 export const BannerDiv = styled.div`
