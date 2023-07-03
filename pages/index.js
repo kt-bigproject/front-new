@@ -316,7 +316,7 @@ export default function MainPage() {
 									</FunctionTitle>
 									<img src="/vector/vector4.png" />
               	  <FunctionContext>
-										<p style={{textAlign: 'center', fontSize: '19.4px'}}>당신만의 독특한 폰트를 만들어보세요!<br/>폰트 만들기 서비스에서는 우리 사이트에서 다듬어진 손글씨를 기반으로<br />맞춤형 폰트를 생성할 수 있습니다.</p>
+										<p style={{textAlign: 'center', fontSize: '19.4px'}}>당신만의 독특한 폰트를 만들어보세요!<br/>폰트 만들기 서비스에서는 우리 사이트에서 다듬어진 손글씨 <br />또는 좋아하는 연예인의 손글씨를 폰트로 생성할 수 있습니다.</p>
 									</FunctionContext>
               	</FunctionDiv4>
 							</Function>
