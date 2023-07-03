@@ -14,6 +14,8 @@ export const AuthProvider = ({ children }) => {
 
   const router = useRouter();
 
+  const [loginAlert, setLoginAlert] = useState(false)
+
   useEffect(() => {
     const getToken = localStorage.getItem("authTokens");
     if (getToken) {
@@ -45,7 +47,9 @@ export const AuthProvider = ({ children }) => {
       console.log(data)
       router.push("/");
     } else {
-      alert("아이디 또는 비밀번호가 맞지 않습니다.");
+      // alert("아이디 또는 비밀번호가 맞지 않습니다.");
+      setLoginAlert("아이디 또는 비밀번호가 맞지 않습니다.")
+
       console.log(data)
     }
   };
@@ -75,6 +79,7 @@ export const AuthProvider = ({ children }) => {
     count,
     setCount,
     socialLogin,
+    loginAlert,
   };
 
   return (
