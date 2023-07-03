@@ -113,21 +113,21 @@ export default function MainPage() {
 		setModalOpen(false);
 	};
 
-	// useEffect(() => {
-  //   if (hasCookie('token')) {
+	useEffect(() => {
+    if (hasCookie('token')) {
 
-	// 		const access = getCookie('token');
-	// 		const refresh = getCookie('refresh_token');
-	// 		const authTokens = { access, refresh}
+			const access = getCookie('token');
+			const refresh = getCookie('refresh_token');
+			const authTokens = { access, refresh}
 
-	// 		socialLogin(authTokens)
+			socialLogin(authTokens)
 
-	// 		deleteCookie('token')
-	// 		deleteCookie('refresh_token')
-  //   }
-  // }, []);
+			deleteCookie('token')
+			deleteCookie('refresh_token')
+    }
+  }, []);
 
-
+	console.log('aaaa')
   return (
     <>
 			<Banner>

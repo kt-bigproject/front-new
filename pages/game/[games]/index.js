@@ -8,6 +8,7 @@ import { useAxios } from "../../../src/components/Axios/axios";
 export default function Game3() {
   const [ sent, setSent ] = useState("")
   const api = useAxios()
+  const stage = '단어'
   const router = useRouter();
   let { count, setCount } = useContext(AuthContext)
   useEffect(() => {
@@ -24,6 +25,6 @@ export default function Game3() {
     setCount(count+1)
   };
 
-  return <Gamepage NextLevel={NextLevel} sent={sent}/>;
+  return <Gamepage NextLevel={NextLevel} sent={sent} stage={stage}/>;
 }
 

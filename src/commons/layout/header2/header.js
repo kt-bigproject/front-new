@@ -5,7 +5,7 @@ import  { useContext } from 'react'
 import AuthContext from '../../../../src/components/AuthContext/AuthContext';
 export default function LayoutHeader() {
 
-  const {user, logoutUser} = useContext(AuthContext)
+  const {user, logoutUser, count, setCount} = useContext(AuthContext)
 
   const router = useRouter()
 
@@ -15,6 +15,7 @@ export default function LayoutHeader() {
 
   const onClickbutton2 = () => {
     router.push('/game')
+    setCount(1)
   }
 
   const onClickbutton3 = () => {

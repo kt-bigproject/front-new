@@ -9,6 +9,7 @@ export default function Game3() {
   const [ sent, setSent ] = useState("")
   const api = useAxios()
   const router = useRouter();
+  const stage = '문장'
   let { count, setCount } = useContext(AuthContext)
   useEffect(() => {
     const Fetchsentence = async () => {
@@ -24,5 +25,5 @@ export default function Game3() {
     setCount(count+1)
   };
 
-  return <Gamepage NextLevel={NextLevel} sent={sent}/>;
+  return <Gamepage NextLevel={NextLevel} sent={sent} stage={stage}/>;
 }
