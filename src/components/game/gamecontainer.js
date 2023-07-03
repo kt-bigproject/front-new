@@ -283,7 +283,7 @@ export default function Gamepage(props) {
       console.log(result);
       console.log("id", id);
       console.log("score", fetchedScore);
-      setScore(0.99);
+      setScore(fetchedScore);
       setIsLoading(false);
     };
     
@@ -298,7 +298,6 @@ export default function Gamepage(props) {
       setCount(1)
       router.push("/")
     }
-    
 
 
     useEffect(() => {
@@ -351,7 +350,7 @@ export default function Gamepage(props) {
                       <br />
                       <Mydiv3>
                         <div style={{ fontFamily:"one", fontSize:30, margin: '50px 0', backgroundImage:"url('/Practice/line2.png')", backgroundSize:"100% 100%", width: '10em', height:'3em', display:"flex", justifyContent:"center", alignItems:"center"}}>
-                          <h2>{count} Stage</h2>
+                          <h2>{count} Stage ({props.stage})</h2>
                         </div>
                       </Mydiv3>
                       <Mydiv>

@@ -9,6 +9,7 @@ export default function Game3() {
   const [ sent, setSent ] = useState("")
   const api = useAxios()
   const router = useRouter();
+  const stage = '음절'
   let { count, setCount, authTokens,  } = useContext(AuthContext)
   
   useEffect(() => {
@@ -26,6 +27,6 @@ export default function Game3() {
   };
   console.log(authTokens)
 
-  return <Gamepage NextLevel={NextLevel} sent={sent}/>;
+  return <Gamepage NextLevel={NextLevel} sent={sent} stage={stage}/>;
 }
 

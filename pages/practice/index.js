@@ -234,7 +234,7 @@ export default function PraticePage() {
 
     context.font = `75pt ${font}` 
     context.fillStyle = "lightgray";
-    context.fillText(sent, 20, 225)
+    context.fillText(sent, 200, 225)
     contextRef.current = context;
     setCtx(contextRef.current)
 
@@ -384,9 +384,11 @@ export default function PraticePage() {
   const Fetchsentence = async (id) => {
     const result = await api.get('/practice/predict/');
     const fetchedScore = result.data.data.find(item => item.id === id)?.score;
-    setScore(0.9);
+    setScore(0);
     setIsLoading(false);
   };
+
+  console.log('aaa')
 
   return(
     <>
