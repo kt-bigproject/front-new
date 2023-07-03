@@ -72,7 +72,7 @@ export const Section1 = styled.div`
   box-shadow:0 0 15px 0 gray;
 `
 export const Section1div = styled.div`
-  background-image: url('/page/caution.png');
+  background-image: url('/page/caution2.png');
   background-repeat: no-repeat;
   background-size: 100% 100%;
   width: 100vw;
@@ -95,10 +95,10 @@ export const MainBox = styled.section`
 `
 
 export const MainDiv = styled.div`
-  padding-top: 70px;
+  padding-top: 40px;
   text-align: center;
-  padding-bottom: 30px;
-  margin-top: 35px;
+  padding-bottom:30px;
+  margin-top: 45px;
 `
 
 export const Section2 = styled.div`
@@ -184,7 +184,7 @@ export const FunctionContext = styled.div`
 
 export const MainP = styled.p`
   position: relative;
-  font-size: 20px;
+  font-size: 18px;
 `
 
 export const MenuBox = styled.section`
@@ -192,6 +192,7 @@ export const MenuBox = styled.section`
 	max-width: calc(100% - 5em);
 	width: 70em;
   height: 55vh;
+  margin: 20px;
 `
 
 export const FeatureSection = styled.section`
@@ -203,6 +204,10 @@ export const FeatureSection = styled.section`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  width: 550px;
+  height: 380px;
+  /* margin-left: 50px; */
+  padding-left: 30px;
 `
 
 export const FeatureSection2 = styled.section`
@@ -215,8 +220,11 @@ export const FeatureSection2 = styled.section`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 600px;
-  margin: 30px;
+  width: 550px;
+  height: 380px;
+  /* margin-bottom: 20px; */
+  padding-left: 10px;
+  padding-right: 10px;
 `
 
 export const FeatureSection3 = styled.section`
@@ -228,6 +236,9 @@ export const FeatureSection3 = styled.section`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  width: 550px;
+  height: 380px;
+  padding-right: 30px
 `
 
 export const FeatureSection4 = styled.section`
@@ -283,7 +294,7 @@ const rotateAnimation = keyframes`
 `;
 
 export const Section3div = styled.div`
-  background-image: url('/page/tech.png');
+  background-image: url('/page/tech2.png');
   background-size: 100% 90%;
   width: 100vw;
   height: 100vh;
@@ -297,6 +308,7 @@ export const Section3Img = styled.div`
   width: 45%;
   text-align: center;
   img {
+    width: 77%;
     animation: ${rotateAnimation} 80s linear infinite;
   }
 `
@@ -326,7 +338,7 @@ export const Section4Div = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: left;
-  padding: 14em;
+  padding: 10em;
 `
 
 export const Cover = styled.div`
@@ -351,6 +363,7 @@ export const Profile1 = styled.div`
  width: 90%;
  display: flex;
  justify-content: space-between;
+ /* margin-bottom: 20px; */
 `
 const HoverAnimation = keyframes`
   0% {
@@ -369,8 +382,8 @@ export const ProfileCircle = styled.div`
   align-items: flex-end;
   justify-content: center;
   /* background-color: #f5f5f5; */
-  width: 150px;
-  height: 200px;
+  width: 135px;
+  height: 180px;
   padding-right: 3em;
   &:hover {
     animation: ${HoverAnimation} 0.3s ease-in-out forwards;
