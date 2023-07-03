@@ -397,11 +397,12 @@ export default function PraticePage() {
               <ImageDiv>
                 <img width='350' height='370' src='/Practice/Practice.png'/>
               </ImageDiv>
-              <Context>
-                <h1>낙서장</h1>
-                <p>다양한 서체를 적용하여 글씨체를 연습해보세요</p>
-                <p>손글씨를 연습하고 싶은 분들을 위한 특별한 공간입니다.</p>
-                <p>손글씨의 아름다움과 창의성을 함께 향상시킬 수 있는 공간, 손글씨 낙서장입니다</p>
+              <Context style={{marginRight: '30px'}}>
+                <h1 style={{fontSize: '50px'}}>낙서장</h1>
+                <br />
+                <p style={{fontSize: '24px'}}>다양한 서체를 적용하여 글씨체를 연습해보세요</p>
+                <p style={{fontSize: '24px'}}>손글씨를 연습하고 싶은 분들을 위한 특별한 공간입니다.</p>
+                <p style={{fontSize: '24px'}}>손글씨의 아름다움과 창의성을 함께 향상시킬 수 있는 공간, 손글씨 낙서장입니다</p>
               </Context>
             </BannerDiv2>
             <Function>
