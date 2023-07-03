@@ -243,7 +243,7 @@ export default function MainPage() {
           			></img>
                 <br />
 								<FeatureP>글쓰기 연습을 할 때는 언제나 올바른 자세로! 잘못된 자세는 허리에 부담을 줄 수가 있어요!<br/>
-								<a href='http://www.faber-castell.co.kr/%ED%94%8C%EB%A0%88%EC%9E%89%EB%9F%AC%EB%8B%9D/%EC%93%B0%EA%B8%B0%ED%95%99%EC%8A%B5/%EC%B2%B4%EA%B3%84%EC%A0%81%EC%9D%B8-%EC%93%B0%EA%B8%B0-%ED%95%99%EC%8A%B5%EC%9D%84-%EC%9C%84%ED%95%9C-%EB%AA%87-%EA%B0%80%EC%A7%80-%EC%B6%94%EA%B0%80-%EC%9C%A0%EC%9D%98%EC%82%AC%ED%95%AD/'>"올바른 자세 확인하기"</a>
+								<a style={{color: '#fa7400'}} href='http://www.faber-castell.co.kr/%ED%94%8C%EB%A0%88%EC%9E%89%EB%9F%AC%EB%8B%9D/%EC%93%B0%EA%B8%B0%ED%95%99%EC%8A%B5/%EC%B2%B4%EA%B3%84%EC%A0%81%EC%9D%B8-%EC%93%B0%EA%B8%B0-%ED%95%99%EC%8A%B5%EC%9D%84-%EC%9C%84%ED%95%9C-%EB%AA%87-%EA%B0%80%EC%A7%80-%EC%B6%94%EA%B0%80-%EC%9C%A0%EC%9D%98%EC%82%AC%ED%95%AD/' target='_blank'>"올바른 자세 확인하기"</a>
 								</FeatureP>
 							</FeatureSection>
 							<FeatureSection2>
@@ -269,7 +269,7 @@ export default function MainPage() {
           			></img>
                 <br />
 								<FeatureP>연필을 잡을 때는 언제나 올바른 파지법으로! 잘못된 파지법은 손에 부담을 줄 수가 있어요!<br />
-								<a href='http://www.faber-castell.co.kr/%ED%94%8C%EB%A0%88%EC%9E%89%EB%9F%AC%EB%8B%9D/%EC%93%B0%EA%B8%B0%ED%95%99%EC%8A%B5/%EC%98%AC%EB%B0%94%EB%A5%B8-%EC%9E%90%EC%84%B8-%EC%9D%B5%ED%9E%88%EA%B8%B0/'>"올바른 파지법 확인하기"</a></FeatureP>
+								<a style={{color: '#fa7400'}} href='http://www.faber-castell.co.kr/%ED%94%8C%EB%A0%88%EC%9E%89%EB%9F%AC%EB%8B%9D/%EC%93%B0%EA%B8%B0%ED%95%99%EC%8A%B5/%EC%98%AC%EB%B0%94%EB%A5%B8-%EC%9E%90%EC%84%B8-%EC%9D%B5%ED%9E%88%EA%B8%B0/' target='_blank'>"올바른 파지법 확인하기"</a></FeatureP>
 							</FeatureSection3>
 						</MenuBox>
 						</MainBox>
@@ -283,9 +283,9 @@ export default function MainPage() {
               	  <FunctionTitle>
 										<h3 style={{fontSize: '30px'}}>글씨 연습장</h3>
 									</FunctionTitle>
-									<img src="/vector/vector1.png" />
+									<img src="/vector/vector1.png" style={{marginBottom: '30px'}}/>
               	  <FunctionContext>
-										<p style={{textAlign: 'center', fontSize: '16px'}}>손글씨 연습장은 당신이 나만의 글씨 작업을 시작하고 발전시킬 수 있는 공간입니다.<br/>글씨 작업은 창의력을 자극하고 예술적인 재능을 발전시킬 수 있는 멋진 경험입니다.</p>
+										<p style={{textAlign: 'center', fontSize: '19.4px', marginBottom: '30px'}}>손글씨 연습장은 나만의 글씨체를 교정 및 발전시킬 수 있는 공간입니다.<br/>글씨 연습을 통해 창의적인 생각과 예술적인 재능을 발전시켜 보세요.</p>
 									</FunctionContext>
               	</FunctionDiv1>
 								<FunctionDiv2>
@@ -294,8 +294,9 @@ export default function MainPage() {
 									</FunctionTitle>
 									<img src="/vector/vector2.png" />
               	  <FunctionContext>
-										<p style={{textAlign: 'center', fontSize: '16px'}}>손글씨 놀이터는 재미있는 기능을 통해 손글씨 연습을 즐길 수 있도록 만들어졌습니다.<br/>
-										손글씨 게임을 통한 다양한 문구를 활용하여 점수를 올리는 것과 동시에 손글씨 실력을 향상시킬 수 있습니다.</p>
+										<p style={{textAlign: 'center', fontSize: '19.4px'}}>손글씨 놀이터는 재미있는 게임을 통해 <br />손글씨 연습을 즐길 수 있도록 만들어졌습니다.<br/>
+										게임 속의 다양한 스테이지와 폰트에 도전해 보면서 <br />여러분의 손글씨 실력을 향상시켜 보세요!</p>
+										
 									</FunctionContext>
               	</FunctionDiv2>
 							</Function>
@@ -306,7 +307,7 @@ export default function MainPage() {
 									</FunctionTitle>
 									<img src="/vector/vector3.png" />
               	  <FunctionContext>
-										<p style={{textAlign: 'center', fontSize: '16px'}}>당신의 글씨체를 다양한 사람들과 자랑해 보세요.<br/>서로의 자랑과정을 통해 다양한 글씨체를 공유하고 댓글을 남기며 소통해보세요.<br/>자신의 글씨체로 자랑스러움을 느껴보십시오. </p>
+										<p style={{textAlign: 'center', fontSize: '19.4px'}}>열심히 연습한 당신의 손글씨를 여러 사람들에게 자랑해 보세요.<br/>여러 사람들과 글씨체를 공유하고 댓글을 남기면서 소통해보세요.<br/>맘에드는 글씨체에 좋아요를 누르면서 댓글로 칭찬을 남겨보아요!</p>
 									</FunctionContext>
               	</FunctionDiv3>
 								<FunctionDiv4>
@@ -315,7 +316,7 @@ export default function MainPage() {
 									</FunctionTitle>
 									<img src="/vector/vector4.png" />
               	  <FunctionContext>
-										<p style={{textAlign: 'center', fontSize: '16px'}}>당신만의 독특한 폰트를 만들어보세요!<br/>폰트 만들기 서비스에서는 당신이 우리 사이트에서 다듬어진 손글씨를 기반으로 맞춤형 폰트를 생성할 수 있습니다.</p>
+										<p style={{textAlign: 'center', fontSize: '19.4px'}}>당신만의 독특한 폰트를 만들어보세요!<br/>폰트 만들기 서비스에서는 우리 사이트에서 다듬어진 손글씨를 기반으로<br />맞춤형 폰트를 생성할 수 있습니다.</p>
 									</FunctionContext>
               	</FunctionDiv4>
 							</Function>
@@ -327,26 +328,32 @@ export default function MainPage() {
 							<img src="/main/A.png"/>
 						</Section3Img>
 						<Section3Div>
-							<h1>손글씨 예측을 위한 AI모델 소개{/*합니다.*/} </h1>
-							<p>우리 사이트는 아이들과 외국인들의 손글씨 개선을 위하여 AI모델을 적용 시켰습니다. AI는 당신의 손글씨를 분석하여 정해진 폰트와의 정확도를 예측하고, 그에 따른 사용자의 필체가 폰트와 정확할수록 예측 점수는 올라갑니다. </p>
-							<button style={{width: '60px', borderRadius: '10px', cursor: 'pointer'}} onClick={openModal}>자세히</button>
+							<h1>손글씨 예측을 위한 AI모델 소개{/*합니다.*/} </h1><br />
+							<p style={{fontSize: '23px', marginTop: '5px'}}>
+								&nbsp;여러분의 손글씨를 분석하여 AI가 정해진 폰트와의 유사도를 예측하고, 판별합니다.
+								글씨체의 유사도가 올라감과 동시에 사용자의 글씨도 점점 교정이 되어 예쁜 글씨를 쓸수 있게 됩니다.
+								예쁘게 교정된 여러분의 손글씨를 AI를 통해 나만의 폰트로 생성해 보세요. <br />
+								<p style={{marginTop: '10px'}}>&nbsp;손글씨 교정과 나만의 폰트생성 멋지지 않나요? 여러분도 한번 체험해 보세요!</p> </p>
+								
+								<br />
+							<button style={{width: '60px', borderRadius: '10px', cursor: 'pointer', fontSize: '15px'}} onClick={openModal}>자세히</button>
 							
 							<Modal open={modalOpen} setOpen={setModalOpen} close={closeModal} style={{overflow: 'auto', height: 'auto'}}>
 								
-								<p style={{fontSize: '28px', fontWeight: 'bolder'}}>AI 모델 상세 설명글 입니다.</p>
+								<p style={{fontSize: '28px', fontWeight: 'bolder'}}>AI 모델 상세 설명 입니다.</p>
 								<br />
-								<p style={{fontSize: '20px'}}>TPS (Thin Plate Spline) 모델:<br/>
+								<p style={{fontSize: '20px'}}><p style={{fontWeight: 'bolder'}}>TPS (Thin Plate Spline) 모델:</p><br/>
 								TPS 모델은 이미지 변환에 사용되는 비선형 방법입니다. 이 모델은 점들 사이의 미끄럼 변환을 통해 이미지를 정규화시킵니다. 
 								이를 통해 손글씨 이미지의 형태를 변경하고 보정하는 데 사용될 수 있습니다.</p>
 						  		<br />
 								<br />
-								<p style={{fontSize: '20px'}}>ResNet (Residual Neural Network) 모델:<br />
+								<p style={{fontSize: '20px'}}><p style={{fontWeight: 'bolder'}}>ResNet (Residual Neural Network) 모델:</p><br />
 								ResNet은 딥러닝 네트워크의 깊이를 극복하기 위해 개발된 네트워크 구조입니다. 
 								이 모델은 스킵 연결(skip connection)이라는 개념을 도입하여 신경망의 깊이에 따른 그래디언트 소실 문제를 완화합니다. 
 								이를 통해 더 깊은 네트워크를 구성하여 성능을 향상시킬 수 있습니다.</p>
 								<br />
 								<br />
-								<p style={{fontSize: '20px'}}>BiLSTM (Bidirectional Long Short-Term Memory) 모델:<br />
+								<p style={{fontSize: '20px'}}><p style={{fontWeight: 'bolder'}}>BiLSTM (Bidirectional Long Short-Term Memory) 모델:</p><br />
 								BiLSTM은 순차적인 데이터(예: 문장, 시계열 데이터)에 대한 처리에 주로 사용되는 모델입니다. 
 								LSTM은 순차적인 정보를 기억하고 활용하기 위한 장기 의존성을 처리하는데 효과적입니다. 
 								BiLSTM은 입력 시퀀스를 앞뒤로 양방향으로 처리하여 문맥을 더 잘 이해할 수 있게 합니다. 
