@@ -7,14 +7,14 @@ export const globalStyles = css`
         font-family: "myfont";
     }
 
-    @font-face {
-        font-family: "myfont";
-        src: url("/fonts/초보.ttf");
-    }
+  @font-face {
+      font-family: "myfont";
+      src: url("/fonts/초보.ttf");
+  }
 
-    @font-face {
-    font-family: "one";
-    src: url("/fonts/초보.ttf");
+  @font-face {
+  font-family: "one";
+  src: url("/fonts/초보.ttf");
   }
 
   @font-face {
@@ -35,6 +35,11 @@ export const globalStyles = css`
   @font-face {
     font-family: "five";
     src: url("/fonts/예술.ttf");
+  }
+
+  @font-face {
+    font-family: "six";
+    src: url("/fonts/지코.ttf");
   }
 
   @font-face {

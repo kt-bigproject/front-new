@@ -161,6 +161,10 @@ export default function PraticePage() {
     setFont("five")
     setFontsent("KCC 안중근체")
   }
+  const onClcikFont6 = () => {
+    setFont("six")
+    setFontsent("블락비-지코")
+  }
 
   // dropbox옵션
   const items = [ 
@@ -204,14 +208,16 @@ export default function PraticePage() {
         </div>
       ),
     },
+    {
+      key: '6',
+      label: (
+        <div style={{ fontFamily: "six", fontSize:20}} onClick={onClcikFont6} target="_blank" rel="noopener noreferrer">
+          블락비-지코
+        </div>
+      ),
+    },
   ]
 
-  useEffect(() =>{
-    if (!user) {
-      alert("로그인 후 이용해주세요.")
-      router.push('/')
-    }
-  },[])
   useEffect(() =>{
     const canvas = canvasRef.current;
     canvas.width = 1010
@@ -297,7 +303,10 @@ export default function PraticePage() {
   // 그림 제출하기 함수
   const onClickSubmit = async (event) => {
     const randomNumber = Math.floor(Math.random() * 100000)
-
+    if (!user) {
+      alert("로그인 후 이용해주세요.")
+      router.push('/')
+    }
     event.preventDefault();
     hiddenRef.current.getContext('2d').fillText("",0,0)
     const canvas = hiddenRef.current;
@@ -351,22 +360,10 @@ export default function PraticePage() {
       const random = Math.floor(Math.random() * result.data['length'])
       // console.log(result.data[1])
       setSent(result.data[random].sentence)
+      // setSent("다라쥐 쳇바뀌")
     }
     Fetchsentence()
   }, [])
-
-  const MyDivStyle = {
-    fontFamily: font,
-    fontSize: 30,
-    textAlign: "center",
-    width: "1200px",
-    borderRadius: "10px", 
-    width: 800, 
-    height: 50, 
-    textAlign: "center", 
-    fontSize: 28, 
-    border: "2px solid gray"
-  }
 
   const bomb = () => {
     confetti({
