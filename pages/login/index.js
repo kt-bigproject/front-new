@@ -1,5 +1,6 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import AuthContext from "../../src/components/AuthContext/AuthContext";
+import ErrorAlert from '../../src/components/Qpost/ErrorAlert';
 
 // UI import
 import Modal from '@leafygreen-ui/modal';
@@ -62,6 +63,9 @@ const LoginButton = styled(Button)`
 
 export default function LoginPage() {
 
+  const { loginAlert } = useContext(AuthContext)
+  const [errorMessage, setErrorMessage] = useState(false);
+
   const baseURL = "http://127.0.0.1:8000/api";
 
   const { loginUser } = useContext(AuthContext);
@@ -70,6 +74,12 @@ export default function LoginPage() {
     const username = e.target.username.value;
     const password = e.target.password.value;
     username.length > 0 && loginUser(username, password);
+
+    if (loginAlert) {
+      setErrorMessage(loginAlert);
+    } else {
+      setErrorMessage(false);
+    }
   };
   return (
     <div className={styles.box} >
@@ -154,6 +164,7 @@ export default function LoginPage() {
             </form>
           </section>
           </div>
+          <ErrorAlert parentState={[errorMessage, setErrorMessage]}/>
           </div>
           <div className={styles.boxR}>            
           </div>
