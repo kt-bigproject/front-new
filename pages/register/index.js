@@ -16,6 +16,7 @@ import ModalContent from "./ModalContent.js";
 // import Callout from '@leafygreen-ui/callout';
 import { useRouter } from "next/router";
 import Link from 'next/link';
+import Icon from '@leafygreen-ui/icon';
 
 const baseURL = 'http://127.0.0.1:8000/api';
 
@@ -37,6 +38,10 @@ const CustomTextInput = styled(TextInput)`
   [class^="leafygreen-ui"] * {
     font-family: inherit;
   } 
+
+  .leafygreen-ui-plaubv {
+    font-family: 'myfont';
+  }
 `
 
 const CustomPasswordInput = styled(PasswordInput)`
@@ -72,6 +77,16 @@ const boxStyle = {
   p: 4,
 };
 
+const CustomCheckbox = styled(Checkbox)`
+
+  [class^="leafygreen-ui"] * {
+    font-family: 'myfont';
+  } 
+
+  .leafygreen-ui-16i6b2v {
+    font-family: inherit;
+}
+`
 
 export default function Register() {
   const router = useRouter()
@@ -85,6 +100,7 @@ export default function Register() {
   const [confirm, setConfirm] = useState("none")
 
   const [check, setCheck] = useState(false);
+  const [checkAlert, setcheckAlert] = useState(false)
 
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
@@ -217,11 +233,20 @@ export default function Register() {
                 />            
 
               <div style={{display: 'flex', flexDirection: 'row', justifyContent: 'space-between'}}>
-                <Checkbox 
+                <CustomCheckbox 
                   style={{marginBottom: 10}} 
                   label={<><span style={{color: "#016bf8"}}>[필수]</span>{" "}<span>개인정보 수집 및 이용 동의</span></>}
-                  onChange={()=>{setCheck(!check)}} 
+                  onChange={()=>{
+                    setCheck(!check)
+                    setcheckAlert(false)
+                    }} 
                   bold={true}
+                  description={
+                    checkAlert
+                    ?<div style={{display:'flex', color: '#DB3030', alignItems: 'center'}}>
+                      <Icon glyph="X" /><span style={{color: '#DB3030', marginLeft: '3px'}}>개인정보 수집 및 이용에 동의해주세요.</span>
+                    </div>
+                    : null}
                 />
                 <div style={{display: 'flex', fontSize: 14, fontWeight: 'bold', color: '#5c6c75', cursor: 'pointer'}}
                   onClick={()=>{handleOpen()}}>[내용보기]</div>
@@ -242,8 +267,8 @@ export default function Register() {
                 variant={"default"}
                 baseFontSize={16}
                 onClick={()=> {
-                  if (!check) {
-                    alert('개인정보 수집 및 이용에 동의해주세요.');
+                  if (!check) {                    
+                    setcheckAlert(true);
                   }
                 }}>                
                 회원가입
