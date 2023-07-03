@@ -335,11 +335,12 @@ export default function Gamepage(props) {
                   <ImageDiv>
                     <img width='350' height='370' src='/Practice/pbg.jpg'/>
                   </ImageDiv>
-                  <Context>
-                    <h1 style={{fontSize: '40px'}}>놀이터</h1>
-                    <p>연습한 글씨체를 게임을 통해 직접 적어보세요!</p>
-                    <p>단어와 문장을 듣고 발음을 연습할 수 있는 기능도 제공합니다.</p>
-                    <p>언어 학습의 재미를 경험해보세요.</p>
+                  <Context style={{marginRight: '30px'}}>
+                    <h1 style={{fontSize: '50px'}}>놀이터</h1>
+                    <br />
+                    <p style={{fontSize: '24px'}}>연습한 글씨체를 게임을 통해 직접 적어보세요!</p>
+                    <p style={{fontSize: '24px'}}>단어와 문장을 듣고 발음을 연습할 수 있는 기능도 제공합니다.</p>
+                    <p style={{fontSize: '24px'}}>언어 학습의 재미를 경험해보세요.</p>
                   </Context>
                 </BannerDiv2>                     
                       <Mydiv2 style= {{marginTop:50}}>

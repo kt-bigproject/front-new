@@ -104,7 +104,7 @@ export const MyButton1 = styled.button`
   cursor: pointer;
   display: inline-flex;
   font-family: "one";
-  font-size: 16px;
+  font-size: 20px;
   font-weight: 600;
   justify-content: center;
   line-height: 1.25;
@@ -145,7 +145,7 @@ export const MyButton2 = styled.button`
   cursor: pointer;
   display: inline-flex;
   font-family: "one";
-  font-size: 16px;
+  font-size: 20px;
   font-weight: 600;
   justify-content: center;
   line-height: 1.25;
@@ -194,8 +194,8 @@ export const MyButton3 = styled(ReloadOutlined)`
   -webkit-user-select: none;
   touch-action: manipulation;
   vertical-align: baseline;
-  width: 50.08px;
-  height: 48.67px;
+  width: 70.08px;
+  height: 51px;
   margin-bottom: 10px;
   color: #fa6400;
   border-radius: 12px;
