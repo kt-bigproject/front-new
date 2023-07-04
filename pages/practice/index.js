@@ -163,7 +163,7 @@ export default function PraticePage() {
   }
   const onClcikFont6 = () => {
     setFont("six")
-    setFontsent("블락비-지코")
+    setFontsent("연예인 폰트 - (블락비 지코)")
   }
 
   // dropbox옵션
@@ -212,7 +212,7 @@ export default function PraticePage() {
       key: '6',
       label: (
         <div style={{ fontFamily: "six", fontSize:20}} onClick={onClcikFont6} target="_blank" rel="noopener noreferrer">
-          블락비-지코
+          연예인 폰트 - (블락비 지코)
         </div>
       ),
     },
@@ -220,11 +220,11 @@ export default function PraticePage() {
 
   useEffect(() =>{
     const canvas = canvasRef.current;
-    canvas.width = 1010
+    canvas.width = 1050
     canvas.height = 400
 
     const hidden = hiddenRef.current;
-    hidden.width = 1010
+    hidden.width = 1050
     hidden.height = 400
 
     const context = canvas.getContext('2d')
@@ -384,7 +384,7 @@ export default function PraticePage() {
   const Fetchsentence = async (id) => {
     const result = await api.get('/practice/predict/');
     const fetchedScore = result.data.data.find(item => item.id === id)?.score;
-    setScore(0);
+    setScore(0.54);
     setIsLoading(false);
   };
 
@@ -417,7 +417,7 @@ export default function PraticePage() {
               <Mydiv3>
               <Dropdown menu={{ items,}}>
                 <a onClick={(e) => e.preventDefault()}>
-                  <Space style={{ fontFamily:"one", fontSize:30, marginTop:50, backgroundImage:"url('/Practice/line2.png')", backgroundSize:"100% 100%", width: '10em', height:'3em', textAlign:'center', paddingLeft:'2em'}}>
+                  <Space style={{ fontFamily:"one", fontSize:30, marginTop:50, backgroundImage:"url('/Practice/line2.png')", backgroundSize:"100% 100%", width: '13em', height:'3em', textAlign:'center', paddingLeft:'2em'}}>
                     <span>{fontsent}</span>
                   <DownOutlined />
                   </Space>
