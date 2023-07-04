@@ -104,7 +104,7 @@ export const MyButton1 = styled.button`
   cursor: pointer;
   display: inline-flex;
   font-family: "one";
-  font-size: 20px;
+  font-size: 17px;
   font-weight: 600;
   justify-content: center;
   line-height: 1.25;
@@ -117,7 +117,7 @@ export const MyButton1 = styled.button`
   -webkit-user-select: none;
   touch-action: manipulation;
   vertical-align: baseline;
-  width: 133.08px;
+  width: 138.08px;
   height: 48.67px;
   &:hover,
   &:focus {
@@ -145,7 +145,7 @@ export const MyButton2 = styled.button`
   cursor: pointer;
   display: inline-flex;
   font-family: "one";
-  font-size: 20px;
+  font-size: 17px;
   font-weight: 600;
   justify-content: center;
   line-height: 1.25;

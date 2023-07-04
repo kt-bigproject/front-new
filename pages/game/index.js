@@ -27,6 +27,6 @@ export default function Game3() {
   };
   console.log(authTokens)
 
-  return <Gamepage NextLevel={NextLevel} sent={sent} stage={stage}/>;
+  return <Gamepage NextLevel={NextLevel} sent={sent} stage={stage} score={0.87}/>;
 }
 

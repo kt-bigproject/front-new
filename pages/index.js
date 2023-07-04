@@ -127,7 +127,7 @@ export default function MainPage() {
     }
   }, []);
 
-	console.log('aaaa')
+	
   return (
     <>
 			<Banner>
