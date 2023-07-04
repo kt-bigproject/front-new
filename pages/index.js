@@ -12,15 +12,17 @@ import styled from '@emotion/styled';
 
 const Mycanvas = styled.canvas`
 	/* border: 1px solid; */
-	/* background-image: url("/main/grid2.png"); */
-	background-size: 100%;
+	background-image: url("/main/mainlogo.png");
+	background-position: center top;
+	background-size: 40%;
+	background-repeat: no-repeat;
 	/* background-color: white; */
 `
+
 
 export default function MainPage() {
 	const [open, setOpen] = useState(false);
 	const { user, socialLogin } = useContext(AuthContext)
-	console.log(user)
 	const onClcikTeam = () => {
 		setOpen(curr => !curr)
 	}
@@ -32,39 +34,36 @@ export default function MainPage() {
 	const [isDrawing, setIsDrawing] = useState(false) 
   const [eraser, setEraser] = useState("black")
   const [clear, setClear] = useState("")
-
+	
 	useEffect(() =>{
-		const img = new Image()
-		img.src = '/main/mainlogo.png'
+		const fontFace = new FontFace("one", "url('/fonts/초보.ttf')");
+		fontFace.load().then((loadedFace) => {
+			document.fonts.add(loadedFace);
+			const canvas = canvasRef.current;
+			canvas.width = 1010
+			canvas.height = 400
 
-		const canvas = canvasRef.current;
-		canvas.width = 1010
-		canvas.height = 400
+			const context = canvas.getContext('2d')
+			context.lineWidth = 4;
+			context.strokeStyle = eraser
+			context.lineCap = "round" // 선 끝모양지정 butt, round, square
 
-		const context = canvas.getContext('2d')
-		context.lineWidth = 4;
-		context.strokeStyle = eraser
-		context.lineCap = "round" // 선 끝모양지정 butt, round, square
-		
-		context.drawImage(img, 300, 10, 404, 128)
+			context.font = '50pt one'
 
-		if (user) {
-			context.font = `50pt one` 
-			context.fillStyle = "lightgray";
-			context.fillText(`"${user.username}" 님 환영합니다`,250, 225)
-		} else {
-			context.font = `50pt one` 
-			context.fillStyle = "lightgray";
-			context.fillText(`오늘의 글씨`,380, 225)
-		}
+			if (user) {
+				context.fillStyle = "lightgray";
+				context.fillText(`"${user.username}" 님 환영합니다`,250, 225)
+			} else {
+				context.fillStyle = "lightgray";
+				context.fillText(`오늘의 글씨`,380, 225)
+			}
 
-		context.font = `30pt one` 
-		context.fillText('그림을 그려보세요!',380, 300)
-		contextRef.current = context;
-		setCtx(contextRef.current)
-
-	}, [clear]);
-
+			context.font = '30pt one' 
+			context.fillText('그림을 그려보세요!',380, 300)
+			contextRef.current = context;
+			setCtx(contextRef.current)
+		})
+	}, [clear, user]);
 
   useEffect(() => { // 지우개 쓰기 위해서 렌더링
     if (ctx) {
@@ -127,7 +126,7 @@ export default function MainPage() {
     }
   }, []);
 
-	
+
   return (
     <>
 			<Banner>
@@ -213,10 +212,6 @@ export default function MainPage() {
           	</BannerDiv>
 					</BannerSection>
 		</Banner>
-
-
-
-			{/* Main */}
 			<All>
 				<Section1 id="part-2">
 				<Section1div>
@@ -328,15 +323,15 @@ export default function MainPage() {
 							<img src="/main/A.png"/>
 						</Section3Img>
 						<Section3Div>
-							<h1>손글씨 예측을 위한 AI모델 소개{/*합니다.*/} </h1><br />
-							<p style={{fontSize: '23px', marginTop: '5px'}}>
-								&nbsp;여러분의 손글씨를 분석하여 AI가 정해진 폰트와의 유사도를 예측하고, 판별합니다.
+							<h1>손글씨 예측을 위한 AI모델 소개</h1>
+							<p style={{fontSize: '23px', marginTop: '55px'}}>
+								여러분의 손글씨를 분석하여 AI가 정해진 폰트와의 유사도를 예측하고, 판별합니다.
 								글씨체의 유사도가 올라감과 동시에 사용자의 글씨도 점점 교정이 되어 예쁜 글씨를 쓸수 있게 됩니다.
-								예쁘게 교정된 여러분의 손글씨를 AI를 통해 나만의 폰트로 생성해 보세요. <br />
-								<p style={{marginTop: '10px'}}>&nbsp;손글씨 교정과 나만의 폰트생성 멋지지 않나요? 여러분도 한번 체험해 보세요!</p> </p>
+								예쁘게 교정된 여러분의 손글씨를 AI를 통해 나만의 폰트로 생성해 보세요.</p>
+								<p style={{fontSize: '23px', marginTop: '15px'}}>손글씨 교정과 나만의 폰트생성 멋지지 않나요? 여러분도 한번 체험해 보세요!</p> 
 								
 								<br />
-							<button style={{width: '60px', borderRadius: '10px', cursor: 'pointer', fontSize: '15px'}} onClick={openModal}>자세히</button>
+							<MyButton1 style={{width:'100px'}} onClick={openModal}>자세히</MyButton1>
 							
 							<Modal open={modalOpen} setOpen={setModalOpen} close={closeModal} style={{overflow: 'auto', height: 'auto'}}>
 								

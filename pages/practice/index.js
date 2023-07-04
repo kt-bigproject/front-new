@@ -45,7 +45,6 @@ new Promise((resolve, reject) => {
 });
 
 export default function PraticePage() {
-  const [inputValue, setInputValue] = useState('쓰고싶은 글을 써주세요.');
   // 기능
   const api = useAxios()
   const router = useRouter()
@@ -74,7 +73,7 @@ export default function PraticePage() {
   const [gameOpen, setgameOpen] = useState(false);
 
   // 점수 state
-  const [score, setScore] = useState(null)
+  const [score, setScore] = useState(0)
   const [isLoading, setIsLoading] = useState(false)
   const [id, setId] = useState(null)
 
@@ -82,6 +81,11 @@ export default function PraticePage() {
   const GoHome = () => {
     router.reload()
   }
+
+  // 더블클릭 방지
+  const variable = useRef({
+    isDoubleClick: false
+  })
 
   // 사진 미리보기 함수
   const [previewOpen, setPreviewOpen] = useState(false);
@@ -108,36 +112,102 @@ export default function PraticePage() {
 
   // 업로드 이미지를 서버로 전송하는 함수
   const handleApi = async (event) => {
+    if (variable.current.isDoubleClick) {
+      return;
+    }
+    variable.current.isDoubleClick = true;
     if (!user) {
       alert("로그인 후 이용해주세요.")
       router.push('/')
+    } else {
+      event.preventDefault();
+      const formData = new FormData();
+      formData.append('font', font)  //서버전달용
+      formData.append(`image`, fileList[0].originFileObj) 
+      formData.append('sentence', sent)
+      // FormData의 key 확인
+      setIsLoading(true)
+      setgameOpen(curr => !curr)
+      data: formData
+      try {
+          const response = await api.post('/practice/upload/', formData, {
+              headers: { "Content-Type": "multipart/form-data", }, // 헤더 추가
+          }).finally(() => { variable.current.isDoubleClick = false;});
+          if (response.status === 201) {
+              console.log('이미지 전송 성공', response.data);
+              const newid = response.data.id
+              setId(newid)
+              Fetchsentence(newid)
+          } else {
+              console.log('이미지 전송 실패');
+              console.log(response.status);
+          }
+      } catch (event) {
+          console.error('이미지 전송 실패', event)
+          console.log(formData)
+      };
     }
-    event.preventDefault();
-    const formData = new FormData();
-    formData.append('font', font)  //서버전달용
-    formData.append(`image`, fileList[0].originFileObj) 
-    formData.append('sentence', sent)
-    // FormData의 key 확인
-    setIsLoading(true)
-    setgameOpen(curr => !curr)
-    data: formData
-    try {
+  };
+
+    // 그림 제출하기 함수
+  const onClickSubmit = async (event) => {
+    // 중복클릭 방지
+    if (variable.current.isDoubleClick) {
+      return;
+    }
+
+    variable.current.isDoubleClick = true;
+
+    const randomNumber = Math.floor(Math.random() * 100000)
+    if (!user) {
+      alert("로그인 후 이용해주세요.")
+      router.push('/')
+    } else {
+      event.preventDefault();
+      hiddenRef.current.getContext('2d').fillText("",0,0)
+      const canvas = hiddenRef.current;
+      const ImageURL = canvas.toDataURL(); // base64 타입 데이터로 변환
+    
+      const response = await fetch(ImageURL);
+      const blob = await response.blob();
+      const file = new File([blob], "myImage.png", { type: "image/png" });
+      const formData = new FormData(); // 이미지는 formdata객체를 만들어서 보내줘야 함
+      formData.append("font", font);
+      formData.append("image", file);
+      formData.append("sentence", sent);
+      
+      // FormData의 key 확인
+      for (let key of formData.keys()) {
+          console.log("formData key");
+          console.log(key);
+      }
+
+      // FormData의 value 확인
+      for (let value of formData.values()) {
+          console.log("formData values");
+          console.log(value);
+      }
+
+      // 모달창 열기
+      setIsLoading(true)
+      setgameOpen(curr => !curr)
+      try {
         const response = await api.post('/practice/upload/', formData, {
-            headers: { "Content-Type": "multipart/form-data", }, // 헤더 추가
-        });
+            headers: { "Content-Type": "multipart/form-data", },
+        }).finally(() => { variable.current.isDoubleClick = false;})
         if (response.status === 201) {
             console.log('이미지 전송 성공', response.data);
             const newid = response.data.id
             setId(newid)
-            Fetchsentence(newid)
+            Fetchsentence(newid)          
         } else {
-            console.log('이미지 전송 실패');
+            console.log('이미지 전송 실패')
             console.log(response.status);
         }
-    } catch (event) {
-        console.error('이미지 전송 실패', event)
-        console.log(formData)
-    };
+      } catch (event) {
+          console.error('이미지 전송 실패', event)
+      };
+    }
   };
 
   // 폰트 설정 함수
@@ -245,7 +315,7 @@ export default function PraticePage() {
 
     hiddenContextRef.current = hiddenContext;
     sethiddenCtx(hiddenContextRef.current)
-  }, [clear, inputValue, font, sent]);
+  }, [clear, font, sent]);
 
   useEffect(() => { // 지우개 쓰기 위해서 렌더링
     if (ctx && hiddenCtx) {
@@ -300,59 +370,6 @@ export default function PraticePage() {
     setEraser("black")
   }
 
-  // 그림 제출하기 함수
-  const onClickSubmit = async (event) => {
-    const randomNumber = Math.floor(Math.random() * 100000)
-    if (!user) {
-      alert("로그인 후 이용해주세요.")
-      router.push('/')
-    }
-    event.preventDefault();
-    hiddenRef.current.getContext('2d').fillText("",0,0)
-    const canvas = hiddenRef.current;
-    const ImageURL = canvas.toDataURL(); // base64 타입 데이터로 변환
-  
-    const response = await fetch(ImageURL);
-    const blob = await response.blob();
-    const file = new File([blob], "myImage.png", { type: "image/png" });
-    const formData = new FormData(); // 이미지는 formdata객체를 만들어서 보내줘야 함
-    formData.append("font", font);
-    formData.append("image", file);
-    formData.append("sentence", sent);
-    
-    // FormData의 key 확인
-    for (let key of formData.keys()) {
-        console.log("formData key");
-        console.log(key);
-    }
-
-    // FormData의 value 확인
-    for (let value of formData.values()) {
-        console.log("formData values");
-        console.log(value);
-    }
-
-    // 모달창 열기
-    setIsLoading(true)
-    setgameOpen(curr => !curr)
-    try {
-      const response = await api.post('/practice/upload/', formData, {
-          headers: { "Content-Type": "multipart/form-data", },
-      });
-      if (response.status === 201) {
-          console.log('이미지 전송 성공', response.data);
-          const newid = response.data.id
-          setId(newid)
-          Fetchsentence(newid)          
-      } else {
-          console.log('이미지 전송 실패')
-          console.log(response.status);
-      }
-    } catch (event) {
-        console.error('이미지 전송 실패', event)
-    };
-  }
-
   // 문장 바꾸기 함수
   useEffect(() => {
     const Fetchsentence = async () => {
@@ -384,7 +401,7 @@ export default function PraticePage() {
   const Fetchsentence = async (id) => {
     const result = await api.get('/practice/predict/');
     const fetchedScore = result.data.data.find(item => item.id === id)?.score;
-    setScore(0.54);
+    setScore(fetchedScore);
     setIsLoading(false);
   };
 

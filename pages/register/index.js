@@ -121,6 +121,7 @@ export default function Register() {
       }),
       });
     if (response.status === 201) {
+      alert("이메일로 인증메일이 발송되었습니다.")
       router.push("/login");
     } else {
       const data = await response.json();

@@ -28,7 +28,6 @@ export default function Home() {
 
   const { user, logoutUser } = useContext(AuthContext);
   const router = useRouter()
-  console.log(user)
   
   const [blog, setBlog] = useState(null);
   const [count, setCount] = useState(0);

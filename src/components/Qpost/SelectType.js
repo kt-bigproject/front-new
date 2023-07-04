@@ -20,7 +20,7 @@ export default function SelectType({typeState}) {
     <>
       <CustomSelect  aria-label={'select-type'} placeholder={"일반"} defaultValue={"normal"} value={type} onChange={(value)=>{setType(value)}} allowDeselect={false} >
         <Option value="normal">일반</Option>
-        <Option value="inquiry">문의</Option>
+        <Option value="inquiry">요청</Option>
         <Option value="announcement">공지</Option>
       </CustomSelect>
     </>

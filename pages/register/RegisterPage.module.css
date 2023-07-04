@@ -3,17 +3,14 @@
   flex-direction: row;
   width: 100vw;
   min-height: 100vh;
-  align-items: flex-start
+  align-items: flex-start;
+  background-image: url('/login_main.jpg');
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  filter: saturate(70%);
 }
 
 .col1 {
-    background-image: url('/login_main.jpg');
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center;
-  filter: saturate(70%);
-  transform: scaleX(-1);
-
   display: flex;
   width: 385px;
   height: 100vh;
@@ -23,6 +20,7 @@
   display: inline-flex;
   flex-direction: row;
   min-height: 100vh;
+  background-color: white;
 }
 
 .col2 {

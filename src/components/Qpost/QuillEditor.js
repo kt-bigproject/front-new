@@ -57,6 +57,16 @@ const quillEditorStyle = css`
   font-family: 'five';
 }
 
+.ql-snow .ql-picker.ql-font .ql-picker-label[data-value="five"]::before,
+.ql-snow .ql-picker.ql-font .ql-picker-item[data-value="five"]::before {
+  content: "블락비 - ZICO";
+  font-family: "six";
+}
+
+.ql-font-five {
+  font-family: 'six';
+}
+
 .ql-size-small {
     font-size: 0.75em;
 }

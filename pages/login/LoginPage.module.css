@@ -3,6 +3,11 @@
   flex-direction: row;
   width: 100vw;
   min-height: 100vh;
+  background-image: url('/login_main.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  filter: saturate(70%);  
 }
 
 .boxL {
@@ -11,7 +16,7 @@
   padding-left: 0;
   width: 385px;
   height: auto;
-  /* background-color: yellowgreen; */
+  background-color: white;
 }
 
 .boxLwrap {
@@ -136,7 +141,7 @@
 /* @media only screen and (min-width: 1025px) */
 
 .boxR {
-  background-image: url('/login_main.jpg');
+  /* background-image: url('/login_main.jpg');
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
@@ -145,11 +150,11 @@
 
   display: block;
   width: calc(100vw - 385px);
-  height: 100%;
+  height: 100vh;
   position: absolute;
   left: 385px;
-  height: 100%;
-  /* background-color: #ffe4e4; */
+  height: 100vh;
+  background-color: #ffe4e4; */
 }
 
 .naverLogin {
