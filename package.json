@@ -49,6 +49,7 @@
     "moment": "^2.29.4",
     "next": "12.1.0",
     "next-transpile-modules": "^10.0.0",
+    "nprogress": "^0.2.0",
     "quill-image-drop-module": "^1.0.3",
     "quill-image-resize": "^3.0.9",
     "react-animated-heart": "^0.0.8",

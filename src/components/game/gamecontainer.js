@@ -48,6 +48,11 @@ export default function Gamepage(props) {
   const api = useAxios()
   const router = useRouter()
 
+  // 더블클릭 방지
+  const variable = useRef({
+    isDoubleClick: false
+  })
+
   //canvas state
   const canvasRef = useRef(null)
   const contextRef = useRef(null)
@@ -98,97 +103,107 @@ export default function Gamepage(props) {
   
   // 업로드 이미지를 서버로 전송하는 함수
   const handleApi = async (event) => {
+    if (variable.current.isDoubleClick) {
+      return;
+    }
+    variable.current.isDoubleClick = true;
     event.preventDefault();
     if (!user) {
       alert("로그인 후 이용해주세요.")
       router.push('/')
-    }
-    const formData = new FormData();
-    formData.append('font', font)  //서버전달용
-    formData.append(`image`, fileList[0].originFileObj)
-    // formData.append('sentence', '가') 
-    formData.append('sentence', props.sent)
-    console.log(fileList[0].originFileObj)
+    } else {
+      const formData = new FormData();
+      formData.append('font', font)  //서버전달용
+      formData.append(`image`, fileList[0].originFileObj)
+      // formData.append('sentence', '가') 
+      formData.append('sentence', props.sent)
+      console.log(fileList[0].originFileObj)
 
-    // FormData의 key 확인
-    setIsLoading(true)
-    setgameOpen(curr => !curr)
-    data: formData
-    try {
+      // FormData의 key 확인
+      setIsLoading(true)
+      setgameOpen(curr => !curr)
+      data: formData
+      try {
+          const response = await api.post('/game/upload/', formData, {
+              headers: { "Content-Type": "multipart/form-data", }, // 헤더 추가
+          }).finally(() => { variable.current.isDoubleClick = false;});
+          if (response.status === 201) {
+              console.log('이미지 전송 성공', response.data);
+              const newid = response?.data.id
+              setId(newid)
+              Fetchsentence(newid)
+          } else {
+              console.log('이미지 전송 실패');
+              console.log(response.status);
+          }
+      } catch (event) {
+          console.error('이미지 전송 실패', event)
+          console.log(formData)
+      };
+  }
+  };
+
+    // 그림 제출하기 함수
+  const onClickSubmit = async (event) => {
+    if (variable.current.isDoubleClick) {
+      return;
+    }
+    variable.current.isDoubleClick = true;
+    if (!user) {
+      alert("로그인 후 이용해주세요.")
+      router.push('/')
+    } else {
+      //파일명 아무거나로 바꾸기
+      event.preventDefault();
+      const randomNumber = Math.floor(Math.random() * 100000)
+
+      hiddenRef.current.getContext('2d').fillText("",0,0)
+      const canvas = hiddenRef.current;
+      const ImageURL = canvas.toDataURL(); // base64 타입 데이터로 변환
+    
+      const response = await fetch(ImageURL);
+      const blob = await response.blob();
+      const file = new File([blob], `image${randomNumber}.png`, { type: "image/png" });
+      const formData = new FormData(); // 이미지는 formdata객체를 만들어서 보내줘야 함
+      formData.append("font", font);
+      formData.append("image", file);
+      formData.append("sentence", props.sent)
+      // formData.append('sentence', '가') 
+    
+      // FormData의 key 확인
+      for (let key of formData.keys()) {
+          console.log("formData key");
+          console.log(key);
+      }
+
+      // FormData의 value 확인
+      for (let value of formData.values()) {
+          console.log("formData values");
+          console.log(value);
+      }
+
+      // 모달창 열기
+      setIsLoading(true)
+      setgameOpen(curr => !curr)
+      data: formData
+      try {
         const response = await api.post('/game/upload/', formData, {
             headers: { "Content-Type": "multipart/form-data", }, // 헤더 추가
-        });
+        }).finally(() => { variable.current.isDoubleClick = false;});
         if (response.status === 201) {
             console.log('이미지 전송 성공', response.data);
             const newid = response?.data.id
             setId(newid)
             Fetchsentence(newid)
         } else {
-            console.log('이미지 전송 실패');
+            console.log('이미지 전송 실패')
             console.log(response.status);
         }
-    } catch (event) {
-        console.error('이미지 전송 실패', event)
-        console.log(formData)
-    };
-  };
-
-    // 그림 제출하기 함수
-  const onClickSubmit = async (event) => {
-    event.preventDefault();
-    if (!user) {
-      alert("로그인 후 이용해주세요.")
-      router.push('/')
-    }
-    //파일명 아무거나로 바꾸기
-    const randomNumber = Math.floor(Math.random() * 100000)
-
-    hiddenRef.current.getContext('2d').fillText("",0,0)
-    const canvas = hiddenRef.current;
-    const ImageURL = canvas.toDataURL(); // base64 타입 데이터로 변환
-  
-    const response = await fetch(ImageURL);
-    const blob = await response.blob();
-    const file = new File([blob], `image${randomNumber}.png`, { type: "image/png" });
-    const formData = new FormData(); // 이미지는 formdata객체를 만들어서 보내줘야 함
-    formData.append("font", font);
-    formData.append("image", file);
-    formData.append("sentence", props.sent)
-    // formData.append('sentence', '가') 
-  
-    // FormData의 key 확인
-    for (let key of formData.keys()) {
-        console.log("formData key");
-        console.log(key);
-    }
-
-    // FormData의 value 확인
-    for (let value of formData.values()) {
-        console.log("formData values");
-        console.log(value);
-    }
-
-    // 모달창 열기
-    setIsLoading(true)
-    setgameOpen(curr => !curr)
-    data: formData
-    try {
-      const response = await api.post('/game/upload/', formData, {
-          headers: { "Content-Type": "multipart/form-data", }, // 헤더 추가
-      });
-      if (response.status === 201) {
-          console.log('이미지 전송 성공', response.data);
-          const newid = response?.data.id
-          setId(newid)
-          Fetchsentence(newid)
-      } else {
-          console.log('이미지 전송 실패')
-          console.log(response.status);
-      }
-    } catch (event) {
-        console.error('이미지 전송 실패', event)
-        console.log(response)
-    };
+      } catch (event) {
+          console.error('이미지 전송 실패', event)
+          console.log(response)
+      };
+  }
     }
 
   useEffect(() =>{
@@ -284,7 +299,7 @@ export default function Gamepage(props) {
       console.log("id", id);
       console.log("score", fetchedScore);
       setScore(fetchedScore);
-      // setScore(props.score)
+      // setScore(99)
       setIsLoading(false);
     };
     

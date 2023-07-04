@@ -76,9 +76,6 @@ const getBase64 = (file) =>
         reader.onerror = (error) => reject(error);
     });
 
-const QuillEditor = dynamic( () => import('../bpost/QuillEditor'), {
-  ssr : false
-})
 
 const BoardWrite = () => {
   const Router = useRouter();
@@ -253,9 +250,6 @@ const BoardWrite = () => {
             onClick={handleClick}>파일 업로드</Button>
             <span style={{margin: 10}}>{selectedFileName}</span>
             {/* <span style={{margin: 10}} /> */}
-            <div >
-              <QuillEditor onChange={setBody} value={body} style={{height: '425px'}} />
-            </div>
             <input type="hidden" name="content" value={body}/>
             <div className={styles.writeBtn} >
               {/* <Button variant="outline-primary" id='submit-btn' type='submit' onClick={handleApi} style={{width: '100px'}} >글쓰기</Button>     */}
@@ -320,177 +314,8 @@ const BoardWrite = () => {
         </div>
         
        </div>
-      // {/*서버 제출 버튼*/}
-      // {/* <hr className={styles.line}></hr> */}
-      // {/* <div className={styles.button_div}> */}
-      // {/* <button variant="outline-primary" id='submit-btn' type='submit' onClick={handleApi} className={styles.save_btn}>저장하기</button> */}
-        // {/* <button onClick={saveBoard} className={styles.save_btn}>저장</button> */}
-        // {/* <span>    </span> */}
-        // {/* <button onClick={backToList} className={styles.cancel_btn}>뒤로가기</button> */}
-      // {/* </div> */}
-      // <div>
-      // </div>
-      // </div>
-    // </div>
+
   );
 };
 
 export default BoardWrite;
-
-
-
-
-
-// 'use client'
-// import React, { useState, useContext, useEffect, useRef } from 'react';
-// import dynamic from 'next/dynamic';
-// import { useRouter } from 'next/router';
-// import { useAxios } from "../../../src/components/Axios/axios";
-// import AuthContext from "../../../src/components/AuthContext/AuthContext";
-// import { FormSkeleton } from '@leafygreen-ui/skeleton-loader';
-// import ErrorAlert from '../../../src/components/Qpost/ErrorAlert';
-// import SelectType from '../../../src/components/Qpost/SelectType';
-// import Button from '@leafygreen-ui/button';
-// import Icon from '@leafygreen-ui/icon';
-// import TextInput from '@leafygreen-ui/text-input';
-// import styles from '../../../src/components/Qpost/write.module.css';
-
-// const QuillEditor = dynamic( () => import('../../../src/components/Qpost/QuillEditor'), {
-//   ssr : false
-// })
-
-// export default function BoardWrite() {
-  
-//   const router = useRouter()
-//   const api = useAxios()
-//   const { user } = useContext(AuthContext);
-
-//   const [content, setContent] = useState('');
-//   const [title, setTitle] = useState('');
-//   const [errorMessage, setErrorMessage] = useState(false);
-//   const [type, setType] = useState("normal")
-
-//   const [loading, setLoading] = useState(true);
-//   const [files, setFiles] = useState(null);
-//   const [selectedFileName, setSelectedFileName] = useState('');
-//   const fileInput = useRef();
-
-//   console.log(user)
-
-//   useEffect(() => {
-//     if (!user) {
-//       router.push('/login');
-//     } else {
-//       setLoading(false);
-//     }
-//   }, [user, router]);
-
-//   if (loading) {
-//     return <FormSkeleton/>
-//   }
-
-
-//   const handleFileChange = (e) => {
-//     setFiles(e.target.files[0]);
-//     setSelectedFileName(e.target.files[0].name);
-//   };
-
-//   const handleClick = () => {
-//     fileInput.current.click();
-//   };
-
-//   const handleSubmit = async e => {
-//     e.preventDefault();
-//     // console.log(title)
-//     // console.log(content)
-//     if (title.trim() === '' || content.replace(/<\/?[^>]+(>|$)/g, '').trim() === "") {
-//       setErrorMessage('제목과 내용은 필수 입력 항목입니다.');
-//     } else {
-//       setErrorMessage(false);
-
-//       const formData = new FormData();
-//       formData.append('title', title)
-//       formData.append('body', content)
-//       formData.append('image', files[0]?.originFileObj); 
-//       // formData.append('image', type)
-//       if (files !== null) {
-//         formData.append('file', files);
-//       }
-
-//       const response = await api.post('/blog/blog/', formData)
-
-//       const data = await response.data;
-//       if (response.status === 201) {
-//         console.log(data)
-//         router.push('/bpost')
-//       } else {
-//         console.log(response.status)
-//       }
-//     }
-//   };
-
-//   console.log(type)
-//   return (
-//     <div style={{backgroundColor:'#FAF0E6', width: '1100px', margin: 'auto' }}> 
-//       <div className={styles.detailContainer}>
-//         <div className={styles.detailWrapper}>
-//         <div className={styles.detailHeader}>
-//           <p style={{fontSize:'35px'}}>{"자랑하기 게시판 > 글쓰기"}</p>
-//         </div>
-//         <div className={`${styles.detailBody} ${styles.Box}`}> 
-//       <ErrorAlert parentState={[errorMessage, setErrorMessage]}/>
-
-//       <div style={{paddingBottom: '20px'}}>
-//       <span className={styles.toList} onClick={()=> router.push('/bpost')}>
-//               {"목록으로 >"}             
-//       </span>      
-//       </div>
-
-//       <form onSubmit={handleSubmit}>
-
-//         <div className={styles.writeTitle}>
-//           {/* <div>
-//           <SelectType typeState={[type, setType]}/>      
-//           </div> */}
-//           <div className={styles.titleInput}>
-//           <TextInput            
-//             aria-labelledby="title" 
-//             placeholder="제목을 입력해 주세요."
-//             onChange={(e)=>{ 
-//               setTitle(e.target.value) 
-//             }}
-//           />
-//           </div>
-//         </div>
-
-//         <input
-//           type="file"
-//           style={{ display: 'none' }}
-//           ref={fileInput}
-//           onChange={handleFileChange}
-//         />
-//         <Button leftGlyph={<Icon glyph="Upload" fill="#FF0000"/>} onClick={handleClick}>파일 업로드</Button><span style={{margin: 10}}>{selectedFileName}</span>
-//         {/* <ReactQuill theme="snow" value={content} onChange={setContent} modules={modules}/> */}
-//         <div className={styles.contents}>
-//         <QuillEditor style={{height: '425px'}} onChange={setContent} value={content}/>
-//         </div>
-//         {/* {typeof window !== 'undefined' && (
-//           <div 
-//             dangerouslySetInnerHTML={{ 
-//               __html : DOMPurify.sanitize(content),
-//               }}
-//           />
-//         )} */}
-//         {/* {value} */}
-//         <input type="hidden" name="content" value={content}/>
-//         <div className={styles.writeBtn} >
-//           <Button style={{width: '100px'}} type='submit'>글쓰기</Button>    
-//         </div>    
-//       </form>
-//       </div>
-//       <div className={styles.detailFooter}/>          
-//       </div>
-//       </div>
-//     </div>
-//   )  
-// }
