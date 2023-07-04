@@ -217,9 +217,8 @@ export default function MainPage() {
 				<Section1div>
 				<Main>
 					<MainBox>
-						<MainDiv>
-							<span style={{fontSize: '35px', fontWeight: 'bolder'}}>"손글씨 마스터!"
-							<br /><p style={{margin: '7px'}}/>
+						<MainDiv style={{display: 'flex', flexDirection:'column', height: '30%', justifyContent:'space-evenly'}}>
+							<span style={{fontSize: '35px', fontWeight: 'bolder', }}>"손글씨 마스터!"
 							</span>
 							<MainP>글씨 연습장은 더 나은 글쓰기 경험을 위해 설계된 도구입니다.<br /><p style={{margin: '5px'}}/>
 							편안한 자세로 앉아 등과 어깨를 펴고, 팔과 손목을 자연스럽게 위치시켜 최적의 글쓰기 자세를 유지하세요.<br /><p style={{margin: '5px'}}/>
