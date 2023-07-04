@@ -25,6 +25,6 @@ export default function Game3() {
     setCount(count+1)
   };
 
-  return <Gamepage NextLevel={NextLevel} sent={sent} stage={stage}/>;
+  return <Gamepage NextLevel={NextLevel} sent={sent} stage={stage} score={0.56}/>;
 }
 
