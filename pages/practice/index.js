@@ -313,6 +313,9 @@ export default function PraticePage() {
     hiddenContext.strokeStyle = eraser
     hiddenContext.lineCap = "round" // 선 끝모양지정 butt, round, square
 
+    hiddenContext.fillStyle = 'white';
+    hiddenContext.fillRect(0, 0, canvas.width, canvas.height);
+
     hiddenContextRef.current = hiddenContext;
     sethiddenCtx(hiddenContextRef.current)
   }, [clear, font, sent]);
@@ -400,7 +403,7 @@ export default function PraticePage() {
   // 점수 표출 함수
   const Fetchsentence = async (id) => {
     const result = await api.get('/practice/predict/');
-    const fetchedScore = result.data.data.find(item => item.id === id)?.score;
+    const fetchedScore = result.data.data.find(item => item.id === id)?.confidence;
     setScore(fetchedScore);
     setIsLoading(false);
   };
