@@ -170,7 +170,7 @@ export default function PraticePage() {
     
       const response = await fetch(ImageURL);
       const blob = await response.blob();
-      const file = new File([blob], "myImage.png", { type: "image/png" });
+      const file = new File([blob], `image${randomNumber}.png`, { type: "image/png" });
       const formData = new FormData(); // 이미지는 formdata객체를 만들어서 보내줘야 함
       formData.append("font", font);
       formData.append("image", file);
@@ -405,12 +405,18 @@ export default function PraticePage() {
     setIsLoading(false);
   };
 
+  const asdf = async (id) => {
+    const result = await api.get('/practice/predict/');
+    console.log(result)
+  };
+
   console.log('aaa')
 
   return(
     <>
     <Alldiv>
       <BannerDiv>
+        <button onClick={asdf}>실험버튼</button>
           <LayoutHeader />
             <BannerDiv2>
               <ImageDiv>
