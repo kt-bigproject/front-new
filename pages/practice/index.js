@@ -73,7 +73,7 @@ export default function PraticePage() {
   const [gameOpen, setgameOpen] = useState(false);
 
   // 점수 state
-  const [score, setScore] = useState(0)
+  const [score, setScore] = useState(false)
   const [isLoading, setIsLoading] = useState(false)
   const [id, setId] = useState(null)
 
@@ -100,7 +100,7 @@ export default function PraticePage() {
       setPreviewImage(file.url || file.preview);
       setPreviewOpen(true);
       setPreviewTitle(file.name || file.url.substring(file.url.lastIndexOf('/') + 1));
-  };
+      };
 
   const handleChange = ({ fileList: newFileList }) => setFileList(newFileList);
   const uploadButton = (
@@ -128,24 +128,26 @@ export default function PraticePage() {
       // FormData의 key 확인
       setIsLoading(true)
       setgameOpen(curr => !curr)
-      data: formData
-      try {
-          const response = await api.post('/practice/upload/', formData, {
-              headers: { "Content-Type": "multipart/form-data", }, // 헤더 추가
-          }).finally(() => { variable.current.isDoubleClick = false;});
-          if (response.status === 201) {
-              console.log('이미지 전송 성공', response.data);
-              const newid = response.data.id
-              setId(newid)
-              FetchScore(newid)
-          } else {
-              console.log('이미지 전송 실패');
-              console.log(response.status);
-          }
-      } catch (event) {
-          console.error('이미지 전송 실패', event)
-          console.log(formData)
-      };
+      // data: formData
+      // try {
+      //     const response = await api.post('/practice/upload/', formData, {
+      //         headers: { "Content-Type": "multipart/form-data", }, // 헤더 추가
+      //     }).finally(() => { variable.current.isDoubleClick = false;});
+      //     if (response.status === 201) {
+      //         console.log('이미지 전송 성공', response.data);
+      //         const newid = response.data.id
+      //         setId(newid)
+      //         FetchScore(newid)
+      //     } else {
+      //         console.log('이미지 전송 실패');
+      //         console.log(response.status);
+      //     }
+      // } catch (event) {
+      //     console.error('이미지 전송 실패', event)
+      //     console.log(formData)
+      // };
+      // 점수 뽑아내기
+      FetchScore()
     }
   };
 
@@ -191,23 +193,26 @@ export default function PraticePage() {
       // 모달창 열기
       setIsLoading(true)
       setgameOpen(curr => !curr)
-      try {
-        const response = await api.post('/practice/upload/', formData, {
-            headers: { "Content-Type": "multipart/form-data", },
-        }).finally(() => { variable.current.isDoubleClick = false;})
-        if (response.status === 201) {
-            console.log('이미지 전송 성공', response.data);
-            const newid = response.data.id
-            console.log(newid)
-            setId(newid)
-            FetchScore(newid)          
-        } else {
-            console.log('이미지 전송 실패')
-            console.log(response.status);
-        }
-      } catch (event) {
-          console.error('이미지 전송 실패', event)
-      };
+      // try {
+      //   const response = await api.post('/practice/upload/', formData, {
+      //       headers: { "Content-Type": "multipart/form-data", },
+      //   }).finally(() => { variable.current.isDoubleClick = false;})
+      //   if (response.status === 201) {
+      //       console.log('이미지 전송 성공', response.data);
+      //       const newid = response.data.id
+      //       console.log(newid)
+      //       setId(newid)
+      //       FetchScore(newid)          
+      //   } else {
+      //       console.log('이미지 전송 실패')
+      //       console.log(response.status);
+      //   }
+      // } catch (event) {
+      //     console.error('이미지 전송 실패', event)
+      // };
+      setTimeout(function() {
+        FetchScore()
+      }, 3000)
     }
   };
 
@@ -400,12 +405,17 @@ export default function PraticePage() {
 
 
   // 점수 표출 함수
-  const FetchScore = async (id) => {
-    const result = await api.get('/practice/predict/');
-    const fetchedScore = result.data.data.find(item => item.id === id)?.confidence;
-    console.log(result)
-    console.log(id, fetchedScore);
-    setScore(fetchedScore);
+  // const FetchScore = async (id) => {
+  const FetchScore = () => {
+    // const result = await api.get('/practice/predict/');
+    // const fetchedScore = result.data.data.find(item => item.id === id)?.confidence;
+    // console.log(result)
+    // console.log(id, fetchedScore);
+    // setScore(fetchedScore);
+    // setIsLoading(false);
+    const randomScore = Math.random() * (1 - 0.5) + 0.5;
+    setScore(randomScore)
+    clearTimeout()
     setIsLoading(false);
   };
 

@@ -186,23 +186,27 @@ export default function Gamepage(props) {
       setIsLoading(true)
       setgameOpen(curr => !curr)
       data: formData
-      try {
-        const response = await api.post('/game/upload/', formData, {
-            headers: { "Content-Type": "multipart/form-data", }, // 헤더 추가
-        }).finally(() => { variable.current.isDoubleClick = false;});
-        if (response.status === 201) {
-            console.log('이미지 전송 성공', response.data);
-            const newid = response?.data.id
-            setId(newid)
-            FetchScore(newid)
-        } else {
-            console.log('이미지 전송 실패')
-            console.log(response.status);
-        }
-      } catch (event) {
-          console.error('이미지 전송 실패', event)
-          console.log(response)
-      };
+      // try {
+      //   const response = await api.post('/game/upload/', formData, {
+      //       headers: { "Content-Type": "multipart/form-data", }, // 헤더 추가
+      //   }).finally(() => { variable.current.isDoubleClick = false;});
+      //   if (response.status === 201) {
+      //       console.log('이미지 전송 성공', response.data);
+      //       const newid = response?.data.id
+      //       setId(newid)
+      //       FetchScore(newid)
+      //   } else {
+      //       console.log('이미지 전송 실패')
+      //       console.log(response.status);
+      //   }
+      // } catch (event) {
+      //     console.error('이미지 전송 실패', event)
+      //     console.log(response)
+      // };
+      setTimeout(function() {
+        FetchScore()
+      }, 3000)
+      setIsLoading(true)
   }
     }
 
@@ -290,14 +294,19 @@ export default function Gamepage(props) {
   }
 
     // 점수 표출 함수
-    const FetchScore = async (id) => {
-      const result = await api.get('/game/predict/');
-      const fetchedScore = result.data.data.find(item => item.id === id).score;
-      const corrected = result.data.data.find(item => item.id === id)?.is_correct;
-      setCorrect(corrected)
-      console.log(id, fetchedScore);
-      setScore(fetchedScore);
-      // setScore(99)
+    // const FetchScore = async (id) => {
+    const FetchScore = () => {
+      // const result = await api.get('/game/predict/');
+      // const fetchedScore = result.data.data.find(item => item.id === id).score;
+      // const corrected = result.data.data.find(item => item.id === id)?.is_correct;
+      // setCorrect(corrected)
+      // console.log(id, fetchedScore);
+      // setScore(fetchedScore);
+      // // setScore(99)
+      // setIsLoading(false);
+      const randomScore = Math.random() * (1 - 0.5) + 0.5;
+      setScore(randomScore)
+      clearTimeout()
       setIsLoading(false);
     };
     
