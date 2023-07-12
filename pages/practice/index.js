@@ -137,7 +137,7 @@ export default function PraticePage() {
               console.log('이미지 전송 성공', response.data);
               const newid = response.data.id
               setId(newid)
-              Fetchsentence(newid)
+              FetchScore(newid)
           } else {
               console.log('이미지 전송 실패');
               console.log(response.status);
@@ -198,8 +198,9 @@ export default function PraticePage() {
         if (response.status === 201) {
             console.log('이미지 전송 성공', response.data);
             const newid = response.data.id
+            console.log(newid)
             setId(newid)
-            Fetchsentence(newid)          
+            FetchScore(newid)          
         } else {
             console.log('이미지 전송 실패')
             console.log(response.status);
@@ -378,9 +379,7 @@ export default function PraticePage() {
     const Fetchsentence = async () => {
       const result = await api.get('/practice/sentence/')
       const random = Math.floor(Math.random() * result.data['length'])
-      // console.log(result.data[1])
       setSent(result.data[random].sentence)
-      // setSent("다라쥐 쳇바뀌")
     }
     Fetchsentence()
   }, [])
@@ -401,9 +400,11 @@ export default function PraticePage() {
 
 
   // 점수 표출 함수
-  const Fetchsentence = async (id) => {
+  const FetchScore = async (id) => {
     const result = await api.get('/practice/predict/');
     const fetchedScore = result.data.data.find(item => item.id === id)?.confidence;
+    console.log(result)
+    console.log(id, fetchedScore);
     setScore(fetchedScore);
     setIsLoading(false);
   };

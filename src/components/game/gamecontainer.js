@@ -131,7 +131,7 @@ export default function Gamepage(props) {
               console.log('이미지 전송 성공', response.data);
               const newid = response?.data.id
               setId(newid)
-              Fetchsentence(newid)
+              FetchScore(newid)
           } else {
               console.log('이미지 전송 실패');
               console.log(response.status);
@@ -194,7 +194,7 @@ export default function Gamepage(props) {
             console.log('이미지 전송 성공', response.data);
             const newid = response?.data.id
             setId(newid)
-            Fetchsentence(newid)
+            FetchScore(newid)
         } else {
             console.log('이미지 전송 실패')
             console.log(response.status);
@@ -290,14 +290,12 @@ export default function Gamepage(props) {
   }
 
     // 점수 표출 함수
-    const Fetchsentence = async (id) => {
+    const FetchScore = async (id) => {
       const result = await api.get('/game/predict/');
       const fetchedScore = result.data.data.find(item => item.id === id).score;
       const corrected = result.data.data.find(item => item.id === id)?.is_correct;
       setCorrect(corrected)
-      console.log(result);
-      console.log("id", id);
-      console.log("score", fetchedScore);
+      console.log(id, fetchedScore);
       setScore(fetchedScore);
       // setScore(99)
       setIsLoading(false);

@@ -430,8 +430,8 @@ const getCoordinates = (nativeEvent) => {
 
   const Fetchsentence = async (id) => {
     const result = await api.get('/practice/predict/');
-      console.log(result);
     const fetchedScore = result.data.data.find(item => item.id === id)?.confidence;
+    console.log(id, fetchedScore);
     setScore(fetchedScore);
     setIsLoading(false);
 
