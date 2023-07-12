@@ -408,18 +408,12 @@ export default function PraticePage() {
     setIsLoading(false);
   };
 
-  const asdf = async (id) => {
-    const result = await api.get('/practice/predict/');
-    console.log(result)
-  };
 
-  console.log('aaa')
 
   return(
     <>
     <Alldiv>
       <BannerDiv>
-        <button onClick={asdf}>실험버튼</button>
           <LayoutHeader />
             <BannerDiv2>
               <ImageDiv>
